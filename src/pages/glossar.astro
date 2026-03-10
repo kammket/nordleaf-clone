@@ -1,0 +1,168 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const siteUrl = 'https://nordleaf.de';
+
+const glossarTerms = [
+  { term: 'THC (Tetrahydrocannabinol)', definition: 'Der wichtigste psychoaktive Wirkstoff der Cannabispflanze. THC bindet an CB1-Rezeptoren im Gehirn und erzeugt schmerzlindernde, appetitanregende und stimmungsaufhellende Effekte. Medizinisch eingesetzt bei chronischen Schmerzen, Übelkeit und Schlafstörungen.', links: [{ text: 'THC vs. CBD Ratgeber', url: '/ratgeber/thc-vs-cbd' }, { text: 'THC Vapes', url: '/kategorie/thc-vapes' }] },
+  { term: 'CBD (Cannabidiol)', definition: 'Ein nicht-psychoaktives Cannabinoid mit entzündungshemmenden, angstlösenden und krampflösenden Eigenschaften. CBD moduliert die Wirkung von THC und wird eigenständig bei Epilepsie, Angststörungen und Entzündungen eingesetzt.', links: [{ text: 'THC vs. CBD', url: '/ratgeber/thc-vs-cbd' }] },
+  { term: 'Cannabinoide', definition: 'Chemische Verbindungen, die an Cannabinoid-Rezeptoren im menschlichen Körper binden. Es gibt über 100 bekannte Phytocannabinoide in der Cannabispflanze, darunter THC, CBD, CBG und CBN. Auch der menschliche Körper produziert eigene Cannabinoide (Endocannabinoide).', links: [{ text: 'Cannabis als Medizin', url: '/ratgeber/cannabis-als-medizin' }] },
+  { term: 'Endocannabinoid-System (ECS)', definition: 'Ein körpereigenes Signalsystem mit CB1- und CB2-Rezeptoren, das an der Regulierung von Schmerz, Stimmung, Appetit, Schlaf und Immunfunktion beteiligt ist. Cannabis-Medikamente wirken, indem sie dieses System beeinflussen.', links: [{ text: 'Cannabis als Medizin', url: '/ratgeber/cannabis-als-medizin' }] },
+  { term: 'Indica', definition: 'Eine Cannabis-Unterart mit breiten Blättern und kompaktem Wuchs. Indica-Sorten werden oft mit entspannenden, sedierenden Wirkungen assoziiert und typischerweise abends oder bei Schlafstörungen eingesetzt.', links: [{ text: 'Sorten-Guide', url: '/ratgeber/cannabis-sorten-guide' }, { text: 'Cannabisblüten', url: '/kategorie/cannabisblueten' }] },
+  { term: 'Sativa', definition: 'Eine Cannabis-Unterart mit schmalen Blättern und hohem Wuchs. Sativa-Sorten werden oft mit energetisierenden, kreativitätsfördernden Wirkungen assoziiert und eignen sich eher für die Tagesanwendung.', links: [{ text: 'Sorten-Guide', url: '/ratgeber/cannabis-sorten-guide' }] },
+  { term: 'Hybride', definition: 'Kreuzungen zwischen Indica- und Sativa-Sorten, die Eigenschaften beider Unterarten vereinen. Die meisten modernen medizinischen Cannabissorten sind Hybride mit spezifisch gezüchteten Wirkprofilen.', links: [{ text: 'Sorten-Guide', url: '/ratgeber/cannabis-sorten-guide' }] },
+  { term: 'Terpene', definition: 'Aromatische Verbindungen in Cannabis, die den charakteristischen Geruch und Geschmack bestimmen. Terpene wie Myrcen, Limonen und Linalool besitzen eigenständige therapeutische Eigenschaften und verstärken die Wirkung von Cannabinoiden (Entourage-Effekt).', links: [{ text: 'Cannabisblüten', url: '/kategorie/cannabisblueten' }] },
+  { term: 'Entourage-Effekt', definition: 'Das Zusammenwirken aller Inhaltsstoffe der Cannabispflanze – Cannabinoide, Terpene und Flavonoide. Vollspektrum-Produkte nutzen diesen Effekt, da die Gesamtwirkung aller Stoffe die Einzelwirkung übersteigt.', links: [{ text: 'Cannabisextrakte', url: '/kategorie/cannabisextrakte' }] },
+  { term: 'Vaporizer / Verdampfer', definition: 'Ein medizinisches Gerät zur Inhalation von Cannabis durch Erhitzen (nicht Verbrennen) bei 180–210°C. Durch das Verdampfen werden die Wirkstoffe freigesetzt, ohne schädliche Verbrennungsprodukte zu erzeugen. Von Ärzten als bevorzugte Inhalationsmethode empfohlen.', links: [{ text: 'THC Vapes', url: '/kategorie/thc-vapes' }] },
+  { term: 'Vollspektrum-Extrakt', definition: 'Ein Cannabisextrakt, der das gesamte Wirkstoffspektrum der Pflanze enthält – THC, CBD, weitere Cannabinoide und Terpene. Im Gegensatz zu Isolaten profitiert ein Vollspektrum-Extrakt vom Entourage-Effekt.', links: [{ text: 'Cannabisextrakte', url: '/kategorie/cannabisextrakte' }] },
+  { term: 'Dronabinol', definition: 'Die pharmazeutische Bezeichnung für synthetisch hergestelltes oder aus Cannabis gewonnenes THC. Wird als Tropfenlösung oder in Kapseln verabreicht und ist seit Jahrzehnten in der Schmerztherapie zugelassen.', links: [{ text: 'Kapseln & Edibles', url: '/kategorie/kapseln-edibles' }] },
+  { term: 'BtM-Rezept (Betäubungsmittelrezept)', definition: 'Das spezielle Rezeptformular, das für verschreibungspflichtige Cannabis-Medikamente benötigt wird. Seit der Gesetzesänderung 2024 können Cannabis-Rezepte auch als reguläre Verordnungen ausgestellt werden, sofern der Arzt dies für angemessen hält.', links: [{ text: 'Rezept bekommen', url: '/ratgeber/cannabis-rezept-bekommen' }, { text: 'Gesetzgebung 2026', url: '/ratgeber/cannabis-gesetzgebung-2026' }] },
+  { term: 'Cannabisblüten', definition: 'Die getrockneten, harzigen Blüten der weiblichen Cannabispflanze. Medizinische Cannabisblüten werden unter kontrollierten Bedingungen angebaut, auf Schadstoffe getestet und mit exakten THC/CBD-Gehalten deklariert. Sie werden in der Regel vaporisiert.', links: [{ text: 'Cannabisblüten kaufen', url: '/kategorie/cannabisblueten' }, { text: 'Alle Produkte', url: '/products' }] },
+  { term: 'Decarboxylierung', definition: 'Der chemische Prozess, bei dem THCA (inaktive Säureform) durch Hitze in THC (psychoaktive Form) umgewandelt wird. Dieser Vorgang findet beim Vaporisieren oder Backen von Cannabis automatisch statt und ist Voraussetzung für die medizinische Wirkung.', links: [] },
+  { term: 'Mikrodosierung', definition: 'Eine Dosierungsstrategie, bei der sehr kleine Mengen Cannabis eingenommen werden (z.B. 1–2,5 mg THC), um therapeutische Effekte ohne starke psychoaktive Wirkung zu erzielen. Besonders geeignet für Cannabis-Neulinge.', links: [{ text: 'Cannabis als Medizin', url: '/ratgeber/cannabis-als-medizin' }] },
+  { term: 'Titration', definition: 'Die schrittweise Anpassung der Cannabis-Dosis nach dem Prinzip „Start low, go slow". Die individuelle Dosis wird über Tage oder Wochen langsam erhöht, bis die optimale Wirkung mit minimalen Nebenwirkungen erreicht ist.', links: [{ text: 'Cannabis als Medizin', url: '/ratgeber/cannabis-als-medizin' }] },
+  { term: 'GMP (Good Manufacturing Practice)', definition: 'Internationale Qualitätsstandards für die Herstellung von Arzneimitteln. Medizinisches Cannabis aus GMP-zertifizierten Betrieben garantiert gleichbleibende Qualität, Reinheit und korrekte Wirk­stoff­gehalte.', links: [] },
+  { term: 'Myrcen', definition: 'Das häufigste Terpen in Cannabis. Myrcen hat erdige, krautige Aromen und wirkt muskelentspannend, schmerzlindernd und sedierend. Hohe Myrcen-Gehalte werden mit der „Couch-Lock"-Wirkung von Indica-dominanten Sorten assoziiert.', links: [{ text: 'Cannabisblüten', url: '/kategorie/cannabisblueten' }] },
+  { term: 'Limonen', definition: 'Ein Terpen mit zitrusartigem Aroma. Limonen wirkt stimmungsaufhellend, angstlösend und hat antibakterielle Eigenschaften. Es kommt häufig in Sativa-dominanten Sorten vor.', links: [] },
+  { term: 'CBG (Cannabigerol)', definition: 'Ein nicht-psychoaktives Cannabinoid, das als „Mutter aller Cannabinoide" gilt, da CBGA die Vorstufe für THC und CBD ist. CBG zeigt in Studien entzündungshemmende und neuroprotektive Eigenschaften.', links: [] },
+  { term: 'CBN (Cannabinol)', definition: 'Ein leicht psychoaktives Cannabinoid, das durch Oxidation von THC entsteht. CBN wird mit sedierenden Eigenschaften assoziiert und in Schlaf-Formulierungen eingesetzt.', links: [] },
+  { term: 'Kostenübernahme', definition: 'Seit 2017 können gesetzlich Versicherte unter bestimmten Voraussetzungen eine Kostenübernahme für medizinisches Cannabis bei ihrer Krankenkasse beantragen. Die Genehmigungsquote liegt bei über 60%. Ein Antrag wird in der Regel innerhalb von 3–5 Wochen bearbeitet.', links: [{ text: 'Kostenübernahme-Ratgeber', url: '/kostenuebernahme' }] },
+  { term: 'Subspecies / Kultivar', definition: 'Ein gezüchteter Pflanzen-Stamm (umgangssprachlich „Sorte" oder „Strain") mit spezifischen Eigenschaften wie THC/CBD-Gehalt, Terpenprofil und Wuchsform. Jeder Kultivar hat ein einzigartiges Wirkprofil.', links: [{ text: 'Sorten-Guide', url: '/ratgeber/cannabis-sorten-guide' }] },
+  { term: 'Rezeptgebühr', definition: 'Für verschreibungspflichtige Arzneimittel fallen in Deutschland 5–10 € Rezeptgebühr in der Apotheke an. Bei einer genehmigten Kostenübernahme durch die Krankenkasse ist dies oft der einzige Eigenanteil für Cannabis-Patienten.', links: [{ text: 'Rezept bekommen', url: '/ratgeber/cannabis-rezept-bekommen' }] },
+];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "DefinedTermSet",
+  "name": "Cannabis-Glossar – Fachbegriffe erklärt",
+  "description": "Umfassendes Glossar mit den wichtigsten Begriffen rund um medizinisches Cannabis, Cannabinoide, Terpene und Gesetzgebung.",
+  "url": `${siteUrl}/glossar`,
+  "hasDefinedTerm": glossarTerms.map(t => ({
+    "@type": "DefinedTerm",
+    "name": t.term,
+    "description": t.definition
+  }))
+};
+
+const breadcrumbData = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Startseite", "item": `${siteUrl}/` },
+    { "@type": "ListItem", "position": 2, "name": "Cannabis-Glossar", "item": `${siteUrl}/glossar` }
+  ]
+};
+
+// Group terms by first letter
+const grouped: Record<string, typeof glossarTerms> = {};
+glossarTerms.forEach(t => {
+  const letter = t.term.charAt(0).toUpperCase();
+  if (!grouped[letter]) grouped[letter] = [];
+  grouped[letter].push(t);
+});
+const sortedLetters = Object.keys(grouped).sort();
+const allLetters = [...new Set(glossarTerms.map(t => t.term.charAt(0).toUpperCase()))].sort();
+---
+
+<Layout
+  title="Cannabis-Glossar: 25+ Fachbegriffe einfach erklärt | Nordleaf"
+  description="THC, CBD, Terpene, Endocannabinoid-System – unser Cannabis-Glossar erklärt alle wichtigen Begriffe rund um medizinisches Cannabis verständlich und fundiert."
+  keywords="Cannabis Glossar, THC Bedeutung, CBD erklärt, Cannabinoide, Terpene, Endocannabinoid-System, medizinisches Cannabis Begriffe, Indica Sativa Unterschied, Vaporizer, Decarboxylierung, Dronabinol"
+  canonical={`${siteUrl}/glossar`}
+  structuredData={structuredData}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbData)} />
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="hero-tag">Nachschlagewerk</span>
+      <h1>Cannabis-Glossar</h1>
+      <p>Alle wichtigen Begriffe rund um medizinisches Cannabis – verständlich erklärt.</p>
+    </div>
+  </section>
+
+  <section class="glossar-section">
+    <div class="container">
+      <nav class="glossar-nav" aria-label="Glossar-Navigation">
+        <span class="nav-label">Springe zu:</span>
+        {allLetters.map(letter => (
+          <a href={`#letter-${letter}`} class="letter-link">{letter}</a>
+        ))}
+      </nav>
+
+      <div class="glossar-list">
+        {sortedLetters.map(letter => (
+          <div class="letter-group" id={`letter-${letter}`}>
+            <h2 class="letter-heading">{letter}</h2>
+            {grouped[letter].map(t => (
+              <div class="glossar-item" id={t.term.toLowerCase().replace(/[^a-zäöü0-9]/g, '-').replace(/-+/g, '-')}>
+                <h3>{t.term}</h3>
+                <p>{t.definition}</p>
+                {t.links.length > 0 && (
+                  <div class="term-links">
+                    {t.links.map((link, i) => (
+                      <><a href={link.url}>{link.text}</a>{i < t.links.length - 1 ? <span class="link-sep"> · </span> : null}</>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+
+      <div class="glossar-cta">
+        <h2>Du hast Fragen?</h2>
+        <p>Unser Ratgeber bietet ausführliche Artikel zu allen Themen rund um medizinisches Cannabis.</p>
+        <div class="cta-links">
+          <a href="/ratgeber" class="btn-primary">Zum Ratgeber →</a>
+          <a href="/ratgeber/cannabis-als-medizin" class="btn-secondary">Cannabis als Medizin</a>
+          <a href="/ratgeber/cannabis-rezept-bekommen" class="btn-secondary">Rezept bekommen</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero { background: linear-gradient(135deg, #0d2618, #1a472a, #2d6a47); color: white; padding: 3.5rem 1.5rem; text-align: center; }
+  .hero-tag { background: rgba(76,175,80,0.8); padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.8rem; font-weight: 600; display: inline-block; margin-bottom: 0.75rem; }
+  .page-hero h1 { font-size: 2.25rem; font-weight: 800; margin: 0 auto 0.75rem; line-height: 1.2; }
+  .page-hero p { color: rgba(255,255,255,0.7); font-size: 1.05rem; max-width: 550px; margin: 0 auto; }
+
+  .glossar-section { padding: 3rem 1.5rem 4rem; }
+  .container { max-width: 800px; margin: 0 auto; }
+
+  .glossar-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-bottom: 2.5rem; padding: 1rem; background: #f8faf9; border-radius: 12px; border: 1px solid #e8ede9; }
+  .nav-label { font-size: 0.85rem; color: #888; font-weight: 600; margin-right: 0.25rem; }
+  .letter-link { display: inline-flex; align-items: center; justify-content: center; width: 2rem; height: 2rem; border-radius: 6px; font-weight: 700; font-size: 0.9rem; color: #1a472a; text-decoration: none; transition: all 0.2s; }
+  .letter-link:hover { background: #1a472a; color: white; }
+
+  .letter-group { margin-bottom: 2rem; }
+  .letter-heading { font-size: 1.5rem; font-weight: 800; color: #1a472a; border-bottom: 3px solid #4caf50; padding-bottom: 0.5rem; margin-bottom: 1.25rem; }
+
+  .glossar-item { background: white; border: 1px solid #e8ede9; border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 0.75rem; transition: all 0.2s; }
+  .glossar-item:hover { border-color: #c8d8ca; box-shadow: 0 2px 8px rgba(26,71,42,0.06); }
+  .glossar-item h3 { font-size: 1.05rem; font-weight: 700; color: #1a472a; margin-bottom: 0.5rem; }
+  .glossar-item p { font-size: 0.95rem; color: #555; line-height: 1.7; margin: 0; }
+
+  .term-links { margin-top: 0.75rem; padding-top: 0.5rem; border-top: 1px solid #f0f2f0; }
+  .term-links a { color: #4caf50; font-size: 0.85rem; font-weight: 600; text-decoration: none; }
+  .term-links a:hover { text-decoration: underline; }
+  .link-sep { color: #ccc; }
+
+  .glossar-cta { text-align: center; background: linear-gradient(135deg, #1a472a, #2d6a47); border-radius: 16px; padding: 3rem; color: white; margin-top: 3rem; }
+  .glossar-cta h2 { color: white; font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .glossar-cta p { color: rgba(255,255,255,0.75); margin-bottom: 1.5rem; }
+  .cta-links { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; }
+  .btn-primary { background: #4caf50; color: white; padding: 0.75rem 1.75rem; border-radius: 50px; font-weight: 600; display: inline-block; border: 2px solid #4caf50; transition: all 0.2s; text-decoration: none; }
+  .btn-primary:hover { background: #43a047; border-color: #43a047; }
+  .btn-secondary { background: transparent; color: white; padding: 0.75rem 1.5rem; border-radius: 50px; font-weight: 600; display: inline-block; border: 2px solid rgba(255,255,255,0.4); transition: all 0.2s; text-decoration: none; }
+  .btn-secondary:hover { border-color: white; background: rgba(255,255,255,0.1); }
+
+  @media (max-width: 768px) {
+    .page-hero h1 { font-size: 1.6rem; }
+    .glossar-nav { gap: 0.35rem; }
+    .letter-link { width: 1.75rem; height: 1.75rem; font-size: 0.8rem; }
+  }
+</style>

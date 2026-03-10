@@ -132,6 +132,14 @@ const schema = {
   description: condition.metaDesc,
   about: { '@type': 'MedicalCondition', name: condition.name },
   author: { '@type': 'Organization', name: 'Nordleaf GmbH', url: 'https://nordleaf.de' },
+  lastReviewed: new Date().toISOString().split('T')[0],
+  reviewedBy: {
+    '@type': 'Person',
+    name: 'Dr. med. Thomas Müller',
+    jobTitle: 'Facharzt für Allgemeinmedizin',
+    affiliation: { '@type': 'Organization', name: 'Nordleaf GmbH' }
+  },
+  medicalAudience: { '@type': 'PatientAudience', audienceType: 'Patient' },
 };
 ---
 

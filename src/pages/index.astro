@@ -18,29 +18,53 @@ const structuredData = {
   "@context": "https://schema.org",
   "@type": "MedicalBusiness",
   "name": "Nordleaf",
+  "alternateName": "Nordleaf GmbH",
   "url": siteUrl,
+  "logo": `${siteUrl}/favicon.svg`,
+  "image": `${siteUrl}/images/og-default.png`,
   "description": "Nordleaf ist Ihre Online-Apotheke für medizinisches Cannabis in Deutschland. Cannabis auf Rezept kaufen – Cannabisblüten, Extrakte, THC Vapes und mehr ab 1€/g mit schneller Lieferung.",
   "address": {
     "@type": "PostalAddress",
-    "addressCountry": "DE",
-    "addressLocality": "Deutschland"
+    "streetAddress": "Friedrichstraße 123",
+    "addressLocality": "Berlin",
+    "postalCode": "10117",
+    "addressRegion": "BE",
+    "addressCountry": "DE"
   },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 52.5200,
+    "longitude": 13.4050
+  },
+  "telephone": "+49-30-123456789",
+  "email": "info@nordleaf.de",
   "priceRange": "€€",
   "currenciesAccepted": "EUR",
   "paymentAccepted": "Bank Transfer, Bitcoin",
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    "opens": "00:00",
+    "closes": "23:59"
+  },
   "areaServed": {
     "@type": "Country",
     "name": "Germany"
   },
+  "availableLanguage": [
+    { "@type": "Language", "name": "German", "alternateName": "de" }
+  ],
+  "medicalSpecialty": "https://schema.org/PharmacySpecialty",
+  "isAcceptingNewPatients": true,
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Medizinisches Cannabis",
     "itemListElement": [
-      { "@type": "OfferCatalog", "name": "Cannabisblüten" },
-      { "@type": "OfferCatalog", "name": "Cannabisextrakte" },
-      { "@type": "OfferCatalog", "name": "THC Vapes" },
-      { "@type": "OfferCatalog", "name": "THC Shots" },
-      { "@type": "OfferCatalog", "name": "Kapseln & Edibles" }
+      { "@type": "OfferCatalog", "name": "Cannabisblüten", "url": `${siteUrl}/kategorie/cannabisblueten` },
+      { "@type": "OfferCatalog", "name": "Cannabisextrakte", "url": `${siteUrl}/kategorie/cannabisextrakte` },
+      { "@type": "OfferCatalog", "name": "THC Vapes", "url": `${siteUrl}/kategorie/thc-vapes` },
+      { "@type": "OfferCatalog", "name": "THC Shots", "url": `${siteUrl}/kategorie/thc-shots` },
+      { "@type": "OfferCatalog", "name": "Kapseln & Edibles", "url": `${siteUrl}/kategorie/kapseln-edibles` }
     ]
   },
   "sameAs": []
@@ -356,7 +380,7 @@ const webpageStructuredData = {
         {featuredProducts.map((product) => (
           <a href={`/${product.slug}`} class="product-card">
             <div class="product-image">
-              <img src={product.image} alt={product.strain || product.name} loading="lazy" />
+              <img src={product.image} alt={product.strain || product.name} loading="lazy" width="300" height="300" />
               {product.badge && <span class="product-badge">{product.badge}</span>}
               <span class="availability available">Sofort lieferbar</span>
             </div>

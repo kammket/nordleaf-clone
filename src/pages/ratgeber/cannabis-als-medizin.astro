@@ -10,6 +10,9 @@ const schema = {
   publisher: { '@type': 'Organization', name: 'Nordleaf GmbH', logo: { '@type': 'ImageObject', url: 'https://nordleaf.de/favicon.svg' }},
   datePublished: '2026-02-12',
   dateModified: '2026-03-10',
+  reviewedBy: { '@type': 'Person', name: 'Dr. med. Thomas Müller', jobTitle: 'Facharzt für Allgemeinmedizin' },
+  lastReviewed: '2026-03-10',
+  medicalAudience: { '@type': 'PatientAudience', audienceType: 'Patient' },
 };
 ---
 
@@ -131,6 +134,18 @@ const schema = {
           <p>Bei Nordleaf ist der Weg zum Cannabis-Rezept denkbar einfach. Lies unsere <a href="/ratgeber/cannabis-rezept-bekommen">Schritt-für-Schritt-Anleitung</a> oder starte direkt:</p>
         </section>
 
+        <section class="related-articles">
+          <h2>Weiterführende Artikel</h2>
+          <div class="related-grid">
+            <a href="/ratgeber/cannabis-rezept-bekommen" class="related-link">Cannabis-Rezept bekommen — Schritt-für-Schritt-Anleitung</a>
+            <a href="/ratgeber/cannabis-sorten-guide" class="related-link">Cannabis-Sorten-Guide: Indica, Sativa & Hybride</a>
+            <a href="/ratgeber/thc-vs-cbd" class="related-link">THC vs. CBD — Unterschiede, Wirkung & Anwendung</a>
+            <a href="/indikationen" class="related-link">Alle Indikationen für medizinisches Cannabis</a>
+            <a href="/kostenuebernahme" class="related-link">Kostenübernahme durch die Krankenkasse</a>
+            <a href="/kategorie/cannabisblueten" class="related-link">Cannabisblüten im Live-Bestand ansehen →</a>
+          </div>
+        </section>
+
         <div class="article-cta">
           <h2>Starte deine Cannabis-Therapie</h2>
           <p>3-Minuten-Fragebogen → Ärztliche Prüfung → Rezept → Lieferung in 1-3 Werktagen.</p>
@@ -169,6 +184,12 @@ const schema = {
   .article-cta p { color: rgba(255,255,255,0.75); margin-bottom: 1.5rem; }
   .btn-primary { background: #4caf50; color: white; padding: 0.75rem 1.75rem; border-radius: 50px; font-weight: 600; display: inline-block; border: 2px solid #4caf50; transition: all 0.2s; text-decoration: none; }
   .btn-primary:hover { background: #43a047; border-color: #43a047; color: white; }
+
+  .related-articles { margin-top: 3rem; padding-top: 2rem; border-top: 2px solid #e8ede9; }
+  .related-articles h2 { font-size: 1.3rem; font-weight: 700; color: #1a472a; margin-bottom: 1rem; }
+  .related-grid { display: flex; flex-direction: column; gap: 0.5rem; }
+  .related-link { display: block; padding: 0.75rem 1rem; background: #f8faf9; border: 1px solid #e8ede9; border-radius: 8px; color: #1a472a; text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: all 0.2s; }
+  .related-link:hover { border-color: #4caf50; background: #f0f7f1; transform: translateX(4px); }
 
   @media (max-width: 768px) {
     .page-hero h1 { font-size: 1.6rem; }

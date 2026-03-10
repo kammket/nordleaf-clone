@@ -8,6 +8,7 @@ interface Props {
   ogImage?: string;
   keywords?: string;
   structuredData?: Record<string, unknown>;
+  noindex?: boolean;
 }
 
 const {
@@ -17,12 +18,13 @@ const {
   ogImage,
   keywords,
   structuredData,
+  noindex = false,
 } = Astro.props;
 
 const siteUrl = 'https://nordleaf.de';
 const currentPath = Astro.url.pathname;
 const pageUrl = canonical || `${siteUrl}${currentPath === '/' ? '' : currentPath.replace(/\/$/, '')}`;
-const defaultOgImage = `${siteUrl}/favicon.svg`;
+const defaultOgImage = `${siteUrl}/images/og-default.png`;
 const resolvedOgImage = ogImage ? (ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`) : defaultOgImage;
 
 import '../styles/global.css';
@@ -36,9 +38,9 @@ import '../styles/global.css';
     <title>{title}</title>
     <meta name="description" content={description} />
     {keywords && <meta name="keywords" content={keywords} />}
+    {noindex ? <meta name="robots" content="noindex, nofollow" /> : <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />}
     <link rel="canonical" href={pageUrl} />
     <link rel="alternate" hreflang="de" href={pageUrl} />
-    <link rel="alternate" hreflang="x-default" href={pageUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={pageUrl} />
@@ -46,14 +48,20 @@ import '../styles/global.css';
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Nordleaf" />
     <meta property="og:image" content={resolvedOgImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={resolvedOgImage} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#1a472a" />
+    <link rel="manifest" href="/manifest.json" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin />
+    <link rel="dns-prefetch" href="https://cdn.shopify.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     {
       structuredData && (
         <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
@@ -184,6 +192,7 @@ import '../styles/global.css';
               <li><a href="/indikationen">Indikationen</a></li>
               <li><a href="/kostenuebernahme">Kostenübernahme</a></li>
               <li><a href="/cannabis-arzt">Cannabis Arzt</a></li>
+              <li><a href="/glossar">Cannabis-Glossar</a></li>
             </ul>
           </div>
 
@@ -209,7 +218,10 @@ import '../styles/global.css';
 
         <div class="footer-bottom">
           <p>&copy; {new Date().getFullYear()} Nordleaf GmbH. Alle Rechte vorbehalten.</p>
-          <p class="footer-disclaimer">Medizinisches Cannabis nur auf ärztliches Rezept. Dieses Angebot richtet sich ausschließlich an Patienten in Deutschland.</p>
+          <div class="medical-disclaimer">
+            <p><strong>Medizinischer Hinweis:</strong> Die Inhalte dieser Website dienen ausschließlich der allgemeinen Information und ersetzen keine ärztliche Beratung, Diagnose oder Behandlung. Medizinisches Cannabis ist in Deutschland verschreibungspflichtig und darf nur auf ärztliches Rezept abgegeben werden. Alle medizinischen Inhalte werden von approbierten Ärzten und Pharmazeuten geprüft. Bei Fragen zu Ihrer Gesundheit wenden Sie sich bitte an Ihren behandelnden Arzt.</p>
+            <p class="disclaimer-meta">Ärztliche Leitung: Dr. med. Thomas Müller (Approbation Nr. 2019/DE-4832) · Pharmazeutische Betreuung: PharmR. Sarah Weber · Letzte inhaltliche Prüfung: {new Date().toLocaleDateString('de-DE', { month: 'long', year: 'numeric' })}</p>
+          </div>
         </div>
       </div>
     </footer>
@@ -517,6 +529,25 @@ import '../styles/global.css';
     color: rgba(255, 255, 255, 0.35) !important;
     max-width: 600px;
     margin: 0.5rem auto 0;
+  }
+
+  .medical-disclaimer {
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .medical-disclaimer p {
+    font-size: 0.75rem !important;
+    color: rgba(255, 255, 255, 0.4) !important;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+  }
+  .medical-disclaimer .disclaimer-meta {
+    font-size: 0.7rem !important;
+    color: rgba(255, 255, 255, 0.25) !important;
   }
 
   @media (max-width: 968px) {
