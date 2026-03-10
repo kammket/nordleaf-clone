@@ -1,0 +1,108 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+
+const conditions = [
+  { slug: 'chronische-schmerzen', name: 'Chronische Schmerzen', icon: '💪', desc: 'Rückenschmerzen, Fibromyalgie, Neuropathie, Arthrose — die häufigste Indikation für Cannabis.', stat: '62% Schmerzreduktion' },
+  { slug: 'schlafstoerungen', name: 'Schlafstörungen', icon: '🌙', desc: 'Insomnie, Durchschlafprobleme, nicht-erholsamer Schlaf — natürliche Alternative zu Schlafmitteln.', stat: '71% Verbesserung' },
+  { slug: 'adhs', name: 'ADHS', icon: '🧠', desc: 'Konzentrationsprobleme, Impulsivität, innere Unruhe bei Erwachsenen — Alternative zu Stimulanzien.', stat: '73% bessere Lebensqualität' },
+  { slug: 'angststoerungen', name: 'Angststörungen', icon: '🫁', desc: 'Generalisierte Angst, Panikattacken, soziale Phobie — CBD zeigt starke angstlösende Wirkung.', stat: '79% Angstreduktion' },
+  { slug: 'ptbs', name: 'PTBS', icon: '🛡️', desc: 'Flashbacks, Albträume, Hypervigilanz — THC kann traumatische Erinnerungen abschwächen.', stat: '75% weniger Flashbacks' },
+  { slug: 'migraene', name: 'Migräne', icon: '⚡', desc: 'Chronische Kopfschmerzen, Übelkeit, Aura — Cannabis als Prophylaxe und Akutbehandlung.', stat: '47% Schmerzreduktion' },
+];
+---
+
+<Layout
+  title="Indikationen | Medizinisches Cannabis für deine Erkrankung | Nordleaf"
+  description="Bei welchen Erkrankungen hilft medizinisches Cannabis? Chronische Schmerzen, Schlafstörungen, ADHS, Angst, PTBS, Migräne — evidenzbasierte Informationen."
+  keywords="Cannabis Indikationen, Cannabis Erkrankungen, medizinisches Cannabis wofür, Cannabis Diagosen, Cannabis Schmerzen ADHS Schlaf"
+>
+  <Breadcrumb items={[{name: "Indikationen"}]} />
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Indikationen für medizinisches Cannabis</h1>
+      <p>Bei welchen Erkrankungen kann Cannabis helfen? Evidenzbasierte Informationen zu den häufigsten Indikationen.</p>
+    </div>
+  </section>
+
+  <section class="ind-section">
+    <div class="container">
+      <div class="ind-grid">
+        {conditions.map(c => (
+          <a href={`/indikationen/${c.slug}`} class="ind-card">
+            <span class="ind-icon">{c.icon}</span>
+            <div>
+              <h2>{c.name}</h2>
+              <p>{c.desc}</p>
+              <span class="ind-stat">📊 {c.stat}</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="ind-info">
+    <div class="container">
+      <div class="info-content">
+        <h2>Ist meine Erkrankung geeignet?</h2>
+        <p>Die obige Liste zeigt die häufigsten Indikationen, ist aber nicht abschließend. Medizinisches Cannabis kann auch bei weiteren Erkrankungen verschrieben werden, darunter:</p>
+        <ul>
+          <li>Multiple Sklerose (Spastiken)</li>
+          <li>Übelkeit und Erbrechen (z.B. bei Chemotherapie)</li>
+          <li>Appetitlosigkeit und Kachexie</li>
+          <li>Tourette-Syndrom</li>
+          <li>Epilepsie</li>
+          <li>Chronisch-entzündliche Darmerkrankungen (Morbus Crohn, Colitis ulcerosa)</li>
+        </ul>
+        <p>Grundsätzlich gilt: Wenn herkömmliche Therapien nicht ausreichend wirken oder nicht vertragen werden, kann Cannabis als Alternative geprüft werden. Unsere <a href="/about">Fachärzte</a> beraten dich individuell.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ind-cta">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Jetzt prüfen lassen</h2>
+        <p>Fülle unseren 3-Minuten-Fragebogen aus und ein Facharzt prüft, ob Cannabis-Therapie für dich geeignet ist.</p>
+        <a href="/wie-funktionierts" class="btn-primary">Eignung prüfen →</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero { background: linear-gradient(135deg, #0d2618, #1a472a, #2d6a47); color: white; padding: 3.5rem 1.5rem; text-align: center; }
+  .page-hero h1 { font-size: 2.25rem; font-weight: 800; margin-bottom: 0.75rem; }
+  .page-hero p { color: rgba(255,255,255,0.7); font-size: 1.05rem; max-width: 600px; margin: 0 auto; }
+
+  .ind-section { padding: 4rem 1.5rem; }
+  .ind-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; max-width: 900px; margin: 0 auto; }
+
+  .ind-card { display: flex; align-items: flex-start; gap: 1.25rem; background: white; border: 1px solid #e8ede9; border-radius: 14px; padding: 1.5rem; text-decoration: none; transition: all 0.3s; }
+  .ind-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); border-color: #4caf50; }
+  .ind-icon { font-size: 2.5rem; flex-shrink: 0; }
+  .ind-card h2 { font-size: 1.15rem; font-weight: 700; color: #1a472a; margin-bottom: 0.35rem; }
+  .ind-card p { font-size: 0.88rem; color: #666; line-height: 1.5; margin-bottom: 0.5rem; }
+  .ind-stat { font-size: 0.78rem; font-weight: 600; color: #4caf50; }
+
+  .ind-info { padding: 0 1.5rem 3rem; }
+  .info-content { max-width: 700px; margin: 0 auto; background: #f8faf9; border: 1px solid #e8ede9; border-radius: 14px; padding: 2rem; }
+  .info-content h2 { font-size: 1.3rem; font-weight: 700; color: #1a472a; margin-bottom: 1rem; }
+  .info-content p { color: #555; line-height: 1.7; font-size: 0.95rem; margin-bottom: 0.75rem; }
+  .info-content ul { color: #555; margin: 0.5rem 0 1rem 1.5rem; line-height: 1.7; }
+  .info-content a { color: #4caf50; }
+
+  .ind-cta { padding: 0 1.5rem 4rem; }
+  .cta-box { max-width: 700px; margin: 0 auto; text-align: center; background: linear-gradient(135deg, #1a472a, #2d6a47); border-radius: 16px; padding: 3rem; color: white; }
+  .cta-box h2 { color: white; font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .cta-box p { color: rgba(255,255,255,0.75); margin-bottom: 1.5rem; }
+  .btn-primary { background: #4caf50; color: white; padding: 0.75rem 1.75rem; border-radius: 50px; font-weight: 600; display: inline-block; border: 2px solid #4caf50; transition: all 0.2s; text-decoration: none; }
+  .btn-primary:hover { background: #43a047; border-color: #43a047; color: white; }
+
+  @media (max-width: 768px) {
+    .page-hero h1 { font-size: 1.6rem; }
+    .ind-grid { grid-template-columns: 1fr; }
+  }
+</style>

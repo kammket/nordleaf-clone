@@ -1,0 +1,177 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Cannabis als Medizin: Der komplette Leitfaden für Einsteiger',
+  author: { '@type': 'Organization', name: 'Nordleaf GmbH', url: 'https://nordleaf.de' },
+  publisher: { '@type': 'Organization', name: 'Nordleaf GmbH', logo: { '@type': 'ImageObject', url: 'https://nordleaf.de/favicon.svg' }},
+  datePublished: '2026-02-12',
+  dateModified: '2026-03-10',
+};
+---
+
+<Layout
+  title="Cannabis als Medizin: Kompletter Leitfaden 2026 | Nordleaf"
+  description="Alles über medizinisches Cannabis in Deutschland: Indikationen, Darreichungsformen, Dosierung, Nebenwirkungen und wie du ein Rezept bekommst."
+  keywords="Cannabis als Medizin, medizinisches Cannabis, Cannabis Leitfaden, Cannabis Patienten Guide, Cannabis Wirkung medizinisch"
+  structuredData={schema}
+>
+  <Breadcrumb items={[{name: "Ratgeber", href: "/ratgeber"}, {name: "Cannabis als Medizin"}]} />
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="hero-tag">Ratgeber</span>
+      <h1>Cannabis als Medizin: Der komplette Leitfaden für Einsteiger</h1>
+      <p>Alles, was du als neuer Patient über medizinisches Cannabis wissen musst.</p>
+      <time>12. Februar 2026 · 12 Min. Lesezeit</time>
+    </div>
+  </section>
+
+  <article class="article-section">
+    <div class="container">
+      <div class="article-content">
+        <div class="article-intro">
+          <p>Medizinisches Cannabis hat sich in den letzten Jahren als <strong>anerkannte Therapieoption</strong> für eine Vielzahl von Erkrankungen etabliert. Seit der Gesetzesänderung 2024 ist der Zugang für Patienten in Deutschland einfacher denn je. Dieser Leitfaden gibt dir einen umfassenden Überblick — von den Grundlagen bis zur ersten Anwendung.</p>
+        </div>
+
+        <section>
+          <h2>Was ist medizinisches Cannabis?</h2>
+          <p>Medizinisches Cannabis bezeichnet Cannabis-Produkte, die unter ärztlicher Aufsicht zur Behandlung von Erkrankungen eingesetzt werden. Im Gegensatz zu Freizeitkonsum wird medizinisches Cannabis:</p>
+          <ul>
+            <li>Von einem zugelassenen Arzt verschrieben</li>
+            <li>In standardisierter, laborgeprüfter Qualität hergestellt (GMP-Standard)</li>
+            <li>Individuell auf die Erkrankung des Patienten abgestimmt</li>
+            <li>In kontrollierten Dosierungen angewendet</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Für welche Erkrankungen wird Cannabis verschrieben?</h2>
+          <p>Die häufigsten Indikationen für medizinisches Cannabis in Deutschland sind:</p>
+          <div class="ind-grid">
+            <a href="/indikationen/chronische-schmerzen" class="ind-item">
+              <strong>Chronische Schmerzen</strong>
+              <span>Häufigste Indikation. Rückenschmerzen, Fibromyalgie, Neuropathie.</span>
+            </a>
+            <a href="/indikationen/schlafstoerungen" class="ind-item">
+              <strong>Schlafstörungen</strong>
+              <span>Ein- und Durchschlafprobleme, Insomnie.</span>
+            </a>
+            <a href="/indikationen/adhs" class="ind-item">
+              <strong>ADHS</strong>
+              <span>Aufmerksamkeitsdefizit-Hyperaktivitätsstörung bei Erwachsenen.</span>
+            </a>
+            <a href="/indikationen/angststoerungen" class="ind-item">
+              <strong>Angststörungen</strong>
+              <span>Generalisierte Angst, Panikattacken, soziale Phobie.</span>
+            </a>
+            <a href="/indikationen/migraene" class="ind-item">
+              <strong>Migräne</strong>
+              <span>Chronische Kopfschmerzen, Cluster-Kopfschmerzen.</span>
+            </a>
+            <a href="/indikationen/ptbs" class="ind-item">
+              <strong>PTBS</strong>
+              <span>Posttraumatische Belastungsstörung, Traumafolgestörungen.</span>
+            </a>
+          </div>
+        </section>
+
+        <section>
+          <h2>Wie wirkt Cannabis im Körper?</h2>
+          <p>Cannabis wirkt über das <strong>Endocannabinoid-System (ECS)</strong> — ein körpereigenes Signalsystem, das an der Regulation von Schmerz, Stimmung, Appetit, Schlaf und Immunfunktionen beteiligt ist.</p>
+          <p>Die beiden Hauptwirkstoffe <a href="/ratgeber/thc-vs-cbd">THC und CBD</a> interagieren unterschiedlich mit dem ECS:</p>
+          <ul>
+            <li><strong>THC</strong> bindet an CB1-Rezeptoren (hauptsächlich im Gehirn) → Schmerzlinderung, Euphorie, Appetit</li>
+            <li><strong>CBD</strong> moduliert das ECS indirekt → Entzündungshemmung, Angstlösung, Neuroprotection</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Darreichungsformen im Überblick</h2>
+          <ul>
+            <li><strong>Inhalation (Vaporizer):</strong> Schnellster Wirkungseintritt (5-15 Min.). Ideal für akute Beschwerden. Temperatur: 180-210°C.</li>
+            <li><strong>Öle/Extrakte (sublingual):</strong> Unter die Zunge. Wirkung nach 30-60 Min. Gute Dosierbarkeit.</li>
+            <li><strong>Kapseln/Edibles (oral):</strong> Wirkung nach 1-2 Stunden. Längste Wirkdauer (6-8h).</li>
+            <li><strong>Topisch (Salben/Cremes):</strong> Für lokale Beschwerden. Keine systemische Wirkung.</li>
+          </ul>
+          <div class="info-box">
+            <strong>🚫 Wichtig:</strong> Medizinisches Cannabis soll <strong>nicht geraucht</strong> werden. Das Vaporisieren bei kontrollierter Temperatur ist die empfohlene Inhalationsmethode, da keine schädlichen Verbrennungsprodukte entstehen.
+          </div>
+        </section>
+
+        <section>
+          <h2>Dosierung: Start low, go slow</h2>
+          <p>Die richtige Dosierung ist individuell und wird in Absprache mit dem Arzt festgelegt. Als Grundregel gilt:</p>
+          <ol>
+            <li><strong>Starte niedrig:</strong> Beginne mit der kleinstmöglichen Dosis (z.B. 1-2 Züge oder 2-3 Tropfen Öl)</li>
+            <li><strong>Steigere langsam:</strong> Erhöhe die Dosis alle 2-3 Tage leicht, bis die gewünschte Wirkung eintritt</li>
+            <li><strong>Dokumentiere:</strong> Führe ein Tagebuch über Dosis, Wirkung und eventuelle Nebenwirkungen</li>
+            <li><strong>Kommuniziere:</strong> Besprich deine Erfahrungen regelmäßig mit deinem Arzt</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Mögliche Nebenwirkungen</h2>
+          <p>Wie jedes Medikament kann auch Cannabis Nebenwirkungen haben. Die häufigsten sind:</p>
+          <ul>
+            <li>Mundtrockenheit</li>
+            <li>Müdigkeit (besonders bei Indica-Sorten)</li>
+            <li>Appetitveränderungen</li>
+            <li>Leichte Benommenheit</li>
+            <li>Erhöhter Puls (temporär)</li>
+          </ul>
+          <p>Die meisten Nebenwirkungen klingen bei regelmäßiger Anwendung ab. Bei Unwohlsein: Dosis reduzieren und Arzt informieren.</p>
+        </section>
+
+        <section>
+          <h2>Wie bekomme ich ein Rezept?</h2>
+          <p>Bei Nordleaf ist der Weg zum Cannabis-Rezept denkbar einfach. Lies unsere <a href="/ratgeber/cannabis-rezept-bekommen">Schritt-für-Schritt-Anleitung</a> oder starte direkt:</p>
+        </section>
+
+        <div class="article-cta">
+          <h2>Starte deine Cannabis-Therapie</h2>
+          <p>3-Minuten-Fragebogen → Ärztliche Prüfung → Rezept → Lieferung in 1-3 Werktagen.</p>
+          <a href="/wie-funktionierts" class="btn-primary">Jetzt starten →</a>
+        </div>
+      </div>
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .page-hero { background: linear-gradient(135deg, #0d2618, #1a472a, #2d6a47); color: white; padding: 3.5rem 1.5rem; text-align: center; }
+  .hero-tag { background: rgba(76,175,80,0.8); padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.8rem; font-weight: 600; }
+  .page-hero h1 { font-size: 2.25rem; font-weight: 800; margin: 1rem auto 0.75rem; max-width: 700px; line-height: 1.2; }
+  .page-hero p { color: rgba(255,255,255,0.7); font-size: 1.05rem; max-width: 550px; margin: 0 auto 0.75rem; }
+  .page-hero time { color: rgba(255,255,255,0.5); font-size: 0.85rem; }
+  .article-section { padding: 3rem 1.5rem 4rem; }
+  .article-content { max-width: 720px; margin: 0 auto; }
+  .article-intro { font-size: 1.1rem; color: #444; line-height: 1.8; margin-bottom: 2rem; border-left: 4px solid #4caf50; padding-left: 1.25rem; }
+  .article-content section { margin-bottom: 2.5rem; }
+  .article-content h2 { font-size: 1.4rem; font-weight: 700; color: #1a472a; margin-bottom: 1rem; }
+  .article-content p { color: #555; line-height: 1.75; font-size: 1rem; margin-bottom: 1rem; }
+  .article-content ul, .article-content ol { color: #555; line-height: 1.75; margin: 0.5rem 0 1rem 1.5rem; }
+  .article-content li { margin-bottom: 0.35rem; }
+  .article-content a { color: #4caf50; }
+  .info-box { background: #fff3e0; border-left: 4px solid #ff9800; border-radius: 8px; padding: 1rem 1.25rem; margin: 1.5rem 0; font-size: 0.95rem; color: #333; line-height: 1.6; }
+
+  .ind-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 1.5rem 0; }
+  .ind-item { display: block; background: #f8faf9; border: 1px solid #e8ede9; border-radius: 10px; padding: 1rem 1.25rem; text-decoration: none; transition: all 0.2s; }
+  .ind-item:hover { border-color: #4caf50; transform: translateY(-2px); }
+  .ind-item strong { display: block; color: #1a472a; font-size: 1rem; margin-bottom: 0.2rem; }
+  .ind-item span { font-size: 0.85rem; color: #666; line-height: 1.4; }
+
+  .article-cta { text-align: center; background: linear-gradient(135deg, #1a472a, #2d6a47); border-radius: 16px; padding: 3rem; color: white; margin-top: 3rem; }
+  .article-cta h2 { color: white; font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .article-cta p { color: rgba(255,255,255,0.75); margin-bottom: 1.5rem; }
+  .btn-primary { background: #4caf50; color: white; padding: 0.75rem 1.75rem; border-radius: 50px; font-weight: 600; display: inline-block; border: 2px solid #4caf50; transition: all 0.2s; text-decoration: none; }
+  .btn-primary:hover { background: #43a047; border-color: #43a047; color: white; }
+
+  @media (max-width: 768px) {
+    .page-hero h1 { font-size: 1.6rem; }
+    .ind-grid { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,221 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'THC vs. CBD: Wirkungen, Unterschiede & Anwendung',
+  description: 'Was ist der Unterschied zwischen THC und CBD? Wirkungen, Nebenwirkungen, rechtliche Lage und medizinische Anwendung erklärt.',
+  author: { '@type': 'Organization', name: 'Nordleaf GmbH', url: 'https://nordleaf.de' },
+  publisher: { '@type': 'Organization', name: 'Nordleaf GmbH', logo: { '@type': 'ImageObject', url: 'https://nordleaf.de/favicon.svg' }},
+  datePublished: '2026-02-28',
+  dateModified: '2026-03-10',
+};
+---
+
+<Layout
+  title="THC vs. CBD: Wirkungen, Unterschiede & Anwendung | Nordleaf"
+  description="THC vs CBD - was ist der Unterschied? Wirkungen, Nebenwirkungen, Legalität und welches Cannabinoid für welche Erkrankung geeignet ist."
+  keywords="THC vs CBD, THC CBD Unterschied, Cannabinoide Wirkung, THC Wirkung, CBD Wirkung, medizinisches Cannabis"
+  structuredData={schema}
+>
+  <Breadcrumb items={[{name: "Ratgeber", href: "/ratgeber"}, {name: "THC vs. CBD"}]} />
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="hero-tag">Wissen</span>
+      <h1>THC vs. CBD: Wirkungen, Unterschiede & Anwendung</h1>
+      <p>Alles, was du über die beiden wichtigsten Cannabinoide wissen musst — evidenzbasiert erklärt.</p>
+      <time>28. Februar 2026 · 10 Min. Lesezeit</time>
+    </div>
+  </section>
+
+  <article class="article-section">
+    <div class="container">
+      <div class="article-content">
+        <div class="article-intro">
+          <p>THC (Tetrahydrocannabinol) und CBD (Cannabidiol) sind die zwei bekanntesten Cannabinoide der Cannabis-Pflanze. Beide interagieren mit dem Endocannabinoid-System des Körpers, haben aber <strong>grundlegend verschiedene Wirkungsprofile</strong>. Dieser Ratgeber erklärt die Unterschiede, Anwendungsgebiete und was Patienten bei der Wahl beachten sollten.</p>
+        </div>
+
+        <nav class="toc">
+          <h2>Inhalt</h2>
+          <ol>
+            <li><a href="#grundlagen">Was sind THC und CBD?</a></li>
+            <li><a href="#unterschiede">Die wichtigsten Unterschiede</a></li>
+            <li><a href="#thc-wirkung">THC: Wirkung & Anwendung</a></li>
+            <li><a href="#cbd-wirkung">CBD: Wirkung & Anwendung</a></li>
+            <li><a href="#kombination">Entourage-Effekt: THC + CBD zusammen</a></li>
+            <li><a href="#recht">Rechtliche Lage in Deutschland</a></li>
+            <li><a href="#wahl">Welches Cannabinoid passt zu mir?</a></li>
+          </ol>
+        </nav>
+
+        <section id="grundlagen">
+          <h2>1. Was sind THC und CBD?</h2>
+          <p>Die Cannabis-Pflanze produziert über 100 verschiedene Cannabinoide. THC und CBD sind davon die am besten erforschten und medizinisch relevantesten:</p>
+          <ul>
+            <li><strong>THC (Δ9-Tetrahydrocannabinol)</strong> ist das psychoaktive Cannabinoid, das für den „Rausch" verantwortlich ist. Es bindet direkt an CB1-Rezeptoren im Gehirn.</li>
+            <li><strong>CBD (Cannabidiol)</strong> ist nicht psychoaktiv. Es moduliert das Endocannabinoid-System indirekt und hat entzündungshemmende, angstlösende und neuroprotektive Eigenschaften.</li>
+          </ul>
+        </section>
+
+        <section id="unterschiede">
+          <h2>2. Die wichtigsten Unterschiede</h2>
+          <div class="comparison-table">
+            <div class="comp-row comp-header">
+              <span></span>
+              <span>THC</span>
+              <span>CBD</span>
+            </div>
+            <div class="comp-row">
+              <span>Psychoaktiv</span>
+              <span>✅ Ja</span>
+              <span>❌ Nein</span>
+            </div>
+            <div class="comp-row">
+              <span>Schmerzlindernd</span>
+              <span>✅ Stark</span>
+              <span>✅ Moderat</span>
+            </div>
+            <div class="comp-row">
+              <span>Angstlösend</span>
+              <span>⚠️ Dosisabhängig</span>
+              <span>✅ Ja</span>
+            </div>
+            <div class="comp-row">
+              <span>Schlaffördernd</span>
+              <span>✅ Ja</span>
+              <span>✅ Indirekt</span>
+            </div>
+            <div class="comp-row">
+              <span>Appetitanregend</span>
+              <span>✅ Stark</span>
+              <span>❌ Nein</span>
+            </div>
+            <div class="comp-row">
+              <span>Entzündungshemmend</span>
+              <span>✅ Ja</span>
+              <span>✅ Stark</span>
+            </div>
+            <div class="comp-row">
+              <span>Rezeptpflichtig</span>
+              <span>✅ Ja</span>
+              <span>❌ Nein (< 0,2% THC)</span>
+            </div>
+          </div>
+        </section>
+
+        <section id="thc-wirkung">
+          <h2>3. THC: Wirkung & Anwendung</h2>
+          <p>THC ist das primäre therapeutische Cannabinoid in der Schmerzmedizin. Seine Hauptwirkungen umfassen:</p>
+          <ul>
+            <li><strong>Schmerzlinderung:</strong> Besonders wirksam bei neuropathischen und chronischen Schmerzen</li>
+            <li><strong>Muskelentspannung:</strong> Hilfreich bei Spastiken (z.B. Multiple Sklerose)</li>
+            <li><strong>Appetitanregung:</strong> Bei Übelkeit durch Chemotherapie oder Appetitlosigkeit</li>
+            <li><strong>Schlafförderung:</strong> Insbesondere Indica-dominante Sorten</li>
+          </ul>
+          <div class="info-box">
+            <strong>⚠️ Nebenwirkungen:</strong> Mundtrockenheit, erhöhter Puls, mögliche Angst bei hoher Dosierung, beeinträchtigte Fahrtüchtigkeit. Die Dosierung sollte langsam gesteigert werden ("start low, go slow").
+          </div>
+        </section>
+
+        <section id="cbd-wirkung">
+          <h2>4. CBD: Wirkung & Anwendung</h2>
+          <p>CBD gewinnt zunehmend an Bedeutung in der Medizin. Die wichtigsten therapeutischen Wirkungen:</p>
+          <ul>
+            <li><strong>Angstlösung:</strong> Reduziert Symptome von Angststörungen und sozialer Phobie</li>
+            <li><strong>Entzündungshemmung:</strong> Bei entzündlichen Erkrankungen, Arthritis</li>
+            <li><strong>Antikonvulsiv:</strong> Zugelassenes Epilepsie-Medikament (Epidiolex®)</li>
+            <li><strong>Neuroprotektiv:</strong> Schutz von Nervenzellen, Forschung bei Alzheimer und Parkinson</li>
+          </ul>
+          <p>CBD ist in Deutschland als Nahrungsergänzungsmittel (unter 0,2% THC) frei verkäuflich. Medizinisches CBD mit höherer Dosierung ist rezeptpflichtig.</p>
+        </section>
+
+        <section id="kombination">
+          <h2>5. Der Entourage-Effekt</h2>
+          <p>Studien zeigen, dass THC und CBD <strong>zusammen wirksamer</strong> sein können als isoliert. Dieser sogenannte „Entourage-Effekt" bedeutet:</p>
+          <ul>
+            <li>CBD kann die Nebenwirkungen von THC (Angst, Paranoia) abschwächen</li>
+            <li>Die Kombination verstärkt die schmerzlindernde Wirkung</li>
+            <li>Weitere Cannabinoide (CBG, CBN) und Terpene ergänzen den Effekt</li>
+          </ul>
+          <p>Deshalb bieten viele medizinische Cannabis-Produkte <strong>ausgewogene THC:CBD-Verhältnisse</strong> an. Bei Nordleaf kannst du im <a href="/products">Live-Bestand</a> nach THC- und CBD-Gehalt filtern.</p>
+        </section>
+
+        <section id="recht">
+          <h2>6. Rechtliche Lage in Deutschland</h2>
+          <p>Seit April 2024 gilt in Deutschland ein neues Cannabis-Gesetz:</p>
+          <ul>
+            <li><strong>THC-haltiges Cannabis:</strong> Nur auf Rezept erhältlich. Ärzte können es als Privatrezept verschreiben (kein BtM-Rezept mehr nötig).</li>
+            <li><strong>CBD-Produkte:</strong> Frei verkäuflich, sofern der THC-Gehalt unter 0,2% liegt.</li>
+            <li><strong>Eigenanbau:</strong> Bis zu 3 Pflanzen für den Eigenbedarf sind erlaubt.</li>
+            <li><strong>Besitz:</strong> Bis zu 25g in der Öffentlichkeit, bis zu 50g zu Hause.</li>
+          </ul>
+        </section>
+
+        <section id="wahl">
+          <h2>7. Welches Cannabinoid passt zu mir?</h2>
+          <p>Die Wahl hängt von deiner Erkrankung und deinen Therapiezielen ab:</p>
+          <ul>
+            <li><strong>Starke Schmerzen, Schlafprobleme, Spastiken:</strong> THC-dominante Sorten</li>
+            <li><strong>Angst, Stress, leichte Entzündungen:</strong> CBD-dominante Produkte</li>
+            <li><strong>Kombinierte Beschwerden:</strong> Ausgewogene THC:CBD-Verhältnisse</li>
+          </ul>
+          <p>Unsere <a href="/about">Fachärzte</a> beraten dich individuell und empfehlen die passende Sorte für deine Indikation.</p>
+        </section>
+
+        <div class="article-cta">
+          <h2>Passende Sorte finden</h2>
+          <p>Über 186 Sorten in unserem Live-Bestand — filtere nach THC/CBD-Gehalt und finde dein ideales Medikament.</p>
+          <a href="/products" class="btn-primary">Zum Live-Bestand →</a>
+        </div>
+      </div>
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .page-hero { background: linear-gradient(135deg, #0d2618, #1a472a, #2d6a47); color: white; padding: 3.5rem 1.5rem; text-align: center; }
+  .hero-tag { background: rgba(76,175,80,0.8); padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.8rem; font-weight: 600; }
+  .page-hero h1 { font-size: 2.25rem; font-weight: 800; margin: 1rem auto 0.75rem; max-width: 700px; line-height: 1.2; }
+  .page-hero p { color: rgba(255,255,255,0.7); font-size: 1.05rem; max-width: 550px; margin: 0 auto 0.75rem; }
+  .page-hero time { color: rgba(255,255,255,0.5); font-size: 0.85rem; }
+
+  .article-section { padding: 3rem 1.5rem 4rem; }
+  .article-content { max-width: 720px; margin: 0 auto; }
+  .article-intro { font-size: 1.1rem; color: #444; line-height: 1.8; margin-bottom: 2rem; border-left: 4px solid #4caf50; padding-left: 1.25rem; }
+
+  .toc { background: #f8faf9; border: 1px solid #e8ede9; border-radius: 12px; padding: 1.5rem 2rem; margin-bottom: 2.5rem; }
+  .toc h2 { font-size: 1rem; color: #1a472a; margin-bottom: 0.75rem; }
+  .toc ol { margin: 0; padding-left: 1.25rem; }
+  .toc li { margin-bottom: 0.35rem; font-size: 0.9rem; }
+  .toc a { color: #4caf50; text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+
+  .article-content section { margin-bottom: 2.5rem; }
+  .article-content h2 { font-size: 1.4rem; font-weight: 700; color: #1a472a; margin-bottom: 1rem; }
+  .article-content p { color: #555; line-height: 1.75; font-size: 1rem; margin-bottom: 1rem; }
+  .article-content ul { color: #555; line-height: 1.75; margin: 0.5rem 0 1rem 1.5rem; }
+  .article-content li { margin-bottom: 0.35rem; }
+  .article-content a { color: #4caf50; }
+
+  .info-box { background: #fff3e0; border-left: 4px solid #ff9800; border-radius: 8px; padding: 1rem 1.25rem; margin: 1.5rem 0; font-size: 0.95rem; color: #333; line-height: 1.6; }
+
+  .comparison-table { border: 1px solid #e8ede9; border-radius: 12px; overflow: hidden; margin: 1.5rem 0; }
+  .comp-row { display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 0.75rem 1rem; border-bottom: 1px solid #e8ede9; font-size: 0.9rem; }
+  .comp-row:last-child { border-bottom: none; }
+  .comp-header { background: #1a472a; color: white; font-weight: 700; }
+  .comp-row span:first-child { font-weight: 600; color: #333; }
+
+  .article-cta { text-align: center; background: linear-gradient(135deg, #1a472a, #2d6a47); border-radius: 16px; padding: 3rem; color: white; margin-top: 3rem; }
+  .article-cta h2 { color: white; font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .article-cta p { color: rgba(255,255,255,0.75); margin-bottom: 1.5rem; }
+  .btn-primary { background: #4caf50; color: white; padding: 0.75rem 1.75rem; border-radius: 50px; font-weight: 600; display: inline-block; border: 2px solid #4caf50; transition: all 0.2s; text-decoration: none; }
+  .btn-primary:hover { background: #43a047; border-color: #43a047; color: white; }
+
+  @media (max-width: 768px) {
+    .page-hero h1 { font-size: 1.6rem; }
+    .comp-row { font-size: 0.75rem; padding: 0.5rem 0.5rem; }
+  }
+</style>

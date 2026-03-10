@@ -1,0 +1,185 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Cannabis Sorten Guide: Indica, Sativa & Hybrid erklärt',
+  author: { '@type': 'Organization', name: 'Nordleaf GmbH', url: 'https://nordleaf.de' },
+  publisher: { '@type': 'Organization', name: 'Nordleaf GmbH', logo: { '@type': 'ImageObject', url: 'https://nordleaf.de/favicon.svg' }},
+  datePublished: '2026-02-20',
+  dateModified: '2026-03-10',
+};
+---
+
+<Layout
+  title="Cannabis Sorten Guide: Indica, Sativa & Hybrid | Nordleaf"
+  description="Alles über Cannabis-Sorten: Indica, Sativa und Hybrid. Wirkungen, Terpene, THC/CBD-Gehalt und welche Sorte zu deiner Indikation passt."
+  keywords="Cannabis Sorten, Indica Sativa Unterschied, Cannabis Sorten Guide, medizinische Cannabis Sorten, Terpene Cannabis"
+  structuredData={schema}
+>
+  <Breadcrumb items={[{name: "Ratgeber", href: "/ratgeber"}, {name: "Cannabis Sorten Guide"}]} />
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="hero-tag">Sorten</span>
+      <h1>Cannabis Sorten Guide: Indica, Sativa & Hybrid erklärt</h1>
+      <p>Welche Sorte passt zu welcher Erkrankung? Der umfassende Guide für Patienten.</p>
+      <time>20. Februar 2026 · 9 Min. Lesezeit</time>
+    </div>
+  </section>
+
+  <article class="article-section">
+    <div class="container">
+      <div class="article-content">
+        <div class="article-intro">
+          <p>Mit über <strong>186 Sorten</strong> in unserem Sortiment kann die Wahl überwältigend sein. Dieser Guide erklärt die wichtigsten Unterschiede zwischen Indica, Sativa und Hybrid-Sorten und hilft dir, die <strong>richtige Sorte für deine Beschwerden</strong> zu finden.</p>
+        </div>
+
+        <section>
+          <h2>Indica vs. Sativa vs. Hybrid: Der Überblick</h2>
+          <div class="three-cards">
+            <div class="type-card indica">
+              <h3>🌙 Indica</h3>
+              <p><strong>Wirkung:</strong> Entspannend, beruhigend, sedierend</p>
+              <p><strong>Ideal für:</strong> Schlafstörungen, Schmerzen, Muskelkrämpfe</p>
+              <p><strong>Einnahmezeit:</strong> Abends / vor dem Schlafen</p>
+              <p><strong>Typische Terpene:</strong> Myrcen, Linalool</p>
+            </div>
+            <div class="type-card sativa">
+              <h3>☀️ Sativa</h3>
+              <p><strong>Wirkung:</strong> Energetisierend, kreativ, stimmungsaufhellend</p>
+              <p><strong>Ideal für:</strong> ADHS, Depression, Fatigue</p>
+              <p><strong>Einnahmezeit:</strong> Tagsüber / morgens</p>
+              <p><strong>Typische Terpene:</strong> Limonen, Pinen</p>
+            </div>
+            <div class="type-card hybrid">
+              <h3>⚖️ Hybrid</h3>
+              <p><strong>Wirkung:</strong> Ausgewogen, je nach Sorte variierend</p>
+              <p><strong>Ideal für:</strong> Angststörungen, chronische Schmerzen</p>
+              <p><strong>Einnahmezeit:</strong> Flexibel, je nach Dominanz</p>
+              <p><strong>Typische Terpene:</strong> Variiert je nach Genetik</p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Die Rolle der Terpene</h2>
+          <p>Moderne Forschung zeigt, dass nicht nur die Indica/Sativa-Klassifizierung entscheidend ist, sondern vor allem das <strong>Terpenprofil</strong> einer Sorte. Terpene sind aromatische Verbindungen, die Wirkung und Geschmack maßgeblich beeinflussen:</p>
+          <ul>
+            <li><strong>Myrcen:</strong> Beruhigend, muskelentspannend. Häufig in Indica-Sorten. Aroma: erdig, moschusartig.</li>
+            <li><strong>Limonen:</strong> Stimmungsaufhellend, angstlösend. Häufig in Sativa-Sorten. Aroma: Zitrus.</li>
+            <li><strong>Linalool:</strong> Beruhigend, schmerzlindernd. Auch in Lavendel enthalten. Aroma: blumig.</li>
+            <li><strong>Pinen:</strong> Konzentrationsfördernd, entzündungshemmend. Aroma: Kiefer, Nadelwald.</li>
+            <li><strong>Caryophyllen:</strong> Entzündungshemmend, schmerzlindernd. Bindet an CB2-Rezeptoren. Aroma: pfeffrig.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Sortenempfehlungen nach Indikation</h2>
+          <div class="rec-grid">
+            <div class="rec-card">
+              <h3><a href="/indikationen/chronische-schmerzen">Chronische Schmerzen</a></h3>
+              <p>THC-dominante Indica- oder Hybrid-Sorten mit hohem Myrcen- und Caryophyllen-Anteil. THC: 18-25%.</p>
+            </div>
+            <div class="rec-card">
+              <h3><a href="/indikationen/schlafstoerungen">Schlafstörungen</a></h3>
+              <p>Indica-Sorten mit hohem Myrcen- und Linalool-Gehalt. Abendliche Anwendung. THC: 15-22%.</p>
+            </div>
+            <div class="rec-card">
+              <h3><a href="/indikationen/adhs">ADHS</a></h3>
+              <p>Sativa-dominante Hybriden mit Limonen und Pinen. Tagsüber geeignet. THC: 15-20%, CBD: 1-5%.</p>
+            </div>
+            <div class="rec-card">
+              <h3><a href="/indikationen/angststoerungen">Angststörungen</a></h3>
+              <p>Ausgewogene THC:CBD-Sorten. Niedrige bis mittlere Dosierung. Hoher Linalool-Anteil.</p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>THC- und CBD-Gehalt verstehen</h2>
+          <p>Der THC- und CBD-Gehalt wird in Prozent angegeben und bestimmt die Wirkungsstärke:</p>
+          <ul>
+            <li><strong>Niedriger THC (< 15%):</strong> Guter Einstieg für Anfänger, mildere Wirkung</li>
+            <li><strong>Mittlerer THC (15-22%):</strong> Standard-Bereich für die meisten Indikationen</li>
+            <li><strong>Hoher THC (> 22%):</strong> Für erfahrene Patienten mit starken Beschwerden</li>
+            <li><strong>CBD-Anteil:</strong> Höherer CBD-Gehalt kann THC-Nebenwirkungen ausgleichen</li>
+          </ul>
+          <div class="info-box">
+            <strong>💡 Tipp:</strong> Beginne immer mit einer niedrigen Dosierung und steigere langsam ("start low, go slow"). Dein Arzt bei Nordleaf passt die Dosierung individuell an.
+          </div>
+        </section>
+
+        <section>
+          <h2>Darreichungsformen</h2>
+          <p>Medizinisches Cannabis gibt es in verschiedenen Formen — jede mit eigenen Vor- und Nachteilen:</p>
+          <ul>
+            <li><strong><a href="/kategorie/cannabisblueten">Cannabisblüten</a>:</strong> Zum Vaporisieren. Schneller Wirkungseintritt (5-15 Min.), gute Dosierbarkeit.</li>
+            <li><strong><a href="/kategorie/cannabisextrakte">Extrakte/Öle</a>:</strong> Unter die Zunge. Mittlerer Wirkungseintritt (30-60 Min.), lange Wirkdauer.</li>
+            <li><strong><a href="/kategorie/thc-vapes">Vape-Kartuschen</a>:</strong> Fertige Kartuschen zum Inhalieren. Einfach und diskret.</li>
+            <li><strong><a href="/kategorie/kapseln-edibles">Kapseln & Edibles</a>:</strong> Oral. Langsamer Wirkungseintritt (1-2h), gleichmäßige Wirkung.</li>
+          </ul>
+        </section>
+
+        <div class="article-cta">
+          <h2>Jetzt Sorten entdecken</h2>
+          <p>Über 186 Sorten mit THC/CBD-Angaben, Terpen-Profilen und Live-Bestandsanzeige.</p>
+          <a href="/products" class="btn-primary">Zum Live-Bestand →</a>
+        </div>
+      </div>
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .page-hero { background: linear-gradient(135deg, #0d2618, #1a472a, #2d6a47); color: white; padding: 3.5rem 1.5rem; text-align: center; }
+  .hero-tag { background: rgba(76,175,80,0.8); padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.8rem; font-weight: 600; }
+  .page-hero h1 { font-size: 2.25rem; font-weight: 800; margin: 1rem auto 0.75rem; max-width: 700px; line-height: 1.2; }
+  .page-hero p { color: rgba(255,255,255,0.7); font-size: 1.05rem; max-width: 550px; margin: 0 auto 0.75rem; }
+  .page-hero time { color: rgba(255,255,255,0.5); font-size: 0.85rem; }
+  .article-section { padding: 3rem 1.5rem 4rem; }
+  .article-content { max-width: 720px; margin: 0 auto; }
+  .article-intro { font-size: 1.1rem; color: #444; line-height: 1.8; margin-bottom: 2rem; border-left: 4px solid #4caf50; padding-left: 1.25rem; }
+  .toc { background: #f8faf9; border: 1px solid #e8ede9; border-radius: 12px; padding: 1.5rem 2rem; margin-bottom: 2.5rem; }
+  .toc h2 { font-size: 1rem; color: #1a472a; margin-bottom: 0.75rem; }
+  .toc ol { margin: 0; padding-left: 1.25rem; }
+  .toc li { margin-bottom: 0.35rem; font-size: 0.9rem; }
+  .toc a { color: #4caf50; text-decoration: none; }
+  .article-content section { margin-bottom: 2.5rem; }
+  .article-content h2 { font-size: 1.4rem; font-weight: 700; color: #1a472a; margin-bottom: 1rem; }
+  .article-content p { color: #555; line-height: 1.75; font-size: 1rem; margin-bottom: 1rem; }
+  .article-content ul { color: #555; line-height: 1.75; margin: 0.5rem 0 1rem 1.5rem; }
+  .article-content li { margin-bottom: 0.35rem; }
+  .article-content a { color: #4caf50; }
+  .info-box { background: #e8f5e9; border-left: 4px solid #4caf50; border-radius: 8px; padding: 1rem 1.25rem; margin: 1.5rem 0; font-size: 0.95rem; color: #333; line-height: 1.6; }
+
+  .three-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0; }
+  .type-card { border-radius: 12px; padding: 1.5rem; }
+  .type-card h3 { font-size: 1.15rem; margin-bottom: 0.75rem; }
+  .type-card p { font-size: 0.88rem; margin-bottom: 0.5rem; color: #444; line-height: 1.5; }
+  .type-card strong { color: #1a472a; }
+  .indica { background: #ede7f6; border: 1px solid #d1c4e9; }
+  .sativa { background: #fff8e1; border: 1px solid #ffecb3; }
+  .hybrid { background: #e8f5e9; border: 1px solid #c8e6c9; }
+
+  .rec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+  .rec-card { background: #f8faf9; border: 1px solid #e8ede9; border-radius: 10px; padding: 1.25rem; }
+  .rec-card h3 { font-size: 1rem; margin-bottom: 0.35rem; }
+  .rec-card h3 a { color: #1a472a; text-decoration: none; }
+  .rec-card h3 a:hover { color: #4caf50; }
+  .rec-card p { font-size: 0.88rem; color: #666; line-height: 1.5; margin: 0; }
+
+  .article-cta { text-align: center; background: linear-gradient(135deg, #1a472a, #2d6a47); border-radius: 16px; padding: 3rem; color: white; margin-top: 3rem; }
+  .article-cta h2 { color: white; font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .article-cta p { color: rgba(255,255,255,0.75); margin-bottom: 1.5rem; }
+  .btn-primary { background: #4caf50; color: white; padding: 0.75rem 1.75rem; border-radius: 50px; font-weight: 600; display: inline-block; border: 2px solid #4caf50; transition: all 0.2s; text-decoration: none; }
+  .btn-primary:hover { background: #43a047; border-color: #43a047; color: white; }
+
+  @media (max-width: 768px) {
+    .page-hero h1 { font-size: 1.6rem; }
+    .three-cards { grid-template-columns: 1fr; }
+    .rec-grid { grid-template-columns: 1fr; }
+  }
+</style>

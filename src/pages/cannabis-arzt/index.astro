@@ -1,0 +1,89 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+
+const cities = [
+  { slug: 'berlin', name: 'Berlin', pop: '3,7 Mio.', desc: 'Hauptstadt & größter Cannabis-Medizin-Markt Deutschlands' },
+  { slug: 'muenchen', name: 'München', pop: '1,5 Mio.', desc: 'Wachsender Standort für Cannabis-Medizin in Bayern' },
+  { slug: 'hamburg', name: 'Hamburg', pop: '1,9 Mio.', desc: 'Norddeutschlands Zentrum für Cannabis-Telemedizin' },
+  { slug: 'koeln', name: 'Köln', pop: '1,1 Mio.', desc: 'Liberale Rheinmetropole mit hoher Cannabis-Nachfrage' },
+  { slug: 'frankfurt', name: 'Frankfurt', pop: '760.000', desc: 'Finanzmetropole mit vielen Selbstzahler-Patienten' },
+  { slug: 'stuttgart', name: 'Stuttgart', pop: '635.000', desc: 'Baden-Württembergs Tor zur Cannabis-Telemedizin' },
+  { slug: 'duesseldorf', name: 'Düsseldorf', pop: '620.000', desc: 'NRW-Landeshauptstadt mit wachsendem Cannabis-Markt' },
+  { slug: 'leipzig', name: 'Leipzig', pop: '620.000', desc: 'Aufstrebende Stadt mit hoher Cannabis-Nachfrage' },
+  { slug: 'hannover', name: 'Hannover', pop: '535.000', desc: 'Niedersachsens Zentrum für medizinisches Cannabis' },
+  { slug: 'dresden', name: 'Dresden', pop: '560.000', desc: 'Sächsische Landeshauptstadt mit steigendem Interesse' },
+  { slug: 'nuernberg', name: 'Nürnberg', pop: '520.000', desc: 'Frankens größte Stadt — Cannabis-Medizin vor Ort' },
+  { slug: 'bremen', name: 'Bremen', pop: '570.000', desc: 'Progressive Hansestadt mit Cannabis-Akzeptanz' },
+];
+---
+
+<Layout
+  title="Cannabis Arzt in deiner Stadt 2026 — Online Rezept | Nordleaf"
+  description="Finde einen Cannabis Arzt in deiner Stadt oder nutze die Telemedizin. Cannabis Rezept online für Berlin, München, Hamburg, Köln und mehr."
+  keywords="Cannabis Arzt, Cannabis Rezept Stadt, Cannabis Arzt online, medizinisches Cannabis Deutschland"
+>
+  <Breadcrumb items={[{name: "Cannabis Arzt"}]} />
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Cannabis Arzt in deiner Stadt</h1>
+      <p>Finde heraus, wie du in deiner Stadt ein Cannabis-Rezept erhältst — oder nutze die Telemedizin für sofortigen Zugang.</p>
+    </div>
+  </section>
+
+  <section class="cities-section">
+    <div class="container">
+      <div class="cities-grid">
+        {cities.map(city => (
+          <a href={`/cannabis-arzt/${city.slug}`} class="city-card">
+            <span class="city-pin">📍</span>
+            <h2>{city.name}</h2>
+            <span class="city-pop">{city.pop} Einwohner</span>
+            <p>{city.desc}</p>
+            <span class="city-link">Mehr erfahren →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="tele-section">
+    <div class="container">
+      <div class="tele-box">
+        <h2>Deine Stadt nicht dabei?</h2>
+        <p>Kein Problem! Nordleaf liefert <strong>bundesweit</strong>. Über unsere Telemedizin-Plattform erreichst du spezialisierte Cannabis-Ärzte unabhängig von deinem Wohnort.</p>
+        <a href="/wie-funktionierts" class="btn-primary">Jetzt Fragebogen starten →</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero { background: linear-gradient(135deg, #0d2618, #1a472a, #2d6a47); color: white; padding: 3.5rem 1.5rem; text-align: center; }
+  .page-hero h1 { font-size: 2.25rem; font-weight: 800; margin-bottom: 0.75rem; }
+  .page-hero p { color: rgba(255,255,255,0.7); font-size: 1.05rem; max-width: 550px; margin: 0 auto; }
+
+  .cities-section { padding: 3rem 1.5rem; }
+  .cities-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; max-width: 960px; margin: 0 auto; }
+  .city-card { background: #fff; border: 1px solid #e8ede9; border-radius: 12px; padding: 1.5rem; text-decoration: none; transition: all 0.2s; display: flex; flex-direction: column; }
+  .city-card:hover { border-color: #4caf50; transform: translateY(-2px); box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+  .city-pin { font-size: 1.25rem; margin-bottom: 0.5rem; }
+  .city-card h2 { font-size: 1.15rem; font-weight: 700; color: #1a472a; margin-bottom: 0.2rem; }
+  .city-pop { font-size: 0.8rem; color: #888; margin-bottom: 0.5rem; display: block; }
+  .city-card p { font-size: 0.9rem; color: #666; line-height: 1.5; flex: 1; margin-bottom: 0.75rem; }
+  .city-link { color: #4caf50; font-weight: 600; font-size: 0.88rem; }
+
+  .tele-section { padding: 0 1.5rem 4rem; }
+  .tele-box { text-align: center; max-width: 640px; margin: 0 auto; background: linear-gradient(135deg, #1a472a, #2d6a47); border-radius: 16px; padding: 3rem; color: white; }
+  .tele-box h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .tele-box p { color: rgba(255,255,255,0.75); margin-bottom: 1.5rem; line-height: 1.7; }
+  .tele-box strong { color: white; }
+  .btn-primary { background: #4caf50; color: white; padding: 0.75rem 1.75rem; border-radius: 50px; font-weight: 600; display: inline-block; border: 2px solid #4caf50; transition: all 0.2s; text-decoration: none; }
+  .btn-primary:hover { background: #43a047; border-color: #43a047; color: white; }
+
+  @media (max-width: 768px) {
+    .page-hero h1 { font-size: 1.6rem; }
+    .cities-grid { grid-template-columns: 1fr; }
+  }
+</style>

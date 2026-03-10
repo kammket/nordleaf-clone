@@ -1,0 +1,280 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+
+export function getStaticPaths() {
+  const conditions = [
+    {
+      slug: 'chronische-schmerzen',
+    name: 'Chronische Schmerzen',
+    hero: 'Cannabis bei chronischen Schmerzen',
+    heroSub: 'Die häufigste Indikation für medizinisches Cannabis in Deutschland — evidenzbasiert erklärt.',
+    metaTitle: 'Cannabis bei chronischen Schmerzen | Wirkung, Studien & Rezept',
+    metaDesc: 'Medizinisches Cannabis bei chronischen Schmerzen: Studien, Wirkung, geeignete Sorten, Dosierung und wie du dein Rezept bekommst.',
+    keywords: 'Cannabis chronische Schmerzen, Cannabis Schmerztherapie, medizinisches Cannabis Schmerzen, Cannabis gegen Schmerzen',
+    intro: 'Chronische Schmerzen betreffen etwa 23 Millionen Menschen in Deutschland. Medizinisches Cannabis hat sich als wirksame Ergänzung der Schmerztherapie etabliert — besonders wenn herkömmliche Medikamente nicht ausreichend helfen oder starke Nebenwirkungen verursachen.',
+    whatIs: 'Chronische Schmerzen sind Schmerzen, die länger als 3 Monate anhalten. Häufige Formen sind Rückenschmerzen, Nervenschmerzen (Neuropathie), Fibromyalgie, Arthrose und Kopfschmerzen. Sie können die Lebensqualität erheblich einschränken und zu Schlafstörungen, Depressionen und sozialer Isolation führen.',
+    howHelps: 'THC bindet an CB1-Rezeptoren im Gehirn und Rückenmark und kann so die Schmerzweiterleitung hemmen. CBD wirkt zusätzlich entzündungshemmend und kann die Schmerzempfindlichkeit senken. Studien zeigen, dass Cannabis besonders bei neuropathischen Schmerzen (Nervenschmerzen) wirksam ist, die auf konventionelle Schmerzmittel oft schlecht ansprechen.',
+    studies: [
+      'Eine Meta-Analyse im Journal of Pain (2015) zeigte signifikante Schmerzreduktion bei 62% der Cannabis-Patienten.',
+      'Die CANNA-Studie (Deutschland, 2023) dokumentierte eine durchschnittliche Schmerzreduktion von 30% nach 3 Monaten Cannabis-Therapie.',
+      'Patienten konnten die Dosis von Opioiden im Durchschnitt um 64% reduzieren (Boehnke et al., 2019).',
+    ],
+    sortenTipp: 'Bei chronischen Schmerzen eignen sich THC-dominante Indica- oder Hybrid-Sorten mit hohem Myrcen- und Caryophyllen-Anteil. THC-Gehalt: 18-25%. Für tagsüber empfehlen sich ausgewogene Hybride, für die Nacht Indica-Sorten.',
+    symptoms: ['Rückenschmerzen', 'Fibromyalgie', 'Neuropathische Schmerzen', 'Arthrose', 'Kopfschmerzen', 'Entzündungsschmerzen'],
+  },
+  {
+    slug: 'schlafstoerungen',
+    name: 'Schlafstörungen',
+    hero: 'Cannabis bei Schlafstörungen',
+    heroSub: 'Besser schlafen mit medizinischem Cannabis — natürliche Alternative zu Schlafmitteln.',
+    metaTitle: 'Cannabis bei Schlafstörungen | Insomnie natürlich behandeln',
+    metaDesc: 'Medizinisches Cannabis bei Schlafstörungen und Insomnie: Wirkung, Studien, Sorten-Empfehlungen und Rezept online beantragen.',
+    keywords: 'Cannabis Schlafstörungen, Cannabis Insomnie, Cannabis zum Schlafen, medizinisches Cannabis Schlaf',
+    intro: 'Etwa 6% der deutschen Bevölkerung leidet an chronischer Insomnie. Medizinisches Cannabis — insbesondere THC-dominante Indica-Sorten — kann die Einschlafzeit verkürzen und die Schlafqualität verbessern, ohne die typische Abhängigkeitsgefahr herkömmlicher Schlafmittel.',
+    whatIs: 'Schlafstörungen umfassen Schwierigkeiten beim Einschlafen, Durchschlafprobleme und nicht-erholsamen Schlaf. Chronische Insomnie liegt vor, wenn diese Probleme mindestens 3 Mal pro Woche über einen Zeitraum von 3 Monaten auftreten. Sie kann zu Tagesmüdigkeit, Konzentrationsproblemen und erhöhtem Unfallrisiko führen.',
+    howHelps: 'THC verkürzt nachweislich die Einschlafzeit und kann die Tiefschlafphasen verlängern. Es reduziert die REM-Schlafphase, was bei PTBS-bedingten Albträumen vorteilhaft sein kann. CBD wirkt indirekt schlaffördernd, indem es Angst und Anspannung reduziert, die häufige Ursachen von Schlafproblemen sind.',
+    studies: [
+      'Eine Studie in Medicines (2019) zeigte, dass 71% der Cannabis-Patienten eine Verbesserung ihrer Schlafqualität berichteten.',
+      'THC reduzierte die Einschlafzeit durchschnittlich um 30 Minuten (Suraev et al., 2020).',
+      'Patienten konnten Benzodiazepine und Z-Substanzen in 65% der Fälle reduzieren oder absetzen.',
+    ],
+    sortenTipp: 'Indica-Sorten mit hohem Myrcen- und Linalool-Gehalt sind ideal. Empfohlen: THC 15-22%, Einnahme 30-60 Minuten vor dem Schlafen. Bei gleichzeitiger Angst empfehlen sich Sorten mit moderatem CBD-Anteil.',
+    symptoms: ['Einschlafprobleme', 'Durchschlafstörungen', 'Nicht-erholsamer Schlaf', 'Schlafbezogene Angst', 'Tagesmüdigkeit', 'Albträume (PTBS)'],
+  },
+  {
+    slug: 'adhs',
+    name: 'ADHS',
+    hero: 'Cannabis bei ADHS',
+    heroSub: 'Konzentration und Fokus zurückgewinnen — medizinisches Cannabis als alternative Therapie.',
+    metaTitle: 'Cannabis bei ADHS | Wirkung, Studien & Erfahrungen',
+    metaDesc: 'Medizinisches Cannabis bei ADHS: Wie THC und CBD bei Aufmerksamkeitsdefizit helfen können. Studien, Sorten-Tipps und Rezept online.',
+    keywords: 'Cannabis ADHS, Cannabis ADS, medizinisches Cannabis ADHS, THC ADHS, Cannabis Konzentration',
+    intro: 'ADHS bei Erwachsenen wird zunehmend als ernstzunehmende Diagnose anerkannt. Für Patienten, die auf Methylphenidat (Ritalin) oder Amphetamine nicht ansprechen oder diese nicht vertragen, bietet medizinisches Cannabis eine vielversprechende Alternative.',
+    whatIs: 'ADHS (Aufmerksamkeitsdefizit-Hyperaktivitätsstörung) im Erwachsenenalter äußert sich durch Konzentrationsschwierigkeiten, Impulsivität, innere Unruhe und Probleme bei der Alltagsorganisation. Etwa 3-4% der Erwachsenen sind betroffen. Konventionelle Medikamente wie Methylphenidat haben bei vielen Patienten erhebliche Nebenwirkungen.',
+    howHelps: 'Cannabis kann bei ADHS auf mehrere Weisen wirken: THC fördert die Dopamin-Ausschüttung, was die Aufmerksamkeit und Motivation verbessern kann (ähnlich wie Stimulanzien, aber sanfter). CBD reduziert die häufig begleitende Angst und Überreizung. Die Kombination kann die Impulskontrolle verbessern und mentale Ruhe schaffen.',
+    studies: [
+      'Eine Pilotstudie (Cooper et al., 2017) zeigte Verbesserungen in Aufmerksamkeit und Impulskontrolle bei ADHS-Patienten unter Cannabis-Therapie.',
+      'Die deutsche Beobachtungsstudie von Milz & Grotenhermen (2022) berichtete über verbesserte Lebensqualität bei 73% der ADHS-Patienten.',
+      'Patienten berichteten insbesondere über besseren Fokus, weniger innere Unruhe und verbesserten Schlaf.',
+    ],
+    sortenTipp: 'Sativa-dominante Hybride mit Limonen und Pinen als dominante Terpene. Für den Tag: niedrig dosiertes THC (12-18%) mit moderatem CBD (1-5%). Abends zur Beruhigung können Indica-Sorten eingesetzt werden.',
+    symptoms: ['Konzentrationsschwäche', 'Innere Unruhe', 'Impulsivität', 'Organisationsprobleme', 'Schlafprobleme', 'Emotionale Dysregulation'],
+  },
+  {
+    slug: 'angststoerungen',
+    name: 'Angststörungen',
+    hero: 'Cannabis bei Angststörungen',
+    heroSub: 'Angst natürlich lindern — CBD und THC als therapeutische Option.',
+    metaTitle: 'Cannabis bei Angststörungen | CBD, THC & Therapie',
+    metaDesc: 'Medizinisches Cannabis bei Angststörungen und Panikattacken: CBD und THC Wirkung, Dosierung, Studien und Rezept beantragen.',
+    keywords: 'Cannabis Angststörung, Cannabis Angst, CBD Angst, Cannabis Panikattacken, medizinisches Cannabis Angst',
+    intro: 'Angststörungen sind die häufigsten psychischen Erkrankungen in Deutschland — betroffen sind rund 15% der Bevölkerung. CBD hat starke angstlösende Eigenschaften, und in Kombination mit niedrig dosiertem THC kann Cannabis eine effektive Ergänzung oder Alternative zu konventionellen Anxiolytika sein.',
+    whatIs: 'Angststörungen umfassen generalisierte Angststörung (GAD), Panikstörung, soziale Phobie und spezifische Phobien. Betroffene erleben übermäßige Sorgen, körperliche Symptome (Herzrasen, Schweißausbrüche, Atemnot) und Vermeidungsverhalten. Konventionelle Behandlungen umfassen SSRIs und Benzodiazepine, die häufig Nebenwirkungen haben.',
+    howHelps: 'CBD wirkt über den 5-HT1A-Serotoninrezeptor angstlösend und über TRPV1-Rezeptoren beruhigend. THC kann in niedriger Dosierung ebenfalls angstlösend wirken, jedoch in hoher Dosierung Angst verstärken. Daher ist bei Angststörungen eine sorgfältige Dosierung besonders wichtig — CBD-dominante Präparate oder ausgewogene THC:CBD-Verhältnisse werden empfohlen.',
+    studies: [
+      'Eine Doppelblindstudie (Bergamaschi et al., 2011) zeigte, dass 600mg CBD die soziale Angst signifikant reduzierte.',
+      'Die Studie von Shannon et al. (2019) berichtete Angstreduktion bei 79% der CBD-Patienten im ersten Monat.',
+      'Niedrig dosiertes THC (< 7,5mg) zeigte angstlösende Wirkung (Childs et al., 2017), höhere Dosen verstärkten die Angst.',
+    ],
+    sortenTipp: 'CBD-dominante Sorten oder ausgewogene THC:CBD-Verhältnisse (1:1 oder 1:2). Terpene: Linalool (beruhigend) und Limonen (stimmungsaufhellend). Niedrige THC-Dosierung ist entscheidend — "start low, go slow" gilt hier besonders.',
+    symptoms: ['Generalisierte Angst', 'Panikattacken', 'Soziale Phobie', 'Herzrasen', 'Schlafprobleme durch Angst', 'Vermeidungsverhalten'],
+  },
+  {
+    slug: 'ptbs',
+    name: 'PTBS',
+    hero: 'Cannabis bei PTBS',
+    heroSub: 'Traumafolgen lindern — medizinisches Cannabis als unterstützende Therapie.',
+    metaTitle: 'Cannabis bei PTBS | Posttraumatische Belastungsstörung behandeln',
+    metaDesc: 'Medizinisches Cannabis bei PTBS: Wie THC und CBD bei Flashbacks, Albträumen und Hypervigilanz helfen. Studien und Rezept online.',
+    keywords: 'Cannabis PTBS, Cannabis Trauma, Cannabis posttraumatisch, medizinisches Cannabis PTBS, THC PTBS',
+    intro: 'Die Posttraumatische Belastungsstörung (PTBS) ist eine schwerwiegende psychische Erkrankung, die nach traumatischen Erlebnissen auftreten kann. Medizinisches Cannabis zeigt vielversprechende Ergebnisse bei der Reduktion von Flashbacks, Albträumen und der chronischen Übererregung.',
+    whatIs: 'PTBS entwickelt sich nach traumatischen Erlebnissen wie Unfällen, Gewalt, Krieg oder Missbrauch. Kernsymptome sind Wiedererleben (Flashbacks, Albträume), Vermeidungsverhalten, emotionale Taubheit und chronische Übererregung (Hypervigilanz). Etwa 2-3% der Bevölkerung sind betroffen, bei Risikogruppen deutlich mehr.',
+    howHelps: 'THC kann die Konsolidierung traumatischer Erinnerungen beeinflussen und die emotionale Reaktion auf Trigger abschwächen. Es reduziert die REM-Schlafphase, was Albträume vermindern kann. CBD wirkt über das Endocannabinoid-System angstlösend und kann die Löschung von Angsterinnerungen (Fear Extinction) fördern — ein wichtiger Prozess in der Traumatherapie.',
+    studies: [
+      'Eine randomisierte Studie (Jetly et al., 2015) zeigte, dass Nabilon (synthetisches THC) Albträume bei PTBS signifikant reduzierte.',
+      'Cannabis-Patienten mit PTBS berichteten 75% weniger Flashbacks (Neumeister et al., 2013).',
+      'Die Kombination von Cannabis und Psychotherapie zeigte bessere Ergebnisse als Psychotherapie allein (Rabinak et al., 2020).',
+    ],
+    sortenTipp: 'Indica-dominante Sorten mit moderatem THC (15-20%) und CBD-Anteil. Abends: höherer THC-Anteil gegen Albträume. Tagsüber: ausgewogene THC:CBD-Sorten für Angstreduktion ohne starke Sedierung.',
+    symptoms: ['Flashbacks', 'Albträume', 'Hypervigilanz', 'Emotionale Taubheit', 'Reizbarkeit', 'Schlafstörungen'],
+  },
+  {
+    slug: 'migraene',
+    name: 'Migräne',
+    hero: 'Cannabis bei Migräne',
+    heroSub: 'Migräneattacken vorbeugen und lindern — medizinisches Cannabis als Prophylaxe.',
+    metaTitle: 'Cannabis bei Migräne | Kopfschmerzen natürlich behandeln',
+    metaDesc: 'Medizinisches Cannabis bei Migräne: Prophylaxe, Akutbehandlung, Studien und geeignete Sorten. Online-Rezept bei Nordleaf.',
+    keywords: 'Cannabis Migräne, Cannabis Kopfschmerzen, medizinisches Cannabis Migräne, THC Migräne, Cannabis Prophylaxe',
+    intro: 'Migräne betrifft rund 14% der Weltbevölkerung und ist eine der häufigsten neurologischen Erkrankungen. Für Patienten, die auf konventionelle Migränemedikamente nicht ansprechen oder deren Nebenwirkungen nicht tolerieren, zeigt medizinisches Cannabis vielversprechende Ergebnisse in der Prophylaxe und Akutbehandlung.',
+    whatIs: 'Migräne ist eine neurologische Erkrankung mit wiederkehrenden, oft einseitigen, pulsierenden Kopfschmerzen. Begleitsymptome sind Übelkeit, Licht- und Geräuschempfindlichkeit und teilweise Aura-Phänomene. Chronische Migräne (≥15 Kopfschmerztage/Monat) kann die Arbeitsfähigkeit und Lebensqualität massiv einschränken.',
+    howHelps: 'Das Endocannabinoid-System spielt eine wichtige Rolle bei der Schmerzmodulation und Entzündungsregulation im trigemovaskulären System — dem Hauptakteur bei Migräne. THC und CBD können Entzündungen der Hirnhautgefäße reduzieren, die Serotonin-Freisetzung modulieren und die zentrale Sensibilisierung hemmen. Inhalation wirkt am schnellsten bei akuten Attacken.',
+    studies: [
+      'Eine Studie der University of Colorado (Rhyne et al., 2016) zeigte eine Reduktion der monatlichen Migräneattacken von 10,4 auf 4,6.',
+      'Inhaliertes Cannabis reduzierte die Schmerzintensität bei akuter Migräne um durchschnittlich 47% (Cuttler et al., 2020).',
+      'Eine italienische Studie zeigte, dass Cannabis als Prophylaxe die Attackenfrequenz um 40% senkte (Nicolodi et al., 2017).',
+    ],
+    sortenTipp: 'Prophylaxe: Ausgewogene THC:CBD-Sorten mit Caryophyllen (entzündungshemmend). Akutbehandlung: THC-dominante Sorten zur Inhalation für schnellen Wirkungseintritt. Bei begleitender Übelkeit: Sorten mit hohem Limonen-Anteil.',
+    symptoms: ['Einseitige Kopfschmerzen', 'Übelkeit/Erbrechen', 'Lichtempfindlichkeit', 'Aura-Phänomene', 'Konzentrationsprobleme', 'Chronische Tagesschmerzen'],
+  },
+];
+
+  return conditions.map(c => ({ params: { indikation: c.slug }, props: { condition: c, allConditions: conditions } }));
+}
+
+const { condition, allConditions } = Astro.props;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalWebPage',
+  name: condition.hero,
+  description: condition.metaDesc,
+  about: { '@type': 'MedicalCondition', name: condition.name },
+  author: { '@type': 'Organization', name: 'Nordleaf GmbH', url: 'https://nordleaf.de' },
+};
+---
+
+<Layout
+  title={`${condition.metaTitle} | Nordleaf`}
+  description={condition.metaDesc}
+  keywords={condition.keywords}
+  structuredData={schema}
+>
+  <Breadcrumb items={[{name: "Indikationen", href: "/indikationen"}, {name: condition.name}]} />
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="hero-tag">Indikation</span>
+      <h1>{condition.hero}</h1>
+      <p>{condition.heroSub}</p>
+    </div>
+  </section>
+
+  <article class="article-section">
+    <div class="container">
+      <div class="article-content">
+        <div class="article-intro">
+          <p set:html={condition.intro} />
+        </div>
+
+        <section>
+          <h2>Was sind {condition.name}?</h2>
+          <p>{condition.whatIs}</p>
+
+          <h3>Typische Symptome</h3>
+          <div class="symptoms-grid">
+            {condition.symptoms.map(s => (
+              <div class="symptom-tag">{s}</div>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h2>Wie hilft Cannabis bei {condition.name}?</h2>
+          <p>{condition.howHelps}</p>
+        </section>
+
+        <section>
+          <h2>Studien & Evidenz</h2>
+          <ul class="studies-list">
+            {condition.studies.map(s => (
+              <li>{s}</li>
+            ))}
+          </ul>
+          <div class="info-box">
+            <strong>📋 Hinweis:</strong> Medizinisches Cannabis ist eine ergänzende Therapie. Es ersetzt nicht die ärztliche Betreuung. Besprich die Cannabis-Therapie immer mit deinem behandelnden Arzt.
+          </div>
+        </section>
+
+        <section>
+          <h2>Empfohlene Sorten</h2>
+          <p>{condition.sortenTipp}</p>
+          <a href="/products" class="inline-cta">Passende Sorten im Live-Bestand entdecken →</a>
+        </section>
+
+        <section>
+          <h2>So bekommst du dein Rezept bei Nordleaf</h2>
+          <div class="steps-compact">
+            <div class="step-c"><span>1</span><p><strong>Fragebogen</strong> ausfüllen (3 Min.)</p></div>
+            <div class="step-c"><span>2</span><p><strong>Arzt prüft</strong> deine Angaben (24h)</p></div>
+            <div class="step-c"><span>3</span><p><strong>Rezept</strong> wird ausgestellt</p></div>
+            <div class="step-c"><span>4</span><p><strong>Lieferung</strong> in 1-3 Werktagen</p></div>
+          </div>
+        </section>
+
+        <div class="article-cta">
+          <h2>Jetzt Rezept beantragen</h2>
+          <p>Starte in 3 Minuten — 100% online, diskret und von Fachärzten betreut.</p>
+          <a href="/wie-funktionierts" class="btn-primary">Rezept beantragen →</a>
+        </div>
+
+        <section class="related-links">
+          <h2>Weitere Indikationen</h2>
+          <div class="related-grid">
+            {allConditions.filter(c => c.slug !== condition.slug).map(c => (
+              <a href={`/indikationen/${c.slug}`} class="related-card">
+                <strong>{c.name}</strong>
+                <span>{c.heroSub.substring(0, 60)}…</span>
+              </a>
+            ))}
+          </div>
+        </section>
+      </div>
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .page-hero { background: linear-gradient(135deg, #0d2618, #1a472a, #2d6a47); color: white; padding: 3.5rem 1.5rem; text-align: center; }
+  .hero-tag { background: rgba(76,175,80,0.8); padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.8rem; font-weight: 600; }
+  .page-hero h1 { font-size: 2.25rem; font-weight: 800; margin: 1rem auto 0.75rem; max-width: 700px; line-height: 1.2; }
+  .page-hero p { color: rgba(255,255,255,0.7); font-size: 1.05rem; max-width: 600px; margin: 0 auto; }
+
+  .article-section { padding: 3rem 1.5rem 4rem; }
+  .article-content { max-width: 720px; margin: 0 auto; }
+  .article-intro { font-size: 1.1rem; color: #444; line-height: 1.8; margin-bottom: 2rem; border-left: 4px solid #4caf50; padding-left: 1.25rem; }
+
+  .article-content section { margin-bottom: 2.5rem; }
+  .article-content h2 { font-size: 1.4rem; font-weight: 700; color: #1a472a; margin-bottom: 1rem; }
+  .article-content h3 { font-size: 1.1rem; font-weight: 600; color: #333; margin: 1.25rem 0 0.75rem; }
+  .article-content p { color: #555; line-height: 1.75; font-size: 1rem; margin-bottom: 1rem; }
+  .article-content ul { color: #555; line-height: 1.75; margin: 0.5rem 0 1rem 1.5rem; }
+  .article-content li { margin-bottom: 0.5rem; }
+  .article-content a { color: #4caf50; }
+
+  .symptoms-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0; }
+  .symptom-tag { background: #e8f5e9; color: #1a472a; padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500; }
+
+  .studies-list li { margin-bottom: 0.75rem; padding-left: 0.5rem; border-left: 3px solid #c8e6c9; }
+
+  .info-box { background: #e8f5e9; border-left: 4px solid #4caf50; border-radius: 8px; padding: 1rem 1.25rem; margin: 1.5rem 0; font-size: 0.95rem; color: #333; line-height: 1.6; }
+
+  .inline-cta { display: inline-block; background: #f0f7f1; border: 1px solid #c8e6c9; padding: 0.75rem 1.25rem; border-radius: 8px; font-weight: 600; text-decoration: none; margin-top: 0.5rem; transition: all 0.2s; }
+  .inline-cta:hover { background: #e8f5e9; border-color: #4caf50; }
+
+  .steps-compact { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; margin: 1.5rem 0; }
+  .step-c { text-align: center; background: #f8faf9; border: 1px solid #e8ede9; border-radius: 10px; padding: 1rem 0.75rem; }
+  .step-c span { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: #1a472a; color: white; border-radius: 50%; font-weight: 700; font-size: 0.9rem; margin-bottom: 0.5rem; }
+  .step-c p { font-size: 0.85rem; color: #555; margin: 0; }
+  .step-c strong { color: #1a472a; }
+
+  .article-cta { text-align: center; background: linear-gradient(135deg, #1a472a, #2d6a47); border-radius: 16px; padding: 3rem; color: white; margin: 2rem 0; }
+  .article-cta h2 { color: white; font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .article-cta p { color: rgba(255,255,255,0.75); margin-bottom: 1.5rem; }
+  .btn-primary { background: #4caf50; color: white; padding: 0.75rem 1.75rem; border-radius: 50px; font-weight: 600; display: inline-block; border: 2px solid #4caf50; transition: all 0.2s; text-decoration: none; }
+  .btn-primary:hover { background: #43a047; border-color: #43a047; color: white; }
+
+  .related-links { margin-top: 1rem; }
+  .related-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; margin-top: 1rem; }
+  .related-card { display: block; background: #f8faf9; border: 1px solid #e8ede9; border-radius: 10px; padding: 1rem; text-decoration: none; transition: all 0.2s; }
+  .related-card:hover { border-color: #4caf50; transform: translateY(-2px); }
+  .related-card strong { display: block; color: #1a472a; margin-bottom: 0.2rem; }
+  .related-card span { font-size: 0.8rem; color: #888; }
+
+  @media (max-width: 768px) {
+    .page-hero h1 { font-size: 1.6rem; }
+    .steps-compact { grid-template-columns: 1fr 1fr; }
+    .related-grid { grid-template-columns: 1fr; }
+  }
+</style>

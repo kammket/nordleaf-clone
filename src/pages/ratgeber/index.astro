@@ -1,0 +1,150 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+
+const articles = [
+  {
+    slug: 'cannabis-rezept-bekommen',
+    tag: 'Ratgeber',
+    date: '5. März 2026',
+    title: 'Cannabis Rezept bekommen 2026: Schritt-für-Schritt Anleitung',
+    excerpt: 'So bekommst du dein Cannabis-Rezept in Deutschland — vom Fragebogen bis zur Lieferung in unter 72 Stunden.',
+  },
+  {
+    slug: 'thc-vs-cbd',
+    tag: 'Wissen',
+    date: '28. Februar 2026',
+    title: 'THC vs. CBD: Wirkungen, Unterschiede & Anwendung',
+    excerpt: 'Was unterscheidet THC und CBD? Wir erklären die Wirkungsweise, Nebenwirkungen und welches Cannabinoid für dich geeignet ist.',
+  },
+  {
+    slug: 'cannabis-sorten-guide',
+    tag: 'Sorten',
+    date: '20. Februar 2026',
+    title: 'Cannabis Sorten Guide: Indica, Sativa & Hybrid erklärt',
+    excerpt: 'Alles über Cannabis-Sorten: Indica für Entspannung, Sativa für Energie und Hybride als Allrounder.',
+  },
+  {
+    slug: 'cannabis-als-medizin',
+    tag: 'Ratgeber',
+    date: '12. Februar 2026',
+    title: 'Cannabis als Medizin: Der komplette Leitfaden für Einsteiger',
+    excerpt: 'Alles, was du über medizinisches Cannabis wissen musst — Indikationen, Darreichungsformen, Dosierung und Ablauf.',
+  },
+  {
+    slug: 'cannabis-gesetzgebung-2026',
+    tag: 'Neuigkeiten',
+    date: '2. Januar 2026',
+    title: 'Cannabis-Gesetzgebung 2026: Was sich ändert',
+    excerpt: 'Ein Überblick über die aktuelle Rechtslage und kommende Änderungen im deutschen Cannabis-Recht.',
+  },
+];
+---
+
+<Layout
+  title="Ratgeber | Nordleaf - Cannabis Wissen & Guides"
+  description="Fundierte Ratgeber zu medizinischem Cannabis: Rezept bekommen, THC vs CBD, Sorten-Guide, Gesetzgebung und mehr. Evidenzbasiertes Wissen."
+  keywords="Cannabis Ratgeber, medizinisches Cannabis Wissen, THC CBD Unterschied, Cannabis Rezept Anleitung, Cannabis Sorten"
+>
+  <Breadcrumb items={[{name: "Ratgeber"}]} />
+  <section class="page-hero">
+    <div class="container">
+      <h1>Cannabis Ratgeber</h1>
+      <p>Evidenzbasiertes Wissen rund um medizinisches Cannabis — für Patienten, von Experten.</p>
+    </div>
+  </section>
+
+  <section class="ratgeber-section">
+    <div class="container">
+      <div class="ratgeber-grid">
+        {articles.map(a => (
+          <article class="ratgeber-card">
+            <div class="ratgeber-image">
+              <span class="ratgeber-tag">{a.tag}</span>
+            </div>
+            <div class="ratgeber-body">
+              <time>{a.date}</time>
+              <h2><a href={`/ratgeber/${a.slug}`}>{a.title}</a></h2>
+              <p>{a.excerpt}</p>
+              <a href={`/ratgeber/${a.slug}`} class="read-more">Weiterlesen →</a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="ratgeber-cta">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Bereit loszulegen?</h2>
+        <p>Erhalte dein Cannabis-Rezept in nur 3 Minuten — 100% online, diskret und sicher.</p>
+        <a href="/wie-funktionierts" class="btn-primary">Jetzt starten →</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero {
+    background: linear-gradient(135deg, #0d2618, #1a472a, #2d6a47);
+    color: white; padding: 3.5rem 1.5rem; text-align: center;
+  }
+  .page-hero h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.75rem; }
+  .page-hero p { color: rgba(255,255,255,0.7); font-size: 1.1rem; max-width: 550px; margin: 0 auto; }
+
+  .ratgeber-section { padding: 4rem 1.5rem; }
+
+  .ratgeber-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+    max-width: 1000px; margin: 0 auto;
+  }
+
+  .ratgeber-card {
+    background: white; border: 1px solid #e8ede9; border-radius: 12px;
+    overflow: hidden; transition: all 0.3s;
+  }
+  .ratgeber-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
+
+  .ratgeber-image {
+    background: linear-gradient(135deg, #1a472a, #2d6a47);
+    height: 140px; position: relative; display: flex;
+    align-items: flex-end; padding: 1rem;
+  }
+
+  .ratgeber-tag {
+    background: rgba(76,175,80,0.85); color: white;
+    padding: 0.2rem 0.6rem; border-radius: 4px;
+    font-size: 0.75rem; font-weight: 600;
+  }
+
+  .ratgeber-body { padding: 1.25rem; }
+  .ratgeber-body time { font-size: 0.8rem; color: #999; }
+  .ratgeber-body h2 { font-size: 1.1rem; font-weight: 700; margin: 0.5rem 0; line-height: 1.3; }
+  .ratgeber-body h2 a { color: #1a472a; text-decoration: none; }
+  .ratgeber-body h2 a:hover { color: #4caf50; }
+  .ratgeber-body p { font-size: 0.9rem; color: #666; line-height: 1.5; margin-bottom: 0.75rem; }
+
+  .read-more { font-size: 0.9rem; color: #4caf50; font-weight: 600; text-decoration: none; }
+  .read-more:hover { text-decoration: underline; }
+
+  .ratgeber-cta { padding: 0 1.5rem 4rem; }
+  .cta-box {
+    max-width: 700px; margin: 0 auto; text-align: center;
+    background: linear-gradient(135deg, #1a472a, #2d6a47);
+    border-radius: 16px; padding: 3rem; color: white;
+  }
+  .cta-box h2 { color: white; font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .cta-box p { color: rgba(255,255,255,0.75); margin-bottom: 1.5rem; }
+  .btn-primary {
+    background: #4caf50; color: white; padding: 0.75rem 1.75rem;
+    border-radius: 50px; font-weight: 600; display: inline-block;
+    border: 2px solid #4caf50; transition: all 0.2s; text-decoration: none;
+  }
+  .btn-primary:hover { background: #43a047; border-color: #43a047; color: white; }
+
+  @media (max-width: 768px) {
+    .ratgeber-grid { grid-template-columns: 1fr; max-width: 500px; }
+    .page-hero h1 { font-size: 1.75rem; }
+  }
+</style>
