@@ -74,6 +74,14 @@ const siteUrl = 'https://nordleaf.de';
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
             Zur Kasse
           </a>
+          <div id="min-order-notice" class="min-order-notice" style="display:none;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e67e22" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span>Mindestbestellwert: <strong>€100,00</strong>. Bitte füge weitere Produkte hinzu.</span>
+          </div>
+          <div id="btc-only-notice" class="btc-only-notice" style="display:none;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1a472a" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            <span>Bestellungen unter €200 sind nur per <strong>Bitcoin</strong> zahlbar. Für Banküberweisung bitte Produkte für mindestens €200 hinzufügen.</span>
+          </div>
           <div class="trust-info">
             <div class="trust-item">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -103,9 +111,12 @@ const siteUrl = 'https://nordleaf.de';
     const taxEl = document.getElementById('tax')!;
     const totalEl = document.getElementById('total')!;
     const clearBtn = document.getElementById('clear-cart-btn')!;
+    const checkoutBtn = document.getElementById('checkout-btn') as HTMLAnchorElement;
+    const minOrderNotice = document.getElementById('min-order-notice')!;
+    const btcOnlyNotice = document.getElementById('btc-only-notice')!;
 
-    function fmt(n: number) {
-      return `€${n.toFixed(2).replace('.', ',')}`;
+    function blockCheckout(e: Event) {
+      e.preventDefault();
     }
 
     function renderCart() {
@@ -158,6 +169,19 @@ const siteUrl = 'https://nordleaf.de';
       subtotalEl.textContent = fmt(subtotal);
       taxEl.textContent = fmt(tax);
       totalEl.textContent = fmt(total);
+
+      // Minimum order enforcement
+      if (total < 100) {
+        checkoutBtn.classList.add('disabled');
+        checkoutBtn.addEventListener('click', blockCheckout);
+        minOrderNotice.style.display = 'flex';
+        btcOnlyNotice.style.display = 'none';
+      } else {
+        checkoutBtn.classList.remove('disabled');
+        checkoutBtn.removeEventListener('click', blockCheckout);
+        minOrderNotice.style.display = 'none';
+        btcOnlyNotice.style.display = total < 200 ? 'flex' : 'none';
+      }
 
       // Attach event listeners
       cartItemsList.querySelectorAll('.qty-minus').forEach(btn => {
@@ -617,6 +641,41 @@ const siteUrl = 'https://nordleaf.de';
     box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
     transform: translateY(-1px);
   }
+
+  .btn-checkout.disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    pointer-events: auto;
+  }
+  .btn-checkout.disabled:hover {
+    background: #ccc;
+    box-shadow: none;
+    transform: none;
+  }
+
+  .min-order-notice,
+  .btc-only-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    margin-top: 0.75rem;
+  }
+  .min-order-notice {
+    background: #fff3e0;
+    border: 1px solid #ffe0b2;
+    color: #7a4a00;
+  }
+  .min-order-notice svg { flex-shrink: 0; margin-top: 1px; }
+  .btc-only-notice {
+    background: #e8f5e9;
+    border: 1px solid #c8e6c9;
+    color: #1a472a;
+  }
+  .btc-only-notice svg { flex-shrink: 0; margin-top: 1px; }
 
   /* Trust Info */
   .trust-info {

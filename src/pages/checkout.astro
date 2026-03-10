@@ -99,9 +99,17 @@ const BTC_ADDRESS = 'bc1qp7tu4apamhwu8v5museyurks5ueatnsln605pc';
           <div id="step-payment" class="checkout-step-panel" style="display:none;">
             <h2>Zahlungsart wählen</h2>
 
+            <!-- Payment rules info banner -->
+            <div id="payment-info-banner" class="payment-info-banner">
+              <div class="pib-icon">ℹ️</div>
+              <div class="pib-text">
+                <p id="pib-message"></p>
+              </div>
+            </div>
+
             <div class="payment-methods">
-              <label class="payment-method selected" data-method="bank">
-                <input type="radio" name="payMethod" value="bank" checked />
+              <label class="payment-method" data-method="bank" id="method-bank">
+                <input type="radio" name="payMethod" value="bank" />
                 <div class="method-content">
                   <div class="method-icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
@@ -113,8 +121,8 @@ const BTC_ADDRESS = 'bc1qp7tu4apamhwu8v5museyurks5ueatnsln605pc';
                 </div>
               </label>
 
-              <label class="payment-method" data-method="btc">
-                <input type="radio" name="payMethod" value="btc" />
+              <label class="payment-method selected" data-method="btc" id="method-btc">
+                <input type="radio" name="payMethod" value="btc" checked />
                 <div class="method-content">
                   <div class="method-icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11.767 19.089c4.924.868 6.14-6.025 1.216-6.894m-1.216 6.894L5.86 18.047m5.908 1.042-.347 1.97m1.563-8.864c4.924.869 6.14-6.025 1.215-6.893m-1.215 6.893-3.94-.694m5.155-6.2L8.29 4.26m5.908 1.042.348-1.97M7.48 20.364l3.126-17.727"/></svg>
@@ -329,11 +337,12 @@ const BTC_ADDRESS = 'bc1qp7tu4apamhwu8v5museyurks5ueatnsln605pc';
     // ---- State ----
     let currentStep = 1;
     let orderData = {};
-    let payMethod = 'bank';
+    let payMethod = 'btc';
     let orderId = '';
     let totalEur = 0;
     let btcCheckInterval = null;
     let timerInterval = null;
+    let bankAllowed = false;
 
     // ---- Cart/Summary ----
     function getCart() {
@@ -368,6 +377,46 @@ const BTC_ADDRESS = 'bc1qp7tu4apamhwu8v5museyurks5ueatnsln605pc';
       document.getElementById('s-subtotal').textContent = fmt(subtotal);
       document.getElementById('s-tax').textContent = fmt(tax);
       document.getElementById('s-total').textContent = fmt(totalEur);
+
+      // Redirect if under minimum
+      if (totalEur < 100) {
+        window.location.href = '/cart';
+        return;
+      }
+
+      // Enforce payment rules
+      enforcePaymentRules();
+    }
+
+    function enforcePaymentRules() {
+      const methodBank = document.getElementById('method-bank');
+      const banner = document.getElementById('payment-info-banner');
+      const bannerMsg = document.getElementById('pib-message');
+
+      if (totalEur < 200) {
+        // Bitcoin only
+        bankAllowed = false;
+        methodBank.classList.add('method-disabled');
+        methodBank.querySelector('input').disabled = true;
+        // Force BTC selection
+        payMethod = 'btc';
+        document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('selected'));
+        document.getElementById('method-btc').classList.add('selected');
+        document.getElementById('method-btc').querySelector('input').checked = true;
+
+        banner.className = 'payment-info-banner pib-btc-only';
+        banner.style.display = 'flex';
+        bannerMsg.innerHTML = '<strong>Dein Bestellwert liegt unter €200.</strong><br>Bei Bestellungen unter €200 ist die Zahlung ausschließlich per <strong>Bitcoin</strong> möglich. Wenn du nicht mit Bitcoin vertraut bist und per Banküberweisung zahlen möchtest, füge bitte Produkte für mindestens <strong>€200</strong> hinzu. <a href="/cart" style="color:#1a472a;text-decoration:underline;">Zurück zum Warenkorb →</a>';
+      } else {
+        // Both methods available
+        bankAllowed = true;
+        methodBank.classList.remove('method-disabled');
+        methodBank.querySelector('input').disabled = false;
+
+        banner.className = 'payment-info-banner pib-both';
+        banner.style.display = 'flex';
+        bannerMsg.innerHTML = '<strong>Beide Zahlungsarten verfügbar!</strong><br>Bei Bestellungen ab €200 kannst du per <strong>Banküberweisung (SEPA)</strong> oder <strong>Bitcoin</strong> zahlen. Wähle deine bevorzugte Zahlungsart.';
+      }
     }
 
     // ---- Step Navigation ----
@@ -406,10 +455,13 @@ const BTC_ADDRESS = 'bc1qp7tu4apamhwu8v5museyurks5ueatnsln605pc';
     // ---- Step 2: Payment Method ----
     document.querySelectorAll('.payment-method').forEach(el => {
       el.addEventListener('click', () => {
+        const method = el.querySelector('input').value;
+        // Block bank selection if not allowed
+        if (method === 'bank' && !bankAllowed) return;
         document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('selected'));
         el.classList.add('selected');
         el.querySelector('input').checked = true;
-        payMethod = el.querySelector('input').value;
+        payMethod = method;
       });
     });
 
@@ -827,6 +879,39 @@ const BTC_ADDRESS = 'bc1qp7tu4apamhwu8v5museyurks5ueatnsln605pc';
   .payment-method.selected .method-icon {
     background: #e8f5e9;
     color: #4caf50;
+  }
+
+  .payment-method.method-disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    border-color: #e0e0e0;
+    background: #fafafa;
+  }
+  .payment-method.method-disabled:hover {
+    border-color: #e0e0e0;
+  }
+
+  .payment-info-banner {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    border-radius: 10px;
+    margin-bottom: 1.25rem;
+    line-height: 1.6;
+    font-size: 0.88rem;
+  }
+  .payment-info-banner .pib-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 1px; }
+  .payment-info-banner p { margin: 0; }
+  .pib-btc-only {
+    background: #fff3e0;
+    border: 1px solid #ffe0b2;
+    color: #5d3a00;
+  }
+  .pib-both {
+    background: #e8f5e9;
+    border: 1px solid #c8e6c9;
+    color: #1a472a;
   }
 
   .method-text strong {
