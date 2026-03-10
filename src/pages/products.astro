@@ -78,6 +78,15 @@ const itemListSchema = {
         </div>
       </div>
       <div class="results-count" id="resultsCount">{products.length} Produkte</div>
+
+      <div class="category-links">
+        <span class="category-links-label">Kategorien:</span>
+        <a href="/kategorie/cannabisblueten" class="cat-link">🌿 Cannabisblüten ({blueten.length})</a>
+        <a href="/kategorie/cannabisextrakte" class="cat-link">💧 Cannabisextrakte ({extrakte.length})</a>
+        <a href="/kategorie/thc-vapes" class="cat-link">💨 THC Vapes ({vapes.length})</a>
+        <a href="/kategorie/thc-shots" class="cat-link">🥤 THC Shots ({shots.length})</a>
+        <a href="/kategorie/kapseln-edibles" class="cat-link">💊 Kapseln & Edibles ({kapseln.length})</a>
+      </div>
     </div>
   </section>
 
@@ -620,6 +629,37 @@ const itemListSchema = {
     font-size: 0.85rem;
     color: #888;
     margin-top: 0.5rem;
+  }
+
+  .category-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+    margin-top: 1rem;
+    padding: 0.75rem 0;
+    border-top: 1px solid #e8ede9;
+  }
+  .category-links-label {
+    font-size: 0.8rem;
+    color: #888;
+    font-weight: 600;
+    margin-right: 0.25rem;
+  }
+  .cat-link {
+    font-size: 0.8rem;
+    color: #1a472a;
+    background: #e8f5e9;
+    padding: 0.3rem 0.7rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .cat-link:hover {
+    background: #4caf50;
+    color: white;
   }
 
   /* Products section */

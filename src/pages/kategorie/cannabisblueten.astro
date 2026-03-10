@@ -1,0 +1,683 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import { products } from '../../utils/products';
+
+const siteUrl = 'https://nordleaf.de';
+const categoryProducts = products.filter(p => p.category === 'Cannabisblüten');
+const availableCount = categoryProducts.filter(p => p.available).length;
+const brands = [...new Set(categoryProducts.map(p => p.brand))];
+const minPrice = Math.min(...categoryProducts.map(p => p.price));
+const maxThc = Math.max(...categoryProducts.map(p => parseFloat(p.thc)));
+
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Cannabisblüten kaufen – Medizinische THC Blüten",
+  "description": `${categoryProducts.length} medizinische Cannabisblüten ab €${minPrice.toFixed(2)}/g. THC-Gehalt bis ${maxThc}%. Alle Top-Marken verfügbar.`,
+  "numberOfItems": categoryProducts.length,
+  "itemListElement": categoryProducts.slice(0, 50).map((p, i) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "name": p.name,
+    "url": `${siteUrl}/${p.slug}`
+  }))
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Was sind medizinische Cannabisblüten?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Medizinische Cannabisblüten sind getrocknete Blüten der Cannabis-Pflanze, die unter pharmazeutischen Qualitätsstandards angebaut und verarbeitet werden. Sie enthalten definierte Mengen an THC und CBD und werden zur Behandlung von chronischen Schmerzen, Schlafstörungen, ADHS und weiteren Erkrankungen eingesetzt."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie viel kosten Cannabisblüten auf Rezept?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": `Bei Nordleaf beginnen medizinische Cannabisblüten ab €${minPrice.toFixed(2)} pro Gramm. Der genaue Preis hängt von der Sorte, dem THC-Gehalt und der Marke ab. Mit unserem All-in-One Paket erhalten Sie Ihr Rezept bereits ab €9,90.`
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Welche Cannabisblüten-Sorten gibt es bei Nordleaf?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": `Nordleaf bietet ${categoryProducts.length} verschiedene Cannabisblüten-Sorten von ${brands.length} Marken, darunter ${brands.slice(0, 5).join(', ')} und weitere. Verfügbar sind Indica-, Sativa- und Hybrid-Sorten mit THC-Gehalten von 16% bis ${maxThc}%.`
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie bestelle ich Cannabisblüten online?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bei Nordleaf wählen Sie einfach Ihre gewünschten Cannabisblüten aus, füllen den 3-Minuten-Fragebogen aus und erhalten Ihr Rezept von einem approbierten Arzt. Nach Genehmigung werden Ihre Blüten diskret innerhalb von 1-3 Werktagen geliefert."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Sind Cannabisblüten legal in Deutschland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja, medizinische Cannabisblüten sind seit 2017 in Deutschland legal, wenn sie von einem Arzt verschrieben werden. Seit April 2024 gelten weitere Erleichterungen. Mit einem gültigen Cannabis-Rezept können Sie THC-Blüten legal in einer Apotheke oder Online-Apotheke wie Nordleaf kaufen."
+      }
+    }
+  ]
+};
+---
+
+<Layout
+  title="Cannabisblüten kaufen | THC Blüten auf Rezept ab 1€/g – Nordleaf"
+  description={`${categoryProducts.length} medizinische Cannabisblüten auf Rezept ✓ THC Blüten ab €${minPrice.toFixed(2)}/g ✓ Bis ${maxThc}% THC ✓ ${brands.length} Top-Marken: avaay, DEMECAN, Cannamedical ✓ 100% Verfügbarkeit ✓ Lieferung in 1-3 Werktagen`}
+  keywords="Cannabisblüten kaufen, THC Blüten kaufen, medizinische Cannabisblüten, Cannabis Blüten auf Rezept, THC Blüten Deutschland, Cannabisblüten bestellen, Cannabis Blüten online kaufen, medizinische Blüten Apotheke, Indica Blüten, Sativa Blüten, Hybrid Cannabis"
+  structuredData={itemListSchema}
+>
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+<Breadcrumb items={[{name: "Live-Bestand", url: "/products"}, {name: "Cannabisblüten"}]} />
+
+<!-- Hero -->
+<section class="cat-hero">
+  <div class="container">
+    <div class="cat-hero-content">
+      <span class="cat-badge">🌿 {availableCount} Sorten verfügbar</span>
+      <h1>Cannabisblüten <span class="hl">kaufen</span></h1>
+      <p>Medizinische THC Blüten auf Rezept — ab €{minPrice.toFixed(2)}/g. Über {categoryProducts.length} Sorten von {brands.length} Top-Marken. Indica, Sativa & Hybrid mit THC-Gehalten bis {maxThc}%.</p>
+      <div class="cat-hero-stats">
+        <div class="stat"><strong>{categoryProducts.length}</strong><span>Sorten</span></div>
+        <div class="stat"><strong>{brands.length}</strong><span>Marken</span></div>
+        <div class="stat"><strong>ab €{minPrice.toFixed(2)}</strong><span>pro Gramm</span></div>
+        <div class="stat"><strong>bis {maxThc}%</strong><span>THC</span></div>
+      </div>
+      <a href="/wie-funktionierts" class="btn-cta">Rezept in 3 Minuten →</a>
+    </div>
+  </div>
+</section>
+
+<!-- SEO Content - What Are -->
+<section class="info-section">
+  <div class="container">
+    <div class="info-grid">
+      <div class="info-block">
+        <h2>Was sind medizinische Cannabisblüten?</h2>
+        <p>Medizinische Cannabisblüten sind getrocknete, unverarbeitete Blüten der Cannabis-Pflanze, die unter streng kontrollierten, pharmazeutischen Bedingungen angebaut werden. Sie enthalten definierte Konzentrationen der Wirkstoffe <strong>THC (Tetrahydrocannabinol)</strong> und <strong>CBD (Cannabidiol)</strong>, die therapeutisch genutzt werden.</p>
+        <p>Im Gegensatz zu Cannabisextrakten oder Vapes bieten Blüten das vollständige Spektrum an Cannabinoiden und Terpenen — den sogenannten <strong>Entourage-Effekt</strong>. Dies macht sie besonders wirksam bei der Behandlung von chronischen Schmerzen, Schlafstörungen, ADHS, Depressionen und Angststörungen.</p>
+      </div>
+      <div class="info-block">
+        <h2>Warum Cannabisblüten bei Nordleaf kaufen?</h2>
+        <ul>
+          <li><strong>Größte Auswahl:</strong> {categoryProducts.length} Sorten von {brands.length} Marken — mehr als jede andere Online-Apotheke</li>
+          <li><strong>Niedrigste Preise:</strong> Cannabisblüten ab €{minPrice.toFixed(2)}/g — bis zu 50% günstiger als herkömmliche Apotheken</li>
+          <li><strong>100% Verfügbarkeit:</strong> Alle gelisteten Sorten sind sofort lieferbar — keine Wartezeiten</li>
+          <li><strong>Schnelle Lieferung:</strong> Diskrete Zustellung innerhalb von 1-3 Werktagen</li>
+          <li><strong>Einfaches Rezept:</strong> Fragebogen in 3 Minuten, ärztliche Beratung inklusive</li>
+          <li><strong>Top-Marken:</strong> {brands.slice(0, 6).join(', ')} und mehr</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Brand Overview -->
+<section class="brands-section">
+  <div class="container">
+    <h2>Unsere Cannabisblüten-Marken</h2>
+    <div class="brands-grid">
+      {brands.slice(0, 12).map(brand => {
+        const brandProducts = categoryProducts.filter(p => p.brand === brand);
+        const brandMin = Math.min(...brandProducts.map(p => p.price));
+        return (
+          <div class="brand-card">
+            <h3>{brand}</h3>
+            <div class="brand-stats">
+              <span>{brandProducts.length} Sorten</span>
+              <span>ab €{brandMin.toFixed(2)}/g</span>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+<!-- Products Grid -->
+<section class="products-section">
+  <div class="container">
+    <h2 class="section-title">Alle {categoryProducts.length} Cannabisblüten</h2>
+    <div class="products-grid">
+      {categoryProducts.map((product) => (
+        <a href={`/${product.slug}`} class="product-card">
+          <div class="product-image">
+            <img src={product.image} alt={`${product.strain} Cannabisblüten kaufen`} loading="lazy" width="300" height="160" />
+            {product.badge && <span class="product-badge">{product.badge}</span>}
+            <span class="availability available">Sofort lieferbar</span>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-brand">{product.brand}</span>
+              <span class="product-origin">{product.originCode}</span>
+            </div>
+            <h3 class="product-strain">{product.strain}</h3>
+            <p class="product-name">{product.name}</p>
+            <div class="product-stats">
+              <span class="thc">THC {product.thc}</span>
+              <span class="cbd">CBD {product.cbd}</span>
+            </div>
+            <div class="product-effects">
+              {product.effects.map((effect) => (
+                <span class="effect-tag">{effect}</span>
+              ))}
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                <strong>€{product.price.toFixed(2)}</strong>
+                <span>/ {product.priceUnit}</span>
+              </div>
+              <span class="btn-add">Ansehen</span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Buying Guide -->
+<section class="guide-section">
+  <div class="container">
+    <h2>Cannabisblüten kaufen: So funktioniert's</h2>
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Sorte auswählen</h3>
+        <p>Wähle aus {categoryProducts.length} Cannabisblüten die passende Sorte. Filtere nach THC-Gehalt, Wirkung (Indica/Sativa/Hybrid) oder Marke.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Fragebogen ausfüllen</h3>
+        <p>Beantworte unseren medizinischen Fragebogen in nur 3 Minuten. Ein approbierter Arzt prüft deine Angaben und erstellt dein Rezept.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Blüten erhalten</h3>
+        <p>Nach Genehmigung deines Rezepts versenden wir deine Cannabisblüten diskret innerhalb von 1-3 Werktagen direkt zu dir nach Hause.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="container">
+    <h2>Häufige Fragen zu Cannabisblüten</h2>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>Was sind medizinische Cannabisblüten?</summary>
+        <p>Medizinische Cannabisblüten sind getrocknete Blüten der Cannabis-Pflanze, die unter pharmazeutischen Qualitätsstandards angebaut und verarbeitet werden. Sie enthalten definierte Mengen an THC und CBD und werden zur Behandlung von chronischen Schmerzen, Schlafstörungen, ADHS und weiteren Erkrankungen eingesetzt.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Wie viel kosten Cannabisblüten auf Rezept?</summary>
+        <p>Bei Nordleaf beginnen medizinische Cannabisblüten ab €{minPrice.toFixed(2)} pro Gramm. Der genaue Preis hängt von der Sorte, dem THC-Gehalt und der Marke ab. Mit unserem All-in-One Paket erhalten Sie Ihr Rezept bereits ab €9,90.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Welche Cannabisblüten-Sorten gibt es bei Nordleaf?</summary>
+        <p>Nordleaf bietet {categoryProducts.length} verschiedene Cannabisblüten-Sorten von {brands.length} Marken, darunter {brands.slice(0, 5).join(', ')} und weitere. Verfügbar sind Indica-, Sativa- und Hybrid-Sorten mit THC-Gehalten von 16% bis {maxThc}%.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Wie bestelle ich Cannabisblüten online?</summary>
+        <p>Wählen Sie Ihre gewünschten Cannabisblüten aus, füllen den 3-Minuten-Fragebogen aus und erhalten Ihr Rezept von einem approbierten Arzt. Nach Genehmigung werden Ihre Blüten diskret innerhalb von 1-3 Werktagen geliefert.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Sind Cannabisblüten legal in Deutschland?</summary>
+        <p>Ja, medizinische Cannabisblüten sind seit 2017 in Deutschland legal, wenn sie von einem Arzt verschrieben werden. Seit April 2024 gelten weitere Erleichterungen. Mit einem gültigen Cannabis-Rezept können Sie THC-Blüten legal kaufen.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Was ist der Unterschied zwischen Indica und Sativa?</summary>
+        <p>Indica-Sorten wirken eher körperlich entspannend und beruhigend — ideal bei Schmerzen und Schlafstörungen. Sativa-Sorten wirken eher zerebral und aktivierend — geeignet bei Depressionen und Konzentrationsproblemen. Hybrid-Sorten kombinieren Eigenschaften beider Typen.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Welcher THC-Gehalt ist der richtige für mich?</summary>
+        <p>Einsteiger sollten mit niedrigeren THC-Gehalten (16-22%) beginnen. Erfahrene Patienten können Sorten mit 22-33% THC nutzen. Der verschreibende Arzt berät Sie individuell zur optimalen Dosierung und Sorte.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-box">
+      <h2>Cannabisblüten auf Rezept bestellen</h2>
+      <p>{categoryProducts.length} Sorten ab €{minPrice.toFixed(2)}/g — Rezept in 3 Minuten, Lieferung in 1-3 Werktagen</p>
+      <div class="cta-buttons">
+        <a href="/wie-funktionierts" class="btn-primary btn-lg">Jetzt Rezept anfordern</a>
+        <a href="/products" class="btn-secondary">Alle Produkte ansehen</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</Layout>
+
+<style>
+  .cat-hero {
+    background: linear-gradient(135deg, #0d2618, #1a472a, #2d6a47);
+    color: white;
+    padding: 3rem 1.5rem 3.5rem;
+    text-align: center;
+  }
+  .cat-badge {
+    display: inline-block;
+    background: rgba(76,175,80,0.2);
+    color: #8bc34a;
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  .cat-hero h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    line-height: 1.15;
+  }
+  .cat-hero .hl { color: #8bc34a; }
+  .cat-hero p {
+    color: rgba(255,255,255,0.8);
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto 1.5rem;
+    line-height: 1.6;
+  }
+  .cat-hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .cat-hero-stats .stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .cat-hero-stats strong {
+    font-size: 1.3rem;
+    color: white;
+  }
+  .cat-hero-stats span {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.6);
+  }
+  .btn-cta {
+    display: inline-block;
+    background: #4caf50;
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+  .btn-cta:hover {
+    background: #43a047;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(76,175,80,0.4);
+  }
+
+  /* Info Section */
+  .info-section {
+    padding: 3rem 1.5rem;
+    background: white;
+  }
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+  .info-block h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1a472a;
+    margin-bottom: 1rem;
+  }
+  .info-block p {
+    color: #555;
+    line-height: 1.7;
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+  }
+  .info-block ul {
+    list-style: none;
+    padding: 0;
+  }
+  .info-block ul li {
+    padding: 0.5rem 0;
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+  .info-block ul li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #4caf50;
+    font-weight: 700;
+  }
+
+  /* Brands */
+  .brands-section {
+    padding: 2.5rem 1.5rem;
+    background: #f8faf9;
+  }
+  .brands-section h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1a472a;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  .brands-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+  .brand-card {
+    background: white;
+    border: 1px solid #e8ede9;
+    border-radius: 10px;
+    padding: 1.25rem;
+    text-align: center;
+    transition: all 0.2s;
+  }
+  .brand-card:hover {
+    border-color: #4caf50;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  }
+  .brand-card h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1a472a;
+    margin-bottom: 0.5rem;
+  }
+  .brand-stats {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    font-size: 0.8rem;
+    color: #888;
+  }
+
+  /* Products */
+  .products-section {
+    padding: 2.5rem 1.5rem 3rem;
+    background: #f8faf9;
+  }
+  .section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a472a;
+    margin-bottom: 1.5rem;
+  }
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+  }
+  .product-card {
+    background: white;
+    border: 1px solid #e8ede9;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+  }
+  .product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+    border-color: #4caf50;
+  }
+  .product-image {
+    position: relative;
+    min-height: 160px;
+    overflow: hidden;
+  }
+  .product-image img {
+    width: 100%;
+    height: 160px;
+    object-fit: contain;
+    background: #f0f4f0;
+    padding: 0.5rem;
+  }
+  .product-badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: #ff9800;
+    color: white;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .availability {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+  .available {
+    background: rgba(76, 175, 80, 0.2);
+    color: #4caf50;
+  }
+  .product-info {
+    padding: 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .product-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.3rem;
+  }
+  .product-brand { color: #999; font-size: 0.75rem; font-weight: 500; }
+  .product-origin {
+    background: #f0f0f0;
+    color: #666;
+    padding: 0.1rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+  .product-strain {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1a472a;
+    margin-bottom: 0.15rem;
+    line-height: 1.2;
+  }
+  .product-name {
+    font-size: 0.72rem;
+    color: #aaa;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+  .product-stats { display: flex; gap: 0.4rem; margin-bottom: 0.4rem; }
+  .thc, .cbd {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+  }
+  .thc { background: #e8f5e9; color: #2d6a47; }
+  .cbd { background: #e3f2fd; color: #1565c0; }
+  .product-effects { display: flex; flex-wrap: wrap; gap: 0.25rem; margin-bottom: 0.75rem; }
+  .effect-tag {
+    font-size: 0.68rem;
+    color: #888;
+    background: #f5f5f5;
+    padding: 0.12rem 0.35rem;
+    border-radius: 3px;
+  }
+  .product-footer {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.5rem;
+    border-top: 1px solid #f0f0f0;
+  }
+  .product-price strong { font-size: 1.1rem; color: #1a472a; }
+  .product-price span { font-size: 0.8rem; color: #999; }
+  .btn-add {
+    background: #4caf50;
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  /* Guide */
+  .guide-section {
+    padding: 3rem 1.5rem;
+    background: white;
+  }
+  .guide-section h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a472a;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  .step {
+    text-align: center;
+    padding: 1.5rem;
+  }
+  .step-num {
+    width: 48px;
+    height: 48px;
+    background: #e8f5e9;
+    color: #2d6a47;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin: 0 auto 1rem;
+  }
+  .step h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1a472a;
+    margin-bottom: 0.5rem;
+  }
+  .step p {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  /* FAQ */
+  .faq-section {
+    padding: 3rem 1.5rem;
+    background: #f8faf9;
+  }
+  .faq-section h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a472a;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  .faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .faq-item {
+    background: white;
+    border: 1px solid #e8ede9;
+    border-radius: 10px;
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+  }
+  .faq-item summary {
+    padding: 1rem 1.25rem;
+    font-weight: 600;
+    color: #1a472a;
+    cursor: pointer;
+    font-size: 0.95rem;
+  }
+  .faq-item summary:hover { color: #4caf50; }
+  .faq-item p {
+    padding: 0 1.25rem 1rem;
+    color: #555;
+    line-height: 1.6;
+    font-size: 0.9rem;
+  }
+
+  /* CTA */
+  .cta-section { padding: 0 1.5rem 3rem; background: #f8faf9; }
+  .cta-box {
+    background: linear-gradient(135deg, #1a472a, #2d6a47);
+    border-radius: 16px;
+    padding: 3rem;
+    text-align: center;
+    color: white;
+  }
+  .cta-box h2 { font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem; }
+  .cta-box p { color: rgba(255,255,255,0.75); margin-bottom: 1.5rem; }
+  .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: #4caf50; color: white; padding: 0.8rem 1.75rem;
+    border-radius: 50px; font-weight: 600; transition: all 0.2s; text-decoration: none;
+  }
+  .btn-primary:hover { background: #43a047; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(76,175,80,0.4); }
+  .btn-lg { padding: 0.9rem 2rem; font-size: 1.05rem; }
+  .btn-secondary {
+    background: transparent; color: white; padding: 0.8rem 1.75rem;
+    border-radius: 50px; font-weight: 600; border: 2px solid rgba(255,255,255,0.3);
+    transition: all 0.2s; text-decoration: none;
+  }
+  .btn-secondary:hover { border-color: white; background: rgba(255,255,255,0.1); }
+
+  @media (max-width: 968px) {
+    .info-grid { grid-template-columns: 1fr; }
+    .brands-grid { grid-template-columns: repeat(2, 1fr); }
+    .products-grid { grid-template-columns: repeat(2, 1fr); }
+    .steps-grid { grid-template-columns: 1fr; }
+    .cat-hero h1 { font-size: 2rem; }
+  }
+  @media (max-width: 576px) {
+    .products-grid { grid-template-columns: 1fr; max-width: 380px; margin: 0 auto; }
+    .brands-grid { grid-template-columns: 1fr 1fr; }
+    .cat-hero h1 { font-size: 1.5rem; }
+    .cta-box { padding: 2rem 1.5rem; }
+  }
+</style>

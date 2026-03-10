@@ -1,0 +1,321 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import { products } from '../../utils/products';
+
+const siteUrl = 'https://nordleaf.de';
+const categoryProducts = products.filter(p => p.category === 'THC Shots');
+const availableCount = categoryProducts.filter(p => p.available).length;
+const brands = [...new Set(categoryProducts.map(p => p.brand))];
+const minPrice = Math.min(...categoryProducts.map(p => p.price));
+
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "THC Shots kaufen – Medizinische Cannabis Getränke",
+  "description": `${categoryProducts.length} medizinische THC Shots ab €${minPrice.toFixed(2)}. Trinkbare Cannabis-Shots für einfache orale Einnahme.`,
+  "numberOfItems": categoryProducts.length,
+  "itemListElement": categoryProducts.map((p, i) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "name": p.name,
+    "url": `${siteUrl}/${p.slug}`
+  }))
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Was sind THC Shots?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "THC Shots sind trinkbare medizinische Cannabis-Zubereitungen in Schuss-Portionen. Sie enthalten eine definierte Menge THC in einer trinkfertigen Flüssigkeit und ermöglichen eine besonders einfache, rauchfreie Einnahme — ohne Tropfenzählen oder Vaporizer."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie werden THC Shots eingenommen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "THC Shots werden einfach getrunken — entweder pur oder gemischt mit einem Getränk. Die Wirkung tritt nach 30-90 Minuten ein und hält 4-8 Stunden an. Die Einnahme ist besonders einfach und erfordert keinerlei Zubehör."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Für wen eignen sich THC Shots?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "THC Shots eignen sich besonders für Patienten, die eine rauchfreie und unkomplizierte Cannabis-Einnahme suchen. Sie sind ideal für Einsteiger dank vorportionierter Dosierung und für Patienten, die keine Öle sublingual einnehmen möchten."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie wirken THC Shots im Vergleich zu anderen Cannabis-Produkten?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "THC Shots wirken ähnlich wie Edibles — die Wirkung tritt verzögert ein (30-90 Minuten), hält dafür aber deutlich länger an (4-8 Stunden). Die Wirkung ist gleichmäßig und gut kalkulierbar dank der exakten Dosierung pro Shot."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was kosten THC Shots auf Rezept?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": `Bei Nordleaf sind THC Shots ab €${minPrice.toFixed(2)} erhältlich. Die Preise variieren je nach THC-Konzentration und Geschmacksrichtung. Das Rezept erhalten Sie über unseren 3-Minuten-Fragebogen ab €9,90.`
+      }
+    }
+  ]
+};
+---
+
+<Layout
+  title="THC Shots kaufen | Cannabis Shots auf Rezept – Nordleaf"
+  description={`${categoryProducts.length} medizinische THC Shots auf Rezept ✓ Trinkbare Cannabis-Shots ab €${minPrice.toFixed(2)} ✓ Einfache orale Einnahme ✓ Vorportioniert ✓ Kein Zubehör nötig ✓ Lieferung in 1-3 Werktagen`}
+  keywords="THC Shot kaufen, Cannabis Shot bestellen, THC Getränk, medizinisches Cannabis trinken, Cannabis Shot auf Rezept, THC Shot Deutschland, Cannabis Drink, THC Shot oral"
+  structuredData={itemListSchema}
+>
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+<Breadcrumb items={[{name: "Live-Bestand", url: "/products"}, {name: "THC Shots"}]} />
+
+<!-- Hero -->
+<section class="cat-hero">
+  <div class="container">
+    <div class="cat-hero-content">
+      <span class="cat-badge">🥤 {availableCount} Shots verfügbar</span>
+      <h1>THC Shots <span class="hl">kaufen</span></h1>
+      <p>Medizinische Cannabis Shots auf Rezept. {categoryProducts.length} trinkfertige THC Shots — die einfachste Art, medizinisches Cannabis einzunehmen.</p>
+      <div class="cat-hero-stats">
+        <div class="stat"><strong>{categoryProducts.length}</strong><span>Shots</span></div>
+        <div class="stat"><strong>{brands.length}</strong><span>{brands.length === 1 ? 'Marke' : 'Marken'}</span></div>
+        <div class="stat"><strong>ab €{minPrice.toFixed(2)}</strong><span>pro Shot</span></div>
+        <div class="stat"><strong>4-8 Std.</strong><span>Wirkdauer</span></div>
+      </div>
+      <a href="/wie-funktionierts" class="btn-cta">Rezept in 3 Minuten →</a>
+    </div>
+  </div>
+</section>
+
+<!-- SEO Content -->
+<section class="info-section">
+  <div class="container">
+    <div class="info-grid">
+      <div class="info-block">
+        <h2>Was sind medizinische THC Shots?</h2>
+        <p>THC Shots sind trinkfertige <strong>Cannabis-Zubereitungen in Portionsgrößen</strong> — die einfachste und unkomplizierteste Art, medizinisches Cannabis einzunehmen. Jeder Shot enthält eine exakt dosierte Menge THC in einer aromatisierten Flüssigkeit.</p>
+        <p>Im Gegensatz zu Blüten (Inhalation) oder Extrakten (Tropfen unter die Zunge) werden THC Shots <strong>einfach getrunken</strong> — pur oder gemischt mit einem Getränk. Kein Vaporizer, kein Grinder, keine Pipette nötig.</p>
+        <p>Die Wirkung tritt nach 30-90 Minuten ein und hält <strong>4-8 Stunden lang gleichmäßig an</strong>. Das macht THC Shots ideal für langanhaltende Symptomlinderung bei chronischen Schmerzen, Schlafstörungen oder Spastik.</p>
+      </div>
+      <div class="info-block">
+        <h2>Vorteile von THC Shots</h2>
+        <ul>
+          <li><strong>Denkbar einfach:</strong> Einfach trinken — keinerlei Zubehör erforderlich</li>
+          <li><strong>Exakte Dosierung:</strong> Jeder Shot enthält eine vorportionierte Wirkstoffmenge</li>
+          <li><strong>Rauchfrei:</strong> Orale Einnahme ohne Inhalation — lungenschonend</li>
+          <li><strong>Langanhaltende Wirkung:</strong> 4-8 Stunden gleichmäßige Wirkung</li>
+          <li><strong>Diskret:</strong> Sieht aus wie ein normales Getränk — unauffällige Einnahme</li>
+          <li><strong>Verschiedene Geschmäcker:</strong> Aromatisierte Sorten für angenehmen Geschmack</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Products Grid -->
+<section class="products-section">
+  <div class="container">
+    <h2 class="section-title">Alle {categoryProducts.length} THC Shots</h2>
+    <div class="products-grid">
+      {categoryProducts.map((product) => (
+        <a href={`/${product.slug}`} class="product-card">
+          <div class="product-image shot">
+            <img src={product.image} alt={`${product.name} - THC Shot kaufen`} loading="lazy" width="300" height="160" />
+            {product.badge && <span class="product-badge">{product.badge}</span>}
+            <span class={`availability ${product.available ? 'available' : 'unavailable'}`}>
+              {product.available ? 'Sofort lieferbar' : 'Ausverkauft'}
+            </span>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-brand">{product.brand}</span>
+              <span class="product-origin">{product.originCode}</span>
+            </div>
+            <h3 class="product-strain">{product.strain}</h3>
+            <p class="product-name">{product.name}</p>
+            <div class="product-stats">
+              <span class="thc">THC {product.thc}</span>
+              <span class="cbd">CBD {product.cbd}</span>
+            </div>
+            <div class="product-effects">
+              {product.effects.map((effect) => (
+                <span class="effect-tag">{effect}</span>
+              ))}
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                <strong>€{product.price.toFixed(2)}</strong>
+                <span>/ Shot</span>
+              </div>
+              <span class="btn-add">Ansehen</span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Buying Guide -->
+<section class="guide-section">
+  <div class="container">
+    <h2>THC Shots kaufen: So funktioniert's</h2>
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Shot auswählen</h3>
+        <p>Wähle deinen THC Shot — verschiedene Geschmacksrichtungen und THC-Konzentrationen verfügbar.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Rezept erhalten</h3>
+        <p>Fülle unseren 3-Minuten-Fragebogen aus. Ein approbierter Arzt prüft deine Angaben und stellt dein Rezept aus.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Diskret geliefert</h3>
+        <p>Dein THC Shot wird innerhalb von 1-3 Werktagen diskret verpackt direkt zu dir geliefert.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="container">
+    <h2>Häufige Fragen zu THC Shots</h2>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>Was sind THC Shots?</summary>
+        <p>THC Shots sind trinkbare medizinische Cannabis-Zubereitungen in Portionsgrößen. Sie enthalten eine definierte Menge THC und ermöglichen eine besonders einfache, rauchfreie Einnahme — ohne Tropfenzählen oder Vaporizer.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Wie werden THC Shots eingenommen?</summary>
+        <p>THC Shots werden einfach getrunken — pur oder gemischt mit einem Getränk. Die Wirkung tritt nach 30-90 Minuten ein und hält 4-8 Stunden an.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Für wen eignen sich THC Shots?</summary>
+        <p>THC Shots eignen sich besonders für Patienten, die eine rauchfreie und unkomplizierte Cannabis-Einnahme suchen. Ideal für Einsteiger und Patienten, die keine Tropfen oder Vaporizer verwenden möchten.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Wie wirken THC Shots im Vergleich zu Vapes?</summary>
+        <p>THC Shots wirken verzögert (30-90 Minuten vs. 1-3 Minuten bei Vapes), die Wirkung hält dafür deutlich länger an (4-8 Stunden). Ideal für langanhaltende, gleichmäßige Symptomlinderung.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Was kosten THC Shots auf Rezept?</summary>
+        <p>Bei Nordleaf sind THC Shots ab €{minPrice.toFixed(2)} erhältlich. Das Rezept erhalten Sie über unseren 3-Minuten-Fragebogen ab €9,90.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-box">
+      <h2>THC Shots auf Rezept bestellen</h2>
+      <p>{categoryProducts.length} Cannabis Shots verfügbar — Rezept in 3 Minuten, Lieferung in 1-3 Werktagen</p>
+      <div class="cta-buttons">
+        <a href="/wie-funktionierts" class="btn-primary btn-lg">Jetzt Rezept anfordern</a>
+        <a href="/products" class="btn-secondary">Alle Produkte ansehen</a>
+      </div>
+    </div>
+  </div>
+</section>
+</Layout>
+
+<style>
+  .cat-hero { background: linear-gradient(135deg, #2d1b4e, #4a1942, #6b2fa0); color: white; padding: 3rem 1.5rem 3.5rem; text-align: center; }
+  .cat-badge { display: inline-block; background: rgba(76,175,80,0.2); color: #8bc34a; padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem; }
+  .cat-hero h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.15; }
+  .cat-hero .hl { color: #8bc34a; }
+  .cat-hero p { color: rgba(255,255,255,0.8); font-size: 1.1rem; max-width: 700px; margin: 0 auto 1.5rem; line-height: 1.6; }
+  .cat-hero-stats { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+  .cat-hero-stats .stat { display: flex; flex-direction: column; align-items: center; }
+  .cat-hero-stats strong { font-size: 1.3rem; color: white; }
+  .cat-hero-stats span { font-size: 0.8rem; color: rgba(255,255,255,0.6); }
+  .btn-cta { display: inline-block; background: #4caf50; color: white; padding: 0.8rem 2rem; border-radius: 50px; font-weight: 600; font-size: 1rem; transition: all 0.2s; text-decoration: none; }
+  .btn-cta:hover { background: #43a047; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(76,175,80,0.4); }
+  .info-section { padding: 3rem 1.5rem; background: white; }
+  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+  .info-block h2 { font-size: 1.4rem; font-weight: 700; color: #1a472a; margin-bottom: 1rem; }
+  .info-block p { color: #555; line-height: 1.7; font-size: 0.95rem; margin-bottom: 0.75rem; }
+  .info-block ul { list-style: none; padding: 0; }
+  .info-block ul li { padding: 0.5rem 0; color: #555; font-size: 0.95rem; line-height: 1.5; padding-left: 1.5rem; position: relative; }
+  .info-block ul li::before { content: '✓'; position: absolute; left: 0; color: #4caf50; font-weight: 700; }
+  .products-section { padding: 2.5rem 1.5rem 3rem; background: #f8faf9; }
+  .section-title { font-size: 1.5rem; font-weight: 700; color: #1a472a; margin-bottom: 1.5rem; }
+  .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .product-card { background: white; border: 1px solid #e8ede9; border-radius: 12px; overflow: hidden; transition: all 0.3s; display: flex; flex-direction: column; text-decoration: none; color: inherit; }
+  .product-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); border-color: #4caf50; }
+  .product-image { position: relative; min-height: 160px; overflow: hidden; }
+  .product-image.shot { background: linear-gradient(135deg, #2d1b4e, #4a1942); }
+  .product-image img { width: 100%; height: 160px; object-fit: contain; padding: 0.5rem; }
+  .product-badge { position: absolute; top: 8px; left: 8px; background: #ff9800; color: white; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
+  .availability { position: absolute; top: 8px; right: 8px; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.7rem; font-weight: 600; }
+  .available { background: rgba(76,175,80,0.2); color: #4caf50; }
+  .unavailable { background: rgba(244,67,54,0.15); color: #f44336; }
+  .product-info { padding: 1rem; flex: 1; display: flex; flex-direction: column; }
+  .product-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; }
+  .product-brand { color: #999; font-size: 0.75rem; }
+  .product-origin { background: #f0f0f0; color: #666; padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.7rem; font-weight: 600; }
+  .product-strain { font-size: 0.95rem; font-weight: 700; color: #1a472a; margin-bottom: 0.15rem; line-height: 1.2; }
+  .product-name { font-size: 0.72rem; color: #aaa; margin-bottom: 0.5rem; line-height: 1.3; }
+  .product-stats { display: flex; gap: 0.4rem; margin-bottom: 0.4rem; }
+  .thc, .cbd { font-size: 0.72rem; font-weight: 600; padding: 0.15rem 0.4rem; border-radius: 4px; }
+  .thc { background: #e8f5e9; color: #2d6a47; }
+  .cbd { background: #e3f2fd; color: #1565c0; }
+  .product-effects { display: flex; flex-wrap: wrap; gap: 0.25rem; margin-bottom: 0.75rem; }
+  .effect-tag { font-size: 0.68rem; color: #888; background: #f5f5f5; padding: 0.12rem 0.35rem; border-radius: 3px; }
+  .product-footer { margin-top: auto; display: flex; align-items: center; justify-content: space-between; padding-top: 0.5rem; border-top: 1px solid #f0f0f0; }
+  .product-price strong { font-size: 1.1rem; color: #1a472a; }
+  .product-price span { font-size: 0.8rem; color: #999; }
+  .btn-add { background: #4caf50; color: white; padding: 0.4rem 0.8rem; border-radius: 6px; font-size: 0.8rem; font-weight: 600; }
+  .guide-section { padding: 3rem 1.5rem; background: white; }
+  .guide-section h2 { font-size: 1.5rem; font-weight: 700; color: #1a472a; margin-bottom: 2rem; text-align: center; }
+  .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .step { text-align: center; padding: 1.5rem; }
+  .step-num { width: 48px; height: 48px; background: #e8f5e9; color: #2d6a47; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; font-weight: 800; margin: 0 auto 1rem; }
+  .step h3 { font-size: 1.1rem; font-weight: 700; color: #1a472a; margin-bottom: 0.5rem; }
+  .step p { color: #666; font-size: 0.9rem; line-height: 1.6; }
+  .faq-section { padding: 3rem 1.5rem; background: #f8faf9; }
+  .faq-section h2 { font-size: 1.5rem; font-weight: 700; color: #1a472a; margin-bottom: 1.5rem; text-align: center; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: white; border: 1px solid #e8ede9; border-radius: 10px; margin-bottom: 0.75rem; overflow: hidden; }
+  .faq-item summary { padding: 1rem 1.25rem; font-weight: 600; color: #1a472a; cursor: pointer; font-size: 0.95rem; }
+  .faq-item summary:hover { color: #4caf50; }
+  .faq-item p { padding: 0 1.25rem 1rem; color: #555; line-height: 1.6; font-size: 0.9rem; }
+  .cta-section { padding: 0 1.5rem 3rem; background: #f8faf9; }
+  .cta-box { background: linear-gradient(135deg, #2d1b4e, #4a1942, #6b2fa0); border-radius: 16px; padding: 3rem; text-align: center; color: white; }
+  .cta-box h2 { font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem; }
+  .cta-box p { color: rgba(255,255,255,0.75); margin-bottom: 1.5rem; }
+  .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-primary { background: #4caf50; color: white; padding: 0.8rem 1.75rem; border-radius: 50px; font-weight: 600; transition: all 0.2s; text-decoration: none; }
+  .btn-primary:hover { background: #43a047; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(76,175,80,0.4); }
+  .btn-lg { padding: 0.9rem 2rem; font-size: 1.05rem; }
+  .btn-secondary { background: transparent; color: white; padding: 0.8rem 1.75rem; border-radius: 50px; font-weight: 600; border: 2px solid rgba(255,255,255,0.3); transition: all 0.2s; text-decoration: none; }
+  .btn-secondary:hover { border-color: white; background: rgba(255,255,255,0.1); }
+  @media (max-width: 968px) {
+    .info-grid { grid-template-columns: 1fr; }
+    .products-grid { grid-template-columns: repeat(2, 1fr); }
+    .steps-grid { grid-template-columns: 1fr; }
+    .cat-hero h1 { font-size: 2rem; }
+  }
+  @media (max-width: 576px) {
+    .products-grid { grid-template-columns: 1fr; max-width: 380px; margin: 0 auto; }
+    .cat-hero h1 { font-size: 1.5rem; }
+    .cta-box { padding: 2rem 1.5rem; }
+  }
+</style>
