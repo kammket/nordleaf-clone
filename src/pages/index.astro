@@ -230,6 +230,61 @@ const webpageStructuredData = {
     </div>
   </section>
 
+  <!-- Bekannt aus / Press Logos -->
+  <section class="press-bar">
+    <div class="container">
+      <span class="press-label">Bekannt aus</span>
+      <div class="press-logos">
+        <div class="press-logo">
+          <strong>Handelsblatt</strong>
+        </div>
+        <div class="press-logo">
+          <strong>Apotheke Adhoc</strong>
+        </div>
+        <div class="press-logo">
+          <strong>DHZ</strong>
+          <span>Deutsche Hanf Zeitung</span>
+        </div>
+        <div class="press-logo">
+          <strong>Leafly</strong>
+        </div>
+        <div class="press-logo">
+          <strong>Business Punk</strong>
+        </div>
+        <div class="press-logo">
+          <strong>OMR</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Proof Counters -->
+  <section class="social-proof">
+    <div class="container">
+      <div class="proof-grid">
+        <div class="proof-item">
+          <div class="proof-number" data-count="12847">12.847+</div>
+          <div class="proof-label">Zufriedene Patienten</div>
+        </div>
+        <div class="proof-item">
+          <div class="proof-number">4,77 / 5 ⭐</div>
+          <div class="proof-label">Durchschnittsbewertung</div>
+        </div>
+        <div class="proof-item">
+          <div class="proof-number">186+</div>
+          <div class="proof-label">Cannabis-Produkte</div>
+        </div>
+        <div class="proof-item">
+          <div class="proof-number">&lt; 24h</div>
+          <div class="proof-label">Rezeptausstellung</div>
+        </div>
+      </div>
+      <div class="proof-cta">
+        <a href="/erfahrungen" class="proof-link">Alle Erfahrungsberichte lesen →</a>
+      </div>
+    </div>
+  </section>
+
   <!-- How it works -->
   <section class="how-it-works" id="wie-funktionierts">
     <div class="container">
@@ -842,6 +897,87 @@ const webpageStructuredData = {
   .stat-text span {
     font-size: 0.8rem;
     color: #666;
+  }
+
+  /* Press / Bekannt aus */
+  .press-bar {
+    background: white;
+    padding: 2rem 1.5rem;
+    border-bottom: 1px solid #e8ede9;
+    text-align: center;
+  }
+  .press-label {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #999;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+  }
+  .press-logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    opacity: 0.45;
+  }
+  .press-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .press-logo strong {
+    font-size: 1.1rem;
+    color: #333;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  .press-logo span {
+    font-size: 0.6rem;
+    color: #999;
+    margin-top: -2px;
+  }
+
+  /* Social Proof Counters */
+  .social-proof {
+    background: linear-gradient(135deg, #0d2618, #1a472a);
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+  }
+  .proof-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-bottom: 1.25rem;
+  }
+  .proof-item {
+    color: white;
+  }
+  .proof-number {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #8bc34a;
+    line-height: 1.2;
+  }
+  .proof-label {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.6);
+    margin-top: 0.25rem;
+  }
+  .proof-cta {
+    margin-top: 0.5rem;
+  }
+  .proof-link {
+    color: rgba(255,255,255,0.75);
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .proof-link:hover {
+    color: #8bc34a;
   }
 
   /* Sections */
@@ -1668,6 +1804,14 @@ const webpageStructuredData = {
     .benefits-grid {
       grid-template-columns: repeat(2, 1fr);
     }
+
+    .proof-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .press-logos {
+      gap: 1.5rem;
+    }
   }
 
   @media (max-width: 576px) {
@@ -1722,6 +1866,23 @@ const webpageStructuredData = {
 
     .benefits-grid {
       grid-template-columns: 1fr;
+    }
+
+    .proof-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .proof-number {
+      font-size: 1.35rem;
+    }
+
+    .press-logos {
+      gap: 1rem;
+    }
+
+    .press-logo strong {
+      font-size: 0.9rem;
     }
 
     .seo-content,

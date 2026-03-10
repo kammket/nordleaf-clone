@@ -1,12 +1,27 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: 'Was ist medizinisches Cannabis?', acceptedAnswer: { '@type': 'Answer', text: 'Medizinisches Cannabis bezeichnet Cannabis, das von einem Arzt verschrieben und in einer Apotheke abgegeben wird. Es wird zur Behandlung verschiedener Erkrankungen eingesetzt, darunter chronische Schmerzen, Schlafstörungen, ADHS und Angststörungen.' }},
+    { '@type': 'Question', name: 'Wie bekomme ich ein Cannabis-Rezept?', acceptedAnswer: { '@type': 'Answer', text: 'Du füllst unseren kurzen medizinischen Fragebogen in nur 3 Minuten aus. Ein Arzt prüft deine Angaben und stellt bei Eignung dein Rezept aus. Im All-in-One Paket werden deine Blüten direkt an dich geliefert.' }},
+    { '@type': 'Question', name: 'Was kostet ein Cannabis-Rezept bei Nordleaf?', acceptedAnswer: { '@type': 'Answer', text: 'Unser All-in-One Paket kostet €9,90 (Servicegebühr) plus die Kosten für dein gewähltes Medikament. Alternativ bieten wir ein Nur-Rezept-Paket für €19,90 an.' }},
+    { '@type': 'Question', name: 'Ist Nordleaf seriös und legal?', acceptedAnswer: { '@type': 'Answer', text: 'Ja, Nordleaf arbeitet vollständig legal im Rahmen des deutschen Betäubungsmittelrechts. Alle Produkte werden über zugelassene Partner-Apotheken vertrieben und alle Ärzte besitzen eine gültige deutsche Approbation.' }},
+    { '@type': 'Question', name: 'Wie wird mein Datenschutz gewährleistet?', acceptedAnswer: { '@type': 'Answer', text: 'Deine Daten werden gemäß der DSGVO verarbeitet. Wir verwenden 256-bit SSL-Verschlüsselung für alle Datenübertragungen. Medizinische Daten werden streng vertraulich behandelt.' }},
+    { '@type': 'Question', name: 'Wer sind die Ärzte bei Nordleaf?', acceptedAnswer: { '@type': 'Answer', text: 'Unser Netzwerk besteht aus 9 zugelassenen Ärzten mit Spezialisierung auf Cannabinoid-Medizin. Alle verfügen über eine gültige deutsche Approbation und zusätzliche Zertifizierungen.' }},
+    { '@type': 'Question', name: 'Woher stammen die Cannabis-Produkte?', acceptedAnswer: { '@type': 'Answer', text: 'Alle Produkte stammen von GMP-zertifizierten Herstellern und werden von unabhängigen Laboren auf Reinheit, THC/CBD-Gehalt und Schadstoffe geprüft.' }},
+  ]
+};
 ---
 
 <Layout
   title="Häufige Fragen (FAQ) | Nordleaf - Medizinisches Cannabis"
   description="Antworten auf die häufigsten Fragen zu medizinischem Cannabis, Rezepten, Preisen und Lieferung bei Nordleaf."
-  keywords="Cannabis FAQ, medizinisches Cannabis Fragen, Cannabis Rezept FAQ, Nordleaf Hilfe"
+  keywords="Cannabis FAQ, medizinisches Cannabis Fragen, Cannabis Rezept FAQ, Nordleaf Hilfe, Nordleaf seriös"
+  structuredData={faqSchema}
 >
   <Breadcrumb items={[{name: "FAQ"}]} />
   <section class="page-hero">
@@ -99,6 +114,36 @@ import Breadcrumb from '../components/Breadcrumb.astro';
             <details class="faq-item">
               <summary>Sind alle Sorten immer verfügbar?</summary>
               <p>Ja, wir garantieren 100% Verfügbarkeit aller in unserem Live-Bestand aufgeführten Sorten. Du musst dir keine Sorgen um Lieferengpässe machen.</p>
+            </details>
+          </div>
+        </div>
+
+        <div class="faq-category">
+          <h2>Vertrauen & Sicherheit</h2>
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary>Ist Nordleaf seriös und legal?</summary>
+              <p>Ja, Nordleaf arbeitet vollständig legal im Rahmen des deutschen Betäubungsmittelrechts. Alle Produkte werden über zugelassene Partner-Apotheken vertrieben und alle verschreibenden Ärzte besitzen eine gültige deutsche Approbation. Medizinisches Cannabis ist in Deutschland seit 2017 legal erhältlich — seit April 2024 gelten weitere Erleichterungen.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Wie wird mein Datenschutz gewährleistet?</summary>
+              <p>Deine Daten werden gemäß der DSGVO (Datenschutz-Grundverordnung) verarbeitet und gespeichert. Wir verwenden 256-bit SSL-Verschlüsselung für alle Datenübertragungen. Medizinische Daten werden streng vertraulich behandelt und nur an den behandelnden Arzt weitergeleitet. Wir verkaufen oder teilen keine personenbezogenen Daten mit Dritten.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Wer sind die Ärzte bei Nordleaf?</summary>
+              <p>Unser Netzwerk besteht aus 9 zugelassenen Ärzten mit Spezialisierung auf Cannabinoid-Medizin. Alle Ärzte verfügen über eine gültige deutsche Approbation, zusätzliche Zertifizierungen im Bereich Cannabis-Therapie und langjährige klinische Erfahrung. Mehr Informationen findest du auf unserer <a href="/about">Über-uns-Seite</a>.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Woher stammen die Cannabis-Produkte?</summary>
+              <p>Alle Produkte stammen von renommierten, GMP-zertifizierten Herstellern und werden von unabhängigen Laboren auf Reinheit, THC/CBD-Gehalt und Schadstoffe geprüft. Die Lieferkette ist lückenlos nachverfolgbar — von der Produktion bis zur Auslieferung an dich.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Was sagen andere Patienten über Nordleaf?</summary>
+              <p>Nordleaf hat eine Durchschnittsbewertung von 4,77 von 5 Sternen basierend auf über 6.500 verifizierten Patientenbewertungen. 78% unserer Patienten geben 5 Sterne. Echte Erfahrungsberichte findest du auf unserer <a href="/erfahrungen">Erfahrungen-Seite</a>.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Ist meine Bestellung sicher?</summary>
+              <p>Absolutt. Alle Zahlungen werden über verschlüsselte Verbindungen abgewickelt. Deine Bestellung wird von unseren Apothekern geprüft und in neutraler Verpackung versendet. Bei Fragen oder Problemen ist unser Support-Team per WhatsApp, E-Mail oder Telefon erreichbar.</p>
             </details>
           </div>
         </div>

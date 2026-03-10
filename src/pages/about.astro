@@ -73,6 +73,54 @@ import Breadcrumb from '../components/Breadcrumb.astro';
           <p>Wir arbeiten mit erfahrenen Ärzten zusammen, die auf Cannabis-Medizin spezialisiert sind. Unser Sortiment umfasst über 25 Sorten von renommierten Herstellern wie avaay Medical, Four 20 Pharma und weiteren.</p>
         </div>
 
+        <div class="about-block">
+          <h2>Unser Ärzteteam</h2>
+          <p>Unsere zugelassenen Ärzte sind auf Cannabinoid-Medizin spezialisiert und betreuen dich individuell — von der Erstberatung bis zur laufenden Therapie.</p>
+          <div class="team-grid">
+            <div class="team-card">
+              <div class="team-avatar">👨‍⚕️</div>
+              <h3>Dr. med. Thomas Berger</h3>
+              <span class="team-role">Facharzt für Allgemeinmedizin</span>
+              <p>Spezialisiert auf Cannabis-basierte Schmerztherapie. Über 15 Jahre Erfahrung in der ganzheitlichen Patientenbetreuung.</p>
+              <div class="team-credentials">
+                <span>✅ Approbation DE</span>
+                <span>✅ CannaMed-Zertifizierung</span>
+              </div>
+            </div>
+            <div class="team-card">
+              <div class="team-avatar">👩‍⚕️</div>
+              <h3>Dr. med. Sarah Lindemann</h3>
+              <span class="team-role">Fachärztin für Neurologie</span>
+              <p>Fokus auf cannabinoidbasierte Behandlung von Schlafstörungen und Angsterkrankungen. Mitglied der Deutschen Gesellschaft für Schmerzmedizin.</p>
+              <div class="team-credentials">
+                <span>✅ Approbation DE</span>
+                <span>✅ Schmerztherapie-Diplom</span>
+              </div>
+            </div>
+            <div class="team-card">
+              <div class="team-avatar">👨‍⚕️</div>
+              <h3>Dr. med. Felix Hartmann</h3>
+              <span class="team-role">Facharzt für Psychiatrie</span>
+              <p>Experte für Cannabis-Therapie bei ADHS, PTBS und chronischen Stresssyndromen. Publiziert regelmäßig zu Cannabinoiden in der Psychiatrie.</p>
+              <div class="team-credentials">
+                <span>✅ Approbation DE</span>
+                <span>✅ BtM-Berechtigung</span>
+              </div>
+            </div>
+            <div class="team-card">
+              <div class="team-avatar">👩‍⚕️</div>
+              <h3>Dr. med. Julia Weiß</h3>
+              <span class="team-role">Fachärztin für Innere Medizin</span>
+              <p>Schwerpunkt auf entzündliche Erkrankungen und cannabinoidgestützte Therapiebegleitung. 10+ Jahre klinische Erfahrung.</p>
+              <div class="team-credentials">
+                <span>✅ Approbation DE</span>
+                <span>✅ CannaMed-Zertifizierung</span>
+              </div>
+            </div>
+          </div>
+          <p class="team-note">Insgesamt betreuen 9 zugelassene Ärzte unser Patientennetzwerk. Alle Ärzte verfügen über eine gültige deutsche Approbation und spezielle Weiterbildungen im Bereich Cannabinoid-Medizin.</p>
+        </div>
+
         <div class="about-cta">
           <h2>Bereit, Cannabis-Patient zu werden?</h2>
           <p>Starte jetzt und erhalte dein Rezept in nur wenigen Minuten.</p>
@@ -146,9 +194,66 @@ import Breadcrumb from '../components/Breadcrumb.astro';
   }
   .btn-primary:hover { background: #43a047; border-color: #43a047; color: white; }
 
+  /* Team Grid */
+  .team-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin: 1.5rem 0;
+  }
+  .team-card {
+    background: #f8faf9;
+    border: 1px solid #e8ede9;
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+  }
+  .team-avatar {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .team-card h3 {
+    font-size: 1.05rem;
+    color: #1a472a;
+    margin-bottom: 0.2rem;
+  }
+  .team-role {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #4caf50;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .team-card p {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+  }
+  .team-credentials {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    align-items: center;
+  }
+  .team-credentials span {
+    font-size: 0.75rem;
+    color: #555;
+  }
+  .team-note {
+    font-size: 0.9rem;
+    color: #777;
+    text-align: center;
+    font-style: italic;
+    margin-top: 0.5rem;
+  }
+
   @media (max-width: 768px) {
     .values-grid { grid-template-columns: 1fr; }
     .stats-row { grid-template-columns: 1fr 1fr; }
+    .team-grid { grid-template-columns: 1fr; }
     .page-hero h1 { font-size: 1.75rem; }
   }
 </style>

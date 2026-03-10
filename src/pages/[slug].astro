@@ -231,18 +231,19 @@ const faqData = {
             <span>Rezept in 3 Minuten beantragen</span>
           </div>
         </div>
-      </div>
-
-      <!-- FAQ Section -->
-      <div class="product-faq">
-        <h2>Häufige Fragen zu {product.strain || product.name}</h2>
-        <div class="faq-list">
-          {faqs.map((faq) => (
-            <details class="faq-item">
-              <summary>{faq.q}</summary>
-              <p>{faq.a}</p>
-            </details>
-          ))}
+        <div class="trust-badge">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <div>
+            <strong>256-bit SSL</strong>
+            <span>Verschlüsselte Datenübertragung</span>
+          </div>
+        </div>
+        <div class="trust-badge">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          <div>
+            <strong>Laborgeprüft</strong>
+            <span>Unabhängige Laboranalysen</span>
+          </div>
         </div>
       </div>
 
@@ -263,6 +264,19 @@ const faqData = {
           <li><strong>Produkt wählen</strong> – Wähle aus unserem Live-Bestand dein gewünschtes Produkt.</li>
           <li><strong>Diskrete Lieferung</strong> – Dein Medikament wird in neutraler Verpackung innerhalb von 1-3 Werktagen geliefert.</li>
         </ol>
+      </div>
+
+      <!-- FAQ Section -->
+      <div class="product-faq">
+        <h2>Häufige Fragen zu {product.strain || product.name}</h2>
+        <div class="faq-list">
+          {faqs.map((faq) => (
+            <details class="faq-item">
+              <summary>{faq.q}</summary>
+              <p>{faq.a}</p>
+            </details>
+          ))}
+        </div>
       </div>
 
       <!-- Related Products -->
@@ -754,7 +768,7 @@ const faqData = {
   /* Trust Badges */
   .trust-badges {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
     margin-top: 3rem;
     padding-top: 2rem;
