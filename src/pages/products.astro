@@ -1,0 +1,196 @@
+---
+// Products Page
+
+import Layout from '../layouts/Layout.astro';
+
+const siteUrl = 'https://nordleaf.de';
+
+const breadcrumbs = [
+  { name: 'Home', url: siteUrl },
+  { name: 'Products', url: `${siteUrl}/products` },
+];
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Products',
+  description: 'Browse our complete collection of organic products',
+  url: `${siteUrl}/products`,
+};
+
+const allProducts = [
+  {
+    id: '1',
+    name: 'Organic Green Tea',
+    description: 'Premium loose-leaf organic green tea',
+    price: 19.99,
+    image: '/images/product-green-tea.jpg',
+    category: 'Beverages',
+    rating: 4.9,
+    reviewCount: 54,
+  },
+  {
+    id: '2',
+    name: 'Herbal Blend Mix',
+    description: 'Soothing herbal blend with chamomile and lavender',
+    price: 22.99,
+    image: '/images/product-herbal.jpg',
+    category: 'Beverages',
+    rating: 4.8,
+    reviewCount: 28,
+  },
+  {
+    id: '3',
+    name: 'Face Moisturizer',
+    description: 'Organic face moisturizer for all skin types',
+    price: 39.99,
+    image: '/images/product-moisturizer.jpg',
+    category: 'Skincare',
+    rating: 4.6,
+    reviewCount: 42,
+  },
+  {
+    id: '4',
+    name: 'Body Lotion',
+    description: 'Nourishing body lotion with natural oils',
+    price: 34.99,
+    image: '/images/product-lotion.jpg',
+    category: 'Skincare',
+    rating: 4.5,
+    reviewCount: 35,
+  },
+];
+---
+
+<Layout
+  title="Shop Products - Nordleaf"
+  description="Browse our complete collection of organic products including teas, skincare, supplements, and more. Free shipping on orders over €50."
+  canonical={`${siteUrl}/products`}
+  ogImage="/images/og-products.jpg"
+  keywords="organic products, buy organic, natural skincare, supplements, eco-friendly"
+  structuredData={structuredData}
+>
+  <div class="products-page">
+    <section class="page-header">
+      <div class="container">
+        <h1>Our Products</h1>
+        <p>Discover our carefully curated collection of organic and sustainable products</p>
+      </div>
+    </section>
+
+    <section class="products-section">
+      <div class="container">
+        <div class="products-grid">
+          {
+            allProducts.map((product) => (
+              <div class="product-card">
+                <div class="product-image">
+                  <img src={product.image} alt={product.name} loading="lazy" width="300" height="300" />
+                </div>
+                <div class="product-info">
+                  <h3>{product.name}</h3>
+                  <p>{product.description}</p>
+                  <span class="price">€{product.price.toFixed(2)}</span>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .page-header {
+    background: linear-gradient(135deg, #1a472a 0%, #2d6a47 100%);
+    color: white;
+    padding: 3rem 0;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .page-header h1 {
+    color: white;
+  }
+
+  .page-header p {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .products-section {
+    padding: 2rem 0;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .product-card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .product-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px);
+  }
+
+  .product-image {
+    overflow: hidden;
+    aspect-ratio: 1;
+    background-color: #f5f7f6;
+  }
+
+  .product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .product-card:hover .product-image img {
+    transform: scale(1.05);
+  }
+
+  .product-info {
+    padding: 1.5rem;
+  }
+
+  .product-info h3 {
+    margin: 0 0 0.5rem 0;
+    color: #1a472a;
+  }
+
+  .price {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a472a;
+    margin-top: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .products-grid {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .products-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

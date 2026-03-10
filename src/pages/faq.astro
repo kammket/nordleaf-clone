@@ -1,0 +1,140 @@
+---
+// FAQ Page
+
+import Layout from '../layouts/Layout.astro';
+
+const siteUrl = 'https://nordleaf.de';
+---
+
+<Layout
+  title="FAQ - Nordleaf"
+  description="Find answers to frequently asked questions about Nordleaf products, shipping, returns, and more."
+  canonical={`${siteUrl}/faq`}
+>
+  <div class="faq-page">
+    <section class="page-header">
+      <div class="container">
+        <h1>Frequently Asked Questions</h1>
+      </div>
+    </section>
+
+    <section class="faq-content">
+      <div class="container">
+        <div class="faq-section">
+          <h2>General Questions</h2>
+          <div class="faq-items">
+            <details class="faq-item">
+              <summary>What is Nordleaf?</summary>
+              <p>Nordleaf is an online marketplace providing premium organic and sustainable products.</p>
+            </details>
+
+            <details class="faq-item">
+              <summary>Are all products certified organic?</summary>
+              <p>Yes, all our products are certified organic and comply with international quality standards.</p>
+            </details>
+
+            <details class="faq-item">
+              <summary>How can I contact customer service?</summary>
+              <p>Email: info@nordleaf.de | Phone: +49 123 456789</p>
+            </details>
+          </div>
+        </div>
+
+        <div class="faq-section">
+          <h2>Shipping & Delivery</h2>
+          <div class="faq-items">
+            <details class="faq-item">
+              <summary>What are the shipping options?</summary>
+              <p>Standard: 3-5 business days. Express: 1-2 business days. Free shipping on orders over €50.</p>
+            </details>
+
+            <details class="faq-item">
+              <summary>Do you ship internationally?</summary>
+              <p>Yes, we ship to most countries worldwide. Costs vary by location.</p>
+            </details>
+
+            <details class="faq-item">
+              <summary>Can I track my order?</summary>
+              <p>Yes, you'll receive a tracking number via email once your order ships.</p>
+            </details>
+          </div>
+        </div>
+
+        <div class="faq-section">
+          <h2>Returns & Refunds</h2>
+          <div class="faq-items">
+            <details class="faq-item">
+              <summary>What is your return policy?</summary>
+              <p>30-day return policy for items in original condition with packaging intact.</p>
+            </details>
+
+            <details class="faq-item">
+              <summary>How do I initiate a return?</summary>
+              <p>Contact us at info@nordleaf.de with your order number and we'll provide a return label.</p>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .page-header {
+    background: linear-gradient(135deg, #1a472a 0%, #2d6a47 100%);
+    color: white;
+    padding: 3rem 0;
+    text-align: center;
+  }
+
+  .page-header h1 {
+    color: white;
+  }
+
+  .faq-content {
+    padding: 3rem 0;
+  }
+
+  .faq-section {
+    margin-bottom: 3rem;
+  }
+
+  .faq-section h2 {
+    color: #1a472a;
+    margin-bottom: 1.5rem;
+  }
+
+  .faq-item {
+    background: #f5f7f6;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .faq-item summary {
+    padding: 1.25rem;
+    cursor: pointer;
+    font-weight: 600;
+    color: #1a472a;
+  }
+
+  .faq-item summary:hover {
+    background-color: #e8eee9;
+  }
+
+  .faq-item[open] summary {
+    background-color: #e8eee9;
+  }
+
+  .faq-item p {
+    padding: 0 1.25rem 1.25rem;
+    color: #666;
+    margin: 0;
+  }
+</style>

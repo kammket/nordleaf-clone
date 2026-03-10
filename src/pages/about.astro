@@ -1,0 +1,129 @@
+---
+// About Page
+
+import Layout from '../layouts/Layout.astro';
+
+const siteUrl = 'https://nordleaf.de';
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: 'About Nordleaf',
+  url: `${siteUrl}/about`,
+};
+---
+
+<Layout
+  title="About Nordleaf - Our Mission & Values"
+  description="Learn about Nordleaf's mission to provide premium organic and sustainable products. Discover our values, history, and commitment to the environment."
+  canonical={`${siteUrl}/about`}
+  ogImage="/images/og-about.jpg"
+  keywords="about nordleaf, sustainable company, organic mission, eco-friendly values"
+  structuredData={structuredData}
+>
+  <div class="about-page">
+    <section class="page-header">
+      <div class="container">
+        <h1>About Nordleaf</h1>
+        <p>Our Journey Towards Sustainable Living</p>
+      </div>
+    </section>
+
+    <section class="section mission-section">
+      <div class="container">
+        <h2>Our Mission</h2>
+        <p>
+          At Nordleaf, we believe that everyone deserves access to premium organic
+          products without compromising our planet's health. Our mission is to make
+          sustainable living accessible, affordable, and enjoyable for everyone.
+        </p>
+      </div>
+    </section>
+
+    <section class="section values-section">
+      <div class="container">
+        <h2>Our Core Values</h2>
+        <div class="values-grid">
+          <div class="value-card">
+            <div class="value-icon">🌍</div>
+            <h3>Environmental Stewardship</h3>
+            <p>Protecting our planet through sustainable practices and eco-friendly initiatives.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">✓</div>
+            <h3>Quality & Integrity</h3>
+            <p>Commitment to transparency and rigorous quality standards in every product.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">❤️</div>
+            <h3>Customer Care</h3>
+            <p>Your satisfaction and well-being are at the heart of everything we do.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .page-header {
+    background: linear-gradient(135deg, #1a472a 0%, #2d6a47 100%);
+    color: white;
+    padding: 3rem 0;
+    text-align: center;
+  }
+
+  .page-header h1 {
+    color: white;
+  }
+
+  .section {
+    padding: 4rem 0;
+  }
+
+  .section h2 {
+    text-align: center;
+    color: #1a472a;
+    margin-bottom: 2rem;
+  }
+
+  .section p {
+    color: #666;
+    line-height: 1.8;
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .value-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .value-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .value-card h3 {
+    color: #1a472a;
+  }
+
+  @media (max-width: 768px) {
+    .section {
+      padding: 2rem 0;
+    }
+  }
+</style>

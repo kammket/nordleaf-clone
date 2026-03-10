@@ -1,0 +1,145 @@
+---
+// Blog Page
+
+import Layout from '../layouts/Layout.astro';
+
+const siteUrl = 'https://nordleaf.de';
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  name: 'Nordleaf Blog',
+  url: `${siteUrl}/blog`,
+};
+
+const blogPosts = [
+  {
+    title: 'The Benefits of Organic Living',
+    excerpt: 'Learn how switching to organic products can improve your health and lifestyle.',
+    date: new Date('2024-03-10'),
+    category: 'Lifestyle',
+  },
+  {
+    title: '10 Health Benefits of Green Tea',
+    excerpt: 'Discover the amazing health benefits of green tea and why it should be part of your daily routine.',
+    date: new Date('2024-03-08'),
+    category: 'Health',
+  },
+  {
+    title: 'The Impact of Sustainable Packaging',
+    excerpt: 'Explore how eco-friendly packaging is changing the industry and reducing environmental waste.',
+    date: new Date('2024-03-05'),
+    category: 'Sustainability',
+  },
+];
+---
+
+<Layout
+  title="Blog - Nordleaf"
+  description="Read our blog for tips on organic living, sustainability, wellness, and eco-friendly lifestyle."
+  canonical={`${siteUrl}/blog`}
+  ogImage="/images/og-blog.jpg"
+  keywords="blog, organic living, sustainability, wellness, eco-friendly tips"
+  structuredData={structuredData}
+>
+  <div class="blog-page">
+    <section class="page-header">
+      <div class="container">
+        <h1>Our Blog</h1>
+        <p>Tips, insights, and stories about sustainable living</p>
+      </div>
+    </section>
+
+    <section class="blog-section">
+      <div class="container">
+        <div class="blog-grid">
+          {
+            blogPosts.map((post) => (
+              <article class="blog-card">
+                <div class="blog-content">
+                  <span class="category">{post.category}</span>
+                  <h3>{post.title}</h3>
+                  <p>{post.excerpt}</p>
+                  <time class="date">{post.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .page-header {
+    background: linear-gradient(135deg, #1a472a 0%, #2d6a47 100%);
+    color: white;
+    padding: 3rem 0;
+    text-align: center;
+  }
+
+  .page-header h1 {
+    color: white;
+  }
+
+  .blog-section {
+    padding: 4rem 0;
+  }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .blog-card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    transition: all 0.3s ease;
+  }
+
+  .blog-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px);
+  }
+
+  .category {
+    display: inline-block;
+    background-color: #1a472a;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 2rem;
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .blog-card h3 {
+    color: #1a472a;
+    margin: 0.5rem 0;
+  }
+
+  .blog-card p {
+    color: #666;
+    margin-bottom: 1rem;
+  }
+
+  .date {
+    font-size: 0.85rem;
+    color: #999;
+  }
+
+  @media (max-width: 768px) {
+    .blog-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

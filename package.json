@@ -1,0 +1,40 @@
+{
+  "name": "nordleaf-clone",
+  "version": "1.0.0",
+  "description": "A modern, SEO-optimized e-commerce website built with Astro framework for organic and sustainable products",
+  "type": "module",
+  "author": "Nordleaf",
+  "license": "MIT",
+  "main": "./dist/index.html",
+  "keywords": [
+    "astro",
+    "ecommerce",
+    "seo",
+    "organic",
+    "sustainable",
+    "responsive",
+    "shopify"
+  ],
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "astro": "^5.18.0"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=16.x"
+  },
+  "homepage": "https://github.com/yourusername/nordleaf-clone",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/nordleaf-clone.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/nordleaf-clone/issues"
+  }
+}

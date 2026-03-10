@@ -1,0 +1,334 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { organizationSchema } from '../utils/seo';
+
+const siteUrl = 'https://nordleaf.de';
+const structuredData = organizationSchema(siteUrl);
+---
+
+<Layout
+  title="Nordleaf - Premium Organic Products"
+  description="Discover premium organic and eco-friendly products for a sustainable lifestyle. Shop our collection of natural skincare, organic teas, and sustainable goods."
+  canonical={siteUrl}
+  ogImage="/images/og-image.jpg"
+  keywords="organic products, eco-friendly, natural skincare, sustainable living"
+  structuredData={structuredData}
+>
+  <section class="hero">
+    <div class="container">
+      <h1>Welcome to Nordleaf</h1>
+      <p>Discover Premium Organic and Sustainable Products</p>
+      <a href="/products" class="cta-button">Shop Now</a>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="container">
+      <h2>Why Choose Nordleaf?</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🌱</div>
+          <h3>100% Organic</h3>
+          <p>All products are certified organic and free from harmful chemicals.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">♻️</div>
+          <h3>Eco-Friendly</h3>
+          <p>Sustainable packaging and ethical sourcing practices.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🌍</div>
+          <h3>Global Impact</h3>
+          <p>Supporting communities and protecting our planet.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">✓</div>
+          <h3>Quality Assured</h3>
+          <p>Rigorous testing ensures the highest quality standards.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="products-section">
+    <div class="container">
+      <h2>Featured Products</h2>
+      <div class="products-grid">
+        <div class="product-card">
+          <img src="/images/product-1.jpg" alt="Organic Tea" />
+          <h3>Organic Tea Collection</h3>
+          <p>Premium selection of organic herbal teas</p>
+          <span class="price">€24.99</span>
+        </div>
+        <div class="product-card">
+          <img src="/images/product-2.jpg" alt="Skincare" />
+          <h3>Natural Skincare Set</h3>
+          <p>Eco-friendly skincare products</p>
+          <span class="price">€49.99</span>
+        </div>
+        <div class="product-card">
+          <img src="/images/product-3.jpg" alt="Hemp Oil" />
+          <h3>Hemp Seed Oil</h3>
+          <p>Cold-pressed, organic hemp oil</p>
+          <span class="price">€34.99</span>
+        </div>
+        <div class="product-card">
+          <img src="/images/product-4.jpg" alt="Hair Care" />
+          <h3>Bamboo Hair Set</h3>
+          <p>Sustainable bamboo hair care</p>
+          <span class="price">€29.99</span>
+        </div>
+      </div>
+      <div class="cta-section">
+        <a href="/products" class="btn">View All Products</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="newsletter">
+    <div class="container">
+      <h2>Stay Updated</h2>
+      <p>Subscribe for exclusive offers and tips.</p>
+      <form class="newsletter-form">
+        <input type="email" placeholder="Enter your email" required />
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, #1a472a 0%, #2d6a47 100%);
+    color: white;
+    padding: 6rem 0;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: white;
+  }
+
+  .hero p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .cta-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: #4caf50;
+    color: white;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .cta-button:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+  }
+
+  .features {
+    padding: 4rem 0;
+    background-color: #f5f7f6;
+  }
+
+  .features h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .feature-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  .feature-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .feature-card h3 {
+    color: #1a472a;
+    margin-bottom: 0.5rem;
+  }
+
+  .feature-card p {
+    color: #666;
+    margin: 0;
+  }
+
+  .products-section {
+    padding: 4rem 0;
+  }
+
+  .products-section h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .product-card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .product-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px);
+  }
+
+  .product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .product-card h3 {
+    margin: 1rem;
+    color: #1a472a;
+  }
+
+  .product-card p {
+    margin: 0 1rem 1rem;
+    color: #666;
+  }
+
+  .price {
+    display: block;
+    margin: 0 1rem 1rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a472a;
+  }
+
+  .cta-section {
+    text-align: center;
+    margin: 2rem 0;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background-color: #1a472a;
+    color: white;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .btn:hover {
+    background-color: #2d6a47;
+    transform: translateY(-2px);
+  }
+
+  .newsletter {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #1a472a 0%, #2d6a47 100%);
+    color: white;
+    text-align: center;
+  }
+
+  .newsletter h2 {
+    color: white;
+    margin-bottom: 1rem;
+  }
+
+  .newsletter p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+
+  .newsletter-form {
+    display: flex;
+    gap: 0.5rem;
+    max-width: 500px;
+    margin: 0 auto;
+    justify-content: center;
+  }
+
+  .newsletter-form input {
+    flex: 1;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 0.25rem;
+  }
+
+  .newsletter-form button {
+    padding: 0.75rem 2rem;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .newsletter-form button:hover {
+    background-color: #45a049;
+  }
+
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 2rem;
+    }
+
+    .hero p {
+      font-size: 1rem;
+    }
+
+    .features-grid,
+    .products-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .newsletter-form {
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero {
+      padding: 3rem 0;
+    }
+
+    .cta-button {
+      width: 100%;
+    }
+  }
+</style>
