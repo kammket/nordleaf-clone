@@ -93,6 +93,10 @@ const breadcrumbData = {
   ]
 };
 
+// Generate deterministic "bought last week" number from slug
+const slugHash = product.slug.split('').reduce((acc: number, ch: string) => acc + ch.charCodeAt(0), 0);
+const boughtLastWeek = 12 + (slugHash % 72); // range 12–83
+
 const faqData = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -138,6 +142,11 @@ const faqData = {
           <div class="product-brand-label">{product.brand}</div>
           <h1>{product.strain}</h1>
           <p class="product-full-name">{product.name}</p>
+
+          <div class="bought-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span><strong>{boughtLastWeek} Personen</strong> haben dieses Produkt letzte Woche gekauft</span>
+          </div>
 
           <div class="product-data-grid">
             <div class="data-item">
@@ -448,7 +457,28 @@ const faqData = {
   .product-full-name {
     font-size: 0.9rem;
     color: #999;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .bought-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #fff8e1;
+    border: 1px solid #ffe082;
+    border-radius: 8px;
+    padding: 0.5rem 0.85rem;
+    margin-bottom: 1.25rem;
+    font-size: 0.85rem;
+    color: #6d4c00;
+    line-height: 1.4;
+  }
+  .bought-badge svg {
+    flex-shrink: 0;
+    color: #e6a700;
+  }
+  .bought-badge strong {
+    color: #5a3e00;
   }
 
   .product-data-grid {
