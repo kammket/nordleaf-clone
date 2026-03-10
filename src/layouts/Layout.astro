@@ -1,5 +1,5 @@
 ---
-// Main Layout Component
+// Main Layout Component - Nordleaf Medical Cannabis
 
 interface Props {
   title: string;
@@ -19,27 +19,41 @@ const {
   structuredData,
 } = Astro.props;
 
+const siteUrl = 'https://nordleaf.de';
+const currentPath = Astro.url.pathname;
+const pageUrl = canonical || `${siteUrl}${currentPath === '/' ? '' : currentPath.replace(/\/$/, '')}`;
+const defaultOgImage = `${siteUrl}/favicon.svg`;
+const resolvedOgImage = ogImage ? (ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`) : defaultOgImage;
+
 import '../styles/global.css';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="de">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
     {keywords && <meta name="keywords" content={keywords} />}
+    <link rel="canonical" href={pageUrl} />
+    <link rel="alternate" hreflang="de" href={pageUrl} />
+    <link rel="alternate" hreflang="x-default" href={pageUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Nordleaf" />
+    <meta property="og:image" content={resolvedOgImage} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    {canonical && <link rel="canonical" href={canonical} />}
+    <meta name="twitter:image" content={resolvedOgImage} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     {
       structuredData && (
         <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
@@ -47,20 +61,62 @@ import '../styles/global.css';
     }
   </head>
   <body>
+    <div class="site-wrapper">
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+      <div class="container">
+        <span>🌿 Medizinisches Cannabis auf Rezept — ab 1€/g — Lieferung in 1-3 Werktagen</span>
+      </div>
+    </div>
+
     <header class="header">
       <div class="container">
-        <nav>
-          <a href="/" class="logo">Nordleaf</a>
-          <ul class="nav-links">
-            <li><a href="/">Home</a></li>
-            <li><a href="/products">Products</a></li>
+        <nav class="nav">
+          <a href="/" class="logo">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <path d="M16 2C10 6 4 12 4 20c0 5.5 5.4 10 12 10s12-4.5 12-10C28 12 22 6 16 2z" fill="#4caf50"/>
+              <path d="M16 8c-3 3-6 7-6 12 0 3 2.7 5.5 6 5.5s6-2.5 6-5.5c0-5-3-9-6-12z" fill="#1a472a"/>
+            </svg>
+            <span>Nordleaf</span>
+          </a>
+
+          <ul class="nav-links" id="navLinks">
+            <li><a href="/products">Live-Bestand</a></li>
+            <li><a href="/wie-funktionierts">Wie funktioniert's</a></li>
+            <li><a href="/preise">Preise</a></li>
+            <li><a href="/faq">FAQ</a></li>
             <li><a href="/blog">Blog</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/contact">Contact</a></li>
           </ul>
+
+          <div class="nav-actions">
+            <a href="/cart" class="cart-icon" aria-label="Warenkorb">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+              </svg>
+              <span class="cart-count" id="cartCount">0</span>
+            </a>
+            <a href="/wie-funktionierts" class="btn btn-nav">Jetzt starten</a>
+            <button class="hamburger" id="hamburger" aria-label="Menü öffnen">
+              <span></span><span></span><span></span>
+            </button>
+          </div>
         </nav>
       </div>
     </header>
+
+    <!-- Mobile menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <ul>
+        <li><a href="/products">Live-Bestand</a></li>
+        <li><a href="/wie-funktionierts">Wie funktioniert's</a></li>
+        <li><a href="/preise">Preise</a></li>
+        <li><a href="/faq">FAQ</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/cart">Warenkorb</a></li>
+        <li><a href="/wie-funktionierts" class="btn btn-mobile">Jetzt starten</a></li>
+      </ul>
+    </div>
 
     <main>
       <slot />
@@ -68,129 +124,381 @@ import '../styles/global.css';
 
     <footer class="footer">
       <div class="container">
-        <div class="footer-content">
-          <div>
-            <h3>About Nordleaf</h3>
-            <p>Premium organic and sustainable products for conscious consumers.</p>
+        <div class="footer-top">
+          <div class="footer-brand">
+            <a href="/" class="footer-logo">
+              <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                <path d="M16 2C10 6 4 12 4 20c0 5.5 5.4 10 12 10s12-4.5 12-10C28 12 22 6 16 2z" fill="#4caf50"/>
+                <path d="M16 8c-3 3-6 7-6 12 0 3 2.7 5.5 6 5.5s6-2.5 6-5.5c0-5-3-9-6-12z" fill="#1a472a"/>
+              </svg>
+              <span>Nordleaf</span>
+            </a>
+            <p class="footer-tagline">Deine Online-Apotheke für medizinisches Cannabis.</p>
           </div>
-          <div>
-            <h3>Links</h3>
+
+          <div class="footer-col">
+            <h4>Service</h4>
             <ul>
-              <li><a href="/privacy">Privacy Policy</a></li>
-              <li><a href="/terms">Terms of Service</a></li>
+              <li><a href="/wie-funktionierts">Wie funktioniert's</a></li>
+              <li><a href="/products">Live-Bestand</a></li>
+              <li><a href="/preise">Preise</a></li>
               <li><a href="/faq">FAQ</a></li>
-              <li><a href="/sitemap.xml">Sitemap</a></li>
             </ul>
           </div>
-          <div>
-            <h3>Contact</h3>
-            <p>Email: <a href="mailto:info@nordleaf.de">info@nordleaf.de</a></p>
-            <p>Phone: <a href="tel:+49123456789">+49 123 456789</a></p>
+
+          <div class="footer-col">
+            <h4>Nordleaf</h4>
+            <ul>
+              <li><a href="/about">Über uns</a></li>
+              <li><a href="/blog">Blog</a></li>
+              <li><a href="/contact">Kontakt</a></li>
+              <li><a href="mailto:info@nordleaf.de">info@nordleaf.de</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Sonstiges</h4>
+            <ul>
+              <li><a href="/impressum">Impressum</a></li>
+              <li><a href="/datenschutz">Datenschutz</a></li>
+              <li><a href="/agb">AGB</a></li>
+              <li><a href="/widerruf">Widerrufsrecht</a></li>
+            </ul>
           </div>
         </div>
+
         <div class="footer-bottom">
-          <p>&copy; 2024 Nordleaf. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Nordleaf GmbH. Alle Rechte vorbehalten.</p>
+          <p class="footer-disclaimer">Medizinisches Cannabis nur auf ärztliches Rezept. Dieses Angebot richtet sich ausschließlich an Patienten in Deutschland.</p>
         </div>
       </div>
     </footer>
+    </div><!-- /.site-wrapper -->
+
+    <script>
+      // Mobile menu toggle
+      const hamburger = document.getElementById('hamburger');
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (hamburger && mobileMenu) {
+        hamburger.addEventListener('click', () => {
+          hamburger.classList.toggle('active');
+          mobileMenu.classList.toggle('open');
+          document.body.classList.toggle('menu-open');
+        });
+      }
+
+      // Cart count
+      function updateCartCount() {
+        try {
+          const cart = JSON.parse(localStorage.getItem('nordleaf_cart') || '{"items":[]}');
+          const count = cart.items.reduce((sum: number, item: any) => sum + item.quantity, 0);
+          const el = document.getElementById('cartCount');
+          if (el) {
+            el.textContent = String(count);
+            el.style.display = count > 0 ? 'flex' : 'none';
+          }
+        } catch(e) {}
+      }
+      updateCartCount();
+      document.addEventListener('cart-updated', updateCartCount);
+    </script>
   </body>
 </html>
 
 <style>
   .container {
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0 2.5rem;
   }
 
+  /* Announcement bar */
+  .announcement-bar {
+    background: #0d3320;
+    color: #a8d5ba;
+    text-align: center;
+    padding: 0.5rem 1.5rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  /* Header */
   .header {
     background: #1a472a;
     color: white;
-    padding: 1rem 0;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 0.75rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
   }
 
-  .header nav {
+  .nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
   .logo {
-    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.4rem;
     font-weight: 700;
     color: white;
+    letter-spacing: -0.02em;
   }
+
+  .logo:hover { color: white; }
 
   .nav-links {
     display: flex;
     list-style: none;
-    gap: 2rem;
+    gap: 1.75rem;
   }
 
   .nav-links a {
-    color: white;
-    transition: color 0.3s;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.2s;
+    white-space: nowrap;
   }
 
   .nav-links a:hover {
     color: #4caf50;
   }
 
-  .footer {
-    background: #1a472a;
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .cart-icon {
+    position: relative;
     color: white;
-    padding: 3rem 0 1rem;
-    margin-top: 4rem;
+    display: flex;
+    align-items: center;
   }
 
-  .footer-content {
+  .cart-icon:hover { color: #4caf50; }
+
+  .cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #4caf50;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn-nav {
+    background: #4caf50;
+    color: white;
+    padding: 0.5rem 1.25rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .btn-nav:hover {
+    background: #43a047;
+    transform: translateY(-1px);
+  }
+
+  /* Hamburger */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: white;
+    transition: all 0.3s;
+    border-radius: 1px;
+  }
+
+  .hamburger.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* Mobile menu */
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #1a472a;
+    z-index: 999;
+    padding: 5rem 1.5rem 2rem;
+    overflow-y: auto;
+  }
+
+  .mobile-menu.open {
+    display: block;
+  }
+
+  .mobile-menu ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .mobile-menu a {
+    display: block;
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 500;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .mobile-menu a:hover { color: #4caf50; }
+
+  .btn-mobile {
+    display: inline-block;
+    background: #4caf50;
+    color: white !important;
+    padding: 0.75rem 2rem;
+    border-radius: 50px;
+    text-align: center;
+    margin-top: 1rem;
+    border-bottom: none !important;
+  }
+
+  /* Footer */
+  .footer {
+    background: #0d2618;
+    color: rgba(255, 255, 255, 0.85);
+    padding: 3.5rem 1.5rem 1.5rem;
+    margin-top: 0;
+  }
+
+  .footer-top {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-bottom: 2rem;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 2.5rem;
+    margin-bottom: 2.5rem;
   }
 
-  .footer-content h3 {
-    color: #4caf50;
-    margin-bottom: 1rem;
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
   }
 
-  .footer-content a {
-    color: rgba(255, 255, 255, 0.9);
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 700;
   }
 
-  .footer-content ul {
+  .footer-logo:hover { color: white; }
+
+  .footer-tagline {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 0;
+    line-height: 1.5;
+  }
+
+  .footer-col h4 {
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .footer-col ul {
     list-style: none;
   }
 
-  .footer-content li {
-    margin-bottom: 0.5rem;
+  .footer-col li {
+    margin-bottom: 0.4rem;
+  }
+
+  .footer-col a {
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+
+  .footer-col a:hover {
+    color: #4caf50;
   }
 
   .footer-bottom {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 1rem;
+    padding-top: 1.5rem;
     text-align: center;
-    color: rgba(255, 255, 255, 0.8);
   }
 
-  @media (max-width: 768px) {
-    .nav-links {
-      gap: 1rem;
-      font-size: 0.9rem;
+  .footer-bottom p {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 0.25rem;
+  }
+
+  .footer-disclaimer {
+    font-size: 0.75rem !important;
+    color: rgba(255, 255, 255, 0.35) !important;
+    max-width: 600px;
+    margin: 0.5rem auto 0;
+  }
+
+  @media (max-width: 968px) {
+    .nav-links { display: none; }
+    .btn-nav { display: none; }
+    .hamburger { display: flex; }
+
+    .footer-top {
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
     }
   }
 
-  @media (max-width: 480px) {
-    .header nav {
-      flex-direction: column;
-      gap: 1rem;
+  @media (max-width: 576px) {
+    .footer-top {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
     }
 
-    .nav-links {
-      flex-direction: column;
-      gap: 0.5rem;
+    .announcement-bar {
+      font-size: 0.75rem;
+      padding: 0.4rem 0;
     }
   }
 </style>

@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Disallow non-content pages
+Disallow: /cart
+Disallow: /checkout
+
+# Sitemap
+Sitemap: https://nordleaf.de/sitemap-index.xml

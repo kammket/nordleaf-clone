@@ -1,0 +1,1402 @@
+---
+import Layout from '../layouts/Layout.astro';
+const siteUrl = 'https://nordleaf.de';
+const BTC_ADDRESS = 'bc1qp7tu4apamhwu8v5museyurks5ueatnsln605pc';
+---
+<Layout
+  title="Kasse – Nordleaf"
+  description="Schließe deine Bestellung bei Nordleaf sicher ab. Zahlung per Banküberweisung oder Bitcoin."
+  canonical={`${siteUrl}/checkout`}
+>
+  <section class="checkout-page">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="/">Startseite</a><span>/</span>
+        <a href="/cart">Warenkorb</a><span>/</span>
+        <span>Kasse</span>
+      </nav>
+
+      <!-- Progress Steps -->
+      <div class="checkout-steps">
+        <div class="step active" data-step="1">
+          <span class="step-num">1</span>
+          <span class="step-label">Adresse</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step" data-step="2">
+          <span class="step-num">2</span>
+          <span class="step-label">Zahlung</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step" data-step="3">
+          <span class="step-num">3</span>
+          <span class="step-label">Bestätigung</span>
+        </div>
+      </div>
+
+      <div class="checkout-layout">
+        <!-- Left: Steps -->
+        <div class="checkout-main">
+
+          <!-- STEP 1: Shipping Address -->
+          <div id="step-address" class="checkout-step-panel">
+            <h2>Lieferadresse</h2>
+            <form id="address-form" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="firstName">Vorname *</label>
+                  <input type="text" id="firstName" required placeholder="Max" />
+                </div>
+                <div class="form-group">
+                  <label for="lastName">Nachname *</label>
+                  <input type="text" id="lastName" required placeholder="Mustermann" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email">E-Mail *</label>
+                <input type="email" id="email" required placeholder="max@beispiel.de" />
+              </div>
+              <div class="form-group">
+                <label for="phone">Telefon *</label>
+                <input type="tel" id="phone" required placeholder="+49 170 1234567" />
+              </div>
+              <div class="form-group">
+                <label for="street">Straße und Hausnummer *</label>
+                <input type="text" id="street" required placeholder="Musterstraße 1" />
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="zip">PLZ *</label>
+                  <input type="text" id="zip" required placeholder="10115" />
+                </div>
+                <div class="form-group">
+                  <label for="city">Stadt *</label>
+                  <input type="text" id="city" required placeholder="Berlin" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="country">Land</label>
+                <select id="country">
+                  <option value="DE" selected>Deutschland</option>
+                  <option value="AT">Österreich</option>
+                  <option value="CH">Schweiz</option>
+                </select>
+              </div>
+              <div class="form-group checkbox-group">
+                <label>
+                  <input type="checkbox" id="save-address" />
+                  <span>Adresse für zukünftige Bestellungen speichern</span>
+                </label>
+              </div>
+              <button type="submit" class="btn-next">
+                Weiter zur Zahlung
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><polyline points="12 5 19 12 12 19"/></svg>
+              </button>
+            </form>
+          </div>
+
+          <!-- STEP 2: Payment Method -->
+          <div id="step-payment" class="checkout-step-panel" style="display:none;">
+            <h2>Zahlungsart wählen</h2>
+
+            <div class="payment-methods">
+              <label class="payment-method selected" data-method="bank">
+                <input type="radio" name="payMethod" value="bank" checked />
+                <div class="method-content">
+                  <div class="method-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                  </div>
+                  <div class="method-text">
+                    <strong>Banküberweisung</strong>
+                    <span>SEPA-Überweisung auf unser Konto</span>
+                  </div>
+                </div>
+              </label>
+
+              <label class="payment-method" data-method="btc">
+                <input type="radio" name="payMethod" value="btc" />
+                <div class="method-content">
+                  <div class="method-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11.767 19.089c4.924.868 6.14-6.025 1.216-6.894m-1.216 6.894L5.86 18.047m5.908 1.042-.347 1.97m1.563-8.864c4.924.869 6.14-6.025 1.215-6.893m-1.215 6.893-3.94-.694m5.155-6.2L8.29 4.26m5.908 1.042.348-1.97M7.48 20.364l3.126-17.727"/></svg>
+                  </div>
+                  <div class="method-text">
+                    <strong>Bitcoin</strong>
+                    <span>Direkte BTC-Zahlung, automatische Bestätigung</span>
+                  </div>
+                </div>
+              </label>
+            </div>
+
+            <div class="terms-check">
+              <label>
+                <input type="checkbox" id="terms-agree" />
+                <span>Ich akzeptiere die <a href="/agb">AGB</a> und <a href="/datenschutz">Datenschutzerklärung</a> *</span>
+              </label>
+            </div>
+
+            <div class="step-actions">
+              <button type="button" class="btn-back" id="back-to-address">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
+                Zurück
+              </button>
+              <button type="button" class="btn-next" id="go-to-confirm">
+                Bestellung aufgeben
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><polyline points="12 5 19 12 12 19"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 3: Confirmation / Payment Details -->
+          <div id="step-confirm" class="checkout-step-panel" style="display:none;">
+
+            <!-- Bank Transfer Confirmation -->
+            <div id="confirm-bank" style="display:none;">
+              <div class="confirm-header">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                <h2>Bestellung aufgegeben!</h2>
+                <p class="order-id-display">Bestellnummer: <strong id="order-id-bank"></strong></p>
+              </div>
+              <div class="bank-details-card">
+                <h3>Überweisungsdaten</h3>
+                <p class="bank-instruction">Bitte überweise den Gesamtbetrag an folgendes Konto. Verwende die Bestellnummer als Verwendungszweck.</p>
+                <div class="bank-info-grid">
+                  <div class="bank-field">
+                    <span class="field-label">Kontoinhaber</span>
+                    <span class="field-value">Nordleaf GmbH</span>
+                  </div>
+                  <div class="bank-field">
+                    <span class="field-label">Bank</span>
+                    <span class="field-value">Deutsche Bank</span>
+                  </div>
+                  <div class="bank-field">
+                    <span class="field-label">IBAN</span>
+                    <span class="field-value" id="bank-iban">DE89 3704 0044 0532 0130 00</span>
+                    <button class="copy-btn" data-copy="iban" title="Kopieren">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    </button>
+                  </div>
+                  <div class="bank-field">
+                    <span class="field-label">BIC</span>
+                    <span class="field-value">DEUTDEDBFRA</span>
+                  </div>
+                  <div class="bank-field highlight">
+                    <span class="field-label">Verwendungszweck</span>
+                    <span class="field-value" id="bank-reference"></span>
+                    <button class="copy-btn" data-copy="reference" title="Kopieren">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    </button>
+                  </div>
+                  <div class="bank-field highlight">
+                    <span class="field-label">Betrag</span>
+                    <span class="field-value" id="bank-amount"></span>
+                  </div>
+                </div>
+                <div class="bank-notice">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e67e22" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                  <span>Deine Bestellung wird nach Zahlungseingang innerhalb von 1-2 Werktagen bearbeitet und versendet.</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bitcoin Payment -->
+            <div id="confirm-btc" style="display:none;">
+              <div class="confirm-header">
+                <h2>Bitcoin-Zahlung</h2>
+                <p class="order-id-display">Bestellnummer: <strong id="order-id-btc"></strong></p>
+              </div>
+              <div class="btc-payment-card">
+                <div class="btc-amount-section">
+                  <div class="btc-amount-row">
+                    <div>
+                      <span class="btc-label">Zu zahlender Betrag</span>
+                      <span class="btc-eur-amount" id="btc-eur"></span>
+                    </div>
+                    <div class="btc-converted">
+                      <span class="btc-amount-big" id="btc-amount">Laden…</span>
+                      <span class="btc-unit">BTC</span>
+                    </div>
+                  </div>
+                  <div class="btc-rate-info" id="btc-rate-info">Kurs wird geladen…</div>
+                </div>
+
+                <div class="btc-qr-section">
+                  <div class="btc-qr" id="btc-qr">
+                    <canvas id="qr-canvas"></canvas>
+                  </div>
+                  <p class="btc-scan-hint">QR-Code scannen oder Adresse kopieren</p>
+                </div>
+
+                <div class="btc-address-section">
+                  <span class="btc-addr-label">Bitcoin-Adresse</span>
+                  <div class="btc-address-box">
+                    <code id="btc-addr">{BTC_ADDRESS}</code>
+                    <button class="copy-btn" data-copy="btc-addr" title="Kopieren">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="btc-status-section" id="btc-status">
+                  <div class="btc-status-waiting">
+                    <div class="pulse-dot"></div>
+                    <span>Warte auf Zahlung…</span>
+                  </div>
+                  <p class="btc-status-hint">Die Seite wird automatisch aktualisiert, sobald die Transaktion erkannt wird.</p>
+                </div>
+
+                <div class="btc-status-confirmed" id="btc-confirmed" style="display:none;">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  <h3>Zahlung empfangen!</h3>
+                  <p>Deine Bitcoin-Transaktion wurde erkannt. Deine Bestellung wird nun bearbeitet.</p>
+                  <a href="/products" class="btn-next" style="display:inline-flex;margin-top:1rem;">Weiter einkaufen</a>
+                </div>
+
+                <div class="btc-timer" id="btc-timer">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  <span>Zahlung erwartet innerhalb <strong id="timer-countdown">30:00</strong></span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Right: Order Summary (always visible) -->
+        <aside class="order-summary" id="order-summary">
+          <h2>Bestellübersicht</h2>
+          <div id="summary-items" class="summary-items"></div>
+          <div class="summary-rows">
+            <div class="summary-row">
+              <span>Zwischensumme</span>
+              <span id="s-subtotal">€0,00</span>
+            </div>
+            <div class="summary-row">
+              <span>Versand</span>
+              <span class="shipping-free">Kostenlos</span>
+            </div>
+            <div class="summary-row">
+              <span>MwSt. (19%)</span>
+              <span id="s-tax">€0,00</span>
+            </div>
+          </div>
+          <div class="summary-total">
+            <span>Gesamt</span>
+            <span id="s-total">€0,00</span>
+          </div>
+          <div class="summary-trust">
+            <div class="trust-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span>SSL-verschlüsselt</span>
+            </div>
+            <div class="trust-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              <span>Apothekenqualität</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- QR Code library -->
+  <script is:inline src="https://cdn.jsdelivr.net/npm/qrcode@1.5.4/build/qrcode.min.js"></script>
+
+  <script define:vars={{ BTC_ADDRESS }}>
+    // ---- Utilities ----
+    function fmt(n) { return `€${n.toFixed(2).replace('.', ',')}`; }
+    function generateOrderId() { return 'NL-' + Date.now().toString(36).toUpperCase() + Math.random().toString(36).substring(2, 5).toUpperCase(); }
+
+    // ---- State ----
+    let currentStep = 1;
+    let orderData = {};
+    let payMethod = 'bank';
+    let orderId = '';
+    let totalEur = 0;
+    let btcCheckInterval = null;
+    let timerInterval = null;
+
+    // ---- Cart/Summary ----
+    function getCart() {
+      try { return JSON.parse(localStorage.getItem('nordleaf_cart') || '{"items":[],"total":0}'); }
+      catch { return { items: [], total: 0 }; }
+    }
+
+    function renderSummary() {
+      const cart = getCart();
+      const itemsEl = document.getElementById('summary-items');
+      if (cart.items.length === 0) {
+        itemsEl.innerHTML = '<p style="color:#999;font-size:0.9rem;">Warenkorb ist leer</p>';
+        return;
+      }
+      let html = '';
+      cart.items.forEach(item => {
+        html += `
+          <div class="s-item">
+            <img src="${item.image}" alt="${item.name}" />
+            <div class="s-item-info">
+              <span class="s-item-name">${item.name}</span>
+              <span class="s-item-qty">${item.quantity}×</span>
+            </div>
+            <span class="s-item-price">${fmt(item.price * item.quantity)}</span>
+          </div>`;
+      });
+      itemsEl.innerHTML = html;
+
+      const subtotal = cart.items.reduce((s, i) => s + i.price * i.quantity, 0);
+      const tax = subtotal * 0.19;
+      totalEur = parseFloat((subtotal + tax).toFixed(2));
+      document.getElementById('s-subtotal').textContent = fmt(subtotal);
+      document.getElementById('s-tax').textContent = fmt(tax);
+      document.getElementById('s-total').textContent = fmt(totalEur);
+    }
+
+    // ---- Step Navigation ----
+    function goToStep(n) {
+      currentStep = n;
+      document.querySelectorAll('.checkout-step-panel').forEach(p => p.style.display = 'none');
+      document.querySelectorAll('.checkout-steps .step').forEach(s => {
+        const sn = parseInt(s.dataset.step);
+        s.classList.toggle('active', sn <= n);
+        s.classList.toggle('completed', sn < n);
+      });
+      if (n === 1) document.getElementById('step-address').style.display = '';
+      if (n === 2) document.getElementById('step-payment').style.display = '';
+      if (n === 3) {
+        document.getElementById('step-confirm').style.display = '';
+        showConfirmation();
+      }
+    }
+
+    // ---- Step 1: Address Form ----
+    document.getElementById('address-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const fields = ['firstName', 'lastName', 'email', 'phone', 'street', 'zip', 'city'];
+      let valid = true;
+      fields.forEach(id => {
+        const input = document.getElementById(id);
+        const val = input.value.trim();
+        if (!val) { input.classList.add('error'); valid = false; }
+        else { input.classList.remove('error'); orderData[id] = val; }
+      });
+      orderData.country = document.getElementById('country').value;
+      if (valid) goToStep(2);
+    });
+
+    // ---- Step 2: Payment Method ----
+    document.querySelectorAll('.payment-method').forEach(el => {
+      el.addEventListener('click', () => {
+        document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('selected'));
+        el.classList.add('selected');
+        el.querySelector('input').checked = true;
+        payMethod = el.querySelector('input').value;
+      });
+    });
+
+    document.getElementById('back-to-address').addEventListener('click', () => goToStep(1));
+
+    document.getElementById('go-to-confirm').addEventListener('click', () => {
+      const terms = document.getElementById('terms-agree');
+      if (!terms.checked) {
+        terms.closest('label').classList.add('shake');
+        setTimeout(() => terms.closest('label').classList.remove('shake'), 500);
+        return;
+      }
+      orderId = generateOrderId();
+      goToStep(3);
+    });
+
+    // ---- Step 3: Confirmation ----
+    function showConfirmation() {
+      if (payMethod === 'bank') {
+        document.getElementById('confirm-bank').style.display = '';
+        document.getElementById('confirm-btc').style.display = 'none';
+        document.getElementById('order-id-bank').textContent = orderId;
+        document.getElementById('bank-reference').textContent = orderId;
+        document.getElementById('bank-amount').textContent = fmt(totalEur);
+        // Save order
+        saveOrder('bank', 'pending');
+      } else {
+        document.getElementById('confirm-bank').style.display = 'none';
+        document.getElementById('confirm-btc').style.display = '';
+        document.getElementById('order-id-btc').textContent = orderId;
+        document.getElementById('btc-eur').textContent = fmt(totalEur);
+        // Fetch BTC price and start monitoring
+        initBtcPayment();
+        saveOrder('btc', 'awaiting_payment');
+      }
+      // Clear cart
+      localStorage.removeItem('nordleaf_cart');
+      window.dispatchEvent(new Event('cart-updated'));
+    }
+
+    function saveOrder(method, status) {
+      const order = { id: orderId, ...orderData, method, status, total: totalEur, date: new Date().toISOString(), items: getCart().items };
+      try {
+        const orders = JSON.parse(localStorage.getItem('nordleaf_orders') || '[]');
+        orders.push(order);
+        localStorage.setItem('nordleaf_orders', JSON.stringify(orders));
+      } catch {}
+    }
+
+    // ---- Bitcoin Payment ----
+    async function initBtcPayment() {
+      try {
+        const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur');
+        const data = await res.json();
+        const btcPrice = data.bitcoin.eur;
+        const btcAmount = (totalEur / btcPrice).toFixed(8);
+
+        document.getElementById('btc-amount').textContent = btcAmount;
+        document.getElementById('btc-rate-info').textContent = `1 BTC = ${fmt(btcPrice)} (Kurs aktualisiert)`;
+
+        // Generate QR code
+        const uri = `bitcoin:${BTC_ADDRESS}?amount=${btcAmount}&label=Nordleaf-${orderId}`;
+        if (typeof QRCode !== 'undefined') {
+          const canvas = document.getElementById('qr-canvas');
+          QRCode.toCanvas(canvas, uri, { width: 200, margin: 2, color: { dark: '#1a472a', light: '#ffffff' } });
+        }
+
+        // Start polling mempool.space for incoming transactions
+        startPaymentCheck();
+        startTimer(30 * 60); // 30 min timer
+      } catch (err) {
+        document.getElementById('btc-amount').textContent = 'Fehler';
+        document.getElementById('btc-rate-info').textContent = 'Kurs konnte nicht geladen werden. Bitte Seite neu laden.';
+      }
+    }
+
+    function startPaymentCheck() {
+      let lastTxCount = -1;
+      const check = async () => {
+        try {
+          const res = await fetch(`https://mempool.space/api/address/${BTC_ADDRESS}/txs`);
+          const txs = await res.json();
+          if (lastTxCount === -1) { lastTxCount = txs.length; return; }
+          if (txs.length > lastTxCount) {
+            // New transaction detected!
+            paymentConfirmed();
+          }
+        } catch {}
+      };
+      check(); // initial baseline
+      btcCheckInterval = setInterval(check, 15000); // check every 15s
+    }
+
+    function paymentConfirmed() {
+      clearInterval(btcCheckInterval);
+      clearInterval(timerInterval);
+      document.getElementById('btc-status').style.display = 'none';
+      document.getElementById('btc-timer').style.display = 'none';
+      document.getElementById('btc-confirmed').style.display = '';
+      // Update stored order
+      try {
+        const orders = JSON.parse(localStorage.getItem('nordleaf_orders') || '[]');
+        const order = orders.find(o => o.id === orderId);
+        if (order) order.status = 'paid';
+        localStorage.setItem('nordleaf_orders', JSON.stringify(orders));
+      } catch {}
+    }
+
+    function startTimer(seconds) {
+      let remaining = seconds;
+      const el = document.getElementById('timer-countdown');
+      timerInterval = setInterval(() => {
+        remaining--;
+        if (remaining <= 0) { clearInterval(timerInterval); el.textContent = '0:00'; return; }
+        const m = Math.floor(remaining / 60);
+        const s = remaining % 60;
+        el.textContent = `${m}:${s.toString().padStart(2, '0')}`;
+      }, 1000);
+    }
+
+    // ---- Copy buttons ----
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.copy;
+        let text = '';
+        if (target === 'iban') text = document.getElementById('bank-iban').textContent.replace(/\s/g, '');
+        else if (target === 'reference') text = document.getElementById('bank-reference').textContent;
+        else if (target === 'btc-addr') text = document.getElementById('btc-addr').textContent;
+        navigator.clipboard.writeText(text).then(() => {
+          const orig = btn.innerHTML;
+          btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>';
+          setTimeout(() => btn.innerHTML = orig, 1500);
+        });
+      });
+    });
+
+    // ---- Init ----
+    renderSummary();
+    if (getCart().items.length === 0) {
+      // If cart is empty and we're not on step 3, redirect
+      if (!window.location.hash.includes('order')) {
+        // Allow viewing if already on confirmation
+      }
+    }
+  </script>
+</Layout>
+
+<style>
+  .checkout-page {
+    padding: 2rem 1.5rem 4rem;
+    min-height: 60vh;
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    color: #999;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .breadcrumb a { color: #666; transition: color 0.2s; }
+  .breadcrumb a:hover { color: #4caf50; }
+
+  /* Progress Steps */
+  .checkout-steps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 2.5rem;
+    padding: 0 1rem;
+  }
+
+  .step {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0.4;
+    transition: opacity 0.3s;
+  }
+
+  .step.active { opacity: 1; }
+
+  .step-num {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #e8ede9;
+    color: #888;
+    font-weight: 700;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+  }
+
+  .step.active .step-num {
+    background: #1a472a;
+    color: white;
+  }
+
+  .step.completed .step-num {
+    background: #4caf50;
+    color: white;
+  }
+
+  .step-label {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #555;
+  }
+
+  .step.active .step-label { color: #1a472a; }
+
+  .step-line {
+    width: 60px;
+    height: 2px;
+    background: #e8ede9;
+    margin: 0 0.75rem;
+  }
+
+  /* Layout */
+  .checkout-layout {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  /* Main Panel */
+  .checkout-main {
+    min-width: 0;
+  }
+
+  .checkout-step-panel {
+    background: white;
+    border: 1px solid #e8ede9;
+    border-radius: 14px;
+    padding: 2rem;
+  }
+
+  .checkout-step-panel h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1a472a;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Form Styles */
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 0.35rem;
+  }
+
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 0.7rem 0.9rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: #333;
+    background: white;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus {
+    outline: none;
+    border-color: #4caf50;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+  }
+
+  .form-group input.error {
+    border-color: #e53935;
+    box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.1);
+  }
+
+  .form-group input::placeholder {
+    color: #bbb;
+  }
+
+  .checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-size: 0.88rem;
+    color: #666;
+  }
+
+  .checkbox-group input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #4caf50;
+    flex-shrink: 0;
+  }
+
+  /* Buttons */
+  .btn-next {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: #4caf50;
+    color: white;
+    border: none;
+    padding: 0.85rem 1.75rem;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+
+  .btn-next:hover {
+    background: #43a047;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+  }
+
+  .btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: none;
+    color: #666;
+    border: 1px solid #ddd;
+    padding: 0.75rem 1.25rem;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.92rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-back:hover {
+    background: #f8faf9;
+    border-color: #ccc;
+  }
+
+  .step-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+    gap: 1rem;
+  }
+
+  /* Payment Methods */
+  .payment-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .payment-method {
+    display: block;
+    border: 2px solid #e8ede9;
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .payment-method:hover {
+    border-color: #c8d6c9;
+  }
+
+  .payment-method.selected {
+    border-color: #4caf50;
+    background: #f6fdf6;
+  }
+
+  .payment-method input[type="radio"] {
+    display: none;
+  }
+
+  .method-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .method-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: #f0f4f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #1a472a;
+  }
+
+  .payment-method.selected .method-icon {
+    background: #e8f5e9;
+    color: #4caf50;
+  }
+
+  .method-text strong {
+    display: block;
+    font-size: 0.95rem;
+    color: #1a472a;
+  }
+
+  .method-text span {
+    font-size: 0.82rem;
+    color: #888;
+  }
+
+  .terms-check {
+    padding: 1rem;
+    background: #f8faf9;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+  }
+
+  .terms-check label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-size: 0.88rem;
+    color: #555;
+  }
+
+  .terms-check input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #4caf50;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .terms-check a {
+    color: #1a472a;
+    text-decoration: underline;
+  }
+
+  .shake {
+    animation: shake 0.4s ease;
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
+  }
+
+  /* Confirmation: Bank */
+  .confirm-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .confirm-header svg {
+    margin-bottom: 0.75rem;
+  }
+
+  .confirm-header h2 {
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+
+  .order-id-display {
+    font-size: 0.92rem;
+    color: #666;
+  }
+
+  .order-id-display strong {
+    color: #1a472a;
+    font-family: monospace;
+    font-size: 1rem;
+  }
+
+  .bank-details-card {
+    background: #f8faf9;
+    border: 1px solid #e8ede9;
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+
+  .bank-details-card h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #1a472a;
+    margin-bottom: 0.5rem;
+  }
+
+  .bank-instruction {
+    font-size: 0.88rem;
+    color: #666;
+    margin-bottom: 1.25rem;
+    line-height: 1.5;
+  }
+
+  .bank-info-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .bank-field {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 0.75rem;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #eee;
+  }
+
+  .bank-field.highlight {
+    background: #e8f5e9;
+    border-color: #c8e6c9;
+  }
+
+  .field-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    min-width: 120px;
+    flex-shrink: 0;
+  }
+
+  .field-value {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: #333;
+    flex: 1;
+    word-break: break-all;
+  }
+
+  .bank-field.highlight .field-value {
+    color: #1a472a;
+    font-weight: 700;
+  }
+
+  .copy-btn {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: #f0f4f0;
+    color: #666;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.15s;
+    padding: 0;
+  }
+
+  .copy-btn:hover {
+    background: #e0e8e0;
+    color: #1a472a;
+  }
+
+  .bank-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+    padding: 0.75rem;
+    background: #fff8f0;
+    border: 1px solid #fde0b0;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    color: #a0723c;
+    line-height: 1.5;
+  }
+
+  .bank-notice svg { flex-shrink: 0; margin-top: 1px; }
+
+  /* Confirmation: Bitcoin */
+  .btc-payment-card {
+    background: #f8faf9;
+    border: 1px solid #e8ede9;
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+
+  .btc-amount-section {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid #e8ede9;
+  }
+
+  .btc-amount-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .btc-label {
+    display: block;
+    font-size: 0.82rem;
+    color: #888;
+    margin-bottom: 0.15rem;
+  }
+
+  .btc-eur-amount {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1a472a;
+  }
+
+  .btc-converted {
+    text-align: right;
+  }
+
+  .btc-amount-big {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #f7931a;
+    font-family: monospace;
+  }
+
+  .btc-unit {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #999;
+    margin-left: 0.25rem;
+  }
+
+  .btc-rate-info {
+    font-size: 0.78rem;
+    color: #999;
+  }
+
+  .btc-qr-section {
+    text-align: center;
+    margin-bottom: 1.25rem;
+  }
+
+  .btc-qr {
+    display: inline-flex;
+    padding: 1rem;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #e8ede9;
+    margin-bottom: 0.5rem;
+  }
+
+  .btc-qr canvas {
+    display: block;
+  }
+
+  .btc-scan-hint {
+    font-size: 0.8rem;
+    color: #999;
+  }
+
+  .btc-address-section {
+    margin-bottom: 1.25rem;
+  }
+
+  .btc-addr-label {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.4rem;
+  }
+
+  .btc-address-box {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 0.85rem;
+    background: white;
+    border: 1px solid #e8ede9;
+    border-radius: 8px;
+  }
+
+  .btc-address-box code {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #1a472a;
+    word-break: break-all;
+    flex: 1;
+    line-height: 1.4;
+  }
+
+  /* BTC Status */
+  .btc-status-section {
+    text-align: center;
+    padding: 1.25rem;
+    background: #fff8f0;
+    border: 1px solid #fde0b0;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+  }
+
+  .btc-status-waiting {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    font-weight: 600;
+    color: #d48806;
+    margin-bottom: 0.4rem;
+  }
+
+  .pulse-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #f7931a;
+    animation: pulse 1.5s ease infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.3); }
+  }
+
+  .btc-status-hint {
+    font-size: 0.8rem;
+    color: #a0723c;
+  }
+
+  .btc-status-confirmed {
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+
+  .btc-status-confirmed h3 {
+    color: #1a472a;
+    font-size: 1.2rem;
+    margin: 0.75rem 0 0.5rem;
+  }
+
+  .btc-status-confirmed p {
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  .btc-timer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    font-size: 0.82rem;
+    color: #999;
+  }
+
+  .btc-timer strong {
+    color: #1a472a;
+    font-family: monospace;
+  }
+
+  /* Order Summary Sidebar */
+  .order-summary {
+    position: sticky;
+    top: 2rem;
+    background: #f8faf9;
+    border: 1px solid #e8ede9;
+    border-radius: 14px;
+    padding: 1.5rem;
+  }
+
+  .order-summary h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1a472a;
+    margin-bottom: 1rem;
+    padding-bottom: 0.65rem;
+    border-bottom: 1px solid #e8ede9;
+  }
+
+  .summary-items {
+    margin-bottom: 1rem;
+  }
+
+  .s-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #f0f2f1;
+  }
+
+  .s-item:last-child { border-bottom: none; }
+
+  .s-item img {
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    object-fit: contain;
+    background: #f0f4f0;
+    padding: 2px;
+    flex-shrink: 0;
+  }
+
+  .s-item-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .s-item-name {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #333;
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .s-item-qty {
+    font-size: 0.75rem;
+    color: #999;
+  }
+
+  .s-item-price {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #1a472a;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .summary-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .summary-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.88rem;
+    color: #666;
+  }
+
+  .summary-row span:last-child { font-weight: 600; color: #333; }
+  .shipping-free { color: #4caf50 !important; font-weight: 600; }
+
+  .summary-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0.75rem;
+    border-top: 2px solid #1a472a;
+  }
+
+  .summary-total span:first-child { font-weight: 700; color: #1a472a; }
+  .summary-total span:last-child { font-size: 1.2rem; font-weight: 800; color: #1a472a; }
+
+  .summary-trust {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid #e8ede9;
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    color: #777;
+  }
+
+  .trust-item svg { flex-shrink: 0; }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 960px) {
+    .checkout-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .order-summary {
+      position: static;
+      order: -1;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .checkout-page {
+      padding: 1.25rem 1rem 3rem;
+    }
+
+    .checkout-steps {
+      margin-bottom: 1.5rem;
+    }
+
+    .step-label {
+      display: none;
+    }
+
+    .step-line {
+      width: 40px;
+      margin: 0 0.4rem;
+    }
+
+    .checkout-step-panel {
+      padding: 1.25rem;
+      border-radius: 12px;
+    }
+
+    .checkout-step-panel h2 {
+      font-size: 1.15rem;
+    }
+
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+
+    .step-actions {
+      flex-direction: column-reverse;
+      gap: 0.75rem;
+    }
+
+    .step-actions .btn-back,
+    .step-actions .btn-next {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .btn-next {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .btc-amount-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .btc-converted {
+      text-align: left;
+    }
+
+    .bank-field {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+    }
+
+    .field-label {
+      min-width: unset;
+    }
+
+    .bank-field .copy-btn {
+      align-self: flex-end;
+      margin-top: -1.5rem;
+    }
+
+    .order-summary {
+      padding: 1.25rem;
+      border-radius: 12px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .method-content {
+      gap: 0.75rem;
+    }
+
+    .method-icon {
+      width: 38px;
+      height: 38px;
+    }
+
+    .method-text strong {
+      font-size: 0.9rem;
+    }
+
+    .method-text span {
+      font-size: 0.78rem;
+    }
+
+    .btc-amount-big {
+      font-size: 1.15rem;
+    }
+  }
+</style>

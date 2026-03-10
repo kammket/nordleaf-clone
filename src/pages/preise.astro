@@ -1,0 +1,292 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+---
+
+<Layout
+  title="Preise - Cannabis-Rezept ab €9,90 | Nordleaf"
+  description="Transparente Preise bei Nordleaf. All-in-One Paket ab €9,90 + Medikament oder Nur Rezept für €19,90. Keine versteckten Kosten."
+  keywords="Cannabis Rezept Preis, medizinisches Cannabis Kosten, Cannabis Apotheke Preise"
+>
+  <Breadcrumb items={[{name: "Preise"}]} />
+  <section class="page-hero">
+    <div class="container">
+      <span class="hero-tag">Preise</span>
+      <h1>Transparent & <span class="hl">fair</span></h1>
+      <p>Keine versteckten Kosten. Du zahlst nur, was du siehst.</p>
+    </div>
+  </section>
+
+  <section class="pricing-section">
+    <div class="container">
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h2>Nur Rezept</h2>
+            <p>Rezept zum Einlösen in einer Apotheke deiner Wahl</p>
+          </div>
+          <div class="pricing-price">
+            <span class="amount">€19,90</span>
+            <span class="period">einmalig</span>
+          </div>
+          <ul class="features">
+            <li>✓ Ärztliche Beratung per Videochat</li>
+            <li>✓ Cannabis-Rezept</li>
+            <li>✓ Einlösbar in jeder Apotheke</li>
+            <li>✓ Digitaler Rezeptversand</li>
+          </ul>
+          <a href="/wie-funktionierts" class="btn btn-outline">Rezept anfordern</a>
+        </div>
+
+        <div class="pricing-card featured">
+          <div class="badge">Beliebteste Wahl</div>
+          <div class="pricing-header">
+            <h2>All-in-One</h2>
+            <p>Rezept + Blüten direkt geliefert</p>
+          </div>
+          <div class="pricing-price">
+            <span class="amount">€9,90</span>
+            <span class="period">+ Medikament</span>
+          </div>
+          <ul class="features">
+            <li>✓ Ärztliche Beratung per Videochat</li>
+            <li>✓ Cannabis-Rezept</li>
+            <li>✓ Blüten direkt an deine Haustür</li>
+            <li>✓ Lieferung in 1-3 Werktagen</li>
+            <li>✓ 100% Verfügbarkeit aller Sorten</li>
+            <li>✓ Diskrete neutrale Verpackung</li>
+          </ul>
+          <a href="/wie-funktionierts" class="btn btn-primary">Jetzt starten</a>
+        </div>
+      </div>
+
+      <div class="price-info">
+        <h3>So setzen sich die Kosten zusammen</h3>
+        <div class="info-grid">
+          <div class="info-card">
+            <h4>Servicegebühr</h4>
+            <p>Die Servicegebühr deckt die ärztliche Beratung, Rezeptausstellung und Plattformnutzung ab. Du zahlst nur bei erfolgreicher Rezeptausstellung.</p>
+          </div>
+          <div class="info-card">
+            <h4>Medikamentenkosten</h4>
+            <p>Die Kosten für dein Cannabis-Medikament variieren je nach Sorte und Menge. In unserem <a href="/products">Live-Bestand</a> findest du alle Preise pro Gramm.</p>
+          </div>
+          <div class="info-card">
+            <h4>Versandkosten</h4>
+            <p>Der Versand deines Medikaments ist im All-in-One Paket bereits enthalten. Diskrete Lieferung direkt an deine Haustür.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="guarantee">
+        <h3>Unsere Garantie</h3>
+        <p>Wird dein Antrag abgelehnt, entstehen dir <strong>keine Kosten</strong>. Du zahlst die Servicegebühr nur bei erfolgreicher Rezeptausstellung.</p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero {
+    background: linear-gradient(135deg, #0d2618, #1a472a, #2d6a47);
+    color: white;
+    padding: 3.5rem 1.5rem;
+    text-align: center;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    background: rgba(76,175,80,0.15);
+    border: 1px solid rgba(76,175,80,0.3);
+    color: #81c784;
+    padding: 0.3rem 1rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+
+  .page-hero h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+  }
+
+  .hl { color: #4caf50; }
+
+  .page-hero p {
+    color: rgba(255,255,255,0.7);
+    font-size: 1.1rem;
+  }
+
+  .pricing-section {
+    padding: 4rem 1.5rem;
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 850px;
+    margin: 0 auto 4rem;
+  }
+
+  .pricing-card {
+    background: white;
+    border: 2px solid #e8ede9;
+    border-radius: 16px;
+    padding: 2.5rem;
+    text-align: center;
+    position: relative;
+  }
+
+  .pricing-card.featured {
+    border-color: #4caf50;
+    box-shadow: 0 8px 32px rgba(76,175,80,0.15);
+  }
+
+  .badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #4caf50;
+    color: white;
+    padding: 0.35rem 1.25rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .pricing-header h2 {
+    font-size: 1.5rem;
+    color: #1a472a;
+    margin-bottom: 0.25rem;
+  }
+
+  .pricing-header p {
+    color: #888;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .amount {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #1a472a;
+  }
+
+  .period {
+    display: block;
+    color: #888;
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+
+  .features {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 2rem;
+  }
+
+  .features li {
+    padding: 0.5rem 0;
+    color: #555;
+    font-size: 0.95rem;
+  }
+
+  .pricing-card .btn {
+    display: block;
+    width: 100%;
+    padding: 0.85rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.2s;
+  }
+
+  .btn-primary {
+    background: #4caf50;
+    color: white;
+    border: 2px solid #4caf50;
+  }
+  .btn-primary:hover { background: #43a047; border-color: #43a047; color: white; }
+
+  .btn-outline {
+    background: transparent;
+    color: #1a472a;
+    border: 2px solid #1a472a;
+  }
+  .btn-outline:hover { background: #1a472a; color: white; }
+
+  .price-info {
+    max-width: 850px;
+    margin: 0 auto 3rem;
+  }
+
+  .price-info h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a472a;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .info-card {
+    background: #f8faf9;
+    border: 1px solid #e8ede9;
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+
+  .info-card h4 {
+    font-size: 1rem;
+    color: #1a472a;
+    margin-bottom: 0.5rem;
+  }
+
+  .info-card p {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  .info-card a {
+    color: #4caf50;
+    font-weight: 600;
+  }
+
+  .guarantee {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    background: #e8f5e9;
+    border-radius: 12px;
+    padding: 2rem;
+  }
+
+  .guarantee h3 {
+    font-size: 1.25rem;
+    color: #1a472a;
+    margin-bottom: 0.5rem;
+  }
+
+  .guarantee p {
+    color: #555;
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 768px) {
+    .pricing-grid { grid-template-columns: 1fr; max-width: 400px; }
+    .info-grid { grid-template-columns: 1fr; }
+    .page-hero h1 { font-size: 1.75rem; }
+  }
+</style>

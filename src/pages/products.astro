@@ -1,196 +1,964 @@
 ---
-// Products Page
-
 import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import { products, categories, brands, origins, allEffects } from '../utils/products';
+
+const blueten = products.filter(p => p.category === 'Cannabisblüten');
+const extrakte = products.filter(p => p.category === 'Cannabisextrakte');
+const vapes = products.filter(p => p.category === 'THC Vapes');
+const shots = products.filter(p => p.category === 'THC Shots');
+const kapseln = products.filter(p => p.category === 'Kapseln & Edibles');
+const totalCount = products.length;
 
 const siteUrl = 'https://nordleaf.de';
 
-const breadcrumbs = [
-  { name: 'Home', url: siteUrl },
-  { name: 'Products', url: `${siteUrl}/products` },
-];
-
-const structuredData = {
-  '@context': 'https://schema.org',
-  '@type': 'CollectionPage',
-  name: 'Products',
-  description: 'Browse our complete collection of organic products',
-  url: `${siteUrl}/products`,
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Medizinisches Cannabis Live-Bestand",
+  "description": `Über ${totalCount} medizinische Cannabis-Produkte: Cannabisblüten, Extrakte, THC Vapes, Shots und Kapseln.`,
+  "numberOfItems": totalCount,
+  "itemListElement": products.slice(0, 50).map((p, i) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "name": p.name,
+    "url": `${siteUrl}/${p.slug}`
+  }))
 };
-
-const allProducts = [
-  {
-    id: '1',
-    name: 'Organic Green Tea',
-    description: 'Premium loose-leaf organic green tea',
-    price: 19.99,
-    image: '/images/product-green-tea.jpg',
-    category: 'Beverages',
-    rating: 4.9,
-    reviewCount: 54,
-  },
-  {
-    id: '2',
-    name: 'Herbal Blend Mix',
-    description: 'Soothing herbal blend with chamomile and lavender',
-    price: 22.99,
-    image: '/images/product-herbal.jpg',
-    category: 'Beverages',
-    rating: 4.8,
-    reviewCount: 28,
-  },
-  {
-    id: '3',
-    name: 'Face Moisturizer',
-    description: 'Organic face moisturizer for all skin types',
-    price: 39.99,
-    image: '/images/product-moisturizer.jpg',
-    category: 'Skincare',
-    rating: 4.6,
-    reviewCount: 42,
-  },
-  {
-    id: '4',
-    name: 'Body Lotion',
-    description: 'Nourishing body lotion with natural oils',
-    price: 34.99,
-    image: '/images/product-lotion.jpg',
-    category: 'Skincare',
-    rating: 4.5,
-    reviewCount: 35,
-  },
-];
 ---
 
 <Layout
-  title="Shop Products - Nordleaf"
-  description="Browse our complete collection of organic products including teas, skincare, supplements, and more. Free shipping on orders over €50."
-  canonical={`${siteUrl}/products`}
-  ogImage="/images/og-products.jpg"
-  keywords="organic products, buy organic, natural skincare, supplements, eco-friendly"
-  structuredData={structuredData}
+  title="Medizinisches Cannabis Live-Bestand | Blüten, Extrakte, Vapes & Shots | Nordleaf"
+  description="Über 180 medizinische Cannabis-Produkte auf Lager: Cannabisblüten ab 1€/g, THC Extrakte, Vapes und Shots. 100% Verfügbarkeit, Lieferung in 1-3 Werktagen. Alle Top-Marken: avaay, DEMECAN, Curaleaf, Four 20 Pharma."
+  keywords="medizinisches Cannabis kaufen, Cannabisblüten bestellen, THC Blüten Deutschland, Cannabis Apotheke online, THC Vape kaufen, Cannabisextrakte, Cannabis auf Rezept, avaay Medical, DEMECAN, Four 20 Pharma, Curaleaf"
+  structuredData={itemListSchema}
 >
-  <div class="products-page">
-    <section class="page-header">
-      <div class="container">
-        <h1>Our Products</h1>
-        <p>Discover our carefully curated collection of organic and sustainable products</p>
+  <Breadcrumb items={[{name: "Live-Bestand"}]} />
+  <section class="products-hero">
+    <div class="container">
+      <h1>Medizinisches Cannabis <span class="highlight">Live-Bestand</span></h1>
+      <p>Über {totalCount} Produkte immer auf Lager — Cannabisblüten, Extrakte, THC Vapes, Shots und mehr. 100% Verfügbarkeit garantiert.</p>
+      <div class="hero-search">
+        <input type="text" id="searchInput" placeholder="Sorte, Marke oder Produkt suchen..." autocomplete="off" />
+        <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="6" stroke="#999" stroke-width="2"/><line x1="13" y1="13" x2="18" y2="18" stroke="#999" stroke-width="2" stroke-linecap="round"/></svg>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="products-section">
-      <div class="container">
-        <div class="products-grid">
-          {
-            allProducts.map((product) => (
-              <div class="product-card">
-                <div class="product-image">
-                  <img src={product.image} alt={product.name} loading="lazy" width="300" height="300" />
-                </div>
-                <div class="product-info">
-                  <h3>{product.name}</h3>
-                  <p>{product.description}</p>
-                  <span class="price">€{product.price.toFixed(2)}</span>
-                </div>
-              </div>
-            ))
-          }
+  <!-- Filter Bar -->
+  <section class="filter-section">
+    <div class="container">
+      <div class="filter-bar" id="filterBar">
+        <div class="filter-group">
+          <label>Kategorie</label>
+          <select id="filterCategory">
+            {categories.map(c => <option value={c}>{c}</option>)}
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Marke</label>
+          <select id="filterBrand">
+            {brands.map(b => <option value={b}>{b}</option>)}
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Herkunft</label>
+          <select id="filterOrigin">
+            {origins.map(o => <option value={o}>{o}</option>)}
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Sortierung</label>
+          <select id="filterSort">
+            <option value="name">Name A-Z</option>
+            <option value="price-asc">Preis aufsteigend</option>
+            <option value="price-desc">Preis absteigend</option>
+            <option value="thc-desc">THC absteigend</option>
+          </select>
         </div>
       </div>
-    </section>
-  </div>
+      <div class="results-count" id="resultsCount">{products.length} Produkte</div>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section class="products-section">
+    <div class="container">
+      <!-- Cannabis Blüten -->
+      <div class="category-section" id="blueten-section">
+        <h2 class="category-title">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2 C9 6 5 9 5 14 C5 19 8 22 12 22 C16 22 19 19 19 14 C19 9 15 6 12 2Z" fill="#4caf50"/>
+          </svg>
+          Cannabisblüten
+          <span class="count">{blueten.length}</span>
+        </h2>
+        <div class="products-grid" id="bluetenGrid">
+          {blueten.map((product) => (
+            <a href={`/${product.slug}`} class="product-card" 
+               data-category={product.category}
+               data-brand={product.brand}
+               data-origin={product.origin}
+               data-price={product.price}
+               data-thc={parseFloat(product.thc)}
+               data-name={product.strain}>
+              <div class="product-image">
+                <img src={product.image} alt={product.strain || product.name} loading="lazy" />
+                {product.badge && <span class="product-badge">{product.badge}</span>}
+                <span class="availability available">Sofort lieferbar</span>
+              </div>
+              <div class="product-info">
+                <div class="product-meta">
+                  <span class="product-brand">{product.brand}</span>
+                  <span class="product-origin">{product.originCode}</span>
+                </div>
+                <h3 class="product-strain">{product.strain}</h3>
+                <p class="product-name">{product.name}</p>
+                <div class="product-stats">
+                  <span class="thc">THC {product.thc}</span>
+                  <span class="cbd">CBD {product.cbd}</span>
+                </div>
+                <div class="product-effects">
+                  {product.effects.map((effect) => (
+                    <span class="effect-tag">{effect}</span>
+                  ))}
+                </div>
+                <div class="product-footer">
+                  <div class="product-price">
+                    <strong>€{product.price.toFixed(2)}</strong>
+                    <span>/ {product.priceUnit}</span>
+                  </div>
+                  <button class="btn-add" onclick={`event.preventDefault(); event.stopPropagation();`}>
+                    Hinzufügen
+                  </button>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Cannabis Extrakte -->
+      <div class="category-section" id="extrakte-section">
+        <h2 class="category-title">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <rect x="8" y="2" width="8" height="16" rx="4" fill="#4caf50"/>
+            <rect x="6" y="18" width="12" height="4" rx="2" fill="#2d6a47"/>
+          </svg>
+          Cannabisextrakte
+          <span class="count">{extrakte.length}</span>
+        </h2>
+        <div class="products-grid" id="extrakteGrid">
+          {extrakte.map((product) => (
+            <a href={`/${product.slug}`} class="product-card"
+               data-category={product.category}
+               data-brand={product.brand}
+               data-origin={product.origin}
+               data-price={product.price}
+               data-thc={parseFloat(product.thc)}
+               data-name={product.strain}>
+              <div class="product-image extrakt">
+                <img src={product.image} alt={product.strain || product.name} loading="lazy" />
+                {product.badge && <span class="product-badge">{product.badge}</span>}
+                <span class="availability available">Sofort lieferbar</span>
+              </div>
+              <div class="product-info">
+                <div class="product-meta">
+                  <span class="product-brand">{product.brand}</span>
+                  <span class="product-origin">{product.originCode}</span>
+                </div>
+                <h3 class="product-strain">{product.name}</h3>
+                <div class="product-stats">
+                  <span class="thc">THC {product.thc}</span>
+                  <span class="cbd">CBD {product.cbd}</span>
+                </div>
+                <div class="product-effects">
+                  {product.effects.map((effect) => (
+                    <span class="effect-tag">{effect}</span>
+                  ))}
+                </div>
+                <div class="product-footer">
+                  <div class="product-price">
+                    <strong>€{product.price.toFixed(2)}</strong>
+                    <span>/ {product.priceUnit}</span>
+                  </div>
+                  <button class="btn-add" onclick={`event.preventDefault(); event.stopPropagation();`}>
+                    Hinzufügen
+                  </button>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- THC Vapes -->
+      <div class="category-section" id="vapes-section">
+        <h2 class="category-title">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <rect x="10" y="2" width="4" height="18" rx="2" fill="#4caf50"/>
+            <circle cx="12" cy="22" r="2" fill="#2d6a47"/>
+          </svg>
+          THC Vapes
+          <span class="count">{vapes.length}</span>
+        </h2>
+        <div class="products-grid" id="vapesGrid">
+          {vapes.map((product) => (
+            <a href={`/${product.slug}`} class="product-card"
+               data-category={product.category}
+               data-brand={product.brand}
+               data-origin={product.origin}
+               data-price={product.price}
+               data-thc={parseFloat(product.thc) || 0}
+               data-name={product.strain || product.name}>
+              <div class="product-image vape">
+                <img src={product.image} alt={product.strain || product.name} loading="lazy" />
+                {product.badge && <span class="product-badge">{product.badge}</span>}
+                <span class="availability available">Sofort lieferbar</span>
+              </div>
+              <div class="product-info">
+                <div class="product-meta">
+                  <span class="product-brand">{product.brand}</span>
+                  <span class="product-origin">{product.originCode}</span>
+                </div>
+                <h3 class="product-strain">{product.name}</h3>
+                <div class="product-stats">
+                  {product.thc && <span class="thc">THC {product.thc}</span>}
+                  {product.cbd && <span class="cbd">CBD {product.cbd}</span>}
+                </div>
+                <div class="product-footer">
+                  <div class="product-price">
+                    <strong>€{product.price.toFixed(2)}</strong>
+                    <span>/ {product.priceUnit}</span>
+                  </div>
+                  <button class="btn-add" onclick={`event.preventDefault(); event.stopPropagation();`}>
+                    Hinzufügen
+                  </button>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THC Shots -->
+  {shots.length > 0 && (
+  <section class="products-section">
+    <div class="container">
+      <div class="category-section" id="shots-section">
+        <h2 class="category-title">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <rect x="7" y="4" width="10" height="16" rx="3" fill="#4caf50"/>
+            <rect x="9" y="2" width="6" height="3" rx="1" fill="#2d6a47"/>
+          </svg>
+          THC Shots
+          <span class="count">{shots.length}</span>
+        </h2>
+        <div class="products-grid" id="shotsGrid">
+          {shots.map((product) => (
+            <a href={`/${product.slug}`} class="product-card"
+               data-category={product.category}
+               data-brand={product.brand}
+               data-origin={product.origin}
+               data-price={product.price}
+               data-thc={parseFloat(product.thc) || 0}
+               data-name={product.strain || product.name}>
+              <div class="product-image shot">
+                <img src={product.image} alt={product.strain || product.name} loading="lazy" />
+                {product.badge && <span class="product-badge">{product.badge}</span>}
+                <span class="availability available">Sofort lieferbar</span>
+              </div>
+              <div class="product-info">
+                <div class="product-meta">
+                  <span class="product-brand">{product.brand}</span>
+                </div>
+                <h3 class="product-strain">{product.name}</h3>
+                <div class="product-stats">
+                  {product.thc && <span class="thc">THC {product.thc}</span>}
+                </div>
+                <div class="product-footer">
+                  <div class="product-price">
+                    <strong>€{product.price.toFixed(2)}</strong>
+                    <span>/ {product.priceUnit}</span>
+                  </div>
+                  <button class="btn-add" onclick={`event.preventDefault(); event.stopPropagation();`}>
+                    Hinzufügen
+                  </button>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+  )}
+
+  <!-- Kapseln & Edibles -->
+  {kapseln.length > 0 && (
+  <section class="products-section">
+    <div class="container">
+      <div class="category-section" id="kapseln-section">
+        <h2 class="category-title">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <ellipse cx="12" cy="12" rx="6" ry="10" fill="#4caf50"/>
+            <line x1="12" y1="2" x2="12" y2="22" stroke="#2d6a47" stroke-width="2"/>
+          </svg>
+          Kapseln & Edibles
+          <span class="count">{kapseln.length}</span>
+        </h2>
+        <div class="products-grid" id="kapselnGrid">
+          {kapseln.map((product) => (
+            <a href={`/${product.slug}`} class="product-card"
+               data-category={product.category}
+               data-brand={product.brand}
+               data-origin={product.origin}
+               data-price={product.price}
+               data-thc={parseFloat(product.thc) || 0}
+               data-name={product.strain || product.name}>
+              <div class="product-image kapseln">
+                <img src={product.image} alt={product.strain || product.name} loading="lazy" />
+                {product.badge && <span class="product-badge">{product.badge}</span>}
+                <span class="availability available">Sofort lieferbar</span>
+              </div>
+              <div class="product-info">
+                <div class="product-meta">
+                  <span class="product-brand">{product.brand}</span>
+                </div>
+                <h3 class="product-strain">{product.name}</h3>
+                <div class="product-stats">
+                  {product.thc && <span class="thc">THC {product.thc}</span>}
+                </div>
+                <div class="product-footer">
+                  <div class="product-price">
+                    <strong>€{product.price.toFixed(2)}</strong>
+                    <span>/ {product.priceUnit}</span>
+                  </div>
+                  <button class="btn-add" onclick={`event.preventDefault(); event.stopPropagation();`}>
+                    Hinzufügen
+                  </button>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+  )}
+
+  <!-- SEO Content Section -->
+  <section class="seo-content">
+    <div class="container">
+      <div class="seo-grid">
+        <div class="seo-block">
+          <h2>Medizinisches Cannabis online bestellen bei Nordleaf</h2>
+          <p>Nordleaf ist deine Online-Apotheke für medizinisches Cannabis in Deutschland. Mit über {totalCount} Produkten bieten wir eines der größten Sortimente an <strong>Cannabisblüten</strong>, <strong>THC Extrakten</strong>, <strong>Vapes</strong> und <strong>THC Shots</strong> — allesamt sofort lieferbar und 100% auf Lager. Ob du nach einer bestimmten Sorte wie <em>Wedding Cake</em>, <em>Gelato</em> oder <em>OG Kush</em> suchst, oder eine bestimmte Marke wie avaay Medical, DEMECAN oder Four 20 Pharma bevorzugst — bei uns wirst du fündig.</p>
+        </div>
+        <div class="seo-block">
+          <h3>Cannabis auf Rezept — So funktioniert es</h3>
+          <p>Seit der Legalisierung von Cannabis als Medizin in Deutschland können Patienten mit einem ärztlichen Rezept <strong>medizinisches Cannabis</strong> in zugelassenen Apotheken erwerben. Bei Nordleaf vereinfachen wir diesen Prozess: Fülle einen kurzen Fragebogen aus, erhalte dein Rezept von einem zugelassenen Arzt, und lass dir dein Medikament in 1-3 Werktagen diskret nach Hause liefern.</p>
+        </div>
+        <div class="seo-block">
+          <h3>Warum Nordleaf?</h3>
+          <ul>
+            <li><strong>100% Verfügbarkeit:</strong> Alle Produkte immer auf Lager</li>
+            <li><strong>Größtes Sortiment:</strong> Über {totalCount} Produkte von über 20 Top-Marken</li>
+            <li><strong>Schnelle Lieferung:</strong> Versand innerhalb von 24h</li>
+            <li><strong>Faire Preise:</strong> Cannabisblüten ab 1€/g</li>
+            <li><strong>Diskret & Sicher:</strong> Neutrale Verpackung, DSGVO-konform</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="products-cta">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Du hast deine Blüten gewählt?</h2>
+        <p>Starte jetzt deinen schnellen 3-Minuten-Fragebogen und erhalte dein Rezept.</p>
+        <a href="/wie-funktionierts" class="btn btn-primary btn-lg">Jetzt Rezept anfordern</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Client-side filtering
+    const filterCategory = document.getElementById('filterCategory') as HTMLSelectElement;
+    const filterBrand = document.getElementById('filterBrand') as HTMLSelectElement;
+    const filterOrigin = document.getElementById('filterOrigin') as HTMLSelectElement;
+    const filterSort = document.getElementById('filterSort') as HTMLSelectElement;
+    const resultsCount = document.getElementById('resultsCount');
+
+    function applyFilters() {
+      const cat = filterCategory?.value || 'Alle';
+      const brand = filterBrand?.value || 'Alle';
+      const origin = filterOrigin?.value || 'Alle';
+      const sort = filterSort?.value || 'name';
+
+      const allCards = document.querySelectorAll('.product-card') as NodeListOf<HTMLElement>;
+      let visible = 0;
+
+      allCards.forEach(card => {
+        const cardCat = card.dataset.category || '';
+        const cardBrand = card.dataset.brand || '';
+        const cardOrigin = card.dataset.origin || '';
+        
+        let show = true;
+        if (cat !== 'Alle' && cardCat !== cat) show = false;
+        if (brand !== 'Alle' && cardBrand !== brand) show = false;
+        if (origin !== 'Alle' && cardOrigin !== origin) show = false;
+
+        card.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+
+      // Show/hide category sections
+      const sections = ['blueten-section', 'extrakte-section', 'vapes-section', 'shots-section', 'kapseln-section'];
+      sections.forEach(id => {
+        const section = document.getElementById(id);
+        if (section) {
+          const visibleCards = section.querySelectorAll('.product-card:not([style*="display: none"])').length;
+          section.style.display = visibleCards > 0 ? '' : 'none';
+        }
+      });
+
+      if (resultsCount) {
+        resultsCount.textContent = `${visible} Produkte`;
+      }
+    }
+
+    filterCategory?.addEventListener('change', applyFilters);
+    filterBrand?.addEventListener('change', applyFilters);
+    filterOrigin?.addEventListener('change', applyFilters);
+    filterSort?.addEventListener('change', applyFilters);
+
+    // Search functionality
+    const searchInput = document.getElementById('searchInput') as HTMLInputElement;
+    let searchTimeout: number;
+    searchInput?.addEventListener('input', () => {
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(() => {
+        const query = searchInput.value.toLowerCase().trim();
+        const allCards = document.querySelectorAll('.product-card') as NodeListOf<HTMLElement>;
+        let visible = 0;
+        allCards.forEach(card => {
+          if (!query) {
+            card.style.display = '';
+            visible++;
+            return;
+          }
+          const name = (card.dataset.name || '').toLowerCase();
+          const brand = (card.dataset.brand || '').toLowerCase();
+          const cat = (card.dataset.category || '').toLowerCase();
+          const text = (card.textContent || '').toLowerCase();
+          const show = name.includes(query) || brand.includes(query) || cat.includes(query) || text.includes(query);
+          card.style.display = show ? '' : 'none';
+          if (show) visible++;
+        });
+        const sections = ['blueten-section', 'extrakte-section', 'vapes-section', 'shots-section', 'kapseln-section'];
+        sections.forEach(id => {
+          const section = document.getElementById(id);
+          if (section) {
+            const visibleCards = section.querySelectorAll('.product-card:not([style*="display: none"])').length;
+            section.style.display = visibleCards > 0 ? '' : 'none';
+          }
+        });
+        if (resultsCount) resultsCount.textContent = visible + ' Produkte';
+      }, 200) as unknown as number;
+    });
+
+    // Add to cart buttons
+    document.querySelectorAll('.btn-add').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const card = (e.target as HTMLElement).closest('.product-card') as HTMLElement;
+        if (!card) return;
+        
+        const name = card.querySelector('.product-strain')?.textContent || '';
+        const priceStr = card.dataset.price || '0';
+        const price = parseFloat(priceStr);
+        const img = card.querySelector('img')?.getAttribute('src') || '';
+        const id = card.getAttribute('href')?.replace('/', '') || '';
+        
+        try {
+          const cart = JSON.parse(localStorage.getItem('nordleaf_cart') || '{"items":[],"total":0}');
+          const existing = cart.items.find((item: any) => item.id === id);
+          if (existing) {
+            existing.quantity += 1;
+          } else {
+            cart.items.push({ id, name, price, quantity: 1, image: img });
+          }
+          cart.total = cart.items.reduce((sum: number, item: any) => sum + item.price * item.quantity, 0);
+          localStorage.setItem('nordleaf_cart', JSON.stringify(cart));
+          document.dispatchEvent(new Event('cart-updated'));
+          
+          const button = e.target as HTMLElement;
+          button.textContent = '✓ Hinzugefügt';
+          button.classList.add('added');
+          setTimeout(() => {
+            button.textContent = 'Hinzufügen';
+            button.classList.remove('added');
+          }, 1500);
+        } catch(err) {}
+      });
+    });
+  </script>
 </Layout>
 
 <style>
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-  }
-
-  .page-header {
-    background: linear-gradient(135deg, #1a472a 0%, #2d6a47 100%);
+  .products-hero {
+    background: linear-gradient(135deg, #0d2618 0%, #1a472a 50%, #2d6a47 100%);
     color: white;
-    padding: 3rem 0;
+    padding: 3rem 1.5rem;
     text-align: center;
-    margin-bottom: 2rem;
   }
 
-  .page-header h1 {
+  .products-hero h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+  }
+
+  .highlight {
+    color: #4caf50;
+  }
+
+  .products-hero p {
+    color: rgba(255,255,255,0.7);
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto 1.5rem;
+  }
+
+  .hero-search {
+    position: relative;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .hero-search input {
+    width: 100%;
+    padding: 0.85rem 1.25rem 0.85rem 3rem;
+    border: 2px solid rgba(255,255,255,0.2);
+    border-radius: 50px;
+    background: rgba(255,255,255,0.1);
     color: white;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s;
   }
 
-  .page-header p {
-    color: rgba(255, 255, 255, 0.9);
+  .hero-search input::placeholder {
+    color: rgba(255,255,255,0.5);
   }
 
+  .hero-search input:focus {
+    border-color: #4caf50;
+    background: rgba(255,255,255,0.15);
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  /* Filters */
+  .filter-section {
+    background: white;
+    border-bottom: 1px solid #e8ede9;
+    padding: 1rem 1.5rem;
+    position: sticky;
+    top: 52px;
+    z-index: 100;
+  }
+
+  .filter-bar {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .filter-group label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .filter-group select {
+    padding: 0.5rem 2rem 0.5rem 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #333;
+    background: white;
+    cursor: pointer;
+    appearance: auto;
+  }
+
+  .filter-group select:focus {
+    border-color: #4caf50;
+    outline: none;
+  }
+
+  .results-count {
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: 0.5rem;
+  }
+
+  /* Products section */
   .products-section {
-    padding: 2rem 0;
+    padding: 2rem 1.5rem 4rem;
+    background: #f8faf9;
+  }
+
+  .category-section {
+    margin-bottom: 3rem;
+  }
+
+  .category-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a472a;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #e8ede9;
+  }
+
+  .category-title .count {
+    background: #e8f5e9;
+    color: #2d6a47;
+    font-size: 0.85rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 50px;
+    font-weight: 600;
   }
 
   .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
   }
 
   .product-card {
     background: white;
-    border: 1px solid #ddd;
-    border-radius: 0.5rem;
+    border: 1px solid #e8ede9;
+    border-radius: 12px;
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
   }
 
   .product-card:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
     transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+    border-color: #4caf50;
   }
 
   .product-image {
+    position: relative;
+    background: linear-gradient(135deg, #1a472a, #2d6a47);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 160px;
     overflow: hidden;
-    aspect-ratio: 1;
-    background-color: #f5f7f6;
   }
 
   .product-image img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
+    height: 160px;
+    object-fit: contain;
+    background: #f0f4f0;
+    padding: 0.5rem;
   }
 
-  .product-card:hover .product-image img {
-    transform: scale(1.05);
+  .product-badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: #ff9800;
+    color: white;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .availability {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+
+  .available {
+    background: rgba(76, 175, 80, 0.2);
+    color: #4caf50;
+  }
+
+  .unavailable {
+    background: rgba(244, 67, 54, 0.2);
+    color: #f44336;
   }
 
   .product-info {
-    padding: 1.5rem;
+    padding: 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
   }
 
-  .product-info h3 {
-    margin: 0 0 0.5rem 0;
+  .product-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.3rem;
+  }
+
+  .product-brand {
+    color: #999;
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+
+  .product-origin {
+    background: #f0f0f0;
+    color: #666;
+    padding: 0.1rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+
+  .product-strain {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1a472a;
+    margin-bottom: 0.15rem;
+    line-height: 1.2;
+  }
+
+  .product-name {
+    font-size: 0.72rem;
+    color: #aaa;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .product-stats {
+    display: flex;
+    gap: 0.4rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .thc, .cbd {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+  }
+
+  .thc { background: #e8f5e9; color: #2d6a47; }
+  .cbd { background: #e3f2fd; color: #1565c0; }
+
+  .product-effects {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .effect-tag {
+    font-size: 0.68rem;
+    color: #888;
+    background: #f5f5f5;
+    padding: 0.12rem 0.35rem;
+    border-radius: 3px;
+  }
+
+  .product-footer {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.5rem;
+    border-top: 1px solid #f0f0f0;
+  }
+
+  .product-price strong {
+    font-size: 1.1rem;
     color: #1a472a;
   }
 
-  .price {
-    display: block;
+  .product-price span {
+    font-size: 0.8rem;
+    color: #999;
+  }
+
+  .btn-add {
+    background: #4caf50;
+    color: white;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .btn-add:hover {
+    background: #43a047;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .btn-add.added {
+    background: #1a472a;
+  }
+
+  /* CTA */
+  .products-cta {
+    padding: 0 0 4rem;
+    background: #f8faf9;
+  }
+
+  .cta-box {
+    background: linear-gradient(135deg, #1a472a 0%, #2d6a47 100%);
+    border-radius: 16px;
+    padding: 3rem;
+    text-align: center;
+    color: white;
+  }
+
+  .cta-box h2 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: white;
+  }
+
+  .cta-box p {
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 1.5rem;
+  }
+
+  .btn-primary {
+    background: #4caf50;
+    color: white;
+    padding: 0.75rem 1.75rem;
+    border-radius: 50px;
+    font-weight: 600;
+    display: inline-block;
+    transition: all 0.2s;
+    border: 2px solid #4caf50;
+  }
+  .btn-primary:hover {
+    background: #43a047;
+    border-color: #43a047;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+  }
+
+  .btn-lg { padding: 0.9rem 2rem; font-size: 1.05rem; }
+
+  @media (max-width: 968px) {
+    .products-grid { grid-template-columns: repeat(2, 1fr); }
+    .products-hero h1 { font-size: 2rem; }
+    .filter-bar { flex-direction: column; }
+  }
+
+  @media (max-width: 576px) {
+    .products-grid { grid-template-columns: 1fr; max-width: 380px; margin: 0 auto; }
+    .products-hero h1 { font-size: 1.5rem; }
+    .products-hero { padding: 2rem 1rem; }
+    .cta-box { padding: 2rem 1.5rem; }
+    .seo-grid { grid-template-columns: 1fr; }
+  }
+
+  /* SEO Content */
+  .seo-content {
+    padding: 3rem 1.5rem;
+    background: white;
+    border-top: 1px solid #e8ede9;
+  }
+
+  .seo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .seo-grid > .seo-block:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .seo-block h2 {
     font-size: 1.5rem;
     font-weight: 700;
     color: #1a472a;
-    margin-top: 1rem;
+    margin-bottom: 0.75rem;
   }
 
-  @media (max-width: 768px) {
-    .products-grid {
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1.5rem;
-    }
+  .seo-block h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #1a472a;
+    margin-bottom: 0.5rem;
   }
 
-  @media (max-width: 480px) {
-    .products-grid {
-      grid-template-columns: 1fr;
-    }
+  .seo-block p {
+    color: #555;
+    line-height: 1.7;
+    font-size: 0.95rem;
+  }
+
+  .seo-block ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .seo-block ul li {
+    padding: 0.35rem 0;
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    padding-left: 1.25rem;
+    position: relative;
+  }
+
+  .seo-block ul li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #4caf50;
+    font-weight: 700;
   }
 </style>

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d2e2e"/>
+      <stop offset="100%" style="stop-color:#061c1c"/>
+    </linearGradient>
+    <linearGradient id="leaf" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4DD0E1"/>
+      <stop offset="100%" style="stop-color:#00838F"/>
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="400" height="400" rx="16" fill="url(#bg)"/>
+  <rect x="8" y="8" width="384" height="384" rx="12" fill="none" stroke="#4DD0E1" stroke-width="0.5" opacity="0.3"/>
+  <g transform="translate(200,180)" filter="url(#glow)">
+    <ellipse cx="0" cy="-50" rx="12" ry="45" fill="url(#leaf)" transform="rotate(0)" opacity="0.9"/>
+    <ellipse cx="0" cy="-50" rx="12" ry="45" fill="url(#leaf)" transform="rotate(30)" opacity="0.85"/>
+    <ellipse cx="0" cy="-50" rx="12" ry="45" fill="url(#leaf)" transform="rotate(-30)" opacity="0.85"/>
+    <ellipse cx="0" cy="-50" rx="12" ry="45" fill="url(#leaf)" transform="rotate(60)" opacity="0.8"/>
+    <ellipse cx="0" cy="-50" rx="12" ry="45" fill="url(#leaf)" transform="rotate(-60)" opacity="0.8"/>
+    <ellipse cx="0" cy="-50" rx="10" ry="35" fill="url(#leaf)" transform="rotate(85)" opacity="0.7"/>
+    <ellipse cx="0" cy="-50" rx="10" ry="35" fill="url(#leaf)" transform="rotate(-85)" opacity="0.7"/>
+    <line x1="0" y1="0" x2="0" y2="40" stroke="#00838F" stroke-width="3" stroke-linecap="round"/>
+  </g>
+  <text x="200" y="300" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="bold" fill="#ffffff" letter-spacing="1">Alien Mints</text>
+  <text x="200" y="325" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#80DEEA" letter-spacing="2">CANNABIS FLOWER</text>
+  <rect x="145" y="345" width="110" height="36" rx="18" fill="#0097A7" opacity="0.9"/>
+  <text x="200" y="369" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#ffffff">THC 20%</text>
+</svg>

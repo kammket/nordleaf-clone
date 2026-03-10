@@ -1,129 +1,154 @@
 ---
-// About Page
-
 import Layout from '../layouts/Layout.astro';
-
-const siteUrl = 'https://nordleaf.de';
-
-const structuredData = {
-  '@context': 'https://schema.org',
-  '@type': 'AboutPage',
-  name: 'About Nordleaf',
-  url: `${siteUrl}/about`,
-};
+import Breadcrumb from '../components/Breadcrumb.astro';
 ---
 
 <Layout
-  title="About Nordleaf - Our Mission & Values"
-  description="Learn about Nordleaf's mission to provide premium organic and sustainable products. Discover our values, history, and commitment to the environment."
-  canonical={`${siteUrl}/about`}
-  ogImage="/images/og-about.jpg"
-  keywords="about nordleaf, sustainable company, organic mission, eco-friendly values"
-  structuredData={structuredData}
+  title="Über uns | Nordleaf - Deine Online-Apotheke für Cannabis"
+  description="Nordleaf ist deine Online-Apotheke für medizinisches Cannabis. Erfahre mehr über unsere Mission, unser Team und unsere Werte."
+  keywords="Nordleaf Über uns, Cannabis Apotheke, medizinisches Cannabis Deutschland"
 >
-  <div class="about-page">
-    <section class="page-header">
-      <div class="container">
-        <h1>About Nordleaf</h1>
-        <p>Our Journey Towards Sustainable Living</p>
-      </div>
-    </section>
+  <Breadcrumb items={[{name: "Über uns"}]} />
+  <section class="page-hero">
+    <div class="container">
+      <h1>Über Nordleaf</h1>
+      <p>Deine Online-Apotheke für medizinisches Cannabis. Einfach, sicher und diskret.</p>
+    </div>
+  </section>
 
-    <section class="section mission-section">
-      <div class="container">
-        <h2>Our Mission</h2>
-        <p>
-          At Nordleaf, we believe that everyone deserves access to premium organic
-          products without compromising our planet's health. Our mission is to make
-          sustainable living accessible, affordable, and enjoyable for everyone.
-        </p>
-      </div>
-    </section>
+  <section class="about-section">
+    <div class="container">
+      <div class="about-content">
+        <div class="about-block">
+          <h2>Unsere Mission</h2>
+          <p>Wir bei Nordleaf glauben, dass der Zugang zu medizinischem Cannabis einfach, transparent und erschwinglich sein sollte. Unser Ziel ist es, Patienten in Deutschland den unkompliziertesten Weg zu ihrem Cannabis-Rezept und ihrer Medikation zu bieten.</p>
+        </div>
 
-    <section class="section values-section">
-      <div class="container">
-        <h2>Our Core Values</h2>
-        <div class="values-grid">
-          <div class="value-card">
-            <div class="value-icon">🌍</div>
-            <h3>Environmental Stewardship</h3>
-            <p>Protecting our planet through sustainable practices and eco-friendly initiatives.</p>
-          </div>
-          <div class="value-card">
-            <div class="value-icon">✓</div>
-            <h3>Quality & Integrity</h3>
-            <p>Commitment to transparency and rigorous quality standards in every product.</p>
-          </div>
-          <div class="value-card">
-            <div class="value-icon">❤️</div>
-            <h3>Customer Care</h3>
-            <p>Your satisfaction and well-being are at the heart of everything we do.</p>
+        <div class="about-block">
+          <h2>Was uns ausmacht</h2>
+          <div class="values-grid">
+            <div class="value-card">
+              <div class="value-icon">💊</div>
+              <h3>100% Verfügbarkeit</h3>
+              <p>Alle Sorten in unserem Live-Bestand sind immer auf Lager. Keine Engpässe, keine Wartezeiten.</p>
+            </div>
+            <div class="value-card">
+              <div class="value-icon">⚡</div>
+              <h3>Schneller Service</h3>
+              <p>Vom 3-Minuten-Fragebogen bis zur Lieferung in 1-3 Werktagen — wir machen Cannabis-Medizin schnell.</p>
+            </div>
+            <div class="value-card">
+              <div class="value-icon">🔒</div>
+              <h3>Diskret & Sicher</h3>
+              <p>Neutrale Verpackung, DSGVO-konforme Datenspeicherung und verschlüsselte Kommunikation.</p>
+            </div>
+            <div class="value-card">
+              <div class="value-icon">💰</div>
+              <h3>Faire Preise</h3>
+              <p>Transparente Preise ab €9,90. Keine versteckten Kosten, keine Überraschungen.</p>
+            </div>
           </div>
         </div>
+
+        <div class="about-block">
+          <h2>Unser Netzwerk</h2>
+          <div class="stats-row">
+            <div class="stat-item">
+              <strong>9</strong>
+              <span>Ärzte</span>
+            </div>
+            <div class="stat-item">
+              <strong>6.502+</strong>
+              <span>Bewertungen</span>
+            </div>
+            <div class="stat-item">
+              <strong>4,77</strong>
+              <span>Durchschnitt ★</span>
+            </div>
+            <div class="stat-item">
+              <strong>25+</strong>
+              <span>Sorten</span>
+            </div>
+          </div>
+          <p>Wir arbeiten mit erfahrenen Ärzten zusammen, die auf Cannabis-Medizin spezialisiert sind. Unser Sortiment umfasst über 25 Sorten von renommierten Herstellern wie avaay Medical, Four 20 Pharma und weiteren.</p>
+        </div>
+
+        <div class="about-cta">
+          <h2>Bereit, Cannabis-Patient zu werden?</h2>
+          <p>Starte jetzt und erhalte dein Rezept in nur wenigen Minuten.</p>
+          <a href="/wie-funktionierts" class="btn btn-primary">Jetzt starten</a>
+        </div>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 </Layout>
 
 <style>
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
+  .page-hero {
+    background: linear-gradient(135deg, #0d2618, #1a472a, #2d6a47);
+    color: white; padding: 3.5rem 1.5rem; text-align: center;
+  }
+  .page-hero h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.75rem; }
+  .page-hero p { color: rgba(255,255,255,0.7); font-size: 1.1rem; }
+
+  .about-section { padding: 4rem 1.5rem; }
+  .about-content { max-width: 800px; margin: 0 auto; }
+
+  .about-block {
+    margin-bottom: 3rem;
   }
 
-  .page-header {
-    background: linear-gradient(135deg, #1a472a 0%, #2d6a47 100%);
-    color: white;
-    padding: 3rem 0;
-    text-align: center;
+  .about-block h2 {
+    font-size: 1.75rem; font-weight: 700; color: #1a472a; margin-bottom: 1rem;
   }
 
-  .page-header h1 {
-    color: white;
-  }
-
-  .section {
-    padding: 4rem 0;
-  }
-
-  .section h2 {
-    text-align: center;
-    color: #1a472a;
-    margin-bottom: 2rem;
-  }
-
-  .section p {
-    color: #666;
-    line-height: 1.8;
+  .about-block p {
+    color: #555; line-height: 1.7; font-size: 1.05rem;
   }
 
   .values-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 1rem;
   }
 
   .value-card {
-    background: white;
-    padding: 2rem;
-    border-radius: 0.5rem;
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background: #f8faf9; border: 1px solid #e8ede9; border-radius: 12px; padding: 1.5rem;
   }
 
-  .value-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+  .value-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+
+  .value-card h3 { font-size: 1.1rem; color: #1a472a; margin-bottom: 0.25rem; }
+  .value-card p { font-size: 0.9rem; color: #666; line-height: 1.5; }
+
+  .stats-row {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
+    margin: 1.5rem 0;
   }
 
-  .value-card h3 {
-    color: #1a472a;
+  .stat-item {
+    text-align: center; background: #e8f5e9; border-radius: 12px; padding: 1.25rem 0.5rem;
   }
+
+  .stat-item strong { display: block; font-size: 1.75rem; color: #1a472a; }
+  .stat-item span { font-size: 0.85rem; color: #666; }
+
+  .about-cta {
+    text-align: center; background: linear-gradient(135deg, #1a472a, #2d6a47);
+    border-radius: 16px; padding: 3rem; color: white;
+  }
+
+  .about-cta h2 { color: white; font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .about-cta p { color: rgba(255,255,255,0.75); margin-bottom: 1.5rem; }
+
+  .btn-primary {
+    background: #4caf50; color: white; padding: 0.75rem 1.75rem;
+    border-radius: 50px; font-weight: 600; display: inline-block;
+    border: 2px solid #4caf50; transition: all 0.2s;
+  }
+  .btn-primary:hover { background: #43a047; border-color: #43a047; color: white; }
 
   @media (max-width: 768px) {
-    .section {
-      padding: 2rem 0;
-    }
+    .values-grid { grid-template-columns: 1fr; }
+    .stats-row { grid-template-columns: 1fr 1fr; }
+    .page-hero h1 { font-size: 1.75rem; }
   }
 </style>

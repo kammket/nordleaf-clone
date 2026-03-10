@@ -1,0 +1,360 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+---
+
+<Layout
+  title="Wie funktioniert's - Cannabis-Rezept in 3 Minuten | Nordleaf"
+  description="So einfach funktioniert dein Cannabis-Rezept bei Nordleaf: Blüten auswählen, Fragebogen ausfüllen, Rezept erhalten. In nur 3 Minuten zum Cannabis-Patient."
+  keywords="Cannabis Rezept, Cannabis Patient werden, medizinisches Cannabis beantragen, Fragebogen Cannabis"
+>
+  <Breadcrumb items={[{name: "Wie funktioniert's"}]} />
+  <section class="page-hero">
+    <div class="container">
+      <span class="hero-tag">So funktioniert's</span>
+      <h1>Dein Cannabis-Rezept in <span class="hl">3 Minuten</span></h1>
+      <p>Von der Auswahl deiner Blüten bis zur Lieferung — alles digital, alles einfach.</p>
+    </div>
+  </section>
+
+  <section class="steps-section">
+    <div class="container">
+      <div class="timeline">
+        <div class="timeline-step">
+          <div class="step-marker">
+            <span>1</span>
+          </div>
+          <div class="step-content">
+            <div class="step-icon-bg">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                <rect width="48" height="48" rx="12" fill="#e8f5e9"/>
+                <path d="M24 12 C20 18 14 22 14 28 C14 34 18 38 24 38 C30 38 34 34 34 28 C34 22 28 18 24 12Z" fill="#4caf50"/>
+              </svg>
+            </div>
+            <h2>Blüten auswählen</h2>
+            <p>Schaue dir unseren <a href="/products">Live-Bestand</a> an und wähle die Cannabisblüten, die zu deinen Bedürfnissen passen. Alle Sorten sind immer auf Lager — 100% Verfügbarkeit garantiert.</p>
+            <ul class="step-features">
+              <li>Über 25 Sorten von Premium-Herstellern</li>
+              <li>Detaillierte Infos zu THC, CBD, Wirkungen</li>
+              <li>Transparente Preise pro Gramm</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-step">
+          <div class="step-marker">
+            <span>2</span>
+          </div>
+          <div class="step-content">
+            <div class="step-icon-bg">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                <rect width="48" height="48" rx="12" fill="#e8f5e9"/>
+                <rect x="12" y="10" width="24" height="28" rx="3" fill="#4caf50"/>
+                <line x1="17" y1="18" x2="31" y2="18" stroke="white" stroke-width="2"/>
+                <line x1="17" y1="24" x2="31" y2="24" stroke="white" stroke-width="2"/>
+                <line x1="17" y1="30" x2="25" y2="30" stroke="white" stroke-width="2"/>
+              </svg>
+            </div>
+            <h2>Fragebogen ausfüllen</h2>
+            <p>Fülle unseren medizinischen Fragebogen aus — das dauert nur 3 Minuten. Ein erfahrener Arzt aus unserem Netzwerk prüft deine Angaben und stellt bei Eignung dein Rezept aus.</p>
+            <ul class="step-features">
+              <li>Nur 3 Minuten deiner Zeit</li>
+              <li>9 erfahrene Ärzte im Netzwerk</li>
+              <li>Rezeptausstellung innerhalb von 24h</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-step">
+          <div class="step-marker">
+            <span>3</span>
+          </div>
+          <div class="step-content">
+            <div class="step-icon-bg">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                <rect width="48" height="48" rx="12" fill="#e8f5e9"/>
+                <rect x="10" y="20" width="28" height="18" rx="3" fill="#4caf50"/>
+                <path d="M10 25 L24 32 L38 25" stroke="white" stroke-width="2" fill="none"/>
+                <rect x="18" y="14" width="12" height="6" rx="2" fill="#388e3c"/>
+              </svg>
+            </div>
+            <h2>Bezahlung & Lieferung</h2>
+            <p>Nach der Genehmigung bezahlst du bequem online. Dein Medikament wird am nächsten Werktag versendet und kommt diskret verpackt innerhalb von 1-3 Werktagen bei dir an.</p>
+            <ul class="step-features">
+              <li>Diskrete, neutrale Verpackung</li>
+              <li>Versand am nächsten Werktag</li>
+              <li>Lieferung in 1-3 Werktagen</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-section">
+        <div class="cta-box">
+          <h2>Bereit zum Starten?</h2>
+          <p>Wähle zunächst deine gewünschten Blüten aus unserem Live-Bestand.</p>
+          <div class="cta-buttons">
+            <a href="/products" class="btn btn-primary btn-lg">Blüten auswählen</a>
+            <a href="/preise" class="btn btn-outline btn-lg">Preise ansehen</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="faq-section">
+        <h2>Häufige Fragen zum Ablauf</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Brauche ich eine Vorerkrankung?</summary>
+            <p>Medizinisches Cannabis kann bei verschiedenen Beschwerden verschrieben werden, darunter chronische Schmerzen, Schlafstörungen, ADHS, Depressionen, Angststörungen und weitere. Der Arzt prüft im Rahmen des Fragebogens, ob eine Indikation bei dir vorliegt.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Was passiert, wenn mein Antrag abgelehnt wird?</summary>
+            <p>Sollte der Arzt feststellen, dass medizinisches Cannabis für dich nicht geeignet ist, entstehen dir keine Kosten. Du zahlst nur bei einer erfolgreichen Rezeptausstellung.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Wie oft muss ich ein neues Rezept anfordern?</summary>
+            <p>Ein Folgerezept kannst du ganz einfach über unsere Plattform anfordern. Die Häufigkeit hängt von deiner verschriebenen Menge und Dosierung ab.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Kann ich die Blüten auch in einer anderen Apotheke einlösen?</summary>
+            <p>Ja, mit unserem "Nur Rezept"-Paket für €19,90 erhältst du ein Rezept, das du in jeder Apotheke deiner Wahl einlösen kannst.</p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero {
+    background: linear-gradient(135deg, #0d2618, #1a472a, #2d6a47);
+    color: white;
+    padding: 3.5rem 1.5rem;
+    text-align: center;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    background: rgba(76,175,80,0.15);
+    border: 1px solid rgba(76,175,80,0.3);
+    color: #81c784;
+    padding: 0.3rem 1rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+
+  .page-hero h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+  }
+
+  .hl { color: #4caf50; }
+
+  .page-hero p {
+    color: rgba(255,255,255,0.7);
+    font-size: 1.1rem;
+    max-width: 550px;
+    margin: 0 auto;
+  }
+
+  .steps-section {
+    padding: 4rem 1.5rem;
+  }
+
+  .timeline {
+    max-width: 700px;
+    margin: 0 auto 3rem;
+    position: relative;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 24px;
+    top: 40px;
+    bottom: 40px;
+    width: 2px;
+    background: #e8ede9;
+  }
+
+  .timeline-step {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    position: relative;
+  }
+
+  .step-marker {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    background: #1a472a;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+    z-index: 1;
+  }
+
+  .step-content {
+    flex: 1;
+    padding-top: 0.25rem;
+  }
+
+  .step-icon-bg {
+    margin-bottom: 1rem;
+  }
+
+  .step-content h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a472a;
+    margin-bottom: 0.5rem;
+  }
+
+  .step-content p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .step-content a {
+    color: #4caf50;
+    font-weight: 600;
+  }
+
+  .step-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .step-features li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #555;
+    font-size: 0.95rem;
+  }
+
+  .step-features li::before {
+    content: '✓';
+    color: #4caf50;
+    font-weight: 700;
+  }
+
+  .cta-section {
+    margin-bottom: 4rem;
+  }
+
+  .cta-box {
+    background: linear-gradient(135deg, #1a472a, #2d6a47);
+    border-radius: 16px;
+    padding: 3rem;
+    text-align: center;
+    color: white;
+  }
+
+  .cta-box h2 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: white;
+  }
+
+  .cta-box p {
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: #4caf50;
+    color: white;
+    padding: 0.75rem 1.75rem;
+    border-radius: 50px;
+    font-weight: 600;
+    display: inline-block;
+    transition: all 0.2s;
+    border: 2px solid #4caf50;
+  }
+  .btn-primary:hover { background: #43a047; border-color: #43a047; color: white; transform: translateY(-2px); }
+
+  .btn-outline {
+    background: transparent;
+    color: white;
+    padding: 0.75rem 1.75rem;
+    border-radius: 50px;
+    font-weight: 600;
+    display: inline-block;
+    border: 2px solid rgba(255,255,255,0.3);
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { border-color: #4caf50; color: #4caf50; }
+
+  .btn-lg { padding: 0.9rem 2rem; font-size: 1.05rem; }
+
+  .faq-section h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #1a472a;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .faq-list {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .faq-item {
+    background: white;
+    border: 1px solid #e8ede9;
+    border-radius: 12px;
+    margin-bottom: 0.75rem;
+  }
+
+  .faq-item summary {
+    padding: 1.25rem 1.5rem;
+    font-weight: 600;
+    color: #1a472a;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after { content: '+'; font-size: 1.5rem; color: #4caf50; }
+  .faq-item[open] summary::after { content: '−'; }
+
+  .faq-item p {
+    padding: 0 1.5rem 1.25rem;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .page-hero h1 { font-size: 1.75rem; }
+    .timeline::before { left: 20px; }
+    .step-marker { width: 42px; height: 42px; font-size: 1rem; }
+    .timeline-step { gap: 1.25rem; }
+    .cta-box { padding: 2rem 1.5rem; }
+    .cta-buttons { flex-direction: column; align-items: center; }
+  }
+</style>

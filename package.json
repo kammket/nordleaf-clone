@@ -19,13 +19,14 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "deploy": "npm run build && wrangler deploy",
     "astro": "astro",
     "check": "astro check"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.0",
     "astro": "^5.18.0"
   },
-  "devDependencies": {},
   "engines": {
     "node": ">=16.x"
   },
@@ -36,5 +37,8 @@
   },
   "bugs": {
     "url": "https://github.com/yourusername/nordleaf-clone/issues"
+  },
+  "devDependencies": {
+    "wrangler": "^4.71.0"
   }
 }

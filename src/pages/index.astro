@@ -1,334 +1,1733 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { organizationSchema } from '../utils/seo';
+import { products } from '../utils/products';
 
 const siteUrl = 'https://nordleaf.de';
-const structuredData = organizationSchema(siteUrl);
+const featuredProducts = products.filter(p => p.category === 'Cannabisblüten' && p.available).slice(0, 8);
+
+const categoryStats = {
+  blueten: products.filter(p => p.category === 'Cannabisblüten').length,
+  extrakte: products.filter(p => p.category === 'Cannabisextrakte').length,
+  vapes: products.filter(p => p.category === 'THC Vapes').length,
+  shots: products.filter(p => p.category === 'THC Shots').length,
+  kapseln: products.filter(p => p.category === 'Kapseln & Edibles').length,
+  total: products.length,
+};
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "MedicalBusiness",
+  "name": "Nordleaf",
+  "url": siteUrl,
+  "description": "Nordleaf ist Ihre Online-Apotheke für medizinisches Cannabis in Deutschland. Cannabis auf Rezept kaufen – Cannabisblüten, Extrakte, THC Vapes und mehr ab 1€/g mit schneller Lieferung.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "DE",
+    "addressLocality": "Deutschland"
+  },
+  "priceRange": "€€",
+  "currenciesAccepted": "EUR",
+  "paymentAccepted": "Bank Transfer, Bitcoin",
+  "areaServed": {
+    "@type": "Country",
+    "name": "Germany"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Medizinisches Cannabis",
+    "itemListElement": [
+      { "@type": "OfferCatalog", "name": "Cannabisblüten" },
+      { "@type": "OfferCatalog", "name": "Cannabisextrakte" },
+      { "@type": "OfferCatalog", "name": "THC Vapes" },
+      { "@type": "OfferCatalog", "name": "THC Shots" },
+      { "@type": "OfferCatalog", "name": "Kapseln & Edibles" }
+    ]
+  },
+  "sameAs": []
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Nordleaf",
+  "url": siteUrl,
+  "description": "Online-Apotheke für medizinisches Cannabis in Deutschland",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": `${siteUrl}/products?q={search_term_string}`
+    },
+    "query-input": "required name=search_term_string"
+  }
+};
+
+const faqStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wer kann medizinisches Cannabis erhalten?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Grundsätzlich kann jeder Patient in Deutschland medizinisches Cannabis verschrieben bekommen, wenn eine ärztliche Indikation vorliegt. Häufige Anwendungsgebiete sind chronische Schmerzen, Schlafstörungen, ADHS, Depressionen und Angststörungen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie kann ich medizinisches Cannabis kaufen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bei Nordleaf können Sie medizinisches Cannabis online kaufen. Füllen Sie einfach unseren 3-Minuten-Fragebogen aus, erhalten Sie Ihr Rezept von einem approbierten Arzt und bestellen Sie Ihre Cannabisblüten, Extrakte oder THC Vapes direkt in unserer Online-Apotheke."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie viel kostet das Cannabis-Rezept?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mit unserem All-in-One Paket zahlen Sie nur €9,90 für die ärztliche Beratung und das Rezept — dazu kommen die Kosten für Ihr gewähltes Medikament. Alternativ bieten wir das Nur-Rezept-Paket für €19,90 an."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie schnell wird mein Cannabis geliefert?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nach Genehmigung Ihres Rezepts versenden wir Ihr Medikament in der Regel am nächsten Werktag. Die Lieferung erfolgt innerhalb von 1-3 Werktagen diskret verpackt direkt zu Ihnen nach Hause."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Welche Cannabis-Produkte gibt es bei Nordleaf?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nordleaf bietet über 180 medizinische Cannabis-Produkte: Cannabisblüten (THC Blüten), Cannabisextrakte (Vollspektrum-Öle), THC Vapes, THC Shots und Kapseln & Edibles. Alle Produkte sind pharmazeutisch geprüft und ab 1€/g erhältlich."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ist Cannabis kaufen in Deutschland legal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja, medizinisches Cannabis ist in Deutschland seit 2017 legal, wenn es von einem Arzt verschrieben wird. Mit einem gültigen Cannabis-Rezept können Sie THC-haltige Produkte legal in einer Apotheke oder Online-Apotheke wie Nordleaf kaufen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was ist der Unterschied zwischen THC und CBD Cannabis?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "THC (Tetrahydrocannabinol) ist der psychoaktive Wirkstoff in Cannabis, der schmerzlindernd und beruhigend wirkt. CBD (Cannabidiol) hat keine psychoaktive Wirkung, wirkt aber entzündungshemmend und angstlösend. Bei Nordleaf finden Sie Produkte mit verschiedenen THC- und CBD-Gehalten."
+      }
+    }
+  ]
+};
+
+const webpageStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Medizinisches Cannabis kaufen – Online-Apotheke Nordleaf",
+  "description": "Cannabis auf Rezept kaufen bei Nordleaf. Über 180 medizinische Cannabis-Produkte: Cannabisblüten, Extrakte, THC Vapes ab 1€/g. Schnelle Lieferung in 1-3 Werktagen.",
+  "url": siteUrl,
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Nordleaf",
+    "url": siteUrl
+  }
+};
 ---
 
 <Layout
-  title="Nordleaf - Premium Organic Products"
-  description="Discover premium organic and eco-friendly products for a sustainable lifestyle. Shop our collection of natural skincare, organic teas, and sustainable goods."
+  title="Medizinisches Cannabis kaufen | Cannabis auf Rezept ab 1€/g – Nordleaf Online-Apotheke"
+  description="Medizinisches Cannabis kaufen bei Nordleaf ✓ Cannabis auf Rezept in 3 Minuten ✓ Über 180 Produkte: Cannabisblüten, THC Vapes, Extrakte ab 1€/g ✓ Lieferung in 1-3 Werktagen ✓ 100% Verfügbarkeit"
+  keywords="medizinisches Cannabis, Cannabis kaufen, THC kaufen, Cannabis auf Rezept, Cannabisblüten kaufen, THC Blüten, medizinisches Cannabis bestellen, Cannabis Apotheke online, Cannabis Rezept, Online Apotheke Cannabis, Cannabisextrakte, THC Vapes kaufen, Cannabis Patient werden, Cannabis legal kaufen Deutschland, medizinisches Cannabis Deutschland"
   canonical={siteUrl}
-  ogImage="/images/og-image.jpg"
-  keywords="organic products, eco-friendly, natural skincare, sustainable living"
   structuredData={structuredData}
 >
+<script type="application/ld+json" set:html={JSON.stringify(faqStructuredData)} />
+<script type="application/ld+json" set:html={JSON.stringify(webpageStructuredData)} />
+<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+  <!-- Hero Section -->
   <section class="hero">
     <div class="container">
-      <h1>Welcome to Nordleaf</h1>
-      <p>Discover Premium Organic and Sustainable Products</p>
-      <a href="/products" class="cta-button">Shop Now</a>
-    </div>
-  </section>
-
-  <section class="features">
-    <div class="container">
-      <h2>Why Choose Nordleaf?</h2>
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">🌱</div>
-          <h3>100% Organic</h3>
-          <p>All products are certified organic and free from harmful chemicals.</p>
+      <div class="hero-content">
+        <div class="hero-text">
+          <div class="hero-badge">
+            <span class="badge-dot"></span>
+            Cannabis auf Rezept
+          </div>
+          <h1>Werde Cannabis-Patient in <span class="highlight">3 Minuten</span></h1>
+          <p class="hero-subtitle">Deine Online-Apotheke für medizinisches Cannabis. Einfach, sicher und diskret direkt zu dir nach Hause.</p>
+          <ul class="hero-checks">
+            <li><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#4caf50"/><path d="M6 10l3 3 5-6" stroke="#fff" stroke-width="2" fill="none"/></svg> All-in-One ab €9,90 + Medikament</li>
+            <li><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#4caf50"/><path d="M6 10l3 3 5-6" stroke="#fff" stroke-width="2" fill="none"/></svg> Schneller 3-Minuten-Fragebogen</li>
+            <li><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#4caf50"/><path d="M6 10l3 3 5-6" stroke="#fff" stroke-width="2" fill="none"/></svg> Diskrete Lieferung in 1-3 Werktagen</li>
+          </ul>
+          <div class="hero-cta">
+            <a href="/wie-funktionierts" class="btn btn-primary btn-lg">Jetzt Cannabis-Patient werden</a>
+            <a href="/products" class="btn btn-outline btn-lg">Live-Bestand ansehen</a>
+          </div>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">♻️</div>
-          <h3>Eco-Friendly</h3>
-          <p>Sustainable packaging and ethical sourcing practices.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🌍</div>
-          <h3>Global Impact</h3>
-          <p>Supporting communities and protecting our planet.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">✓</div>
-          <h3>Quality Assured</h3>
-          <p>Rigorous testing ensures the highest quality standards.</p>
+        <div class="hero-visual">
+          <div class="hero-card">
+            <div class="hero-card-inner">
+              <svg viewBox="0 0 300 300" fill="none" class="hero-illustration">
+                <defs>
+                  <linearGradient id="heroGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#2d6a47"/>
+                    <stop offset="100%" style="stop-color:#1a472a"/>
+                  </linearGradient>
+                </defs>
+                <circle cx="150" cy="150" r="140" fill="url(#heroGrad)" opacity="0.15"/>
+                <circle cx="150" cy="150" r="100" fill="url(#heroGrad)" opacity="0.25"/>
+                <path d="M150 40 C130 80 90 100 90 140 C90 180 120 210 150 230 C180 210 210 180 210 140 C210 100 170 80 150 40Z" fill="#4caf50" opacity="0.8"/>
+                <path d="M150 70 C140 95 115 110 115 140 C115 165 133 185 150 195 C167 185 185 165 185 140 C185 110 160 95 150 70Z" fill="#2d6a47"/>
+                <text x="150" y="155" text-anchor="middle" fill="white" font-size="20" font-weight="700">THC</text>
+                <text x="150" y="175" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="12">Medizinisch</text>
+              </svg>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="products-section">
+  <!-- Stats Bar -->
+  <section class="stats-bar">
     <div class="container">
-      <h2>Featured Products</h2>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-icon">⚡</div>
+          <div class="stat-text">
+            <strong>&lt; 24h</strong>
+            <span>Versand</span>
+          </div>
+        </div>
+        <div class="stat">
+          <div class="stat-icon">✓</div>
+          <div class="stat-text">
+            <strong>100%</strong>
+            <span>Verfügbarkeit</span>
+          </div>
+        </div>
+        <div class="stat">
+          <div class="stat-icon">👨‍⚕️</div>
+          <div class="stat-text">
+            <strong>9 Ärzte</strong>
+            <span>im Netzwerk</span>
+          </div>
+        </div>
+        <div class="stat">
+          <div class="stat-icon">⭐</div>
+          <div class="stat-text">
+            <strong>4,77 / 5</strong>
+            <span>6.502 Bewertungen</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="how-it-works" id="wie-funktionierts">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">So einfach geht's</span>
+        <h2>In 3 Schritten zu deinem Cannabis-Rezept</h2>
+        <p>Von der Blütenauswahl bis zur Lieferung — alles online, alles einfach.</p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <div class="step-icon">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+              <rect width="48" height="48" rx="12" fill="#e8f5e9"/>
+              <path d="M24 12 C20 18 14 22 14 28 C14 34 18 38 24 38 C30 38 34 34 34 28 C34 22 28 18 24 12Z" fill="#4caf50"/>
+            </svg>
+          </div>
+          <h3>Blüten auswählen</h3>
+          <p>Wähle deine gewünschten Cannabisblüten aus unserem Live-Bestand. Alle Sorten immer auf Lager.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <div class="step-icon">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+              <rect width="48" height="48" rx="12" fill="#e8f5e9"/>
+              <rect x="12" y="10" width="24" height="28" rx="3" fill="#4caf50"/>
+              <line x1="17" y1="18" x2="31" y2="18" stroke="white" stroke-width="2"/>
+              <line x1="17" y1="24" x2="31" y2="24" stroke="white" stroke-width="2"/>
+              <line x1="17" y1="30" x2="25" y2="30" stroke="white" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3>Fragebogen ausfüllen</h3>
+          <p>Fülle unseren medizinischen Fragebogen in nur 3 Minuten aus. Ein Arzt prüft deine Angaben.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <div class="step-icon">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+              <rect width="48" height="48" rx="12" fill="#e8f5e9"/>
+              <rect x="10" y="20" width="28" height="18" rx="3" fill="#4caf50"/>
+              <path d="M10 25 L24 32 L38 25" stroke="white" stroke-width="2" fill="none"/>
+              <rect x="18" y="14" width="12" height="6" rx="2" fill="#388e3c"/>
+            </svg>
+          </div>
+          <h3>Bezahlung & Lieferung</h3>
+          <p>Nach Genehmigung bezahlst du bequem online. Dein Medikament wird diskret in 1-3 Tagen geliefert.</p>
+        </div>
+      </div>
+
+      <div class="steps-cta">
+        <a href="/wie-funktionierts" class="btn btn-primary btn-lg">Jetzt starten</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="featured-products">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Live-Bestand</span>
+        <h2>Beliebte Cannabisblüten</h2>
+        <p>Alle Sorten immer auf Lager — 100% Verfügbarkeit garantiert.</p>
+      </div>
+
       <div class="products-grid">
-        <div class="product-card">
-          <img src="/images/product-1.jpg" alt="Organic Tea" />
-          <h3>Organic Tea Collection</h3>
-          <p>Premium selection of organic herbal teas</p>
-          <span class="price">€24.99</span>
-        </div>
-        <div class="product-card">
-          <img src="/images/product-2.jpg" alt="Skincare" />
-          <h3>Natural Skincare Set</h3>
-          <p>Eco-friendly skincare products</p>
-          <span class="price">€49.99</span>
-        </div>
-        <div class="product-card">
-          <img src="/images/product-3.jpg" alt="Hemp Oil" />
-          <h3>Hemp Seed Oil</h3>
-          <p>Cold-pressed, organic hemp oil</p>
-          <span class="price">€34.99</span>
-        </div>
-        <div class="product-card">
-          <img src="/images/product-4.jpg" alt="Hair Care" />
-          <h3>Bamboo Hair Set</h3>
-          <p>Sustainable bamboo hair care</p>
-          <span class="price">€29.99</span>
-        </div>
+        {featuredProducts.map((product) => (
+          <a href={`/${product.slug}`} class="product-card">
+            <div class="product-image">
+              <img src={product.image} alt={product.strain || product.name} loading="lazy" />
+              {product.badge && <span class="product-badge">{product.badge}</span>}
+              <span class="availability available">Sofort lieferbar</span>
+            </div>
+            <div class="product-info">
+              <div class="product-meta">
+                <span class="product-brand">{product.brand}</span>
+                <span class="product-origin">{product.originCode}</span>
+              </div>
+              <h3 class="product-strain">{product.strain}</h3>
+              <p class="product-name">{product.name}</p>
+              <div class="product-stats">
+                <span class="thc">THC {product.thc}</span>
+                <span class="cbd">CBD {product.cbd}</span>
+              </div>
+              <div class="product-effects">
+                {product.effects.slice(0, 3).map((effect) => (
+                  <span class="effect-tag">{effect}</span>
+                ))}
+              </div>
+              <div class="product-price">
+                <strong>€{product.price.toFixed(2)}</strong>
+                <span>/ {product.priceUnit}</span>
+              </div>
+            </div>
+          </a>
+        ))}
       </div>
-      <div class="cta-section">
-        <a href="/products" class="btn">View All Products</a>
+
+      <div class="products-cta">
+        <a href="/products" class="btn btn-outline btn-lg">Alle Sorten ansehen →</a>
       </div>
     </div>
   </section>
 
-  <section class="newsletter">
+  <!-- SEO Content: Medizinisches Cannabis kaufen -->
+  <section class="seo-content" id="medizinisches-cannabis">
     <div class="container">
-      <h2>Stay Updated</h2>
-      <p>Subscribe for exclusive offers and tips.</p>
-      <form class="newsletter-form">
-        <input type="email" placeholder="Enter your email" required />
-        <button type="submit">Subscribe</button>
-      </form>
+      <div class="seo-content-grid">
+        <div class="seo-text">
+          <span class="section-tag">Medizinisches Cannabis</span>
+          <h2>Medizinisches Cannabis kaufen — einfach, legal & sicher</h2>
+          <p>Bei <strong>Nordleaf</strong> können Sie <strong>medizinisches Cannabis kaufen</strong> — schnell, legal und bequem von zu Hause. Als zertifizierte <strong>Cannabis Apotheke online</strong> bieten wir Ihnen Zugang zu über <strong>{categoryStats.total} medizinischen Cannabis-Produkten</strong>, darunter hochwertige <strong>Cannabisblüten</strong>, <strong>Cannabisextrakte</strong>, <strong>THC Vapes</strong> und mehr.</p>
+          <p>Seit der Legalisierung von <strong>Cannabis auf Rezept</strong> in Deutschland können Patienten mit entsprechender ärztlicher Indikation <strong>THC kaufen</strong> und von der therapeutischen Wirkung profitieren. Ob bei chronischen Schmerzen, Schlafstörungen, ADHS oder Angststörungen — <strong>medizinisches Cannabis bestellen</strong> war noch nie so einfach.</p>
+          <p>Unser 3-Minuten-Fragebogen ermöglicht es Ihnen, schnell und unkompliziert ein <strong>Cannabis-Rezept</strong> zu erhalten. Ein approbierter Arzt prüft Ihre Angaben und stellt das Rezept aus. Anschließend können Sie direkt in unserem Shop Ihre <strong>THC Blüten</strong> und weitere Produkte auswählen — mit garantierter <strong>100% Verfügbarkeit</strong> und diskreter Lieferung in 1-3 Werktagen.</p>
+          <div class="seo-highlights">
+            <div class="seo-highlight">
+              <span class="seo-highlight-icon">🏥</span>
+              <div>
+                <strong>Ärztlich geprüft</strong>
+                <span>Approbierte Ärzte mit Cannabis-Erfahrung</span>
+              </div>
+            </div>
+            <div class="seo-highlight">
+              <span class="seo-highlight-icon">📋</span>
+              <div>
+                <strong>Cannabis Rezept in Minuten</strong>
+                <span>3-Minuten-Fragebogen, schnelle Rezeptausstellung</span>
+              </div>
+            </div>
+            <div class="seo-highlight">
+              <span class="seo-highlight-icon">🚚</span>
+              <div>
+                <strong>Diskrete Lieferung</strong>
+                <span>Neutrale Verpackung, 1-3 Werktage</span>
+              </div>
+            </div>
+            <div class="seo-highlight">
+              <span class="seo-highlight-icon">✅</span>
+              <div>
+                <strong>100% legal in Deutschland</strong>
+                <span>Cannabis legal kaufen mit gültigem Rezept</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="seo-sidebar">
+          <div class="seo-info-card">
+            <h3>Cannabis auf Rezept — So funktioniert's</h3>
+            <p>In Deutschland ist <strong>medizinisches Cannabis</strong> seit März 2017 für Patienten verfügbar. Seit der Teillegalisierung 2024 (CanG) wurde der Zugang weiter vereinfacht. Bei Nordleaf erhalten Sie Ihr Rezept vollständig digital — ohne Wartezeiten, ohne Praxisbesuch.</p>
+            <ul class="seo-list">
+              <li>Cannabis auf Rezept für chronische Schmerzen</li>
+              <li>THC kaufen bei Schlafstörungen & Insomnie</li>
+              <li>Cannabisblüten bei ADHS & Konzentrationsproblemen</li>
+              <li>Medizinisches Cannabis bei Depressionen</li>
+              <li>Cannabis-Therapie bei Angst- & Panikstörungen</li>
+            </ul>
+            <a href="/products" class="btn btn-primary">Cannabis kaufen →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEO Content: Product Categories -->
+  <section class="categories-seo" id="cannabis-produkte">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Unser Sortiment</span>
+        <h2>Cannabis-Produkte kaufen — {categoryStats.total}+ Sorten verfügbar</h2>
+        <p>Von THC Blüten bis Cannabisextrakte: Entdecken Sie unser vollständiges Sortiment an medizinischem Cannabis.</p>
+      </div>
+
+      <div class="categories-grid">
+        <a href="/products?category=Cannabisblüten" class="category-card">
+          <div class="category-icon">🌿</div>
+          <h3>Cannabisblüten kaufen</h3>
+          <span class="category-count">{categoryStats.blueten} Sorten</span>
+          <p>Hochwertige <strong>THC Blüten</strong> und <strong>Cannabisblüten</strong> von renommierten Herstellern. Indica, Sativa und Hybrid-Sorten mit verschiedenen THC- und CBD-Gehalten ab 1€/g. Perfekt für Patienten, die Wert auf natürliche Anwendung legen.</p>
+        </a>
+
+        <a href="/products?category=Cannabisextrakte" class="category-card">
+          <div class="category-icon">💧</div>
+          <h3>Cannabisextrakte</h3>
+          <span class="category-count">{categoryStats.extrakte} Produkte</span>
+          <p>Vollspektrum-<strong>Cannabis-Öle</strong> und <strong>Cannabisextrakte</strong> für präzise Dosierung. Ideal für Patienten, die eine kontrollierte THC-Aufnahme bevorzugen. Verschiedene Konzentrationen für individuelle Bedürfnisse.</p>
+        </a>
+
+        <a href="/products?category=THC Vapes" class="category-card">
+          <div class="category-icon">💨</div>
+          <h3>THC Vapes kaufen</h3>
+          <span class="category-count">{categoryStats.vapes} Produkte</span>
+          <p><strong>THC Vapes</strong> und Cannabis-Vaporizer-Kartuschen für schnelle Wirkung. Diskret, praktisch und einfach in der Anwendung. Medizinische <strong>THC Vape-Produkte</strong> in pharmazeutischer Qualität.</p>
+        </a>
+
+        <a href="/products?category=THC Shots" class="category-card">
+          <div class="category-icon">🧪</div>
+          <h3>THC Shots</h3>
+          <span class="category-count">{categoryStats.shots} Produkte</span>
+          <p>Trinkbare <strong>THC Shots</strong> für einfache orale Einnahme. Genau dosiert und schnell wirkend — eine moderne Alternative zu herkömmlichen Cannabis-Darreichungsformen.</p>
+        </a>
+
+        <a href="/products?category=Kapseln & Edibles" class="category-card">
+          <div class="category-icon">💊</div>
+          <h3>Cannabis Kapseln & Edibles</h3>
+          <span class="category-count">{categoryStats.kapseln} Produkte</span>
+          <p><strong>Cannabis Kapseln</strong> und <strong>Edibles</strong> für geschmacksneutrale, diskrete Einnahme. Exakte Dosierung pro Kapsel — optimal für Patienten, die eine rauchfreie Anwendung bevorzugen.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEO Content: Warum Nordleaf -->
+  <section class="why-nordleaf" id="warum-nordleaf">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Warum Nordleaf</span>
+        <h2>Ihre Online-Apotheke für medizinisches Cannabis</h2>
+      </div>
+
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="10" fill="#e8f5e9"/><path d="M20 10l3 6h7l-5.5 4 2 7L20 23l-6.5 4 2-7L10 16h7z" fill="#4caf50"/></svg>
+          </div>
+          <h3>Größte Cannabis-Auswahl</h3>
+          <p>Über <strong>{categoryStats.total} medizinische Cannabis-Produkte</strong> — von Cannabisblüten über Extrakte bis hin zu THC Vapes. Die größte Auswahl an <strong>Cannabis auf Rezept</strong> in Deutschland.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="10" fill="#e8f5e9"/><circle cx="20" cy="20" r="8" stroke="#4caf50" stroke-width="2.5" fill="none"/><path d="M20 15v5l3 3" stroke="#4caf50" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Rezept in 3 Minuten</h3>
+          <p>Kein Praxisbesuch nötig. Füllen Sie unseren digitalen Fragebogen aus und erhalten Sie Ihr <strong>Cannabis-Rezept</strong> von einem approbierten Arzt — schnell, einfach und 100% online.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="10" fill="#e8f5e9"/><path d="M12 28h16M14 24l6-12 6 12" stroke="#4caf50" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          </div>
+          <h3>Faire Preise ab 1€/g</h3>
+          <p><strong>Medizinisches Cannabis bestellen</strong> zum fairen Preis. Cannabisblüten ab 1€/g ohne versteckte Kosten. Transparente Preisgestaltung für alle Cannabis-Produkte.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="10" fill="#e8f5e9"/><path d="M20 12c-4 0-8 3-8 7s4 9 8 13c4-4 8-9 8-13s-4-7-8-7z" fill="#4caf50"/></svg>
+          </div>
+          <h3>100% Verfügbarkeit</h3>
+          <p>Alle Produkte immer auf Lager. Kein Warten, kein Nachbestellen. <strong>Cannabis kaufen</strong> bei Nordleaf bedeutet sofortige Verfügbarkeit und Lieferung in 1-3 Werktagen.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="10" fill="#e8f5e9"/><rect x="12" y="14" width="16" height="12" rx="2" stroke="#4caf50" stroke-width="2.5" fill="none"/><path d="M12 18h16" stroke="#4caf50" stroke-width="2"/></svg>
+          </div>
+          <h3>Sichere Bezahlung</h3>
+          <p>Zahlen Sie bequem per Überweisung oder Bitcoin. Alle Transaktionen sind verschlüsselt und DSGVO-konform. Sicher <strong>THC kaufen</strong> bei Nordleaf.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="10" fill="#e8f5e9"/><path d="M15 20l4 4 8-8" stroke="#4caf50" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          </div>
+          <h3>Pharmazeutische Qualität</h3>
+          <p>Alle Cannabis-Produkte sind laborgeprüft und entsprechen höchsten pharmazeutischen Standards. Garantiert rein, sicher und <strong>legal in Deutschland</strong>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="pricing" id="preise">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Preise</span>
+        <h2>Transparent & fair</h2>
+        <p>Keine versteckten Kosten. Du zahlst nur, was du siehst.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h3>Nur Rezept</h3>
+            <p class="pricing-desc">Rezept zum Einlösen in einer Apotheke deiner Wahl</p>
+          </div>
+          <div class="pricing-price">
+            <span class="price-amount">€19,90</span>
+            <span class="price-period">einmalig</span>
+          </div>
+          <ul class="pricing-features">
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="#4caf50"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" fill="none"/></svg> Ärztliche Beratung</li>
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="#4caf50"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" fill="none"/></svg> Cannabis-Rezept</li>
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="#4caf50"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" fill="none"/></svg> Einlösbar in jeder Apotheke</li>
+          </ul>
+          <a href="/wie-funktionierts" class="btn btn-outline">Rezept anfordern</a>
+        </div>
+
+        <div class="pricing-card featured">
+          <div class="pricing-badge">Beliebteste Wahl</div>
+          <div class="pricing-header">
+            <h3>All-in-One</h3>
+            <p class="pricing-desc">Rezept + Blüten direkt geliefert</p>
+          </div>
+          <div class="pricing-price">
+            <span class="price-amount">€9,90</span>
+            <span class="price-period">+ Medikament</span>
+          </div>
+          <ul class="pricing-features">
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="#4caf50"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" fill="none"/></svg> Ärztliche Beratung</li>
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="#4caf50"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" fill="none"/></svg> Cannabis-Rezept</li>
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="#4caf50"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" fill="none"/></svg> Blüten direkt geliefert</li>
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="#4caf50"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" fill="none"/></svg> Lieferung in 1-3 Werktagen</li>
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="#4caf50"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" fill="none"/></svg> 100% Verfügbarkeit</li>
+          </ul>
+          <a href="/wie-funktionierts" class="btn btn-primary">Jetzt starten</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Preview -->
+  <section class="faq-preview">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Häufige Fragen</span>
+        <h2>Alles was du wissen musst</h2>
+      </div>
+
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>Wer kann medizinisches Cannabis erhalten?</summary>
+          <p>Grundsätzlich kann jeder Patient in Deutschland medizinisches Cannabis verschrieben bekommen, wenn eine ärztliche Indikation vorliegt. Häufige Anwendungsgebiete sind chronische Schmerzen, Schlafstörungen, ADHS, Depressionen und Angststörungen.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Wie viel kostet das Cannabis-Rezept?</summary>
+          <p>Mit unserem All-in-One Paket zahlst du nur €9,90 für die ärztliche Beratung und das Rezept — dazu kommen die Kosten für dein gewähltes Medikament. Alternativ bieten wir das Nur-Rezept-Paket für €19,90 an.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Wie schnell wird mein Cannabis geliefert?</summary>
+          <p>Nach Genehmigung deines Rezepts versenden wir dein Medikament in der Regel am nächsten Werktag. Die Lieferung erfolgt dann innerhalb von 1-3 Werktagen diskret verpackt direkt zu dir nach Hause.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Welche Zahlungsmethoden akzeptiert ihr?</summary>
+          <p>Wir akzeptieren verschiedene Zahlungsmethoden, darunter Überweisung, Kreditkarte und weitere gängige Zahlungsarten. Die genauen Optionen werden dir beim Checkout angezeigt.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Ist die Bestellung wirklich diskret?</summary>
+          <p>Ja, absolut. Wir versenden in neutraler Verpackung ohne Hinweise auf den Inhalt. Deine Daten werden selbstverständlich vertraulich behandelt und DSGVO-konform gespeichert.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Ist Cannabis kaufen in Deutschland legal?</summary>
+          <p>Ja, medizinisches Cannabis ist in Deutschland seit 2017 legal, wenn es von einem Arzt verschrieben wird. Mit einem gültigen Cannabis-Rezept kannst du THC-haltige Produkte legal in einer Apotheke oder Online-Apotheke wie Nordleaf kaufen. Seit dem Cannabisgesetz (CanG) 2024 wurde der Zugang weiter vereinfacht.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Welche Cannabis-Produkte kann ich bei Nordleaf kaufen?</summary>
+          <p>Bei Nordleaf findest du über {categoryStats.total} medizinische Cannabis-Produkte: Cannabisblüten (THC Blüten) in vielen Sorten, Cannabisextrakte (Vollspektrum-Öle), THC Vapes, THC Shots und Kapseln & Edibles. Alle Produkte sind pharmazeutisch geprüft und ab 1€/g erhältlich.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Was ist der Unterschied zwischen THC und CBD?</summary>
+          <p>THC (Tetrahydrocannabinol) ist der psychoaktive Wirkstoff in Cannabis, der schmerzlindernd und beruhigend wirkt. CBD (Cannabidiol) hat keine psychoaktive Wirkung, wirkt aber entzündungshemmend und angstlösend. Bei Nordleaf findest du Produkte mit verschiedenen THC- und CBD-Gehalten, passend für deine Therapie.</p>
+        </details>
+      </div>
+
+      <div class="faq-cta">
+        <a href="/faq" class="btn btn-outline">Alle FAQ ansehen →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section class="reviews">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Bewertungen</span>
+        <h2>Das sagen unsere Patienten</h2>
+        <div class="review-summary">
+          <div class="stars">★★★★★</div>
+          <span>4,77 von 5 — basierend auf 6.502 Bewertungen</span>
+        </div>
+      </div>
+
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p>"Super schnelle Lieferung und top Qualität. Der Fragebogen war in 3 Minuten erledigt. Kann ich nur empfehlen!"</p>
+          <div class="review-author">
+            <strong>Thomas M.</strong>
+            <span>Verifizierter Patient</span>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p>"Endlich eine unkomplizierte Lösung. Die Ärzte sind kompetent und freundlich. Medikament kam innerhalb von 2 Tagen."</p>
+          <div class="review-author">
+            <strong>Sarah K.</strong>
+            <span>Verifizierte Patientin</span>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★☆</div>
+          <p>"Transparente Preise, gute Auswahl an Sorten und zuverlässige Lieferung. Bin sehr zufrieden mit dem Service."</p>
+          <div class="review-author">
+            <strong>Marcus W.</strong>
+            <span>Verifizierter Patient</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Bottom -->
+  <section class="cta-bottom">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Bereit für dein Cannabis-Rezept?</h2>
+        <p>Starte jetzt deinen 3-Minuten-Fragebogen und erhalte dein Rezept noch heute.</p>
+        <a href="/wie-funktionierts" class="btn btn-primary btn-lg">Jetzt Cannabis-Patient werden</a>
+      </div>
     </div>
   </section>
 </Layout>
 
 <style>
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, #0d2618 0%, #1a472a 40%, #2d6a47 100%);
+    color: white;
+    padding: 4rem 1.5rem 5rem;
+    overflow: hidden;
   }
 
-  .hero {
-    background: linear-gradient(135deg, #1a472a 0%, #2d6a47 100%);
-    color: white;
-    padding: 6rem 0;
-    text-align: center;
+  .hero-content {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(76, 175, 80, 0.15);
+    border: 1px solid rgba(76, 175, 80, 0.3);
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #81c784;
+    margin-bottom: 1.5rem;
+  }
+
+  .badge-dot {
+    width: 8px;
+    height: 8px;
+    background: #4caf50;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
   }
 
   .hero h1 {
     font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.1;
     margin-bottom: 1rem;
-    color: white;
+    letter-spacing: -0.03em;
   }
 
-  .hero p {
-    font-size: 1.25rem;
+  .highlight {
+    color: #4caf50;
+  }
+
+  .hero-subtitle {
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    max-width: 520px;
+  }
+
+  .hero-checks {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
     margin-bottom: 2rem;
   }
 
-  .cta-button {
-    display: inline-block;
-    padding: 1rem 2rem;
-    background-color: #4caf50;
+  .hero-checks li {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero-card {
+    width: 280px;
+    height: 280px;
+  }
+
+  .hero-illustration {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    background: #4caf50;
     color: white;
-    border-radius: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    border-radius: 50px;
     font-weight: 600;
-    transition: all 0.3s ease;
+    font-size: 1rem;
+    display: inline-block;
+    transition: all 0.2s;
+    border: 2px solid #4caf50;
+    text-align: center;
   }
-
-  .cta-button:hover {
-    background-color: #45a049;
+  .btn-primary:hover {
+    background: #43a047;
+    border-color: #43a047;
+    color: white;
     transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
   }
 
-  .features {
-    padding: 4rem 0;
-    background-color: #f5f7f6;
+  .btn-outline {
+    background: transparent;
+    color: white;
+    padding: 0.75rem 1.75rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    display: inline-block;
+    transition: all 0.2s;
+    border: 2px solid rgba(255,255,255,0.3);
+    text-align: center;
+  }
+  .btn-outline:hover {
+    border-color: #4caf50;
+    color: #4caf50;
   }
 
-  .features h2 {
+  .btn-lg {
+    padding: 0.9rem 2rem;
+    font-size: 1.05rem;
+  }
+
+  /* Stats Bar */
+  .stats-bar {
+    background: #f8faf9;
+    border-bottom: 1px solid #e8ede9;
+    padding: 1.5rem 1.5rem;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .stat {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    justify-content: center;
+  }
+
+  .stat-icon {
+    font-size: 1.5rem;
+    width: 44px;
+    height: 44px;
+    background: #e8f5e9;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .stat-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stat-text strong {
+    font-size: 1.05rem;
+    color: #1a472a;
+  }
+
+  .stat-text span {
+    font-size: 0.8rem;
+    color: #666;
+  }
+
+  /* Sections */
+  .section-header {
     text-align: center;
     margin-bottom: 3rem;
   }
 
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-  }
-
-  .feature-card {
-    background: white;
-    padding: 2rem;
-    border-radius: 0.5rem;
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-  }
-
-  .feature-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-  }
-
-  .feature-icon {
-    font-size: 3rem;
+  .section-tag {
+    display: inline-block;
+    background: #e8f5e9;
+    color: #2d6a47;
+    padding: 0.3rem 1rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
     margin-bottom: 1rem;
   }
 
-  .feature-card h3 {
+  .section-header h2 {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #1a472a;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-header p {
+    color: #666;
+    font-size: 1.1rem;
+    max-width: 550px;
+    margin: 0 auto;
+  }
+
+  /* How it works */
+  .how-it-works {
+    padding: 5rem 1.5rem;
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .step-card {
+    background: white;
+    border: 1px solid #e8ede9;
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+    transition: all 0.3s;
+  }
+
+  .step-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+  }
+
+  .step-number {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1a472a;
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    font-size: 0.85rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .step-icon {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .step-card h3 {
+    font-size: 1.2rem;
     color: #1a472a;
     margin-bottom: 0.5rem;
   }
 
-  .feature-card p {
+  .step-card p {
     color: #666;
-    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
   }
 
-  .products-section {
-    padding: 4rem 0;
-  }
-
-  .products-section h2 {
+  .steps-cta {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-top: 2.5rem;
+  }
+
+  /* Featured Products */
+  .featured-products {
+    padding: 5rem 1.5rem;
+    background: #f8faf9;
   }
 
   .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-bottom: 2rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
   }
 
   .product-card {
     background: white;
-    border: 1px solid #ddd;
-    border-radius: 0.5rem;
+    border: 1px solid #e8ede9;
+    border-radius: 12px;
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
   }
 
   .product-card:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
     transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+    border-color: #4caf50;
   }
 
-  .product-card img {
+  .product-image {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 160px;
+    overflow: hidden;
+  }
+
+  .product-image img {
     width: 100%;
-    height: 200px;
-    object-fit: cover;
+    height: 160px;
+    object-fit: contain;
+    background: #f0f4f0;
+    padding: 0.5rem;
   }
 
-  .product-card h3 {
-    margin: 1rem;
-    color: #1a472a;
+  .product-badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: #ff9800;
+    color: white;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
   }
 
-  .product-card p {
-    margin: 0 1rem 1rem;
+  .availability {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+
+  .available {
+    background: rgba(76, 175, 80, 0.2);
+    color: #4caf50;
+  }
+
+  .unavailable {
+    background: rgba(244, 67, 54, 0.2);
+    color: #f44336;
+  }
+
+  .product-info {
+    padding: 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .product-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.4rem;
+  }
+
+  .product-brand {
+    color: #999;
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+
+  .product-origin {
+    background: #f0f0f0;
     color: #666;
+    padding: 0.1rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.7rem;
+    font-weight: 600;
   }
 
-  .price {
-    display: block;
-    margin: 0 1rem 1rem;
-    font-size: 1.5rem;
+  .product-strain {
+    font-size: 1rem;
     font-weight: 700;
     color: #1a472a;
+    margin-bottom: 0.2rem;
+    line-height: 1.2;
   }
 
-  .cta-section {
-    text-align: center;
-    margin: 2rem 0;
+  .product-name {
+    font-size: 0.75rem;
+    color: #999;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
   }
 
-  .btn {
-    display: inline-block;
-    padding: 0.75rem 2rem;
-    background-color: #1a472a;
-    color: white;
-    border-radius: 0.5rem;
+  .product-stats {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .thc, .cbd {
+    font-size: 0.75rem;
     font-weight: 600;
-    transition: all 0.3s ease;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
   }
 
-  .btn:hover {
-    background-color: #2d6a47;
-    transform: translateY(-2px);
+  .thc {
+    background: #e8f5e9;
+    color: #2d6a47;
   }
 
-  .newsletter {
-    padding: 4rem 0;
-    background: linear-gradient(135deg, #1a472a 0%, #2d6a47 100%);
-    color: white;
+  .cbd {
+    background: #e3f2fd;
+    color: #1565c0;
+  }
+
+  .product-effects {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .effect-tag {
+    font-size: 0.7rem;
+    color: #888;
+    background: #f5f5f5;
+    padding: 0.15rem 0.4rem;
+    border-radius: 3px;
+  }
+
+  .product-price {
+    margin-top: auto;
+    padding-top: 0.5rem;
+    border-top: 1px solid #f0f0f0;
+  }
+
+  .product-price strong {
+    font-size: 1.15rem;
+    color: #1a472a;
+  }
+
+  .product-price span {
+    font-size: 0.85rem;
+    color: #999;
+  }
+
+  .products-cta {
     text-align: center;
+    margin-top: 2.5rem;
   }
 
-  .newsletter h2 {
+  .products-cta .btn-outline {
+    color: #1a472a;
+    border-color: #1a472a;
+  }
+  .products-cta .btn-outline:hover {
+    background: #1a472a;
     color: white;
+  }
+
+  /* SEO Content Section */
+  .seo-content {
+    padding: 5rem 1.5rem;
+  }
+
+  .seo-content-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 0.6fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .seo-text h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #1a472a;
+    margin-bottom: 1.25rem;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .seo-text .section-tag {
     margin-bottom: 1rem;
   }
 
-  .newsletter p {
-    color: rgba(255, 255, 255, 0.9);
+  .seo-text p {
+    color: #555;
+    line-height: 1.8;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .seo-text p strong {
+    color: #1a472a;
+  }
+
+  .seo-highlights {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .seo-highlight {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    background: #f8faf9;
+    border: 1px solid #e8ede9;
+    border-radius: 12px;
+    padding: 1rem;
+  }
+
+  .seo-highlight-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .seo-highlight div strong {
+    display: block;
+    color: #1a472a;
+    font-size: 0.9rem;
+    margin-bottom: 0.15rem;
+  }
+
+  .seo-highlight div span {
+    font-size: 0.8rem;
+    color: #888;
+    line-height: 1.4;
+  }
+
+  .seo-sidebar {
+    position: sticky;
+    top: 2rem;
+  }
+
+  .seo-info-card {
+    background: linear-gradient(135deg, #0d2618 0%, #1a472a 60%, #2d6a47 100%);
+    color: white;
+    border-radius: 16px;
+    padding: 2rem;
+  }
+
+  .seo-info-card h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: white;
+  }
+
+  .seo-info-card p {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .seo-info-card p strong {
+    color: white;
+  }
+
+  .seo-list {
+    list-style: none;
+    margin-bottom: 1.5rem;
+  }
+
+  .seo-list li {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.85);
+    padding: 0.4rem 0;
+    padding-left: 1.25rem;
+    position: relative;
+    line-height: 1.4;
+  }
+
+  .seo-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #4caf50;
+    font-weight: 700;
+  }
+
+  .seo-info-card .btn-primary {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Categories SEO Section */
+  .categories-seo {
+    padding: 5rem 1.5rem;
+    background: #f8faf9;
+  }
+
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .category-card {
+    background: white;
+    border: 1px solid #e8ede9;
+    border-radius: 16px;
+    padding: 1.75rem;
+    transition: all 0.3s;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .category-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+    border-color: #4caf50;
+  }
+
+  .category-icon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .category-card h3 {
     font-size: 1.1rem;
+    font-weight: 700;
+    color: #1a472a;
+    margin-bottom: 0.25rem;
+  }
+
+  .category-count {
+    display: inline-block;
+    background: #e8f5e9;
+    color: #2d6a47;
+    padding: 0.15rem 0.6rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+
+  .category-card p {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .category-card p strong {
+    color: #1a472a;
+  }
+
+  /* Why Nordleaf Section */
+  .why-nordleaf {
+    padding: 5rem 1.5rem;
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .benefit-card {
+    background: white;
+    border: 1px solid #e8ede9;
+    border-radius: 16px;
+    padding: 1.75rem;
+    transition: all 0.3s;
+  }
+
+  .benefit-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+  }
+
+  .benefit-icon {
+    margin-bottom: 1rem;
+  }
+
+  .benefit-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1a472a;
+    margin-bottom: 0.5rem;
+  }
+
+  .benefit-card p {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .benefit-card p strong {
+    color: #1a472a;
+  }
+
+  /* Pricing */
+  .pricing {
+    padding: 5rem 1.5rem;
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .pricing-card {
+    background: white;
+    border: 2px solid #e8ede9;
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+    transition: all 0.3s;
+  }
+
+  .pricing-card.featured {
+    border-color: #4caf50;
+    box-shadow: 0 8px 32px rgba(76, 175, 80, 0.15);
+  }
+
+  .pricing-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #4caf50;
+    color: white;
+    padding: 0.3rem 1rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .pricing-header h3 {
+    font-size: 1.3rem;
+    color: #1a472a;
+    margin-bottom: 0.25rem;
+  }
+
+  .pricing-desc {
+    color: #888;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .pricing-price {
+    margin-bottom: 1.5rem;
+  }
+
+  .price-amount {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1a472a;
+  }
+
+  .price-period {
+    display: block;
+    color: #888;
+    font-size: 0.9rem;
+  }
+
+  .pricing-features {
+    list-style: none;
+    text-align: left;
     margin-bottom: 2rem;
   }
 
-  .newsletter-form {
+  .pricing-features li {
     display: flex;
+    align-items: center;
     gap: 0.5rem;
-    max-width: 500px;
-    margin: 0 auto;
-    justify-content: center;
+    padding: 0.4rem 0;
+    font-size: 0.95rem;
+    color: #555;
   }
 
-  .newsletter-form input {
-    flex: 1;
-    padding: 0.75rem;
-    border: none;
-    border-radius: 0.25rem;
+  .pricing-card .btn {
+    width: 100%;
+    display: block;
   }
 
-  .newsletter-form button {
-    padding: 0.75rem 2rem;
-    background-color: #4caf50;
+  .pricing-card .btn-outline {
+    color: #1a472a;
+    border-color: #1a472a;
+  }
+  .pricing-card .btn-outline:hover {
+    background: #1a472a;
     color: white;
-    border: none;
-    border-radius: 0.25rem;
+  }
+
+  /* FAQ */
+  .faq-preview {
+    padding: 5rem 1.5rem;
+    background: #f8faf9;
+  }
+
+  .faq-list {
+    max-width: 750px;
+    margin: 0 auto;
+  }
+
+  .faq-item {
+    background: white;
+    border: 1px solid #e8ede9;
+    border-radius: 12px;
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+  }
+
+  .faq-item summary {
+    padding: 1.25rem 1.5rem;
     font-weight: 600;
+    color: #1a472a;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
   }
 
-  .newsletter-form button:hover {
-    background-color: #45a049;
+  .faq-item summary::-webkit-details-marker {
+    display: none;
   }
 
-  @media (max-width: 768px) {
-    .hero h1 {
-      font-size: 2rem;
+  .faq-item summary::after {
+    content: '+';
+    font-size: 1.5rem;
+    color: #4caf50;
+    font-weight: 300;
+    transition: transform 0.2s;
+  }
+
+  .faq-item[open] summary::after {
+    content: '−';
+  }
+
+  .faq-item p {
+    padding: 0 1.5rem 1.25rem;
+    color: #666;
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+
+  .faq-cta {
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .faq-cta .btn-outline {
+    color: #1a472a;
+    border-color: #1a472a;
+  }
+  .faq-cta .btn-outline:hover {
+    background: #1a472a;
+    color: white;
+  }
+
+  /* Reviews */
+  .reviews {
+    padding: 5rem 1.5rem;
+  }
+
+  .review-summary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+  }
+
+  .stars {
+    color: #f9a825;
+    font-size: 1.3rem;
+  }
+
+  .review-summary span {
+    color: #888;
+    font-size: 0.95rem;
+  }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .review-card {
+    background: white;
+    border: 1px solid #e8ede9;
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+
+  .review-stars {
+    color: #f9a825;
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .review-card p {
+    color: #555;
+    font-style: italic;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  .review-author strong {
+    display: block;
+    color: #1a472a;
+    font-size: 0.9rem;
+  }
+
+  .review-author span {
+    font-size: 0.8rem;
+    color: #999;
+  }
+
+  /* CTA Bottom */
+  .cta-bottom {
+    background: linear-gradient(135deg, #1a472a 0%, #2d6a47 100%);
+    padding: 4rem 1.5rem;
+  }
+
+  .cta-content {
+    text-align: center;
+    color: white;
+  }
+
+  .cta-content h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+    color: white;
+  }
+
+  .cta-content p {
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 968px) {
+    .hero-content {
+      grid-template-columns: 1fr;
+      text-align: center;
     }
 
-    .hero p {
-      font-size: 1rem;
+    .hero-visual { display: none; }
+    .hero h1 { font-size: 2.25rem; }
+    .hero-subtitle { margin: 0 auto 1.5rem; }
+    .hero-checks { align-items: center; }
+    .hero-cta { justify-content: center; }
+
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
     }
 
-    .features-grid,
     .products-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .steps-grid {
+      grid-template-columns: 1fr;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .reviews-grid {
+      grid-template-columns: 1fr;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .seo-content-grid {
       grid-template-columns: 1fr;
     }
 
-    .newsletter-form {
-      flex-direction: column;
+    .seo-sidebar {
+      position: static;
+    }
+
+    .categories-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .benefits-grid {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 
-  @media (max-width: 480px) {
-    .hero {
-      padding: 3rem 0;
+  @media (max-width: 576px) {
+    .hero { padding: 2.5rem 0 3rem; }
+    .hero h1 { font-size: 1.75rem; }
+    .hero-subtitle { font-size: 1rem; }
+
+    .stats-grid {
+      grid-template-columns: 1fr 1fr;
     }
 
-    .cta-button {
+    .stat {
+      flex-direction: column;
+      text-align: center;
+      gap: 0.25rem;
+    }
+
+    .products-grid {
+      grid-template-columns: 1fr;
+      max-width: 350px;
+      margin: 0 auto;
+    }
+
+    .pricing-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-cta {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-cta .btn {
       width: 100%;
+    }
+
+    .section-header h2 {
+      font-size: 1.5rem;
+    }
+
+    .seo-highlights {
+      grid-template-columns: 1fr;
+    }
+
+    .seo-text h2 {
+      font-size: 1.5rem;
+    }
+
+    .categories-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .benefits-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .seo-content,
+    .categories-seo,
+    .why-nordleaf {
+      padding: 3rem 1rem;
     }
   }
 </style>

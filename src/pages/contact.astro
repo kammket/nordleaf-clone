@@ -1,161 +1,171 @@
 ---
-// Contact Page
-
 import Layout from '../layouts/Layout.astro';
-
-const siteUrl = 'https://nordleaf.de';
-
-const structuredData = {
-  '@context': 'https://schema.org',
-  '@type': 'ContactPage',
-  name: 'Contact Nordleaf',
-  url: `${siteUrl}/contact`,
-};
+import Breadcrumb from '../components/Breadcrumb.astro';
 ---
 
 <Layout
-  title="Contact Us - Nordleaf"
-  description="Get in touch with Nordleaf. We're here to help! Contact us via email, phone, or our contact form."
-  canonical={`${siteUrl}/contact`}
-  ogImage="/images/og-contact.jpg"
-  keywords="contact nordleaf, customer service, support, inquiries"
-  structuredData={structuredData}
+  title="Kontakt | Nordleaf - Hilfe & Support"
+  description="Kontaktiere das Nordleaf Team. Wir helfen dir bei Fragen zu deinem Cannabis-Rezept, deiner Bestellung oder allgemeinen Anliegen."
+  keywords="Nordleaf Kontakt, Cannabis Apotheke Kontakt, Hilfe, Support"
 >
-  <div class="contact-page">
-    <section class="page-header">
-      <div class="container">
-        <h1>Contact Us</h1>
-        <p>We'd Love to Hear From You</p>
-      </div>
-    </section>
+  <Breadcrumb items={[{name: "Kontakt"}]} />
+  <section class="page-hero">
+    <div class="container">
+      <h1>Kontakt</h1>
+      <p>Wir sind für dich da. Schreib uns und wir melden uns schnellstmöglich.</p>
+    </div>
+  </section>
 
-    <section class="contact-section">
-      <div class="container">
-        <div class="contact-grid">
-          <div class="contact-form-wrapper">
-            <h2>Send us a Message</h2>
-            <form class="contact-form" method="POST">
-              <div class="form-group">
-                <label for="name">Full Name *</label>
-                <input type="text" id="name" name="name" required />
-              </div>
-
-              <div class="form-group">
-                <label for="email">Email Address *</label>
-                <input type="email" id="email" name="email" required />
-              </div>
-
-              <div class="form-group">
-                <label for="message">Message *</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
-              </div>
-
-              <button type="submit" class="btn">Send Message</button>
-            </form>
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h2>So erreichst du uns</h2>
+          
+          <div class="info-item">
+            <h3>📧 E-Mail</h3>
+            <p><a href="mailto:info@nordleaf.de">info@nordleaf.de</a></p>
+            <p class="info-note">Antwort innerhalb von 24 Stunden</p>
           </div>
 
-          <div class="contact-info-wrapper">
-            <h2>Get in Touch</h2>
+          <div class="info-item">
+            <h3>💬 Live-Chat</h3>
+            <p>Montag - Freitag, 9:00 - 18:00 Uhr</p>
+            <p class="info-note">Direkte Hilfe bei dringenden Fragen</p>
+          </div>
 
-            <div class="contact-info-item">
-              <h3>📍 Address</h3>
-              <p>Nordleaf GmbH<br />Berlin, Germany</p>
-            </div>
+          <div class="info-item">
+            <h3>📍 Adresse</h3>
+            <p>Nordleaf GmbH<br/>Berlin, Deutschland</p>
+          </div>
 
-            <div class="contact-info-item">
-              <h3>📞 Phone</h3>
-              <p><a href="tel:+49123456789">+49 123 456789</a></p>
-            </div>
-
-            <div class="contact-info-item">
-              <h3>✉️ Email</h3>
-              <p><a href="mailto:info@nordleaf.de">info@nordleaf.de</a></p>
-            </div>
+          <div class="quick-links">
+            <h3>Schnellhilfe</h3>
+            <ul>
+              <li><a href="/faq">→ Häufige Fragen (FAQ)</a></li>
+              <li><a href="/wie-funktionierts">→ Wie funktioniert's</a></li>
+              <li><a href="/preise">→ Preise</a></li>
+            </ul>
           </div>
         </div>
+
+        <div class="contact-form">
+          <h2>Nachricht senden</h2>
+          <form id="contactForm">
+            <div class="form-group">
+              <label for="name">Name *</label>
+              <input type="text" id="name" name="name" required placeholder="Dein Name" />
+            </div>
+            <div class="form-group">
+              <label for="email">E-Mail *</label>
+              <input type="email" id="email" name="email" required placeholder="deine@email.de" />
+            </div>
+            <div class="form-group">
+              <label for="subject">Betreff</label>
+              <select id="subject" name="subject">
+                <option value="allgemein">Allgemeine Anfrage</option>
+                <option value="rezept">Frage zum Rezept</option>
+                <option value="bestellung">Frage zur Bestellung</option>
+                <option value="lieferung">Frage zur Lieferung</option>
+                <option value="sonstiges">Sonstiges</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Nachricht *</label>
+              <textarea id="message" name="message" rows="5" required placeholder="Wie können wir dir helfen?"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Nachricht senden</button>
+          </form>
+        </div>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
+
+  <script>
+    document.getElementById('contactForm')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const form = e.target as HTMLFormElement;
+      const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+      btn.textContent = '✓ Nachricht gesendet!';
+      btn.style.background = '#1a472a';
+      setTimeout(() => {
+        btn.textContent = 'Nachricht senden';
+        btn.style.background = '#4caf50';
+        form.reset();
+      }, 3000);
+    });
+  </script>
 </Layout>
 
 <style>
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
+  .page-hero {
+    background: linear-gradient(135deg, #0d2618, #1a472a, #2d6a47);
+    color: white; padding: 3.5rem 1.5rem; text-align: center;
   }
+  .page-hero h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.75rem; }
+  .page-hero p { color: rgba(255,255,255,0.7); font-size: 1.1rem; }
 
-  .page-header {
-    background: linear-gradient(135deg, #1a472a 0%, #2d6a47 100%);
-    color: white;
-    padding: 3rem 0;
-    text-align: center;
-  }
-
-  .page-header h1 {
-    color: white;
-  }
-
-  .contact-section {
-    padding: 4rem 0;
-  }
+  .contact-section { padding: 4rem 1.5rem; }
 
   .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
+    display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem;
+    max-width: 900px; margin: 0 auto;
   }
 
-  .form-group {
+  .contact-info h2, .contact-form h2 {
+    font-size: 1.5rem; font-weight: 700; color: #1a472a; margin-bottom: 1.5rem;
+  }
+
+  .info-item {
     margin-bottom: 1.5rem;
   }
 
+  .info-item h3 {
+    font-size: 1rem; color: #333; margin-bottom: 0.25rem;
+  }
+
+  .info-item p { color: #555; font-size: 0.95rem; margin-bottom: 0.15rem; }
+  .info-item a { color: #4caf50; font-weight: 600; }
+  .info-note { font-size: 0.8rem !important; color: #999 !important; }
+
+  .quick-links h3 { font-size: 1rem; color: #333; margin-bottom: 0.5rem; }
+  .quick-links ul { list-style: none; }
+  .quick-links li { margin-bottom: 0.3rem; }
+  .quick-links a { color: #4caf50; font-size: 0.95rem; }
+
+  .form-group {
+    margin-bottom: 1.25rem;
+  }
+
   .form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
+    display: block; font-size: 0.85rem; font-weight: 600;
+    color: #555; margin-bottom: 0.3rem;
   }
 
   .form-group input,
+  .form-group select,
   .form-group textarea {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-    border-radius: 0.25rem;
-    font-size: 1rem;
+    width: 100%; padding: 0.7rem 1rem; border: 1px solid #ddd;
+    border-radius: 8px; font-size: 0.95rem; color: #333;
+    transition: border-color 0.2s;
   }
 
-  .btn {
-    padding: 0.75rem 2rem;
-    background-color: #1a472a;
-    color: white;
-    border: none;
-    border-radius: 0.5rem;
-    font-weight: 600;
-    cursor: pointer;
-    width: 100%;
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: #4caf50; outline: none;
   }
 
-  .btn:hover {
-    background-color: #2d6a47;
+  .btn-primary {
+    background: #4caf50; color: white; padding: 0.75rem 1.75rem;
+    border-radius: 50px; font-weight: 600; display: inline-block;
+    border: 2px solid #4caf50; transition: all 0.2s;
+    cursor: pointer; font-size: 1rem; width: 100%;
   }
-
-  .contact-info-item {
-    margin-bottom: 2rem;
-  }
-
-  .contact-info-item h3 {
-    color: #1a472a;
-    margin-bottom: 0.75rem;
-  }
-
-  .contact-info-item a {
-    color: #1a472a;
-  }
+  .btn-primary:hover { background: #43a047; border-color: #43a047; color: white; }
 
   @media (max-width: 768px) {
-    .contact-grid {
-      grid-template-columns: 1fr;
-    }
+    .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .page-hero h1 { font-size: 1.75rem; }
   }
 </style>

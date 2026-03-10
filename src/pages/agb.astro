@@ -1,0 +1,82 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+---
+
+<Layout
+  title="AGB | Nordleaf - Allgemeine Geschäftsbedingungen"
+  description="Allgemeine Geschäftsbedingungen der Nordleaf GmbH."
+  keywords="Nordleaf AGB, Geschäftsbedingungen, Cannabis Apotheke AGB"
+>
+  <Breadcrumb items={[{name: "AGB"}]} />
+  <section class="page-hero">
+    <div class="container">
+      <h1>Allgemeine Geschäftsbedingungen</h1>
+    </div>
+  </section>
+
+  <section class="legal-section">
+    <div class="container">
+      <div class="legal-content">
+        <h2>§ 1 Geltungsbereich</h2>
+        <p>Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für alle Geschäftsbeziehungen zwischen der Nordleaf GmbH (nachfolgend "Nordleaf") und dem Kunden. Maßgeblich ist die zum Zeitpunkt des Vertragsschlusses gültige Fassung.</p>
+
+        <h2>§ 2 Vertragspartner</h2>
+        <p>Der Kaufvertrag kommt zustande mit der Nordleaf GmbH, Musterstraße 1, 10115 Berlin, eingetragen im Handelsregister des Amtsgerichts Berlin-Charlottenburg.</p>
+
+        <h2>§ 3 Leistungen</h2>
+        <p>Nordleaf vermittelt medizinische Cannabis-Rezepte und/oder beliefert Patienten mit verschreibungspflichtigen Cannabis-Medikamenten. Die Rezeptausstellung erfolgt durch zugelassene, unabhängige Ärzte.</p>
+        <p>Wir bieten zwei Servicemodelle an:</p>
+        <ul>
+          <li><strong>Nur Rezept (€19,90):</strong> Vermittlung einer ärztlichen Konsultation und Ausstellung eines Rezepts.</li>
+          <li><strong>All-in-One (€9,90 + Medikamentenkosten):</strong> Rezeptausstellung inklusive Lieferung des Medikaments.</li>
+        </ul>
+
+        <h2>§ 4 Vertragsschluss</h2>
+        <p>Die Darstellung der Produkte auf unserer Website stellt kein rechtlich bindendes Angebot dar. Durch das Absenden des Fragebogens und der Bestellung geben Sie ein verbindliches Angebot ab. Der Vertrag kommt erst durch die Bestätigung per E-Mail zustande.</p>
+
+        <h2>§ 5 Preise und Zahlung</h2>
+        <p>Alle angegebenen Preise sind Endpreise inklusive der gesetzlichen Mehrwertsteuer. Die Zahlung erfolgt über die auf unserer Website angebotenen Zahlungsmethoden.</p>
+
+        <h2>§ 6 Lieferung</h2>
+        <p>Die Lieferung erfolgt nach erfolgreicher Rezeptausstellung innerhalb von 1-3 Werktagen an die vom Kunden angegebene Lieferadresse in Deutschland. Die Versandkosten werden im Bestellprozess ausgewiesen.</p>
+
+        <h2>§ 7 Widerrufsrecht</h2>
+        <p>Für verschreibungspflichtige Arzneimittel gelten besondere Regelungen. Details finden Sie in unserer <a href="/widerruf">Widerrufsbelehrung</a>.</p>
+
+        <h2>§ 8 Haftung</h2>
+        <p>Nordleaf haftet nach den gesetzlichen Bestimmungen. Die medizinische Beurteilung liegt in der Verantwortung des behandelnden Arztes. Nordleaf übernimmt keine Haftung für ärztliche Entscheidungen.</p>
+
+        <h2>§ 9 Datenschutz</h2>
+        <p>Informationen zur Verarbeitung personenbezogener Daten finden Sie in unserer <a href="/datenschutz">Datenschutzerklärung</a>.</p>
+
+        <h2>§ 10 Schlussbestimmungen</h2>
+        <p>Es gilt das Recht der Bundesrepublik Deutschland. Gerichtsstand ist Berlin, soweit gesetzlich zulässig. Sollte eine Bestimmung dieser AGB unwirksam sein, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt.</p>
+
+        <p class="legal-date">Stand: Januar 2025</p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero {
+    background: linear-gradient(135deg, #0d2618, #1a472a, #2d6a47);
+    color: white; padding: 3rem 1.5rem; text-align: center;
+  }
+  .page-hero h1 { font-size: 2rem; font-weight: 800; }
+
+  .legal-section { padding: 3rem 1.5rem; }
+  .legal-content { max-width: 700px; margin: 0 auto; }
+  .legal-content h2 { font-size: 1.2rem; font-weight: 700; color: #1a472a; margin: 2rem 0 0.5rem; }
+  .legal-content h2:first-child { margin-top: 0; }
+  .legal-content p { color: #555; line-height: 1.7; font-size: 0.95rem; margin-bottom: 0.5rem; }
+  .legal-content ul { color: #555; margin: 0.5rem 0 1rem 1.5rem; line-height: 1.7; font-size: 0.95rem; }
+  .legal-content strong { color: #333; }
+  .legal-content a { color: #4caf50; }
+  .legal-date { color: #999 !important; margin-top: 2rem !important; font-style: italic; }
+
+  @media (max-width: 768px) {
+    .page-hero h1 { font-size: 1.5rem; }
+  }
+</style>

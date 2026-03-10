@@ -1,0 +1,914 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { products } from '../utils/products';
+
+export function getStaticPaths() {
+  return products.map((product) => ({
+    params: { slug: product.slug },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props;
+
+const relatedProducts = products
+  .filter(p => p.id !== product.id && p.category === product.category)
+  .sort(() => 0.5 - Math.random())
+  .slice(0, 4);
+
+// Category-specific SEO content
+const categoryKeywords: Record<string, string> = {
+  'Cannabisblüten': `${product.strain} kaufen, ${product.brand} ${product.strain}, medizinische Cannabisblüten, THC ${product.thc} Blüten, Cannabis Sorte ${product.strain}, ${product.strain} Wirkung, ${product.brand} Cannabis, medizinisches Cannabis ${product.origin}, Cannabis Blüten bestellen Deutschland`,
+  'Cannabisextrakte': `${product.name}, Cannabisextrakt kaufen, THC Extrakt ${product.thc}, ${product.brand} Extrakt, Vollspektrum Cannabisextrakt, medizinisches Cannabis Öl, Cannabis Tropfen, THC Öl auf Rezept`,
+  'THC Vapes': `THC Vape kaufen, ${product.name}, medizinischer Vaporizer, Cannabis Vape Kartusche, THC Inhalation, Vape auf Rezept, Cannabis Verdampfer`,
+  'THC Shots': `THC Shot kaufen, ${product.name}, Cannabis Shot, THC Getränk medizinisch, Cannabis Trinkampulle, THC dosiert trinken`,
+  'Kapseln & Edibles': `THC Kapseln kaufen, ${product.name}, Cannabis Kapseln, Dronabinol Kapseln, THC oral, medizinische Cannabis Kapseln`,
+};
+
+const categoryDescriptions: Record<string, string> = {
+  'Cannabisblüten': `${product.brand} ${product.strain} – Premium medizinische Cannabisblüten mit ${product.thc} THC und ${product.cbd} CBD. Herkunft: ${product.origin}. Wirkung: ${product.effects.join(', ')}. Bei Nordleaf sofort lieferbar ab €${product.price.toFixed(2)}/${product.priceUnit}. Schnelle, diskrete Lieferung in 1-3 Werktagen.`,
+  'Cannabisextrakte': `${product.name} – Medizinischer Cannabisextrakt mit ${product.thc} THC. Laborgeprüfte Qualität von ${product.brand}. Exakte Dosierung für die medizinische Therapie. Ab €${product.price.toFixed(2)} bei Nordleaf.`,
+  'THC Vapes': `${product.name} – Medizinischer THC-Vaporizer für sofortige Wirkung. Hochreine Extraktion, diskret und einfach anzuwenden. Bei Nordleaf ab €${product.price.toFixed(2)} bestellen.`,
+  'THC Shots': `${product.name} – Gebrauchsfertiger THC-Shot für die medizinische Anwendung. Exakt dosiert mit ${product.thc} THC. Diskret, schnellwirkend. Bei Nordleaf ab €${product.price.toFixed(2)}.`,
+  'Kapseln & Edibles': `${product.name} – Medizinische THC-Kapseln mit präziser Dosierung. Einfache orale Einnahme, langanhaltende Wirkung. Bei Nordleaf ab €${product.price.toFixed(2)}.`,
+};
+
+const seoDescription = categoryDescriptions[product.category] || product.description;
+const seoKeywords = categoryKeywords[product.category] || `${product.strain}, ${product.brand}, medizinisches Cannabis`;
+
+// Category FAQ content
+const categoryFaqs: Record<string, Array<{q: string, a: string}>> = {
+  'Cannabisblüten': [
+    { q: `Was ist ${product.strain} für eine Cannabis-Sorte?`, a: `${product.strain} ist eine medizinische Cannabissorte von ${product.brand} mit einem THC-Gehalt von ${product.thc} und einem CBD-Gehalt von ${product.cbd}. Die Blüten stammen aus ${product.origin} und werden für ihre ${product.effects.join(', ').toLowerCase()} Wirkung geschätzt. Sie sind bei Nordleaf ab €${product.price.toFixed(2)} pro ${product.priceUnit} erhältlich.` },
+    { q: `Wie wirkt ${product.strain}?`, a: `Die Cannabissorte ${product.strain} ist bekannt für ihre ${product.effects.join(', ').toLowerCase()} Wirkung. Mit ${product.thc} THC-Gehalt gehört sie zu den ${parseFloat(product.thc) >= 25 ? 'potenten' : 'mittelstarken'} medizinischen Sorten. Die Wirkung setzt typischerweise innerhalb weniger Minuten nach der Inhalation ein.` },
+    { q: `Brauche ich ein Rezept für ${product.strain}?`, a: `Ja, ${product.strain} ist ein verschreibungspflichtiges Medikament. Du benötigst ein gültiges Cannabis-Rezept. Bei Nordleaf kannst du dieses in nur 3 Minuten über unseren medizinischen Fragebogen beantragen. Ein zugelassener Arzt prüft deine Angaben und stellt bei Eignung das Rezept aus.` },
+    { q: `Wie schnell wird ${product.strain} geliefert?`, a: `Nach Rezeptgenehmigung versenden wir dein Medikament in der Regel am nächsten Werktag. Die Lieferung erfolgt diskret in neutraler Verpackung innerhalb von 1-3 Werktagen direkt zu dir nach Hause.` },
+  ],
+  'Cannabisextrakte': [
+    { q: `Wie dosiere ich diesen Cannabisextrakt?`, a: `Die Dosierung von ${product.name} sollte immer in Absprache mit deinem behandelnden Arzt erfolgen. Beginne mit einer niedrigen Dosis und steigere langsam. Der Extrakt enthält ${product.thc} THC und ermöglicht durch die Tropfenform eine sehr genaue Dosierung.` },
+    { q: `Was ist der Unterschied zwischen Extrakt und Blüten?`, a: `Cannabisextrakte wie ${product.name} bieten eine präzisere Dosierungsmöglichkeit als Blüten. Sie werden oral eingenommen (sublingual unter die Zunge) und haben eine längere, gleichmäßigere Wirkung. Extrakte eignen sich besonders für Patienten, die eine rauchfreie Alternative suchen.` },
+  ],
+  'THC Vapes': [
+    { q: `Wie verwende ich diesen THC Vape?`, a: `Schließe die Kartusche an den Akkuträger an. Inhaliere langsam und gleichmäßig für 3-5 Sekunden. Warte einige Minuten, bevor du erneut inhalierst, um die Wirkung einschätzen zu können. Ein Vape eignet sich ideal für eine schnelle, diskrete medizinische Anwendung.` },
+    { q: `Wie lange hält eine Vape-Kartusche?`, a: `Die Haltbarkeit hängt von der individuellen Nutzung ab. Eine 0,5ml Kartusche reicht typischerweise für mehrere Sitzungen. Bewahre den Vape bei Raumtemperatur und stehend auf, um die Qualität zu erhalten.` },
+  ],
+  'THC Shots': [
+    { q: `Wie schnell wirkt ein THC Shot?`, a: `THC Shots wirken in der Regel innerhalb von 15-45 Minuten, da sie über den Verdauungstrakt aufgenommen werden. Die Wirkung hält typischerweise 4-8 Stunden an. Beginne immer mit einer niedrigen Dosis und warte ausreichend lange, bevor du nachdosierst.` },
+    { q: `Kann ich den Shot mit Wasser verdünnen?`, a: `Ja, du kannst den THC Shot mit Wasser oder einem anderen Getränk verdünnen, ohne die Wirksamkeit zu beeinträchtigen. Die exakte Dosierung bleibt dabei erhalten.` },
+  ],
+  'Kapseln & Edibles': [
+    { q: `Wie nehme ich THC Kapseln ein?`, a: `Nimm die Kapseln mit ausreichend Wasser zu einer Mahlzeit ein. Die Einnahme mit fetthaltiger Nahrung kann die Bioverfügbarkeit verbessern. Die Wirkung setzt nach ca. 30-90 Minuten ein und hält mehrere Stunden an.` },
+    { q: `Wie bewahre ich die Kapseln auf?`, a: `Lagere die Kapseln kühl, trocken und lichtgeschützt. Halte sie außerhalb der Reichweite von Kindern. Beachte das Verfallsdatum auf der Verpackung.` },
+  ],
+};
+
+const faqs = categoryFaqs[product.category] || categoryFaqs['Cannabisblüten'];
+
+// Enhanced structured data
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": product.name,
+  "description": seoDescription,
+  "image": product.image,
+  "brand": { "@type": "Brand", "name": product.brand },
+  "category": product.category,
+  "offers": {
+    "@type": "Offer",
+    "price": product.price,
+    "priceCurrency": "EUR",
+    "availability": product.available ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+    "seller": { "@type": "Organization", "name": "Nordleaf" },
+    "url": `https://nordleaf.de/${product.slug}`
+  }
+};
+
+const breadcrumbData = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://nordleaf.de/" },
+    { "@type": "ListItem", "position": 2, "name": "Live-Bestand", "item": "https://nordleaf.de/products" },
+    { "@type": "ListItem", "position": 3, "name": product.strain || product.name, "item": `https://nordleaf.de/${product.slug}` }
+  ]
+};
+
+const faqData = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(f => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": { "@type": "Answer", "text": f.a }
+  }))
+};
+---
+
+<Layout
+  title={`${product.strain || product.name} von ${product.brand} | ${product.thc} THC | Nordleaf`}
+  description={seoDescription}
+  keywords={seoKeywords}
+  canonical={`https://nordleaf.de/${product.slug}`}
+  structuredData={structuredData}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbData)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqData)} />
+  <section class="product-detail">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="/">Startseite</a>
+        <span>/</span>
+        <a href="/products">Live-Bestand</a>
+        <span>/</span>
+        <a href={`/products#${product.category === 'Cannabisblüten' ? 'blueten' : product.category === 'Cannabisextrakte' ? 'extrakte' : product.category === 'THC Vapes' ? 'vapes' : 'shots'}-section`}>{product.category}</a>
+        <span>/</span>
+        <span>{product.strain || product.name}</span>
+      </nav>
+
+      <div class="product-layout">
+        <div class="product-gallery">
+          <div class="main-image">
+            <img src={product.image} alt={product.strain || product.name} />
+            {product.badge && <span class="product-badge">{product.badge}</span>}
+            <span class="availability available">Sofort lieferbar</span>
+          </div>
+        </div>
+
+        <div class="product-details">
+          <div class="product-brand-label">{product.brand}</div>
+          <h1>{product.strain}</h1>
+          <p class="product-full-name">{product.name}</p>
+
+          <div class="product-data-grid">
+            <div class="data-item">
+              <span class="data-label">THC</span>
+              <span class="data-value thc-value">{product.thc}</span>
+            </div>
+            <div class="data-item">
+              <span class="data-label">CBD</span>
+              <span class="data-value cbd-value">{product.cbd}</span>
+            </div>
+            <div class="data-item">
+              <span class="data-label">Herkunft</span>
+              <span class="data-value">{product.origin} ({product.originCode})</span>
+            </div>
+            <div class="data-item">
+              <span class="data-label">Kategorie</span>
+              <span class="data-value">{product.category}</span>
+            </div>
+          </div>
+
+          <div class="product-effects-section">
+            <h3>Wirkungen</h3>
+            <div class="effects-list">
+              {product.effects.map((effect) => (
+                <span class="effect-pill">{effect}</span>
+              ))}
+            </div>
+          </div>
+
+          <div class="product-description">
+            <h3>Beschreibung</h3>
+            <p>{product.description}</p>
+          </div>
+
+          <div class="product-pricing">
+            <div class="price-display">
+              <span class="price-main">€{product.price.toFixed(2)}</span>
+              <span class="price-unit">/ {product.priceUnit}</span>
+            </div>
+
+            <div class="quantity-controls">
+              <label>Menge ({product.priceUnit})</label>
+              <div class="quantity-input">
+                <button class="qty-btn" id="qtyMinus">−</button>
+                <input type="number" id="quantity" value="5" min="1" max="30" />
+                <button class="qty-btn" id="qtyPlus">+</button>
+              </div>
+              <span class="total-price" id="totalPrice">
+                Gesamt: €{(product.price * 5).toFixed(2)}
+              </span>
+            </div>
+
+            <button class="btn-add-cart" id="addToCartBtn" disabled={!product.available}>
+              {product.available ? 'In den Warenkorb' : 'Nicht verfügbar'}
+            </button>
+            
+            <a href="/wie-funktionierts" class="btn-recipe">
+              Rezept anfordern — Jetzt starten
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trust Badges -->
+      <div class="trust-badges">
+        <div class="trust-badge">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <div>
+            <strong>100% Apotheken­qualität</strong>
+            <span>GMP-zertifizierte Produkte</span>
+          </div>
+        </div>
+        <div class="trust-badge">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          <div>
+            <strong>Schnelle Lieferung</strong>
+            <span>1-3 Werktage, diskret verpackt</span>
+          </div>
+        </div>
+        <div class="trust-badge">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <div>
+            <strong>Sofort verfügbar</strong>
+            <span>Live-Bestand, keine Wartezeiten</span>
+          </div>
+        </div>
+        <div class="trust-badge">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <div>
+            <strong>Ärztliche Begleitung</strong>
+            <span>Rezept in 3 Minuten beantragen</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <div class="product-faq">
+        <h2>Häufige Fragen zu {product.strain || product.name}</h2>
+        <div class="faq-list">
+          {faqs.map((faq) => (
+            <details class="faq-item">
+              <summary>{faq.q}</summary>
+              <p>{faq.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <!-- SEO Content Section -->
+      <div class="seo-product-content">
+        <h2>{product.category} bei Nordleaf kaufen</h2>
+        <p>
+          {product.category === 'Cannabisblüten' && `Entdecke ${product.strain} von ${product.brand} – eine erstklassige medizinische Cannabissorte mit ${product.thc} THC und ${product.cbd} CBD aus ${product.origin}. Bei Nordleaf bieten wir dir Zugang zu über 180 geprüften Cannabis-Produkten mit Live-Bestandsanzeige. Unsere medizinischen Cannabisblüten durchlaufen strenge Qualitätskontrollen und werden in GMP-zertifizierten Anlagen produziert.`}
+          {product.category === 'Cannabisextrakte' && `${product.name} ist ein hochwertiger medizinischer Cannabisextrakt von ${product.brand}. Extrakte ermöglichen eine besonders präzise Dosierung und eignen sich ideal für Patienten, die eine rauchfreie Alternative zu Cannabisblüten bevorzugen. Bei Nordleaf findest du eine große Auswahl an Vollspektrum-Extrakten.`}
+          {product.category === 'THC Vapes' && `Der ${product.name} bietet eine moderne, diskrete Möglichkeit zur medizinischen Cannabis-Inhalation. THC Vapes von Nordleaf zeichnen sich durch hochreine Extraktion und einfache Handhabung aus. Ideal für Patienten, die eine schnellwirkende, portable Lösung suchen.`}
+          {product.category === 'THC Shots' && `${product.name} – der gebrauchsfertige THC-Shot für die medizinische Anwendung. THC Shots bieten eine exakte Dosierung und sind besonders diskret einzunehmen. Bei Nordleaf findest du verschiedene Shots für unterschiedliche Bedürfnisse.`}
+          {product.category === 'Kapseln & Edibles' && `${product.name} bietet eine bequeme, orale Einnahmeform für medizinisches Cannabis. Kapseln sind ideal für Patienten, die eine langanhaltende, gleichmäßige Wirkung wünschen. Die exakte Dosierung macht die Therapie besonders einfach und planbar.`}
+        </p>
+        <h3>So bestellst du bei Nordleaf</h3>
+        <ol>
+          <li><strong>Fragebogen ausfüllen</strong> – In nur 3 Minuten online deine medizinische Situation beschreiben.</li>
+          <li><strong>Ärztliche Prüfung</strong> – Ein zugelassener Arzt prüft deinen Antrag und stellt bei Eignung ein Rezept aus.</li>
+          <li><strong>Produkt wählen</strong> – Wähle aus unserem Live-Bestand dein gewünschtes Produkt.</li>
+          <li><strong>Diskrete Lieferung</strong> – Dein Medikament wird in neutraler Verpackung innerhalb von 1-3 Werktagen geliefert.</li>
+        </ol>
+      </div>
+
+      <!-- Related Products -->
+      {relatedProducts.length > 0 && (
+        <div class="related-section">
+          <h2>Ähnliche Sorten</h2>
+          <div class="related-grid">
+            {relatedProducts.map((rp) => (
+              <a href={`/${rp.slug}`} class="related-card">
+                <div class="related-image">
+                  <img src={rp.image} alt={rp.strain || rp.name} loading="lazy" />
+                </div>
+                <div class="related-info">
+                  <span class="related-brand">{rp.brand}</span>
+                  <h4>{rp.strain || rp.name}</h4>
+                  <div class="related-stats">
+                    <span class="thc">THC {rp.thc}</span>
+                    <span class="cbd">CBD {rp.cbd}</span>
+                  </div>
+                  <strong>€{rp.price.toFixed(2)} / {rp.priceUnit}</strong>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <script define:vars={{ productId: product.slug, productName: product.strain, productPrice: product.price, productImage: product.image, productUnit: product.priceUnit }}>
+    const qtyInput = document.getElementById('quantity');
+    const totalPrice = document.getElementById('totalPrice');
+    const addBtn = document.getElementById('addToCartBtn');
+    const qtyMinus = document.getElementById('qtyMinus');
+    const qtyPlus = document.getElementById('qtyPlus');
+
+    function updateTotal() {
+      const qty = parseInt(qtyInput.value) || 1;
+      const total = (productPrice * qty).toFixed(2);
+      totalPrice.textContent = `Gesamt: €${total}`;
+    }
+
+    qtyMinus?.addEventListener('click', () => {
+      const curr = parseInt(qtyInput.value) || 1;
+      if (curr > 1) { qtyInput.value = curr - 1; updateTotal(); }
+    });
+
+    qtyPlus?.addEventListener('click', () => {
+      const curr = parseInt(qtyInput.value) || 1;
+      if (curr < 30) { qtyInput.value = curr + 1; updateTotal(); }
+    });
+
+    qtyInput?.addEventListener('input', updateTotal);
+
+    addBtn?.addEventListener('click', () => {
+      const qty = parseInt(qtyInput.value) || 1;
+      try {
+        const cart = JSON.parse(localStorage.getItem('nordleaf_cart') || '{"items":[],"total":0}');
+        const existing = cart.items.find(item => item.id === productId);
+        if (existing) {
+          existing.quantity += qty;
+        } else {
+          cart.items.push({ id: productId, name: productName, price: productPrice, quantity: qty, image: productImage });
+        }
+        cart.total = cart.items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+        localStorage.setItem('nordleaf_cart', JSON.stringify(cart));
+        document.dispatchEvent(new Event('cart-updated'));
+        
+        addBtn.textContent = '✓ Hinzugefügt!';
+        addBtn.classList.add('added');
+        setTimeout(() => {
+          addBtn.textContent = 'In den Warenkorb';
+          addBtn.classList.remove('added');
+        }, 2000);
+      } catch(e) {}
+    });
+  </script>
+</Layout>
+
+<style>
+  .product-detail {
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    color: #999;
+    margin-bottom: 2rem;
+  }
+
+  .breadcrumb a {
+    color: #666;
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover {
+    color: #4caf50;
+  }
+
+  .product-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .main-image {
+    position: relative;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    overflow: hidden;
+  }
+
+  .main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #f0f4f0;
+    padding: 1rem;
+    border-radius: 16px;
+  }
+
+  .product-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: #ff9800;
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  .availability {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    padding: 0.3rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .available { background: rgba(76,175,80,0.2); color: #4caf50; }
+  .unavailable { background: rgba(244,67,54,0.2); color: #f44336; }
+
+  .product-brand-label {
+    color: #999;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+  }
+
+  .product-details h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #1a472a;
+    margin-bottom: 0.25rem;
+    letter-spacing: -0.02em;
+  }
+
+  .product-full-name {
+    font-size: 0.9rem;
+    color: #999;
+    margin-bottom: 1.5rem;
+  }
+
+  .product-data-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .data-item {
+    background: #f8faf9;
+    border: 1px solid #e8ede9;
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+  }
+
+  .data-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.2rem;
+  }
+
+  .data-value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #333;
+  }
+
+  .thc-value { color: #2d6a47; }
+  .cbd-value { color: #1565c0; }
+
+  .product-effects-section {
+    margin-bottom: 1.5rem;
+  }
+
+  .product-effects-section h3,
+  .product-description h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 0.5rem;
+  }
+
+  .effects-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .effect-pill {
+    background: #e8f5e9;
+    color: #2d6a47;
+    padding: 0.35rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+  .product-description {
+    margin-bottom: 1.5rem;
+  }
+
+  .product-description p {
+    color: #666;
+    line-height: 1.6;
+  }
+
+  .product-pricing {
+    background: #f8faf9;
+    border: 1px solid #e8ede9;
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+
+  .price-display {
+    margin-bottom: 1rem;
+  }
+
+  .price-main {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #1a472a;
+  }
+
+  .price-unit {
+    font-size: 1rem;
+    color: #999;
+  }
+
+  .quantity-controls {
+    margin-bottom: 1rem;
+  }
+
+  .quantity-controls label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 0.4rem;
+  }
+
+  .quantity-input {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .qty-btn {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ddd;
+    background: white;
+    color: #333;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    padding: 0;
+    border-radius: 0;
+  }
+
+  .qty-btn:first-child { border-radius: 8px 0 0 8px; }
+  .qty-btn:last-child { border-radius: 0 8px 8px 0; }
+
+  .qty-btn:hover {
+    background: #e8f5e9;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .quantity-input input {
+    width: 60px;
+    height: 40px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-left: none;
+    border-right: none;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .total-price {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #1a472a;
+  }
+
+  .btn-add-cart {
+    width: 100%;
+    background: #4caf50;
+    color: white;
+    border: none;
+    padding: 0.9rem;
+    border-radius: 10px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 0.75rem;
+  }
+
+  .btn-add-cart:hover {
+    background: #43a047;
+    transform: none;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+  }
+
+  .btn-add-cart.added {
+    background: #1a472a;
+  }
+
+  .btn-add-cart:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+
+  .btn-recipe {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: transparent;
+    color: #1a472a;
+    border: 2px solid #1a472a;
+    padding: 0.75rem;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+
+  .btn-recipe:hover {
+    background: #1a472a;
+    color: white;
+  }
+
+  /* Related */
+  .related-section {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e8ede9;
+  }
+
+  .related-section h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a472a;
+    margin-bottom: 1.5rem;
+  }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+
+  .related-card {
+    background: white;
+    border: 1px solid #e8ede9;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  .related-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    border-color: #4caf50;
+  }
+
+  .related-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80px;
+    border-radius: 10px 10px 0 0;
+  }
+
+  .related-image img {
+    width: 100%;
+    height: 80px;
+    object-fit: contain;
+    background: #f0f4f0;
+    padding: 0.5rem;
+    border-radius: 10px 10px 0 0;
+  }
+
+  .related-info {
+    padding: 0.75rem;
+  }
+
+  .related-brand {
+    font-size: 0.7rem;
+    color: #999;
+  }
+
+  .related-info h4 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #1a472a;
+    margin-bottom: 0.25rem;
+  }
+
+  .related-stats {
+    display: flex;
+    gap: 0.3rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .thc, .cbd {
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.1rem 0.35rem;
+    border-radius: 3px;
+  }
+
+  .thc { background: #e8f5e9; color: #2d6a47; }
+  .cbd { background: #e3f2fd; color: #1565c0; }
+
+  .related-info strong {
+    font-size: 0.95rem;
+    color: #1a472a;
+  }
+
+  @media (max-width: 768px) {
+    .product-layout {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .main-image { min-height: 280px; }
+
+    .product-details h1 { font-size: 1.5rem; }
+
+    .related-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 576px) {
+    .product-data-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .related-grid {
+      grid-template-columns: 1fr;
+      max-width: 300px;
+    }
+  }
+
+  /* Trust Badges */
+  .trust-badges {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e8ede9;
+  }
+
+  .trust-badge {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: #f8faf9;
+    border: 1px solid #e8ede9;
+    border-radius: 10px;
+  }
+
+  .trust-badge svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .trust-badge strong {
+    display: block;
+    font-size: 0.85rem;
+    color: #1a472a;
+    margin-bottom: 0.15rem;
+  }
+
+  .trust-badge span {
+    font-size: 0.75rem;
+    color: #888;
+    line-height: 1.3;
+  }
+
+  /* FAQ Section */
+  .product-faq {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e8ede9;
+  }
+
+  .product-faq h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a472a;
+    margin-bottom: 1.25rem;
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .faq-item {
+    background: #f8faf9;
+    border: 1px solid #e8ede9;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .faq-item[open] {
+    border-color: #4caf50;
+  }
+
+  .faq-item summary {
+    padding: 1rem 1.25rem;
+    font-weight: 600;
+    color: #1a472a;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: 0.95rem;
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item summary::after {
+    content: '+';
+    font-size: 1.3rem;
+    font-weight: 300;
+    color: #4caf50;
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+
+  .faq-item[open] summary::after {
+    content: '−';
+  }
+
+  .faq-item p {
+    padding: 0 1.25rem 1rem;
+    color: #555;
+    line-height: 1.7;
+    font-size: 0.9rem;
+  }
+
+  /* SEO Content */
+  .seo-product-content {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e8ede9;
+  }
+
+  .seo-product-content h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1a472a;
+    margin-bottom: 1rem;
+  }
+
+  .seo-product-content h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1a472a;
+    margin: 1.5rem 0 0.75rem;
+  }
+
+  .seo-product-content p {
+    color: #555;
+    line-height: 1.7;
+    font-size: 0.92rem;
+  }
+
+  .seo-product-content ol {
+    padding-left: 1.25rem;
+    color: #555;
+    line-height: 1.8;
+    font-size: 0.92rem;
+  }
+
+  .seo-product-content li {
+    margin-bottom: 0.4rem;
+  }
+
+  .seo-product-content li strong {
+    color: #1a472a;
+  }
+
+  @media (max-width: 768px) {
+    .trust-badges {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 576px) {
+    .trust-badges {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

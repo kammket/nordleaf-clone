@@ -1,140 +1,201 @@
 ---
-// FAQ Page
-
 import Layout from '../layouts/Layout.astro';
-
-const siteUrl = 'https://nordleaf.de';
+import Breadcrumb from '../components/Breadcrumb.astro';
 ---
 
 <Layout
-  title="FAQ - Nordleaf"
-  description="Find answers to frequently asked questions about Nordleaf products, shipping, returns, and more."
-  canonical={`${siteUrl}/faq`}
+  title="Häufige Fragen (FAQ) | Nordleaf - Medizinisches Cannabis"
+  description="Antworten auf die häufigsten Fragen zu medizinischem Cannabis, Rezepten, Preisen und Lieferung bei Nordleaf."
+  keywords="Cannabis FAQ, medizinisches Cannabis Fragen, Cannabis Rezept FAQ, Nordleaf Hilfe"
 >
-  <div class="faq-page">
-    <section class="page-header">
-      <div class="container">
-        <h1>Frequently Asked Questions</h1>
+  <Breadcrumb items={[{name: "FAQ"}]} />
+  <section class="page-hero">
+    <div class="container">
+      <h1>Häufig gestellte Fragen</h1>
+      <p>Alles, was du über medizinisches Cannabis und unseren Service wissen musst.</p>
+    </div>
+  </section>
+
+  <section class="faq-section">
+    <div class="container">
+      <div class="faq-categories">
+        <div class="faq-category">
+          <h2>Allgemein</h2>
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary>Was ist medizinisches Cannabis?</summary>
+              <p>Medizinisches Cannabis bezeichnet Cannabis, das von einem Arzt verschrieben und in einer Apotheke abgegeben wird. Es wird zur Behandlung verschiedener Erkrankungen und Symptome eingesetzt, darunter chronische Schmerzen, Schlafstörungen, ADHS, Depressionen und Angststörungen.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Wer kann medizinisches Cannabis erhalten?</summary>
+              <p>Grundsätzlich kann jeder Patient in Deutschland medizinisches Cannabis verschrieben bekommen, wenn eine ärztliche Indikation vorliegt. Der verschreibende Arzt prüft im Rahmen einer Beratung, ob Cannabis als Therapieoption für dich geeignet ist.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Ist medizinisches Cannabis legal?</summary>
+              <p>Ja, medizinisches Cannabis ist in Deutschland seit 2017 legal, wenn es von einem Arzt verschrieben wird. Seit April 2024 gelten zudem weitere Erleichterungen im Umgang mit Cannabis als Medizin.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Was ist Nordleaf?</summary>
+              <p>Nordleaf ist deine Online-Apotheke für medizinisches Cannabis. Wir verbinden Patienten mit erfahrenen Ärzten und liefern verschriebene Cannabis-Medikamente diskret direkt nach Hause.</p>
+            </details>
+          </div>
+        </div>
+
+        <div class="faq-category">
+          <h2>Rezept & Ablauf</h2>
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary>Wie bekomme ich ein Cannabis-Rezept?</summary>
+              <p>Du füllst unseren kurzen medizinischen Fragebogen in nur 3 Minuten aus. Ein Arzt aus unserem Netzwerk prüft deine Angaben und stellt bei Eignung dein Rezept aus. Im All-in-One Paket werden deine Blüten direkt an dich geliefert.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Wie lange dauert die Rezeptausstellung?</summary>
+              <p>In der Regel erhältst du dein Rezept innerhalb von 24 Stunden nach Einreichen des Fragebogens. In vielen Fällen geht es sogar noch schneller.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Was passiert, wenn mein Antrag abgelehnt wird?</summary>
+              <p>Sollte der Arzt feststellen, dass medizinisches Cannabis für dich nicht geeignet ist, entstehen dir keine Kosten. Du zahlst die Servicegebühr nur bei erfolgreicher Rezeptausstelllung.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Wie oft kann ich ein Rezept anfordern?</summary>
+              <p>Du kannst jederzeit ein Folgerezept über unsere Plattform anfordern. Die Häufigkeit richtet sich nach deiner verschriebenen Menge und individuellen Therapie.</p>
+            </details>
+          </div>
+        </div>
+
+        <div class="faq-category">
+          <h2>Preise & Zahlung</h2>
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary>Was kostet ein Cannabis-Rezept bei Nordleaf?</summary>
+              <p>Unser All-in-One Paket kostet €9,90 (Servicegebühr) plus die Kosten für dein gewähltes Medikament. Alternativ bieten wir ein Nur-Rezept-Paket für €19,90 an, das du in jeder Apotheke einlösen kannst.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Wie viel kosten die Cannabis-Blüten?</summary>
+              <p>Die Preise variieren je nach Sorte und bewegen sich zwischen ca. €5,99 und €13,95 pro Gramm. In unserem <a href="/products">Live-Bestand</a> findest du alle aktuellen Preise.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Welche Zahlungsmethoden werden akzeptiert?</summary>
+              <p>Wir akzeptieren Überweisung, Kreditkarte und weitere gängige Zahlungsarten. Die genauen Optionen werden dir beim Checkout angezeigt.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Übernimmt die Krankenkasse die Kosten?</summary>
+              <p>In bestimmten Fällen kann eine Kostenübernahme durch die Krankenkasse beantragt werden. Dies hängt von deiner Diagnose und dem Krankenkassenvertrag ab. Gerne beraten wir dich hierzu.</p>
+            </details>
+          </div>
+        </div>
+
+        <div class="faq-category">
+          <h2>Lieferung & Versand</h2>
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary>Wie schnell wird mein Cannabis geliefert?</summary>
+              <p>Nach Genehmigung deines Rezepts versenden wir dein Medikament in der Regel am nächsten Werktag. Die Lieferung erfolgt dann innerhalb von 1-3 Werktagen.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Ist die Lieferung diskret?</summary>
+              <p>Ja, absolut. Wir versenden in neutraler Verpackung ohne Hinweise auf den Inhalt oder Nordleaf. Deine Privatsphäre hat für uns höchste Priorität.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Sind alle Sorten immer verfügbar?</summary>
+              <p>Ja, wir garantieren 100% Verfügbarkeit aller in unserem Live-Bestand aufgeführten Sorten. Du musst dir keine Sorgen um Lieferengpässe machen.</p>
+            </details>
+          </div>
+        </div>
       </div>
-    </section>
 
-    <section class="faq-content">
-      <div class="container">
-        <div class="faq-section">
-          <h2>General Questions</h2>
-          <div class="faq-items">
-            <details class="faq-item">
-              <summary>What is Nordleaf?</summary>
-              <p>Nordleaf is an online marketplace providing premium organic and sustainable products.</p>
-            </details>
-
-            <details class="faq-item">
-              <summary>Are all products certified organic?</summary>
-              <p>Yes, all our products are certified organic and comply with international quality standards.</p>
-            </details>
-
-            <details class="faq-item">
-              <summary>How can I contact customer service?</summary>
-              <p>Email: info@nordleaf.de | Phone: +49 123 456789</p>
-            </details>
-          </div>
-        </div>
-
-        <div class="faq-section">
-          <h2>Shipping & Delivery</h2>
-          <div class="faq-items">
-            <details class="faq-item">
-              <summary>What are the shipping options?</summary>
-              <p>Standard: 3-5 business days. Express: 1-2 business days. Free shipping on orders over €50.</p>
-            </details>
-
-            <details class="faq-item">
-              <summary>Do you ship internationally?</summary>
-              <p>Yes, we ship to most countries worldwide. Costs vary by location.</p>
-            </details>
-
-            <details class="faq-item">
-              <summary>Can I track my order?</summary>
-              <p>Yes, you'll receive a tracking number via email once your order ships.</p>
-            </details>
-          </div>
-        </div>
-
-        <div class="faq-section">
-          <h2>Returns & Refunds</h2>
-          <div class="faq-items">
-            <details class="faq-item">
-              <summary>What is your return policy?</summary>
-              <p>30-day return policy for items in original condition with packaging intact.</p>
-            </details>
-
-            <details class="faq-item">
-              <summary>How do I initiate a return?</summary>
-              <p>Contact us at info@nordleaf.de with your order number and we'll provide a return label.</p>
-            </details>
-          </div>
-        </div>
+      <div class="faq-cta">
+        <h3>Noch Fragen?</h3>
+        <p>Unser Team hilft dir gerne weiter.</p>
+        <a href="/contact" class="btn btn-primary">Kontakt aufnehmen</a>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 </Layout>
 
 <style>
-  .container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 1rem;
-  }
-
-  .page-header {
-    background: linear-gradient(135deg, #1a472a 0%, #2d6a47 100%);
+  .page-hero {
+    background: linear-gradient(135deg, #0d2618, #1a472a, #2d6a47);
     color: white;
-    padding: 3rem 0;
+    padding: 3.5rem 1.5rem;
     text-align: center;
   }
 
-  .page-header h1 {
-    color: white;
+  .page-hero h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.75rem; }
+  .page-hero p { color: rgba(255,255,255,0.7); font-size: 1.1rem; }
+
+  .faq-section { padding: 4rem 1.5rem; }
+
+  .faq-categories {
+    max-width: 800px;
+    margin: 0 auto;
   }
 
-  .faq-content {
-    padding: 3rem 0;
-  }
-
-  .faq-section {
+  .faq-category {
     margin-bottom: 3rem;
   }
 
-  .faq-section h2 {
+  .faq-category h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
     color: #1a472a;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e8f5e9;
   }
 
   .faq-item {
-    background: #f5f7f6;
-    border: 1px solid #ddd;
-    border-radius: 0.5rem;
-    margin-bottom: 1rem;
+    background: white;
+    border: 1px solid #e8ede9;
+    border-radius: 10px;
+    margin-bottom: 0.5rem;
   }
 
   .faq-item summary {
-    padding: 1.25rem;
-    cursor: pointer;
+    padding: 1rem 1.25rem;
     font-weight: 600;
     color: #1a472a;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
-  .faq-item summary:hover {
-    background-color: #e8eee9;
-  }
-
-  .faq-item[open] summary {
-    background-color: #e8eee9;
-  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: #4caf50; }
+  .faq-item[open] summary::after { content: '−'; }
 
   .faq-item p {
-    padding: 0 1.25rem 1.25rem;
+    padding: 0 1.25rem 1rem;
     color: #666;
-    margin: 0;
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+
+  .faq-item a { color: #4caf50; font-weight: 600; }
+
+  .faq-cta {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+    background: #f8faf9;
+    border: 1px solid #e8ede9;
+    border-radius: 16px;
+    padding: 2.5rem;
+  }
+
+  .faq-cta h3 { color: #1a472a; font-size: 1.25rem; margin-bottom: 0.25rem; }
+  .faq-cta p { color: #888; margin-bottom: 1.25rem; }
+
+  .btn-primary {
+    background: #4caf50; color: white; padding: 0.75rem 1.75rem;
+    border-radius: 50px; font-weight: 600; display: inline-block;
+    border: 2px solid #4caf50; transition: all 0.2s;
+  }
+  .btn-primary:hover { background: #43a047; border-color: #43a047; color: white; }
+
+  @media (max-width: 768px) {
+    .page-hero h1 { font-size: 1.75rem; }
   }
 </style>

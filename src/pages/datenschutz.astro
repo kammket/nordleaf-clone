@@ -1,0 +1,89 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+---
+
+<Layout
+  title="Datenschutzerklärung | Nordleaf"
+  description="Datenschutzerklärung der Nordleaf GmbH - Informationen zum Umgang mit personenbezogenen Daten."
+  keywords="Nordleaf Datenschutz, DSGVO, Datenschutzerklärung"
+>
+  <Breadcrumb items={[{name: "Datenschutz"}]} />
+  <section class="page-hero">
+    <div class="container">
+      <h1>Datenschutzerklärung</h1>
+    </div>
+  </section>
+
+  <section class="legal-section">
+    <div class="container">
+      <div class="legal-content">
+        <h2>1. Datenschutz auf einen Blick</h2>
+        <h3>Allgemeine Hinweise</h3>
+        <p>Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.</p>
+
+        <h3>Datenerfassung auf dieser Website</h3>
+        <p><strong>Wer ist verantwortlich für die Datenerfassung auf dieser Website?</strong></p>
+        <p>Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber: Nordleaf GmbH, Musterstraße 1, 10115 Berlin. Kontakt: info@nordleaf.de</p>
+
+        <h2>2. Hosting</h2>
+        <p>Wir hosten die Inhalte unserer Website bei einem externen Dienstleister (Hoster). Die personenbezogenen Daten, die auf dieser Website erfasst werden, werden auf den Servern des Hosters gespeichert. Hierbei kann es sich insbesondere um IP-Adressen, Kontaktanfragen, Meta- und Kommunikationsdaten, Vertragsdaten, Kontaktdaten, Namen, Websitezugriffe und sonstige Daten handeln.</p>
+
+        <h2>3. Allgemeine Hinweise und Pflichtinformationen</h2>
+        <h3>Datenschutz</h3>
+        <p>Die Betreiber dieser Seiten nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend den gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.</p>
+
+        <h3>Hinweis zur verantwortlichen Stelle</h3>
+        <p>Nordleaf GmbH<br/>Musterstraße 1<br/>10115 Berlin<br/>E-Mail: info@nordleaf.de</p>
+
+        <h3>Widerruf Ihrer Einwilligung</h3>
+        <p>Viele Datenverarbeitungsvorgänge sind nur mit Ihrer ausdrücklichen Einwilligung möglich. Sie können eine bereits erteilte Einwilligung jederzeit widerrufen. Die Rechtmäßigkeit der bis zum Widerruf erfolgten Datenverarbeitung bleibt vom Widerruf unberührt.</p>
+
+        <h2>4. Datenerfassung auf dieser Website</h2>
+        <h3>Cookies</h3>
+        <p>Unsere Internetseiten verwenden teilweise so genannte Cookies. Cookies richten auf Ihrem Rechner keinen Schaden an und enthalten keine Viren. Cookies dienen dazu, unser Angebot nutzerfreundlicher, effektiver und sicherer zu machen.</p>
+
+        <h3>Kontaktformular</h3>
+        <p>Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert.</p>
+
+        <h2>5. Bestellungen & Gesundheitsdaten</h2>
+        <p>Bei der Nutzung unserer Plattform zur Beantragung eines Cannabis-Rezepts werden medizinische Daten erhoben. Diese werden ausschließlich zur Bearbeitung Ihres Rezeptantrags verwendet und gemäß den DSGVO-Bestimmungen für Gesundheitsdaten (Art. 9 DSGVO) besonders geschützt verarbeitet.</p>
+        <p>Alle medizinischen Daten werden verschlüsselt übertragen und auf Servern in Deutschland gespeichert.</p>
+
+        <h2>6. Ihre Rechte</h2>
+        <p>Sie haben jederzeit das Recht auf:</p>
+        <ul>
+          <li>Auskunft über Ihre gespeicherten Daten</li>
+          <li>Berichtigung unrichtiger Daten</li>
+          <li>Löschung Ihrer Daten</li>
+          <li>Einschränkung der Verarbeitung</li>
+          <li>Datenübertragbarkeit</li>
+          <li>Widerspruch gegen die Verarbeitung</li>
+        </ul>
+        <p>Hierzu können Sie sich jederzeit an uns wenden: info@nordleaf.de</p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero {
+    background: linear-gradient(135deg, #0d2618, #1a472a, #2d6a47);
+    color: white; padding: 3rem 1.5rem; text-align: center;
+  }
+  .page-hero h1 { font-size: 2rem; font-weight: 800; }
+
+  .legal-section { padding: 3rem 1.5rem; }
+  .legal-content { max-width: 700px; margin: 0 auto; }
+  .legal-content h2 { font-size: 1.2rem; font-weight: 700; color: #1a472a; margin: 2rem 0 0.5rem; }
+  .legal-content h2:first-child { margin-top: 0; }
+  .legal-content h3 { font-size: 1.05rem; font-weight: 600; color: #333; margin: 1.25rem 0 0.35rem; }
+  .legal-content p { color: #555; line-height: 1.7; font-size: 0.95rem; margin-bottom: 0.5rem; }
+  .legal-content strong { color: #333; }
+  .legal-content ul { color: #555; margin: 0.5rem 0 1rem 1.5rem; line-height: 1.7; font-size: 0.95rem; }
+  .legal-content a { color: #4caf50; }
+
+  @media (max-width: 768px) {
+    .page-hero h1 { font-size: 1.5rem; }
+  }
+</style>
