@@ -12,18 +12,24 @@ const totalCount = products.length;
 
 const siteUrl = 'https://nordleaf.de';
 
-const itemListSchema = {
+const collectionPageSchema = {
   "@context": "https://schema.org",
-  "@type": "ItemList",
+  "@type": "CollectionPage",
   "name": "Medizinisches Cannabis Live-Bestand",
   "description": `Über ${totalCount} medizinische Cannabis-Produkte: Cannabisblüten, Extrakte, THC Vapes, Shots und Kapseln.`,
-  "numberOfItems": totalCount,
-  "itemListElement": products.slice(0, 50).map((p, i) => ({
-    "@type": "ListItem",
-    "position": i + 1,
-    "name": p.name,
-    "url": `${siteUrl}/${p.slug}`
-  }))
+  "url": `${siteUrl}/products`,
+  "isPartOf": { "@type": "WebSite", "name": "Nordleaf", "url": siteUrl },
+  "mainEntity": {
+    "@type": "ItemList",
+    "name": "Medizinisches Cannabis Live-Bestand",
+    "numberOfItems": totalCount,
+    "itemListElement": products.slice(0, 50).map((p, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": p.name,
+      "url": `${siteUrl}/${p.slug}`
+    }))
+  }
 };
 ---
 
@@ -31,7 +37,7 @@ const itemListSchema = {
   title="Medizinisches Cannabis Live-Bestand | Blüten, Extrakte, Vapes & Shots | Nordleaf"
   description="Über 180 medizinische Cannabis-Produkte auf Lager: Cannabisblüten ab 1€/g, THC Extrakte, Vapes und Shots. 100% Verfügbarkeit, Lieferung in 1-3 Werktagen. Alle Top-Marken: avaay, DEMECAN, Curaleaf, Four 20 Pharma."
   keywords="medizinisches Cannabis kaufen, Cannabisblüten bestellen, THC Blüten Deutschland, Cannabis Apotheke online, THC Vape kaufen, Cannabisextrakte, Cannabis auf Rezept, avaay Medical, DEMECAN, Four 20 Pharma, Curaleaf"
-  structuredData={itemListSchema}
+  structuredData={collectionPageSchema}
 >
   <Breadcrumb items={[{name: "Live-Bestand"}]} />
   <section class="products-hero">

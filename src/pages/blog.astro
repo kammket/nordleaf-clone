@@ -4,93 +4,21 @@ import Breadcrumb from '../components/Breadcrumb.astro';
 ---
 
 <Layout
-  title="Blog | Nordleaf - Medizinisches Cannabis Wissen"
+  title="Blog — Cannabis Ratgeber & Wissen | Nordleaf"
   description="Aktuelle Artikel über medizinisches Cannabis, Therapien, Sorten und Neuigkeiten aus der Cannabis-Medizin."
   keywords="Cannabis Blog, medizinisches Cannabis Artikel, Cannabis Wissen, Cannabis Therapie"
+  canonical="https://nordleaf.de/ratgeber"
+  noindex={true}
 >
-  <Breadcrumb items={[{name: "Blog"}]} />
+  <Breadcrumb items={[{name: "Blog", url: "/ratgeber"}]} />
+
+  <!-- Meta refresh redirect to /ratgeber -->
+  <meta http-equiv="refresh" content="0;url=/ratgeber" />
+
   <section class="page-hero">
     <div class="container">
       <h1>Blog</h1>
-      <p>Wissen und Neuigkeiten rund um medizinisches Cannabis.</p>
-    </div>
-  </section>
-
-  <section class="blog-section">
-    <div class="container">
-      <div class="blog-grid">
-        <article class="blog-card">
-          <div class="blog-image">
-            <span class="blog-tag">Ratgeber</span>
-          </div>
-          <div class="blog-content">
-            <time>15. Januar 2025</time>
-            <h2>Cannabis als Medizin: Ein Leitfaden für Einsteiger</h2>
-            <p>Alles, was du über medizinisches Cannabis wissen musst — von der Verschreibung bis zur richtigen Anwendung.</p>
-            <a href="/wie-funktionierts" class="read-more">Weiterlesen →</a>
-          </div>
-        </article>
-
-        <article class="blog-card">
-          <div class="blog-image">
-            <span class="blog-tag">Sorten</span>
-          </div>
-          <div class="blog-content">
-            <time>8. Januar 2025</time>
-            <h2>Indica vs. Sativa: Was sind die Unterschiede?</h2>
-            <p>Die wichtigsten Unterschiede zwischen Indica- und Sativa-Sorten und welche für dich geeignet sein könnte.</p>
-            <a href="/products" class="read-more">Weiterlesen →</a>
-          </div>
-        </article>
-
-        <article class="blog-card">
-          <div class="blog-image">
-            <span class="blog-tag">Gesundheit</span>
-          </div>
-          <div class="blog-content">
-            <time>2. Januar 2025</time>
-            <h2>Cannabis bei chronischen Schmerzen</h2>
-            <p>Wie medizinisches Cannabis bei der Behandlung chronischer Schmerzen helfen kann und was die Forschung sagt.</p>
-            <a href="/faq" class="read-more">Weiterlesen →</a>
-          </div>
-        </article>
-
-        <article class="blog-card">
-          <div class="blog-image">
-            <span class="blog-tag">Neuigkeiten</span>
-          </div>
-          <div class="blog-content">
-            <time>20. Dezember 2024</time>
-            <h2>Cannabis-Gesetzgebung 2025: Was ändert sich?</h2>
-            <p>Ein Überblick über die aktuellen und kommenden Änderungen in der Cannabis-Gesetzgebung in Deutschland.</p>
-            <a href="/faq" class="read-more">Weiterlesen →</a>
-          </div>
-        </article>
-
-        <article class="blog-card">
-          <div class="blog-image">
-            <span class="blog-tag">Therapie</span>
-          </div>
-          <div class="blog-content">
-            <time>15. Dezember 2024</time>
-            <h2>Cannabis bei ADHS: Erfahrungen und Studien</h2>
-            <p>Immer mehr Patienten nutzen Cannabis zur ADHS-Behandlung. Wir schauen auf aktuelle Studien und Erfahrungsberichte.</p>
-            <a href="/products" class="read-more">Weiterlesen →</a>
-          </div>
-        </article>
-
-        <article class="blog-card">
-          <div class="blog-image">
-            <span class="blog-tag">Ratgeber</span>
-          </div>
-          <div class="blog-content">
-            <time>10. Dezember 2024</time>
-            <h2>THC vs. CBD: Wirkungen und Unterschiede</h2>
-            <p>Was unterscheidet THC und CBD voneinander und wie wirken die beiden Cannabinoide im Körper?</p>
-            <a href="/products" class="read-more">Weiterlesen →</a>
-          </div>
-        </article>
-      </div>
+      <p>Du wirst weitergeleitet zum <a href="/ratgeber" style="color:#4caf50;font-weight:700;">Nordleaf Ratgeber</a>.</p>
     </div>
   </section>
 </Layout>
@@ -99,66 +27,8 @@ import Breadcrumb from '../components/Breadcrumb.astro';
   .page-hero {
     background: linear-gradient(135deg, #0d2618, #1a472a, #2d6a47);
     color: white; padding: 3.5rem 1.5rem; text-align: center;
+    min-height: 40vh; display: flex; align-items: center; justify-content: center;
   }
   .page-hero h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.75rem; }
   .page-hero p { color: rgba(255,255,255,0.7); font-size: 1.1rem; }
-
-  .blog-section { padding: 4rem 1.5rem; }
-
-  .blog-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
-    max-width: 1000px; margin: 0 auto;
-  }
-
-  .blog-card {
-    background: white; border: 1px solid #e8ede9; border-radius: 12px;
-    overflow: hidden; transition: all 0.3s;
-  }
-
-  .blog-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.08);
-  }
-
-  .blog-image {
-    background: linear-gradient(135deg, #1a472a, #2d6a47);
-    height: 140px; position: relative; display: flex;
-    align-items: flex-end; padding: 1rem;
-  }
-
-  .blog-tag {
-    background: rgba(76,175,80,0.8); color: white;
-    padding: 0.2rem 0.6rem; border-radius: 4px;
-    font-size: 0.75rem; font-weight: 600;
-  }
-
-  .blog-content {
-    padding: 1.25rem;
-  }
-
-  .blog-content time {
-    font-size: 0.8rem; color: #999;
-  }
-
-  .blog-content h2 {
-    font-size: 1.1rem; font-weight: 700; color: #1a472a;
-    margin: 0.5rem 0; line-height: 1.3;
-  }
-
-  .blog-content p {
-    font-size: 0.9rem; color: #666; line-height: 1.5; margin-bottom: 0.75rem;
-  }
-
-  .read-more {
-    font-size: 0.9rem; color: #4caf50; font-weight: 600;
-    text-decoration: none; display: inline-block;
-  }
-  .read-more:hover {
-    text-decoration: underline;
-  }
-
-  @media (max-width: 768px) {
-    .blog-grid { grid-template-columns: 1fr; max-width: 500px; }
-    .page-hero h1 { font-size: 1.75rem; }
-  }
 </style>
