@@ -28,6 +28,9 @@ export default defineConfig({
         } else if (item.url.includes('/ratgeber/') || item.url.includes('/indikationen/') || item.url.includes('/cannabis-arzt/')) {
           item.priority = 0.7;
           item.changefreq = 'monthly';
+        } else if (item.url.includes('/cannabis-apotheke')) {
+          item.priority = 0.8;
+          item.changefreq = 'monthly';
         } else if (item.url.includes('/impressum') || item.url.includes('/datenschutz') || item.url.includes('/agb') || item.url.includes('/widerruf')) {
           item.priority = 0.1;
           item.changefreq = 'yearly';

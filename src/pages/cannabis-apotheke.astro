@@ -1,0 +1,581 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Cannabis Apotheke Deutschland — Medizinisches Cannabis in deiner Stadt',
+  description: 'Finde deine Cannabis Apotheke in Deutschland. Medizinisches Cannabis online bestellen — Lieferung in 50+ Städte, alle Bundesländer.',
+  url: 'https://grunapotheke.de/cannabis-apotheke',
+  isPartOf: {
+    '@type': 'WebSite',
+    name: 'Grunapotheke',
+    url: 'https://grunapotheke.de',
+  },
+  breadcrumb: {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Startseite', item: 'https://grunapotheke.de' },
+      { '@type': 'ListItem', position: 2, name: 'Cannabis Apotheke', item: 'https://grunapotheke.de/cannabis-apotheke' },
+    ],
+  },
+  mainEntity: {
+    '@type': 'ItemList',
+    name: 'Cannabis Apotheken Standorte in Deutschland',
+    numberOfItems: 50,
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Cannabis Apotheke Berlin', url: 'https://grunapotheke.de/cannabis-apotheke#berlin' },
+      { '@type': 'ListItem', position: 2, name: 'Cannabis Apotheke München', url: 'https://grunapotheke.de/cannabis-apotheke#muenchen' },
+      { '@type': 'ListItem', position: 3, name: 'Cannabis Apotheke Hamburg', url: 'https://grunapotheke.de/cannabis-apotheke#hamburg' },
+      { '@type': 'ListItem', position: 4, name: 'Cannabis Apotheke Köln', url: 'https://grunapotheke.de/cannabis-apotheke#koeln' },
+      { '@type': 'ListItem', position: 5, name: 'Cannabis Apotheke Frankfurt', url: 'https://grunapotheke.de/cannabis-apotheke#frankfurt' },
+    ],
+  },
+};
+
+/* ── 50+ German Cities grouped by Bundesland ── */
+const bundeslaender = [
+  {
+    land: 'Berlin',
+    id: 'berlin-land',
+    cities: [
+      { name: 'Berlin', id: 'berlin', pop: '3,7 Mio.', arztLink: '/cannabis-arzt/berlin', info: 'Deutschlands größter Markt für medizinisches Cannabis. Über 120 Apotheken in Berlin führen Cannabis-Produkte — doch Wartezeiten und eingeschränktes Sortiment treiben immer mehr Patienten zu Online-Apotheken wie Grunapotheke.' },
+    ],
+  },
+  {
+    land: 'Bayern',
+    id: 'bayern',
+    cities: [
+      { name: 'München', id: 'muenchen', pop: '1,5 Mio.', arztLink: '/cannabis-arzt/muenchen', info: 'Bayerns Landeshauptstadt verzeichnet einen starken Anstieg bei Cannabis-Rezepten. Stationäre Apotheken haben oft begrenzte Sorten vorrätig — über Grunapotheke erhältst du Zugang zu über 186 Produkten.' },
+      { name: 'Nürnberg', id: 'nuernberg', pop: '520.000', arztLink: '/cannabis-arzt/nuernberg', info: 'Frankens Metropole mit wachsender Cannabis-Nachfrage. Die Lieferung nach Nürnberg erfolgt diskret per DHL in 1–3 Werktagen.' },
+      { name: 'Augsburg', id: 'augsburg', pop: '300.000', info: 'Schwabens größte Stadt. Cannabis-Patienten in Augsburg profitieren von der bundesweiten Telemedizin und Online-Bestellung.' },
+      { name: 'Regensburg', id: 'regensburg', pop: '155.000', info: 'Universitätsstadt an der Donau. Trotz begrenztem lokalen Angebot können Regensburger Patienten unkompliziert online bestellen.' },
+      { name: 'Würzburg', id: 'wuerzburg', pop: '130.000', info: 'Universitätsstadt in Unterfranken. Cannabis-Patienten finden über Grunapotheke schnellen Zugang zu allen gängigen Sorten.' },
+    ],
+  },
+  {
+    land: 'Nordrhein-Westfalen',
+    id: 'nrw',
+    cities: [
+      { name: 'Köln', id: 'koeln', pop: '1,1 Mio.', arztLink: '/cannabis-arzt/koeln', info: 'NRWs größte Stadt und ein Hotspot für Cannabis-Medizin. Viele Kölner Apotheken führen Cannabis — doch die Sortimentsvielfalt einer Online-Apotheke ist unübertroffen.' },
+      { name: 'Düsseldorf', id: 'duesseldorf', pop: '620.000', arztLink: '/cannabis-arzt/duesseldorf', info: 'NRW-Landeshauptstadt mit gehobener medizinischer Infrastruktur. Online-Bestellung bietet Düsseldorfer Patienten maximale Flexibilität.' },
+      { name: 'Dortmund', id: 'dortmund', pop: '590.000', info: 'Ruhrgebiets-Metropole mit steigender Cannabis-Nachfrage. Lieferung nach Dortmund in 1–3 Werktagen.' },
+      { name: 'Essen', id: 'essen', pop: '580.000', info: 'Im Herzen des Ruhrgebiets. Essener Patienten schätzen die diskrete Lieferung direkt nach Hause.' },
+      { name: 'Duisburg', id: 'duisburg', pop: '500.000', info: 'Größte Stadt am Niederrhein. Cannabis-Rezepte können bequem per Telemedizin ausgestellt und bundesweit geliefert werden.' },
+      { name: 'Bochum', id: 'bochum', pop: '365.000', info: 'Universitätsstadt im Ruhrgebiet. Zugang zu medizinischem Cannabis über Online-Apotheken wird immer beliebter.' },
+      { name: 'Wuppertal', id: 'wuppertal', pop: '355.000', info: 'Stadt an der Wupper mit wachsendem Interesse an Cannabis-Therapien. Bundesweite Lieferung sichert die Versorgung.' },
+      { name: 'Bonn', id: 'bonn', pop: '330.000', info: 'Ehemalige Bundeshauptstadt. Bonner Patienten profitieren von kurzen DHL-Lieferwegen im Rheinland.' },
+      { name: 'Münster', id: 'muenster', pop: '315.000', info: 'Fahrradstadt und Universitätsstandort. Junge, aufgeschlossene Bevölkerung treibt Cannabis-Medizin-Nachfrage.' },
+      { name: 'Bielefeld', id: 'bielefeld', pop: '335.000', info: 'Ostwestfalens größte Stadt. Online-Cannabis-Apotheken schließen Versorgungslücken im ländlichen Umland.' },
+    ],
+  },
+  {
+    land: 'Hamburg',
+    id: 'hamburg-land',
+    cities: [
+      { name: 'Hamburg', id: 'hamburg', pop: '1,9 Mio.', arztLink: '/cannabis-arzt/hamburg', info: 'Norddeutschlands Cannabis-Hochburg. Die Hansestadt hat eine progressive Haltung zur Cannabis-Medizin — und über Grunapotheke erreichst du das volle Sortiment.' },
+    ],
+  },
+  {
+    land: 'Baden-Württemberg',
+    id: 'bw',
+    cities: [
+      { name: 'Stuttgart', id: 'stuttgart', pop: '635.000', arztLink: '/cannabis-arzt/stuttgart', info: 'Landeshauptstadt mit wachsender Akzeptanz für Cannabis-Medizin. Die Online-Apotheke bietet Stuttgartern das breiteste Sortiment.' },
+      { name: 'Karlsruhe', id: 'karlsruhe', pop: '310.000', info: 'Technologiestadt am Oberrhein. Cannabis-Patienten in Karlsruhe bestellen zunehmend online für mehr Auswahl und Diskretion.' },
+      { name: 'Mannheim', id: 'mannheim', pop: '310.000', info: 'Quadratestadt in der Rhein-Neckar-Region. Kurze Lieferwege und breites Online-Sortiment machen die Versorgung einfach.' },
+      { name: 'Freiburg', id: 'freiburg', pop: '230.000', info: 'Schwarzwald-Metropole mit grüner Tradition. Freiburger Patienten finden bei Grunapotheke natürliche Cannabis-Medizin.' },
+      { name: 'Heidelberg', id: 'heidelberg', pop: '160.000', info: 'Universitätsstadt mit progressiver Medizinszene. Forschung und Praxis gehen hier bei Cannabis-Therapien Hand in Hand.' },
+    ],
+  },
+  {
+    land: 'Hessen',
+    id: 'hessen',
+    cities: [
+      { name: 'Frankfurt am Main', id: 'frankfurt', pop: '760.000', arztLink: '/cannabis-arzt/frankfurt', info: 'Finanzmetropole mit hoher Dichte an Selbstzahler-Patienten. Frankfurter schätzen die Flexibilität der Online-Cannabis-Apotheke.' },
+      { name: 'Wiesbaden', id: 'wiesbaden', pop: '280.000', info: 'Hessens Landeshauptstadt. Cannabis-Patienten in Wiesbaden profitieren von schneller DHL-Lieferung aus der Online-Apotheke.' },
+      { name: 'Kassel', id: 'kassel', pop: '200.000', info: 'Nordhessens Zentrum. Online-Apotheken schließen die Lücke im Cannabis-Angebot fernab der Großstädte.' },
+      { name: 'Darmstadt', id: 'darmstadt', pop: '160.000', info: 'Wissenschaftsstadt im Rhein-Main-Gebiet. Technologie-affine Bevölkerung nutzt verstärkt Telemedizin für Cannabis-Rezepte.' },
+    ],
+  },
+  {
+    land: 'Sachsen',
+    id: 'sachsen',
+    cities: [
+      { name: 'Leipzig', id: 'leipzig', pop: '620.000', arztLink: '/cannabis-arzt/leipzig', info: 'Boomtown in Ostdeutschland. Leipzigs junge Bevölkerung treibt die Nachfrage nach unkompliziertem Cannabis-Zugang.' },
+      { name: 'Dresden', id: 'dresden', pop: '560.000', arztLink: '/cannabis-arzt/dresden', info: 'Sächsische Landeshauptstadt. Trotz konservativerem Umfeld wächst das Interesse an Cannabis-Medizin stetig.' },
+      { name: 'Chemnitz', id: 'chemnitz', pop: '245.000', info: 'Drittgrößte Stadt Sachsens. Online-Apotheken sichern den Cannabis-Zugang auch in Regionen mit wenigen spezialisierten Ärzten.' },
+    ],
+  },
+  {
+    land: 'Niedersachsen',
+    id: 'niedersachsen',
+    cities: [
+      { name: 'Hannover', id: 'hannover', pop: '535.000', arztLink: '/cannabis-arzt/hannover', info: 'Niedersachsens Zentrum für medizinisches Cannabis. Hannoveraner Patienten nutzen vermehrt die Online-Bestellung für größere Produktauswahl.' },
+      { name: 'Braunschweig', id: 'braunschweig', pop: '250.000', info: 'Löwenstadt im Osten Niedersachsens. Cannabis-Lieferungen erreichen Braunschweig in 1–2 Werktagen.' },
+      { name: 'Oldenburg', id: 'oldenburg', pop: '170.000', info: 'Universitätsstadt im Nordwesten. Oldenburger Patienten profitieren von der bundesweiten Cannabis-Lieferung.' },
+      { name: 'Osnabrück', id: 'osnabrueck', pop: '165.000', info: 'Friedensstadt an der Grenze zu NRW. Online-Cannabis-Apotheken bieten hier eine willkommene Alternative.' },
+    ],
+  },
+  {
+    land: 'Bremen',
+    id: 'bremen-land',
+    cities: [
+      { name: 'Bremen', id: 'bremen', pop: '570.000', arztLink: '/cannabis-arzt/bremen', info: 'Progressive Hansestadt mit hoher Cannabis-Akzeptanz. Bremen gehört zu den Vorreitern bei der Entkriminalisierung.' },
+      { name: 'Bremerhaven', id: 'bremerhaven', pop: '115.000', info: 'Hafenstadt an der Nordsee. Auch in Bremerhaven liefert Grunapotheke zuverlässig innerhalb von 1–3 Tagen.' },
+    ],
+  },
+  {
+    land: 'Schleswig-Holstein',
+    id: 'sh',
+    cities: [
+      { name: 'Kiel', id: 'kiel', pop: '250.000', info: 'Landeshauptstadt an der Ostsee. Cannabis-Patienten in Kiel bestellen online für ein breiteres Sortiment als in lokalen Apotheken.' },
+      { name: 'Lübeck', id: 'luebeck', pop: '220.000', info: 'Hansestadt mit UNESCO-Welterbe. Lübecker Patienten profitieren von diskreter Cannabis-Lieferung per DHL.' },
+    ],
+  },
+  {
+    land: 'Rheinland-Pfalz',
+    id: 'rlp',
+    cities: [
+      { name: 'Mainz', id: 'mainz', pop: '220.000', info: 'Landeshauptstadt gegenüber von Frankfurt. Mainzer können Cannabis bequem online bestellen — Lieferung über den Rhein in 1 Tag.' },
+      { name: 'Koblenz', id: 'koblenz', pop: '115.000', info: 'Deutsches Eck am Zusammenfluss von Rhein und Mosel. Auch im ländlichen Umland sichert die Online-Apotheke die Cannabis-Versorgung.' },
+      { name: 'Trier', id: 'trier', pop: '110.000', info: 'Deutschlands älteste Stadt. Trierer Cannabis-Patienten setzen zunehmend auf die Bequemlichkeit der Online-Bestellung.' },
+    ],
+  },
+  {
+    land: 'Brandenburg',
+    id: 'brandenburg',
+    cities: [
+      { name: 'Potsdam', id: 'potsdam', pop: '185.000', info: 'Brandenburgs Landeshauptstadt direkt vor den Toren Berlins. Cannabis-Lieferung nach Potsdam erfolgt in der Regel über Nacht.' },
+      { name: 'Cottbus', id: 'cottbus', pop: '100.000', info: 'Zweitgrößte Stadt Brandenburgs. Im ländlich geprägten Umland ist die Online-Cannabis-Apotheke oft die beste Option.' },
+    ],
+  },
+  {
+    land: 'Thüringen',
+    id: 'thueringen',
+    cities: [
+      { name: 'Erfurt', id: 'erfurt', pop: '215.000', info: 'Thüringens Landeshauptstadt. Die Online-Apotheke schließt Versorgungslücken bei Cannabis-Medizin in Mitteldeutschland.' },
+      { name: 'Jena', id: 'jena', pop: '110.000', info: 'Universitätsstadt mit innovativer Medizinszene. Jenaer Patienten bestellen Cannabis zunehmend digital.' },
+    ],
+  },
+  {
+    land: 'Sachsen-Anhalt',
+    id: 'sachsen-anhalt',
+    cities: [
+      { name: 'Halle (Saale)', id: 'halle', pop: '240.000', info: 'Saalestadt mit Universitätsklinikum. Cannabis-Patienten in Halle profitieren von der bundesweiten Online-Versorgung.' },
+      { name: 'Magdeburg', id: 'magdeburg', pop: '240.000', info: 'Sachsen-Anhalts Landeshauptstadt. Online-Cannabis-Bestellung gewinnt in Magdeburg stetig an Bedeutung.' },
+    ],
+  },
+  {
+    land: 'Mecklenburg-Vorpommern',
+    id: 'mv',
+    cities: [
+      { name: 'Rostock', id: 'rostock', pop: '210.000', info: 'Größte Stadt an der Ostseeküste. Rostocks Cannabis-Patienten nutzen die Online-Apotheke für schnellen, diskreten Zugang.' },
+      { name: 'Schwerin', id: 'schwerin', pop: '100.000', info: 'Landeshauptstadt der Seen. In der dünn besiedelten Region ist die Online-Cannabis-Apotheke eine wichtige Versorgungssäule.' },
+    ],
+  },
+  {
+    land: 'Saarland',
+    id: 'saarland',
+    cities: [
+      { name: 'Saarbrücken', id: 'saarbruecken', pop: '180.000', info: 'Grenzstadt zu Frankreich. Saarländische Cannabis-Patienten bestellen online für das breiteste Sortiment an deutschen Apothekenprodukten.' },
+    ],
+  },
+];
+
+const totalCities = bundeslaender.reduce((sum, bl) => sum + bl.cities.length, 0);
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Kann ich medizinisches Cannabis online bei einer Apotheke bestellen?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Ja. Seit dem Cannabisgesetz 2024 können Patienten mit gültigem Rezept medizinisches Cannabis bei zugelassenen Online-Apotheken wie Grunapotheke bestellen. Die Lieferung erfolgt diskret per DHL.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'In welche Städte liefert Grunapotheke?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Grunapotheke liefert bundesweit in alle deutschen Städte und Gemeinden. Die Lieferzeit beträgt in der Regel 1–3 Werktage per DHL.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'Brauche ich ein Rezept für die Cannabis-Apotheke?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Ja, medizinisches Cannabis ist verschreibungspflichtig. Du benötigst ein ärztliches Rezept. Über unsere Telemedizin-Plattform kannst du innerhalb von 24 Stunden ein Rezept erhalten.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'Was kostet medizinisches Cannabis in der Apotheke?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Die Preise variieren je nach Sorte und Darreichungsform. Bei Grunapotheke starten Cannabisblüten ab 1€/g. Extrakte, Vapes und Kapseln findest du bereits ab 9,90€. Einen Preisüberblick findest du unter grunapotheke.de/preise.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'Übernimmt die Krankenkasse die Kosten?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'In bestimmten Fällen ja. Seit 2017 können gesetzlich Versicherte eine Kostenübernahme beantragen. Mehr dazu erfährst du auf unserer Seite zur Kostenübernahme.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'Wie schnell wird Cannabis aus der Online-Apotheke geliefert?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Nach Rezeptprüfung erfolgt der Versand innerhalb von 24 Stunden. Die Zustellung per DHL dauert bundesweit 1–3 Werktage. In Ballungsräumen wie Berlin, Hamburg oder München oft bereits am nächsten Tag.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'Welche Cannabis-Produkte gibt es in der Apotheke?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Grunapotheke führt über 186 Produkte in 5 Kategorien: Cannabisblüten, Cannabisextrakte, THC Vapes, THC Shots und Kapseln & Edibles. Alle Produkte stammen von zertifizierten Herstellern.'
+      }
+    },
+  ],
+};
+---
+
+<Layout
+  title="Cannabis Apotheke Deutschland 2026 — Medizinisches Cannabis in {totalCities} Städten | Grunapotheke"
+  description={`Cannabis Apotheke in deiner Stadt: Medizinisches Cannabis online bestellen mit Lieferung in ${totalCities}+ Städte. 186+ Produkte, ab 1€/g, 1-3 Tage Lieferzeit.`}
+  keywords="Cannabis Apotheke, Cannabis Apotheke online, Cannabis Apotheke Deutschland, medizinisches Cannabis bestellen, Cannabis Apotheke Berlin, Cannabis Apotheke München, Cannabis Apotheke Hamburg, Cannabis Apotheke Köln, Cannabis online kaufen, Cannabis Lieferung"
+  structuredData={schema}
+>
+  <Breadcrumb items={[{name: "Cannabis Apotheke"}]} />
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <span class="hero-badge">🏥 Online-Apotheke für medizinisches Cannabis</span>
+      <h1>Cannabis Apotheke in <span class="hero-accent">deiner Stadt</span></h1>
+      <p class="hero-sub">Medizinisches Cannabis bequem online bestellen — Lieferung in <strong>{totalCities}+&nbsp;Städte</strong> in ganz Deutschland. Über <strong>186 Produkte</strong> in 5 Kategorien, ab <strong>1€/g</strong>.</p>
+      <div class="hero-actions">
+        <a href="/products" class="btn-primary">Produkte ansehen →</a>
+        <a href="/wie-funktionierts" class="btn-secondary">So funktioniert's</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><strong>186+</strong><span>Produkte</span></div>
+        <div class="stat"><strong>5</strong><span>Kategorien</span></div>
+        <div class="stat"><strong>1–3</strong><span>Tage Lieferung</span></div>
+        <div class="stat"><strong>16</strong><span>Bundesländer</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick links to categories -->
+  <section class="categories-bar">
+    <div class="container">
+      <h2 class="section-subtitle">Unsere Produktkategorien</h2>
+      <div class="cat-links">
+        <a href="/kategorie/cannabisblueten" class="cat-chip">🌿 Cannabisblüten</a>
+        <a href="/kategorie/cannabisextrakte" class="cat-chip">💧 Cannabisextrakte</a>
+        <a href="/kategorie/thc-vapes" class="cat-chip">💨 THC Vapes</a>
+        <a href="/kategorie/thc-shots" class="cat-chip">🧪 THC Shots</a>
+        <a href="/kategorie/kapseln-edibles" class="cat-chip">💊 Kapseln & Edibles</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Intro copy -->
+  <section class="intro-section">
+    <div class="container">
+      <div class="intro-content">
+        <h2>Warum eine Online-Cannabis-Apotheke?</h2>
+        <p>Seit der <strong>Cannabis-Legalisierung 2024</strong> und dem neuen Cannabisgesetz haben immer mehr Patienten in Deutschland Zugang zu <a href="/ratgeber/cannabis-als-medizin">medizinischem Cannabis</a>. Doch die Realität zeigt: Viele <strong>lokale Apotheken</strong> führen nur ein begrenztes Sortiment, haben lange Bestellzeiten oder kennen sich mit Cannabis-Produkten nicht ausreichend aus.</p>
+        <p><strong>Grunapotheke</strong> löst diese Probleme als spezialisierte Online-Apotheke für medizinisches Cannabis. Wir bieten über <strong>186 Produkte</strong> von zertifizierten Herstellern, fachliche Beratung und <a href="/preise">transparente Preise ab 1€/g</a>. Dein Cannabis wird diskret per DHL an deine Wunschadresse geliefert — egal ob du in <a href="#berlin">Berlin</a>, <a href="#muenchen">München</a>, <a href="#hamburg">Hamburg</a> oder einer kleineren Stadt wohnst.</p>
+        <p>Du hast noch kein Rezept? Über unsere <a href="/wie-funktionierts">Telemedizin-Plattform</a> erhältst du innerhalb von <strong>24 Stunden</strong> eine ärztliche Beratung per Videosprechstunde. Erfahre mehr über die <a href="/indikationen">Indikationen für medizinisches Cannabis</a> und ob die <a href="/kostenuebernahme">Krankenkasse die Kosten übernimmt</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="steps-section">
+    <div class="container">
+      <h2>In 3 Schritten zum Cannabis aus der Apotheke</h2>
+      <div class="steps-grid">
+        <div class="step-card">
+          <span class="step-num">1</span>
+          <h3>Rezept erhalten</h3>
+          <p>Fülle unseren <a href="/wie-funktionierts">Online-Fragebogen</a> aus. Ein Arzt prüft deine Angaben und stellt bei Eignung ein <a href="/ratgeber/cannabis-rezept-bekommen">Cannabis-Rezept</a> aus — per Videosprechstunde in unter 24h.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-num">2</span>
+          <h3>Cannabis auswählen</h3>
+          <p>Stöbere in unserem <a href="/products">Live-Bestand</a> mit über 186 Produkten. Von <a href="/kategorie/cannabisblueten">Cannabisblüten</a> bis <a href="/kategorie/thc-vapes">THC Vapes</a> — finde die passende Sorte für deine <a href="/indikationen">Indikation</a>.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-num">3</span>
+          <h3>Lieferung erhalten</h3>
+          <p>Dein Cannabis wird diskret per DHL an deine Adresse geliefert. Bundesweit in <strong>1–3 Werktagen</strong> — in Großstädten oft am nächsten Tag.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bundesland jump navigation -->
+  <section class="jump-nav">
+    <div class="container">
+      <h2>Cannabis Apotheke nach Bundesland</h2>
+      <p>Wähle dein Bundesland oder scrolle zu deiner Stadt:</p>
+      <div class="jump-chips">
+        {bundeslaender.map(bl => (
+          <a href={`#${bl.id}`} class="jump-chip">{bl.land}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- City listings by Bundesland -->
+  {bundeslaender.map(bl => (
+    <section class="land-section" id={bl.id}>
+      <div class="container">
+        <h2 class="land-title">🏛️ {bl.land}</h2>
+        <div class="city-grid">
+          {bl.cities.map(city => (
+            <div class="city-card" id={city.id}>
+              <div class="city-header">
+                <h3>Cannabis Apotheke {city.name}</h3>
+                <span class="city-pop">{city.pop} Einwohner</span>
+              </div>
+              <p>{city.info}</p>
+              <div class="city-links">
+                {city.arztLink && (
+                  <a href={city.arztLink} class="city-link">🩺 Cannabis Arzt {city.name}</a>
+                )}
+                <a href="/products" class="city-link">📦 Produkte ansehen</a>
+                <a href="/wie-funktionierts" class="city-link">🚀 Jetzt starten</a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <!-- Advantages section -->
+  <section class="advantages-section">
+    <div class="container">
+      <h2>Vorteile der Online-Cannabis-Apotheke</h2>
+      <div class="adv-grid">
+        <div class="adv-card">
+          <span class="adv-icon">📦</span>
+          <h3>186+ Produkte</h3>
+          <p>Das größte Sortiment an <a href="/products">medizinischem Cannabis</a> in Deutschland. <a href="/kategorie/cannabisblueten">Blüten</a>, <a href="/kategorie/cannabisextrakte">Extrakte</a>, <a href="/kategorie/thc-vapes">Vapes</a>, <a href="/kategorie/thc-shots">Shots</a> und <a href="/kategorie/kapseln-edibles">Kapseln</a>.</p>
+        </div>
+        <div class="adv-card">
+          <span class="adv-icon">💰</span>
+          <h3>Ab 1€/g</h3>
+          <p>Faire, transparente <a href="/preise">Preise</a> ohne versteckte Kosten. Prüfe auch die <a href="/kostenuebernahme">Kostenübernahme durch die Krankenkasse</a>.</p>
+        </div>
+        <div class="adv-card">
+          <span class="adv-icon">🚚</span>
+          <h3>1–3 Tage Lieferung</h3>
+          <p>Diskrete DHL-Lieferung an deine Wunschadresse. In Ballungsräumen wie Berlin, Hamburg, München oft am nächsten Tag.</p>
+        </div>
+        <div class="adv-card">
+          <span class="adv-icon">👨‍⚕️</span>
+          <h3>Ärztliche Betreuung</h3>
+          <p>Rezept per <a href="/wie-funktionierts">Videosprechstunde</a>. Fachärzte mit Erfahrung in <a href="/indikationen/chronische-schmerzen">Schmerztherapie</a>, <a href="/indikationen/schlafstoerungen">Schlafstörungen</a> und <a href="/indikationen/adhs">ADHS</a>.</p>
+        </div>
+        <div class="adv-card">
+          <span class="adv-icon">🔒</span>
+          <h3>Diskret & sicher</h3>
+          <p>Neutrale Verpackung, sichere Bezahlung. Deine Daten werden DSGVO-konform geschützt. Lies unsere <a href="/erfahrungen">Kundenerfahrungen</a>.</p>
+        </div>
+        <div class="adv-card">
+          <span class="adv-icon">📱</span>
+          <h3>Bundesweit verfügbar</h3>
+          <p>Egal wo du wohnst — unsere <a href="/cannabis-arzt">Telemedizin-Ärzte</a> und die Cannabis-Lieferung decken ganz Deutschland ab.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Indikationen cross-link -->
+  <section class="cross-section">
+    <div class="container">
+      <h2>Für welche Erkrankungen wird Cannabis verschrieben?</h2>
+      <p>Cannabis wird bei zahlreichen Erkrankungen eingesetzt. Die häufigsten <a href="/indikationen">Indikationen</a>:</p>
+      <div class="ind-chips">
+        <a href="/indikationen/chronische-schmerzen" class="ind-chip">💪 Chronische Schmerzen</a>
+        <a href="/indikationen/schlafstoerungen" class="ind-chip">🌙 Schlafstörungen</a>
+        <a href="/indikationen/adhs" class="ind-chip">🧠 ADHS</a>
+        <a href="/indikationen/angststoerungen" class="ind-chip">🫁 Angststörungen</a>
+        <a href="/indikationen/ptbs" class="ind-chip">🛡️ PTBS</a>
+        <a href="/indikationen/migraene" class="ind-chip">⚡ Migräne</a>
+      </div>
+      <p class="cross-sub">Erfahre mehr in unserem <a href="/ratgeber/cannabis-als-medizin">Leitfaden für Einsteiger</a> oder lies den <a href="/ratgeber/cannabis-sorten-guide">Cannabis Sorten Guide</a>, um die richtige Sorte für deine Therapie zu finden.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <div class="container">
+      <h2>Häufige Fragen zur Cannabis-Apotheke</h2>
+      <div class="faq-list">
+        {faqSchema.mainEntity.map((item: any) => (
+          <details class="faq-item">
+            <summary>{item.name}</summary>
+            <p set:html={item.acceptedAnswer.text} />
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Jetzt Cannabis aus der Apotheke bestellen</h2>
+        <p>Starte den Fragebogen, erhalte dein Rezept per Videosprechstunde und bestelle aus über 186 Produkten — Lieferung in 1–3 Tagen an deine Adresse.</p>
+        <div class="cta-actions">
+          <a href="/wie-funktionierts" class="btn-primary">Fragebogen starten →</a>
+          <a href="/products" class="btn-secondary">Produkte durchstöbern</a>
+        </div>
+        <p class="cta-trust">⭐ 4,8/5 Bewertung · 📦 186+ Produkte · 🚚 1–3 Tage Lieferung · 👨‍⚕️ Ärzte mit Cannabis-Erfahrung</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ schema -->
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</Layout>
+
+<style>
+  /* Hero */
+  .hero { background: linear-gradient(135deg, #0d2618 0%, #1a472a 40%, #2d6a47 100%); color: white; padding: 4rem 1.5rem 3rem; text-align: center; }
+  .hero-badge { display: inline-block; background: rgba(76,175,80,0.15); border: 1px solid rgba(76,175,80,0.3); color: #a5d6a7; font-size: 0.85rem; font-weight: 600; padding: 0.35rem 1rem; border-radius: 50px; margin-bottom: 1.25rem; }
+  .hero h1 { font-size: 2.5rem; font-weight: 800; line-height: 1.15; margin-bottom: 1rem; }
+  .hero-accent { color: #4caf50; }
+  .hero-sub { color: rgba(255,255,255,0.75); font-size: 1.05rem; max-width: 650px; margin: 0 auto 1.75rem; line-height: 1.65; }
+  .hero-sub strong { color: white; }
+  .hero-actions { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
+  .btn-primary { background: #4caf50; color: white; padding: 0.8rem 1.75rem; border-radius: 50px; font-weight: 600; text-decoration: none; transition: all 0.2s; display: inline-block; }
+  .btn-primary:hover { background: #43a047; transform: translateY(-1px); }
+  .btn-secondary { background: transparent; color: white; padding: 0.8rem 1.75rem; border-radius: 50px; font-weight: 600; text-decoration: none; border: 2px solid rgba(255,255,255,0.3); transition: all 0.2s; display: inline-block; }
+  .btn-secondary:hover { border-color: white; }
+  .hero-stats { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; }
+  .stat { text-align: center; }
+  .stat strong { display: block; font-size: 1.5rem; color: #4caf50; }
+  .stat span { font-size: 0.8rem; color: rgba(255,255,255,0.5); }
+
+  /* Categories bar */
+  .categories-bar { background: #f0faf0; padding: 2rem 1.5rem; border-bottom: 1px solid #d4edda; }
+  .section-subtitle { text-align: center; font-size: 1.1rem; color: #1a472a; margin-bottom: 1rem; }
+  .cat-links { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+  .cat-chip { background: white; border: 1px solid #d4edda; padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.88rem; font-weight: 600; color: #1a472a; text-decoration: none; transition: all 0.2s; }
+  .cat-chip:hover { background: #1a472a; color: white; border-color: #1a472a; }
+
+  /* Intro */
+  .intro-section { padding: 3.5rem 1.5rem 2rem; }
+  .intro-content { max-width: 780px; margin: 0 auto; }
+  .intro-content h2 { font-size: 1.6rem; color: #1a472a; margin-bottom: 1rem; }
+  .intro-content p { font-size: 1rem; color: #444; line-height: 1.75; margin-bottom: 1rem; }
+  .intro-content a { color: #2e7d32; font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+  .intro-content a:hover { color: #1a472a; }
+
+  /* Steps */
+  .steps-section { padding: 2rem 1.5rem 3rem; background: #fafafa; }
+  .steps-section h2 { text-align: center; font-size: 1.5rem; color: #1a472a; margin-bottom: 1.5rem; }
+  .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; max-width: 900px; margin: 0 auto; }
+  .step-card { background: white; border: 1px solid #e8ede9; border-radius: 12px; padding: 1.75rem; text-align: center; }
+  .step-num { display: inline-flex; width: 40px; height: 40px; background: #1a472a; color: white; border-radius: 50%; font-weight: 700; font-size: 1.1rem; align-items: center; justify-content: center; margin-bottom: 0.75rem; }
+  .step-card h3 { font-size: 1.05rem; color: #1a472a; margin-bottom: 0.5rem; }
+  .step-card p { font-size: 0.9rem; color: #555; line-height: 1.6; }
+  .step-card a { color: #2e7d32; font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+
+  /* Jump nav */
+  .jump-nav { padding: 2.5rem 1.5rem 1rem; }
+  .jump-nav h2 { text-align: center; font-size: 1.5rem; color: #1a472a; margin-bottom: 0.5rem; }
+  .jump-nav p { text-align: center; color: #666; margin-bottom: 1rem; }
+  .jump-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center; }
+  .jump-chip { background: #eef7ee; border: 1px solid #c8e6c9; padding: 0.4rem 0.85rem; border-radius: 50px; font-size: 0.82rem; font-weight: 600; color: #1a472a; text-decoration: none; transition: all 0.2s; }
+  .jump-chip:hover { background: #1a472a; color: white; border-color: #1a472a; }
+
+  /* Bundesland sections */
+  .land-section { padding: 2rem 1.5rem 1rem; }
+  .land-title { font-size: 1.3rem; color: #1a472a; margin-bottom: 1.25rem; padding-bottom: 0.5rem; border-bottom: 2px solid #e8ede9; }
+  .city-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+  .city-card { background: #fff; border: 1px solid #e8ede9; border-radius: 12px; padding: 1.5rem; transition: all 0.2s; }
+  .city-card:hover { border-color: #4caf50; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+  .city-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem; }
+  .city-card h3 { font-size: 1.05rem; color: #1a472a; margin: 0; }
+  .city-pop { font-size: 0.78rem; color: #888; white-space: nowrap; }
+  .city-card p { font-size: 0.9rem; color: #555; line-height: 1.6; margin-bottom: 0.75rem; }
+  .city-links { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .city-link { font-size: 0.8rem; background: #f0faf0; border: 1px solid #d4edda; padding: 0.3rem 0.65rem; border-radius: 50px; color: #2e7d32; font-weight: 600; text-decoration: none; transition: all 0.2s; }
+  .city-link:hover { background: #2e7d32; color: white; border-color: #2e7d32; }
+
+  /* Advantages */
+  .advantages-section { padding: 3rem 1.5rem; background: #fafafa; }
+  .advantages-section h2 { text-align: center; font-size: 1.5rem; color: #1a472a; margin-bottom: 1.5rem; }
+  .adv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; max-width: 960px; margin: 0 auto; }
+  .adv-card { background: white; border: 1px solid #e8ede9; border-radius: 12px; padding: 1.5rem; text-align: center; }
+  .adv-icon { font-size: 1.5rem; display: block; margin-bottom: 0.5rem; }
+  .adv-card h3 { font-size: 1rem; color: #1a472a; margin-bottom: 0.5rem; }
+  .adv-card p { font-size: 0.88rem; color: #555; line-height: 1.6; }
+  .adv-card a { color: #2e7d32; font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+
+  /* Indikationen cross-link */
+  .cross-section { padding: 3rem 1.5rem 2rem; }
+  .cross-section h2 { text-align: center; font-size: 1.4rem; color: #1a472a; margin-bottom: 0.5rem; }
+  .cross-section > .container > p { text-align: center; color: #555; margin-bottom: 1.25rem; }
+  .cross-section > .container > p a { color: #2e7d32; font-weight: 600; }
+  .ind-chips { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem; }
+  .ind-chip { background: white; border: 1px solid #e8ede9; padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.88rem; font-weight: 600; color: #1a472a; text-decoration: none; transition: all 0.2s; }
+  .ind-chip:hover { background: #1a472a; color: white; border-color: #1a472a; }
+  .cross-sub { text-align: center; font-size: 0.95rem; color: #666; }
+  .cross-sub a { color: #2e7d32; font-weight: 600; }
+
+  /* FAQ */
+  .faq-section { padding: 3rem 1.5rem; background: #fafafa; }
+  .faq-section h2 { text-align: center; font-size: 1.5rem; color: #1a472a; margin-bottom: 1.5rem; }
+  .faq-list { max-width: 750px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.75rem; }
+  .faq-item { background: white; border: 1px solid #e8ede9; border-radius: 10px; overflow: hidden; }
+  .faq-item summary { padding: 1rem 1.25rem; font-weight: 600; font-size: 0.95rem; color: #1a472a; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.25rem; color: #4caf50; font-weight: 700; }
+  .faq-item[open] summary::after { content: '−'; }
+  .faq-item[open] summary { border-bottom: 1px solid #e8ede9; }
+  .faq-item p { padding: 1rem 1.25rem; font-size: 0.92rem; color: #555; line-height: 1.7; }
+
+  /* CTA */
+  .cta-section { padding: 3rem 1.5rem 4rem; }
+  .cta-box { text-align: center; max-width: 700px; margin: 0 auto; background: linear-gradient(135deg, #0d2618, #1a472a, #2d6a47); border-radius: 20px; padding: 3.5rem 2rem; color: white; }
+  .cta-box h2 { font-size: 1.6rem; margin-bottom: 0.75rem; }
+  .cta-box > p { color: rgba(255,255,255,0.75); margin-bottom: 1.5rem; line-height: 1.7; }
+  .cta-actions { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .cta-trust { font-size: 0.82rem; color: rgba(255,255,255,0.5); }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 1.75rem; }
+    .hero-stats { gap: 1rem; }
+    .steps-grid { grid-template-columns: 1fr; }
+    .city-grid { grid-template-columns: 1fr; }
+    .adv-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 480px) {
+    .hero { padding: 2.5rem 1rem 2rem; }
+    .hero h1 { font-size: 1.5rem; }
+    .cat-links { gap: 0.5rem; }
+    .cat-chip { font-size: 0.8rem; padding: 0.4rem 0.75rem; }
+    .jump-chips { gap: 0.35rem; }
+    .jump-chip { font-size: 0.75rem; padding: 0.3rem 0.6rem; }
+  }
+</style>
