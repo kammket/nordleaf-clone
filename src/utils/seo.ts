@@ -16,12 +16,12 @@ export function organizationSchema(siteUrl: string) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'Nordleaf',
+    name: 'Grunapotheke',
     url: siteUrl,
     description: 'Premium organic products',
     contactPoint: {
       '@type': 'ContactPoint',
-      email: 'info@nordleaf.de',
+      email: 'info@grunapotheke.de',
       telephone: '+49-123-456789',
     },
   };

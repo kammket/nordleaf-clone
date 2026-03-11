@@ -2,20 +2,20 @@
 import Layout from '../layouts/Layout.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
 
-const siteUrl = 'https://nordleaf.de';
+const siteUrl = 'https://grunapotheke.de';
 
 const reviews = [
-  { name: "Thomas M.", location: "Berlin", rating: 5, date: "2026-02-18", title: "Endlich schmerzfrei schlafen", text: "Nach Jahren chronischer Rückenschmerzen hat mir mein Hausarzt Cannabis empfohlen. Über Nordleaf hatte ich mein Rezept in unter 24 Stunden. Die Blüten kamen diskret verpackt in 2 Tagen. Qualität ist hervorragend — ich schlafe endlich wieder durch.", condition: "Chronische Schmerzen", product: "Cannabisblüten" },
+  { name: "Thomas M.", location: "Berlin", rating: 5, date: "2026-02-18", title: "Endlich schmerzfrei schlafen", text: "Nach Jahren chronischer Rückenschmerzen hat mir mein Hausarzt Cannabis empfohlen. Über Grunapotheke hatte ich mein Rezept in unter 24 Stunden. Die Blüten kamen diskret verpackt in 2 Tagen. Qualität ist hervorragend — ich schlafe endlich wieder durch.", condition: "Chronische Schmerzen", product: "Cannabisblüten" },
   { name: "Sarah K.", location: "München", rating: 5, date: "2026-02-10", title: "Unkompliziert und professionell", text: "Ich war skeptisch, aber der gesamte Prozess war unglaublich einfach. Fragebogen ausgefüllt, kurze Rückfrage vom Arzt per Chat, dann kam das Rezept. Die Bestellung lief reibungslos. Kundenservice antwortet schnell. Sehr empfehlenswert!", condition: "Angststörung", product: "Cannabisextrakte" },
   { name: "Marcus W.", location: "Hamburg", rating: 4, date: "2026-01-28", title: "Gutes Sortiment, faire Preise", text: "Transparente Preise und große Auswahl an Sorten. Die Lieferung kam zuverlässig in 2 Tagen. Einen Stern Abzug, weil die Website beim ersten Mal etwas unübersichtlich war. Aber der Service an sich ist top — kaufe hier regelmäßig.", condition: "Schlafstörungen", product: "Cannabisblüten" },
-  { name: "Julia R.", location: "Frankfurt", rating: 5, date: "2026-01-22", title: "Lebensqualität zurück", text: "Seit meiner Fibromyalgie-Diagnose habe ich vieles probiert. Medizinisches Cannabis über Nordleaf hat mir geholfen, meinen Alltag wieder zu bewältigen. Der Arzt war kompetent und einfühlsam. Besonders die Extrakte sind für mich ideal — präzise Dosierung ohne Rauchen.", condition: "Fibromyalgie", product: "Cannabisextrakte" },
+  { name: "Julia R.", location: "Frankfurt", rating: 5, date: "2026-01-22", title: "Lebensqualität zurück", text: "Seit meiner Fibromyalgie-Diagnose habe ich vieles probiert. Medizinisches Cannabis über Grunapotheke hat mir geholfen, meinen Alltag wieder zu bewältigen. Der Arzt war kompetent und einfühlsam. Besonders die Extrakte sind für mich ideal — präzise Dosierung ohne Rauchen.", condition: "Fibromyalgie", product: "Cannabisextrakte" },
   { name: "Daniel H.", location: "Köln", rating: 5, date: "2026-01-15", title: "Schneller geht's nicht", text: "Freitag Abend den Fragebogen ausgefüllt, Samstag Morgen Rezept erhalten, Montag Cannabis geliefert. Das ist Service! Qualität der Sorten stimmt auch — hab Purple Punch und Wedding Cake bestellt, beides exzellent.", condition: "ADHS", product: "Cannabisblüten" },
   { name: "Anna L.", location: "Stuttgart", rating: 5, date: "2026-01-08", title: "Diskretion wird hier großgeschrieben", text: "Was mir besonders wichtig war: Diskretion. Die Verpackung war komplett neutral, keine Hinweise auf Cannabis. Auch die Kommunikation per E-Mail ist professionell und verschlüsselt. Fühle mich als Patientin hier gut aufgehoben.", condition: "Migräne", product: "THC Vapes" },
-  { name: "Michael B.", location: "Düsseldorf", rating: 5, date: "2025-12-20", title: "Bester Cannabis-Service", text: "Habe vorher bei einer anderen Online-Apotheke bestellt — da war die Hälfte permanent ausverkauft. Bei Nordleaf ist alles auf Lager, was im Live-Bestand steht. 100% Verfügbarkeit ist wirklich kein leeres Versprechen.", condition: "Chronische Schmerzen", product: "Cannabisblüten" },
+  { name: "Michael B.", location: "Düsseldorf", rating: 5, date: "2025-12-20", title: "Bester Cannabis-Service", text: "Habe vorher bei einer anderen Online-Apotheke bestellt — da war die Hälfte permanent ausverkauft. Bei Grunapotheke ist alles auf Lager, was im Live-Bestand steht. 100% Verfügbarkeit ist wirklich kein leeres Versprechen.", condition: "Chronische Schmerzen", product: "Cannabisblüten" },
   { name: "Lisa S.", location: "Leipzig", rating: 4, date: "2025-12-14", title: "Guter Einstieg für Anfänger", text: "Als Cannabis-Neuling war ich unsicher. Der Arzt hat sich viel Zeit genommen und mir eine niedrig dosierte Sorte empfohlen. Die Wirkung ist genau richtig. Einziger Punkt: Beratung per Videocall wäre nochmal persönlicher gewesen.", condition: "Depressionen", product: "Cannabisblüten" },
-  { name: "Florian P.", location: "Dresden", rating: 5, date: "2025-12-05", title: "Endlich eine legale Lösung", text: "Seit der Legalisierung wollte ich den legalen Weg gehen. Nordleaf macht es einem super einfach — kein Papierkrieg, keine wochenlangen Wartezeiten. Innerhalb einer Woche hatte ich alles. Kann ich nur empfehlen.", condition: "Schlafstörungen", product: "THC Shots" },
+  { name: "Florian P.", location: "Dresden", rating: 5, date: "2025-12-05", title: "Endlich eine legale Lösung", text: "Seit der Legalisierung wollte ich den legalen Weg gehen. Grunapotheke macht es einem super einfach — kein Papierkrieg, keine wochenlangen Wartezeiten. Innerhalb einer Woche hatte ich alles. Kann ich nur empfehlen.", condition: "Schlafstörungen", product: "THC Shots" },
   { name: "Christina T.", location: "Hannover", rating: 5, date: "2025-11-28", title: "Top Preis-Leistung", text: "Die €9,90 für den All-in-One Service sind unschlagbar. Kein anderer Anbieter bietet Rezept + Lieferung zu diesem Preis. Die Blüten ab 1€/g sind auch deutlich günstiger als in der Apotheke vor Ort. Super Konzept.", condition: "Angststörung", product: "Cannabisblüten" },
-  { name: "Robert K.", location: "Nürnberg", rating: 5, date: "2025-11-20", title: "Vertrauenswürdiger Anbieter", text: "Habe mich vorher intensiv informiert und Nordleaf wurde in mehreren Fachartikeln positiv erwähnt. Meine Erfahrung bestätigt das: Seriöser Service, echte Apotheker, schnelle Lieferung. Bin seit 4 Monaten Patient.", condition: "Spastik", product: "Cannabisextrakte" },
+  { name: "Robert K.", location: "Nürnberg", rating: 5, date: "2025-11-20", title: "Vertrauenswürdiger Anbieter", text: "Habe mich vorher intensiv informiert und Grunapotheke wurde in mehreren Fachartikeln positiv erwähnt. Meine Erfahrung bestätigt das: Seriöser Service, echte Apotheker, schnelle Lieferung. Bin seit 4 Monaten Patient.", condition: "Spastik", product: "Cannabisextrakte" },
   { name: "Petra G.", location: "Bremen", rating: 5, date: "2025-11-12", title: "Für Senioren geeignet", text: "Bin 67 Jahre alt und hatte Bedenken wegen der Online-Bestellung. Meine Enkelin hat mir geholfen — der Fragebogen war wirklich einfach. Die Kapseln sind super für mich, kein Rauchen nötig. Schmerzen deutlich besser.", condition: "Arthrose", product: "Kapseln & Edibles" },
 ];
 
@@ -25,7 +25,7 @@ const fiveStars = reviews.filter(r => r.rating === 5).length;
 const reviewSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "name": "Nordleaf",
+  "name": "Grunapotheke",
   "url": siteUrl,
   "aggregateRating": {
     "@type": "AggregateRating",
@@ -51,27 +51,27 @@ const faqSchema = {
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Ist Nordleaf seriös und vertrauenswürdig?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Ja. Nordleaf arbeitet ausschließlich mit approbierten Ärzten und zugelassenen Apotheken zusammen. Alle Cannabis-Produkte sind pharmazeutisch geprüft und GMP-zertifiziert. Über 6.500 verifizierte Patientenbewertungen mit einem Durchschnitt von 4,77/5 belegen die Zufriedenheit unserer Patienten." }
+      "name": "Ist Grunapotheke seriös und vertrauenswürdig?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ja. Grunapotheke arbeitet ausschließlich mit approbierten Ärzten und zugelassenen Apotheken zusammen. Alle Cannabis-Produkte sind pharmazeutisch geprüft und GMP-zertifiziert. Über 6.500 verifizierte Patientenbewertungen mit einem Durchschnitt von 4,77/5 belegen die Zufriedenheit unserer Patienten." }
     },
     {
       "@type": "Question",
-      "name": "Wie sind die Erfahrungen anderer Patienten mit Nordleaf?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Die überwiegende Mehrheit unserer Patienten bewertet Nordleaf positiv. Besonders gelobt werden die schnelle Rezeptausstellung (oft unter 24h), die 100% Verfügbarkeit aller Sorten, die diskrete Lieferung und der faire Preis von €9,90 für den All-in-One Service." }
+      "name": "Wie sind die Erfahrungen anderer Patienten mit Grunapotheke?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Die überwiegende Mehrheit unserer Patienten bewertet Grunapotheke positiv. Besonders gelobt werden die schnelle Rezeptausstellung (oft unter 24h), die 100% Verfügbarkeit aller Sorten, die diskrete Lieferung und der faire Preis von €9,90 für den All-in-One Service." }
     },
     {
       "@type": "Question",
-      "name": "Sind die Bewertungen bei Nordleaf echt?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Ja, alle Bewertungen stammen von verifizierten Patienten, die tatsächlich über Nordleaf bestellt haben. Wir veröffentlichen sowohl positive als auch kritische Bewertungen transparent auf unserer Plattform." }
+      "name": "Sind die Bewertungen bei Grunapotheke echt?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ja, alle Bewertungen stammen von verifizierten Patienten, die tatsächlich über Grunapotheke bestellt haben. Wir veröffentlichen sowohl positive als auch kritische Bewertungen transparent auf unserer Plattform." }
     }
   ]
 };
 ---
 
 <Layout
-  title="Nordleaf Erfahrungen & Bewertungen | Echte Patientenmeinungen 2026"
-  description={`Nordleaf Erfahrungen: ${avgRating}/5 Sterne ⭐ Über 6.500 verifizierte Bewertungen. Echte Patientenmeinungen zu Service, Qualität, Lieferung & Preisen. Jetzt lesen!`}
-  keywords="Nordleaf Erfahrungen, Nordleaf Bewertungen, Nordleaf seriös, Nordleaf Test, Nordleaf Erfahrungsberichte, Cannabis Apotheke Erfahrungen, Nordleaf Bewertung, ist Nordleaf gut"
+  title="Grunapotheke Erfahrungen & Bewertungen | Echte Patientenmeinungen 2026"
+  description={`Grunapotheke Erfahrungen: ${avgRating}/5 Sterne ⭐ Über 6.500 verifizierte Bewertungen. Echte Patientenmeinungen zu Service, Qualität, Lieferung & Preisen. Jetzt lesen!`}
+  keywords="Grunapotheke Erfahrungen, Grunapotheke Bewertungen, Grunapotheke seriös, Grunapotheke Test, Grunapotheke Erfahrungsberichte, Cannabis Apotheke Erfahrungen, Grunapotheke Bewertung, ist Grunapotheke gut"
   structuredData={reviewSchema}
 >
 <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
@@ -82,8 +82,8 @@ const faqSchema = {
 <section class="review-hero">
   <div class="container">
     <span class="hero-tag">⭐ Verifizierte Patientenbewertungen</span>
-    <h1>Nordleaf Erfahrungen <span class="hl">& Bewertungen</span></h1>
-    <p>Über 6.500 Patienten vertrauen Nordleaf. Lies echte Erfahrungsberichte unserer verifizierten Patienten.</p>
+    <h1>Grunapotheke Erfahrungen <span class="hl">& Bewertungen</span></h1>
+    <p>Über 6.500 Patienten vertrauen Grunapotheke. Lies echte Erfahrungsberichte unserer verifizierten Patienten.</p>
     <div class="hero-rating">
       <div class="hero-stars">★★★★★</div>
       <div class="hero-stats">
@@ -180,19 +180,19 @@ const faqSchema = {
 <!-- FAQ -->
 <section class="efaq-section">
   <div class="container">
-    <h2>Häufige Fragen zu Nordleaf Erfahrungen</h2>
+    <h2>Häufige Fragen zu Grunapotheke Erfahrungen</h2>
     <div class="faq-list">
       <details class="faq-item">
-        <summary>Ist Nordleaf seriös und vertrauenswürdig?</summary>
-        <p>Ja. Nordleaf arbeitet ausschließlich mit approbierten Ärzten und zugelassenen Apotheken zusammen. Alle Cannabis-Produkte sind pharmazeutisch geprüft und GMP-zertifiziert. Über 6.500 verifizierte Patientenbewertungen mit einem Durchschnitt von 4,77/5 belegen die Zufriedenheit unserer Patienten.</p>
+        <summary>Ist Grunapotheke seriös und vertrauenswürdig?</summary>
+        <p>Ja. Grunapotheke arbeitet ausschließlich mit approbierten Ärzten und zugelassenen Apotheken zusammen. Alle Cannabis-Produkte sind pharmazeutisch geprüft und GMP-zertifiziert. Über 6.500 verifizierte Patientenbewertungen mit einem Durchschnitt von 4,77/5 belegen die Zufriedenheit unserer Patienten.</p>
       </details>
       <details class="faq-item">
-        <summary>Wie sind die Erfahrungen anderer Patienten mit Nordleaf?</summary>
-        <p>Die überwiegende Mehrheit bewertet Nordleaf positiv. Besonders gelobt werden die schnelle Rezeptausstellung (oft unter 24h), die 100% Verfügbarkeit, die diskrete Lieferung und der Preis von €9,90 für den All-in-One Service.</p>
+        <summary>Wie sind die Erfahrungen anderer Patienten mit Grunapotheke?</summary>
+        <p>Die überwiegende Mehrheit bewertet Grunapotheke positiv. Besonders gelobt werden die schnelle Rezeptausstellung (oft unter 24h), die 100% Verfügbarkeit, die diskrete Lieferung und der Preis von €9,90 für den All-in-One Service.</p>
       </details>
       <details class="faq-item">
-        <summary>Sind die Bewertungen bei Nordleaf echt?</summary>
-        <p>Ja, alle Bewertungen stammen von verifizierten Patienten, die über Nordleaf bestellt haben. Wir veröffentlichen sowohl positive als auch kritische Bewertungen.</p>
+        <summary>Sind die Bewertungen bei Grunapotheke echt?</summary>
+        <p>Ja, alle Bewertungen stammen von verifizierten Patienten, die über Grunapotheke bestellt haben. Wir veröffentlichen sowohl positive als auch kritische Bewertungen.</p>
       </details>
       <details class="faq-item">
         <summary>Wie schnell erhalte ich mein Cannabis nach der Bestellung?</summary>

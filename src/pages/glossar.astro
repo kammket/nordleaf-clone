@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const siteUrl = 'https://nordleaf.de';
+const siteUrl = 'https://grunapotheke.de';
 
 const glossarTerms = [
   { term: 'THC (Tetrahydrocannabinol)', definition: 'Der wichtigste psychoaktive Wirkstoff der Cannabispflanze. THC bindet an CB1-Rezeptoren im Gehirn und erzeugt schmerzlindernde, appetitanregende und stimmungsaufhellende Effekte. Medizinisch eingesetzt bei chronischen Schmerzen, Übelkeit und Schlafstörungen.', links: [{ text: 'THC vs. CBD Ratgeber', url: '/ratgeber/thc-vs-cbd' }, { text: 'THC Vapes', url: '/kategorie/thc-vapes' }] },
@@ -65,7 +65,7 @@ const allLetters = [...new Set(glossarTerms.map(t => t.term.charAt(0).toUpperCas
 ---
 
 <Layout
-  title="Cannabis-Glossar: 25+ Fachbegriffe einfach erklärt | Nordleaf"
+  title="Cannabis-Glossar: 25+ Fachbegriffe einfach erklärt | Grunapotheke"
   description="THC, CBD, Terpene, Endocannabinoid-System – unser Cannabis-Glossar erklärt alle wichtigen Begriffe rund um medizinisches Cannabis verständlich und fundiert."
   keywords="Cannabis Glossar, THC Bedeutung, CBD erklärt, Cannabinoide, Terpene, Endocannabinoid-System, medizinisches Cannabis Begriffe, Indica Sativa Unterschied, Vaporizer, Decarboxylierung, Dronabinol"
   canonical={`${siteUrl}/glossar`}

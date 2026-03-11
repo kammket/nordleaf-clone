@@ -6,4 +6,4 @@ Disallow: /cart
 Disallow: /checkout
 
 # Sitemap
-Sitemap: https://nordleaf.de/sitemap-index.xml
+Sitemap: https://grunapotheke.de/sitemap-index.xml

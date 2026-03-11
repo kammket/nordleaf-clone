@@ -1,11 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
-const siteUrl = 'https://nordleaf.de';
+const siteUrl = 'https://grunapotheke.de';
 const BTC_ADDRESS = 'bc1qp7tu4apamhwu8v5museyurks5ueatnsln605pc';
 ---
 <Layout
-  title="Kasse – Nordleaf"
-  description="Schließe deine Bestellung bei Nordleaf sicher ab. Zahlung per Banküberweisung oder Bitcoin."
+  title="Kasse – Grunapotheke"
+  description="Schließe deine Bestellung bei Grunapotheke sicher ab. Zahlung per Banküberweisung oder Bitcoin."
   canonical={`${siteUrl}/checkout`}
   noindex={true}
 >
@@ -171,7 +171,7 @@ const BTC_ADDRESS = 'bc1qp7tu4apamhwu8v5museyurks5ueatnsln605pc';
                 <div class="bank-info-grid">
                   <div class="bank-field">
                     <span class="field-label">Kontoinhaber</span>
-                    <span class="field-value">Nordleaf GmbH</span>
+                    <span class="field-value">Grunapotheke GmbH</span>
                   </div>
                   <div class="bank-field">
                     <span class="field-label">Bank</span>
@@ -347,7 +347,7 @@ const BTC_ADDRESS = 'bc1qp7tu4apamhwu8v5museyurks5ueatnsln605pc';
 
     // ---- Cart/Summary ----
     function getCart() {
-      try { return JSON.parse(localStorage.getItem('nordleaf_cart') || '{"items":[],"total":0}'); }
+      try { return JSON.parse(localStorage.getItem('grunapotheke_cart') || '{"items":[],"total":0}'); }
       catch { return { items: [], total: 0 }; }
     }
 
@@ -499,16 +499,16 @@ const BTC_ADDRESS = 'bc1qp7tu4apamhwu8v5museyurks5ueatnsln605pc';
         saveOrder('btc', 'awaiting_payment');
       }
       // Clear cart
-      localStorage.removeItem('nordleaf_cart');
+      localStorage.removeItem('grunapotheke_cart');
       window.dispatchEvent(new Event('cart-updated'));
     }
 
     function saveOrder(method, status) {
       const order = { id: orderId, ...orderData, method, status, total: totalEur, date: new Date().toISOString(), items: getCart().items };
       try {
-        const orders = JSON.parse(localStorage.getItem('nordleaf_orders') || '[]');
+        const orders = JSON.parse(localStorage.getItem('grunapotheke_orders') || '[]');
         orders.push(order);
-        localStorage.setItem('nordleaf_orders', JSON.stringify(orders));
+        localStorage.setItem('grunapotheke_orders', JSON.stringify(orders));
       } catch {}
     }
 
@@ -524,7 +524,7 @@ const BTC_ADDRESS = 'bc1qp7tu4apamhwu8v5museyurks5ueatnsln605pc';
         document.getElementById('btc-rate-info').textContent = `1 BTC = ${fmt(btcPrice)} (Kurs aktualisiert)`;
 
         // Generate QR code
-        const uri = `bitcoin:${BTC_ADDRESS}?amount=${btcAmount}&label=Nordleaf-${orderId}`;
+        const uri = `bitcoin:${BTC_ADDRESS}?amount=${btcAmount}&label=Grunapotheke-${orderId}`;
         if (typeof QRCode !== 'undefined') {
           const canvas = document.getElementById('qr-canvas');
           QRCode.toCanvas(canvas, uri, { width: 200, margin: 2, color: { dark: '#1a472a', light: '#ffffff' } });
@@ -564,10 +564,10 @@ const BTC_ADDRESS = 'bc1qp7tu4apamhwu8v5museyurks5ueatnsln605pc';
       document.getElementById('btc-confirmed').style.display = '';
       // Update stored order
       try {
-        const orders = JSON.parse(localStorage.getItem('nordleaf_orders') || '[]');
+        const orders = JSON.parse(localStorage.getItem('grunapotheke_orders') || '[]');
         const order = orders.find(o => o.id === orderId);
         if (order) order.status = 'paid';
-        localStorage.setItem('nordleaf_orders', JSON.stringify(orders));
+        localStorage.setItem('grunapotheke_orders', JSON.stringify(orders));
       } catch {}
     }
 

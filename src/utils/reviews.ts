@@ -69,11 +69,11 @@ const TEMPLATES: Record<string, Array<{ title: string; body: string }>> = {
     },
     {
       title: 'Beste Sorte bisher',
-      body: '{strain} von {brand} ist die beste Cannabissorte, die ich bisher probieren durfte. Mit {thc} THC hat sie genau die richtige Potenz. Die Blüten sind wunderschön und das Terpenprofil ist fantastisch. Nordleaf liefert wie immer schnell und zuverlässig.',
+      body: '{strain} von {brand} ist die beste Cannabissorte, die ich bisher probieren durfte. Mit {thc} THC hat sie genau die richtige Potenz. Die Blüten sind wunderschön und das Terpenprofil ist fantastisch. Grunapotheke liefert wie immer schnell und zuverlässig.',
     },
     {
       title: 'Super bei chronischen Schmerzen',
-      body: 'Ich habe schon viele Sorten probiert, aber {strain} wirkt bei meinen Rückenschmerzen am besten. Der THC-Gehalt von {thc} ist perfekt dosierbar. Gutes Preis-Leistungs-Verhältnis bei Nordleaf.',
+      body: 'Ich habe schon viele Sorten probiert, aber {strain} wirkt bei meinen Rückenschmerzen am besten. Der THC-Gehalt von {thc} ist perfekt dosierbar. Gutes Preis-Leistungs-Verhältnis bei Grunapotheke.',
     },
     {
       title: 'Zuverlässige Wirkung',
@@ -150,7 +150,7 @@ const TEMPLATES: Record<string, Array<{ title: string; body: string }>> = {
     },
     {
       title: 'Alternativ zu Tropfen',
-      body: 'Die Shots sind eine tolle Alternative zu Tropfen. Schmecken besser und die Wirkung ist vergleichbar. Ich nehme sie gerne abends. Schnelle Lieferung bei Nordleaf wie immer.',
+      body: 'Die Shots sind eine tolle Alternative zu Tropfen. Schmecken besser und die Wirkung ist vergleichbar. Ich nehme sie gerne abends. Schnelle Lieferung bei Grunapotheke wie immer.',
     },
     {
       title: 'Ideal für unterwegs',

@@ -12,7 +12,7 @@ export interface Cart {
   total: number;
 }
 
-const CART_KEY = 'nordleaf_cart';
+const CART_KEY = 'grunapotheke_cart';
 
 export function getCart(): Cart {
   if (typeof window === 'undefined') {

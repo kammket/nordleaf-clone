@@ -10,7 +10,7 @@ const shots = products.filter(p => p.category === 'THC Shots');
 const kapseln = products.filter(p => p.category === 'Kapseln & Edibles');
 const totalCount = products.length;
 
-const siteUrl = 'https://nordleaf.de';
+const siteUrl = 'https://grunapotheke.de';
 
 const collectionPageSchema = {
   "@context": "https://schema.org",
@@ -18,7 +18,7 @@ const collectionPageSchema = {
   "name": "Medizinisches Cannabis Live-Bestand",
   "description": `Über ${totalCount} medizinische Cannabis-Produkte: Cannabisblüten, Extrakte, THC Vapes, Shots und Kapseln.`,
   "url": `${siteUrl}/products`,
-  "isPartOf": { "@type": "WebSite", "name": "Nordleaf", "url": siteUrl },
+  "isPartOf": { "@type": "WebSite", "name": "Grunapotheke", "url": siteUrl },
   "mainEntity": {
     "@type": "ItemList",
     "name": "Medizinisches Cannabis Live-Bestand",
@@ -34,7 +34,7 @@ const collectionPageSchema = {
 ---
 
 <Layout
-  title="Medizinisches Cannabis Live-Bestand | Blüten, Extrakte, Vapes & Shots | Nordleaf"
+  title="Medizinisches Cannabis Live-Bestand | Blüten, Extrakte, Vapes & Shots | Grunapotheke"
   description="Über 180 medizinische Cannabis-Produkte auf Lager: Cannabisblüten ab 1€/g, THC Extrakte, Vapes und Shots. 100% Verfügbarkeit, Lieferung in 1-3 Werktagen. Alle Top-Marken: avaay, DEMECAN, Curaleaf, Four 20 Pharma."
   keywords="medizinisches Cannabis kaufen, Cannabisblüten bestellen, THC Blüten Deutschland, Cannabis Apotheke online, THC Vape kaufen, Cannabisextrakte, Cannabis auf Rezept, avaay Medical, DEMECAN, Four 20 Pharma, Curaleaf"
   structuredData={collectionPageSchema}
@@ -369,15 +369,15 @@ const collectionPageSchema = {
     <div class="container">
       <div class="seo-grid">
         <div class="seo-block">
-          <h2>Medizinisches Cannabis online bestellen bei Nordleaf</h2>
-          <p>Nordleaf ist deine Online-Apotheke für medizinisches Cannabis in Deutschland. Mit über {totalCount} Produkten bieten wir eines der größten Sortimente an <strong>Cannabisblüten</strong>, <strong>THC Extrakten</strong>, <strong>Vapes</strong> und <strong>THC Shots</strong> — allesamt sofort lieferbar und 100% auf Lager. Ob du nach einer bestimmten Sorte wie <em>Wedding Cake</em>, <em>Gelato</em> oder <em>OG Kush</em> suchst, oder eine bestimmte Marke wie avaay Medical, DEMECAN oder Four 20 Pharma bevorzugst — bei uns wirst du fündig.</p>
+          <h2>Medizinisches Cannabis online bestellen bei Grunapotheke</h2>
+          <p>Grunapotheke ist deine Online-Apotheke für medizinisches Cannabis in Deutschland. Mit über {totalCount} Produkten bieten wir eines der größten Sortimente an <strong>Cannabisblüten</strong>, <strong>THC Extrakten</strong>, <strong>Vapes</strong> und <strong>THC Shots</strong> — allesamt sofort lieferbar und 100% auf Lager. Ob du nach einer bestimmten Sorte wie <em>Wedding Cake</em>, <em>Gelato</em> oder <em>OG Kush</em> suchst, oder eine bestimmte Marke wie avaay Medical, DEMECAN oder Four 20 Pharma bevorzugst — bei uns wirst du fündig.</p>
         </div>
         <div class="seo-block">
           <h3>Cannabis auf Rezept — So funktioniert es</h3>
-          <p>Seit der Legalisierung von Cannabis als Medizin in Deutschland können Patienten mit einem ärztlichen Rezept <strong>medizinisches Cannabis</strong> in zugelassenen Apotheken erwerben. Bei Nordleaf vereinfachen wir diesen Prozess: Fülle einen kurzen Fragebogen aus, erhalte dein Rezept von einem zugelassenen Arzt, und lass dir dein Medikament in 1-3 Werktagen diskret nach Hause liefern.</p>
+          <p>Seit der Legalisierung von Cannabis als Medizin in Deutschland können Patienten mit einem ärztlichen Rezept <strong>medizinisches Cannabis</strong> in zugelassenen Apotheken erwerben. Bei Grunapotheke vereinfachen wir diesen Prozess: Fülle einen kurzen Fragebogen aus, erhalte dein Rezept von einem zugelassenen Arzt, und lass dir dein Medikament in 1-3 Werktagen diskret nach Hause liefern.</p>
         </div>
         <div class="seo-block">
-          <h3>Warum Nordleaf?</h3>
+          <h3>Warum Grunapotheke?</h3>
           <ul>
             <li><strong>100% Verfügbarkeit:</strong> Alle Produkte immer auf Lager</li>
             <li><strong>Größtes Sortiment:</strong> Über {totalCount} Produkte von über 20 Top-Marken</li>
@@ -500,7 +500,7 @@ const collectionPageSchema = {
         const id = card.getAttribute('href')?.replace('/', '') || '';
         
         try {
-          const cart = JSON.parse(localStorage.getItem('nordleaf_cart') || '{"items":[],"total":0}');
+          const cart = JSON.parse(localStorage.getItem('grunapotheke_cart') || '{"items":[],"total":0}');
           const existing = cart.items.find((item: any) => item.id === id);
           if (existing) {
             existing.quantity += 1;
@@ -508,7 +508,7 @@ const collectionPageSchema = {
             cart.items.push({ id, name, price, quantity: 1, image: img });
           }
           cart.total = cart.items.reduce((sum: number, item: any) => sum + item.price * item.quantity, 0);
-          localStorage.setItem('nordleaf_cart', JSON.stringify(cart));
+          localStorage.setItem('grunapotheke_cart', JSON.stringify(cart));
           document.dispatchEvent(new Event('cart-updated'));
           
           const button = e.target as HTMLElement;

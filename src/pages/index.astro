@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import { products } from '../utils/products';
 
-const siteUrl = 'https://nordleaf.de';
+const siteUrl = 'https://grunapotheke.de';
 const featuredProducts = products.filter(p => p.category === 'Cannabisblüten' && p.available).slice(0, 8);
 
 const categoryStats = {
@@ -17,12 +17,12 @@ const categoryStats = {
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "MedicalBusiness",
-  "name": "Nordleaf",
-  "alternateName": "Nordleaf GmbH",
+  "name": "Grunapotheke",
+  "alternateName": "Grunapotheke GmbH",
   "url": siteUrl,
   "logo": `${siteUrl}/favicon.svg`,
   "image": `${siteUrl}/images/og-default.png`,
-  "description": "Nordleaf ist Ihre Online-Apotheke für medizinisches Cannabis in Deutschland. Cannabis auf Rezept kaufen – Cannabisblüten, Extrakte, THC Vapes und mehr ab 1€/g mit schneller Lieferung.",
+  "description": "Grunapotheke ist Ihre Online-Apotheke für medizinisches Cannabis in Deutschland. Cannabis auf Rezept kaufen – Cannabisblüten, Extrakte, THC Vapes und mehr ab 1€/g mit schneller Lieferung.",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Friedrichstraße 123",
@@ -37,7 +37,7 @@ const structuredData = {
     "longitude": 13.4050
   },
   "telephone": "+49-30-123456789",
-  "email": "info@nordleaf.de",
+  "email": "info@grunapotheke.de",
   "priceRange": "€€",
   "currenciesAccepted": "EUR",
   "paymentAccepted": "Bank Transfer, Bitcoin",
@@ -72,7 +72,7 @@ const structuredData = {
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "Nordleaf",
+  "name": "Grunapotheke",
   "url": siteUrl,
   "description": "Online-Apotheke für medizinisches Cannabis in Deutschland",
   "potentialAction": {
@@ -102,7 +102,7 @@ const faqStructuredData = {
       "name": "Wie kann ich medizinisches Cannabis kaufen?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Bei Nordleaf können Sie medizinisches Cannabis online kaufen. Füllen Sie einfach unseren 3-Minuten-Fragebogen aus, erhalten Sie Ihr Rezept von einem approbierten Arzt und bestellen Sie Ihre Cannabisblüten, Extrakte oder THC Vapes direkt in unserer Online-Apotheke."
+        "text": "Bei Grunapotheke können Sie medizinisches Cannabis online kaufen. Füllen Sie einfach unseren 3-Minuten-Fragebogen aus, erhalten Sie Ihr Rezept von einem approbierten Arzt und bestellen Sie Ihre Cannabisblüten, Extrakte oder THC Vapes direkt in unserer Online-Apotheke."
       }
     },
     {
@@ -123,10 +123,10 @@ const faqStructuredData = {
     },
     {
       "@type": "Question",
-      "name": "Welche Cannabis-Produkte gibt es bei Nordleaf?",
+      "name": "Welche Cannabis-Produkte gibt es bei Grunapotheke?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Nordleaf bietet über 180 medizinische Cannabis-Produkte: Cannabisblüten (THC Blüten), Cannabisextrakte (Vollspektrum-Öle), THC Vapes, THC Shots und Kapseln & Edibles. Alle Produkte sind pharmazeutisch geprüft und ab 1€/g erhältlich."
+        "text": "Grunapotheke bietet über 180 medizinische Cannabis-Produkte: Cannabisblüten (THC Blüten), Cannabisextrakte (Vollspektrum-Öle), THC Vapes, THC Shots und Kapseln & Edibles. Alle Produkte sind pharmazeutisch geprüft und ab 1€/g erhältlich."
       }
     },
     {
@@ -134,7 +134,7 @@ const faqStructuredData = {
       "name": "Ist Cannabis kaufen in Deutschland legal?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Ja, medizinisches Cannabis ist in Deutschland seit 2017 legal, wenn es von einem Arzt verschrieben wird. Mit einem gültigen Cannabis-Rezept können Sie THC-haltige Produkte legal in einer Apotheke oder Online-Apotheke wie Nordleaf kaufen."
+        "text": "Ja, medizinisches Cannabis ist in Deutschland seit 2017 legal, wenn es von einem Arzt verschrieben wird. Mit einem gültigen Cannabis-Rezept können Sie THC-haltige Produkte legal in einer Apotheke oder Online-Apotheke wie Grunapotheke kaufen."
       }
     },
     {
@@ -142,7 +142,7 @@ const faqStructuredData = {
       "name": "Was ist der Unterschied zwischen THC und CBD Cannabis?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "THC (Tetrahydrocannabinol) ist der psychoaktive Wirkstoff in Cannabis, der schmerzlindernd und beruhigend wirkt. CBD (Cannabidiol) hat keine psychoaktive Wirkung, wirkt aber entzündungshemmend und angstlösend. Bei Nordleaf finden Sie Produkte mit verschiedenen THC- und CBD-Gehalten."
+        "text": "THC (Tetrahydrocannabinol) ist der psychoaktive Wirkstoff in Cannabis, der schmerzlindernd und beruhigend wirkt. CBD (Cannabidiol) hat keine psychoaktive Wirkung, wirkt aber entzündungshemmend und angstlösend. Bei Grunapotheke finden Sie Produkte mit verschiedenen THC- und CBD-Gehalten."
       }
     }
   ]
@@ -151,20 +151,20 @@ const faqStructuredData = {
 const webpageStructuredData = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "Medizinisches Cannabis kaufen – Online-Apotheke Nordleaf",
-  "description": "Cannabis auf Rezept kaufen bei Nordleaf. Über 180 medizinische Cannabis-Produkte: Cannabisblüten, Extrakte, THC Vapes ab 1€/g. Schnelle Lieferung in 1-3 Werktagen.",
+  "name": "Medizinisches Cannabis kaufen – Online-Apotheke Grunapotheke",
+  "description": "Cannabis auf Rezept kaufen bei Grunapotheke. Über 180 medizinische Cannabis-Produkte: Cannabisblüten, Extrakte, THC Vapes ab 1€/g. Schnelle Lieferung in 1-3 Werktagen.",
   "url": siteUrl,
   "isPartOf": {
     "@type": "WebSite",
-    "name": "Nordleaf",
+    "name": "Grunapotheke",
     "url": siteUrl
   }
 };
 ---
 
 <Layout
-  title="Medizinisches Cannabis kaufen | Cannabis auf Rezept ab 1€/g – Nordleaf Online-Apotheke"
-  description="Medizinisches Cannabis kaufen bei Nordleaf ✓ Cannabis auf Rezept in 3 Minuten ✓ Über 180 Produkte: Cannabisblüten, THC Vapes, Extrakte ab 1€/g ✓ Lieferung in 1-3 Werktagen ✓ 100% Verfügbarkeit"
+  title="Medizinisches Cannabis kaufen | Cannabis auf Rezept ab 1€/g – Grunapotheke Online-Apotheke"
+  description="Medizinisches Cannabis kaufen bei Grunapotheke ✓ Cannabis auf Rezept in 3 Minuten ✓ Über 180 Produkte: Cannabisblüten, THC Vapes, Extrakte ab 1€/g ✓ Lieferung in 1-3 Werktagen ✓ 100% Verfügbarkeit"
   keywords="medizinisches Cannabis, Cannabis kaufen, THC kaufen, Cannabis auf Rezept, Cannabisblüten kaufen, THC Blüten, medizinisches Cannabis bestellen, Cannabis Apotheke online, Cannabis Rezept, Online Apotheke Cannabis, Cannabisextrakte, THC Vapes kaufen, Cannabis Patient werden, Cannabis legal kaufen Deutschland, medizinisches Cannabis Deutschland"
   canonical={siteUrl}
   structuredData={structuredData}
@@ -421,7 +421,7 @@ const webpageStructuredData = {
         <div class="seo-text">
           <span class="section-tag">Medizinisches Cannabis</span>
           <h2>Medizinisches Cannabis kaufen — einfach, legal & sicher</h2>
-          <p>Bei <strong>Nordleaf</strong> können Sie <strong>medizinisches Cannabis kaufen</strong> — schnell, legal und bequem von zu Hause. Als zertifizierte <strong>Cannabis Apotheke online</strong> bieten wir Ihnen Zugang zu über <strong>{categoryStats.total} medizinischen Cannabis-Produkten</strong>, darunter hochwertige <strong>Cannabisblüten</strong>, <strong>Cannabisextrakte</strong>, <strong>THC Vapes</strong> und mehr.</p>
+          <p>Bei <strong>Grunapotheke</strong> können Sie <strong>medizinisches Cannabis kaufen</strong> — schnell, legal und bequem von zu Hause. Als zertifizierte <strong>Cannabis Apotheke online</strong> bieten wir Ihnen Zugang zu über <strong>{categoryStats.total} medizinischen Cannabis-Produkten</strong>, darunter hochwertige <strong>Cannabisblüten</strong>, <strong>Cannabisextrakte</strong>, <strong>THC Vapes</strong> und mehr.</p>
           <p>Seit der Legalisierung von <strong>Cannabis auf Rezept</strong> in Deutschland können Patienten mit entsprechender ärztlicher Indikation <strong>THC kaufen</strong> und von der therapeutischen Wirkung profitieren. Ob bei chronischen Schmerzen, Schlafstörungen, ADHS oder Angststörungen — <strong>medizinisches Cannabis bestellen</strong> war noch nie so einfach.</p>
           <p>Unser 3-Minuten-Fragebogen ermöglicht es Ihnen, schnell und unkompliziert ein <strong>Cannabis-Rezept</strong> zu erhalten. Ein approbierter Arzt prüft Ihre Angaben und stellt das Rezept aus. Anschließend können Sie direkt in unserem Shop Ihre <strong>THC Blüten</strong> und weitere Produkte auswählen — mit garantierter <strong>100% Verfügbarkeit</strong> und diskreter Lieferung in 1-3 Werktagen.</p>
           <div class="seo-highlights">
@@ -458,7 +458,7 @@ const webpageStructuredData = {
         <div class="seo-sidebar">
           <div class="seo-info-card">
             <h3>Cannabis auf Rezept — So funktioniert's</h3>
-            <p>In Deutschland ist <strong>medizinisches Cannabis</strong> seit März 2017 für Patienten verfügbar. Seit der Teillegalisierung 2024 (CanG) wurde der Zugang weiter vereinfacht. Bei Nordleaf erhalten Sie Ihr Rezept vollständig digital — ohne Wartezeiten, ohne Praxisbesuch.</p>
+            <p>In Deutschland ist <strong>medizinisches Cannabis</strong> seit März 2017 für Patienten verfügbar. Seit der Teillegalisierung 2024 (CanG) wurde der Zugang weiter vereinfacht. Bei Grunapotheke erhalten Sie Ihr Rezept vollständig digital — ohne Wartezeiten, ohne Praxisbesuch.</p>
             <ul class="seo-list">
               <li>Cannabis auf Rezept für chronische Schmerzen</li>
               <li>THC kaufen bei Schlafstörungen & Insomnie</li>
@@ -521,11 +521,11 @@ const webpageStructuredData = {
     </div>
   </section>
 
-  <!-- SEO Content: Warum Nordleaf -->
-  <section class="why-nordleaf" id="warum-nordleaf">
+  <!-- SEO Content: Warum Grunapotheke -->
+  <section class="why-grunapotheke" id="warum-grunapotheke">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">Warum Nordleaf</span>
+        <span class="section-tag">Warum Grunapotheke</span>
         <h2>Ihre Online-Apotheke für medizinisches Cannabis</h2>
       </div>
 
@@ -559,7 +559,7 @@ const webpageStructuredData = {
             <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="10" fill="#e8f5e9"/><path d="M20 12c-4 0-8 3-8 7s4 9 8 13c4-4 8-9 8-13s-4-7-8-7z" fill="#4caf50"/></svg>
           </div>
           <h3>100% Verfügbarkeit</h3>
-          <p>Alle Produkte immer auf Lager. Kein Warten, kein Nachbestellen. <strong>Cannabis kaufen</strong> bei Nordleaf bedeutet sofortige Verfügbarkeit und Lieferung in 1-3 Werktagen.</p>
+          <p>Alle Produkte immer auf Lager. Kein Warten, kein Nachbestellen. <strong>Cannabis kaufen</strong> bei Grunapotheke bedeutet sofortige Verfügbarkeit und Lieferung in 1-3 Werktagen.</p>
         </div>
 
         <div class="benefit-card">
@@ -567,7 +567,7 @@ const webpageStructuredData = {
             <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="10" fill="#e8f5e9"/><rect x="12" y="14" width="16" height="12" rx="2" stroke="#4caf50" stroke-width="2.5" fill="none"/><path d="M12 18h16" stroke="#4caf50" stroke-width="2"/></svg>
           </div>
           <h3>Sichere Bezahlung</h3>
-          <p>Zahlen Sie bequem per Überweisung oder Bitcoin. Alle Transaktionen sind verschlüsselt und DSGVO-konform. Sicher <strong>THC kaufen</strong> bei Nordleaf.</p>
+          <p>Zahlen Sie bequem per Überweisung oder Bitcoin. Alle Transaktionen sind verschlüsselt und DSGVO-konform. Sicher <strong>THC kaufen</strong> bei Grunapotheke.</p>
         </div>
 
         <div class="benefit-card">
@@ -662,15 +662,15 @@ const webpageStructuredData = {
         </details>
         <details class="faq-item">
           <summary>Ist Cannabis kaufen in Deutschland legal?</summary>
-          <p>Ja, medizinisches Cannabis ist in Deutschland seit 2017 legal, wenn es von einem Arzt verschrieben wird. Mit einem gültigen Cannabis-Rezept kannst du THC-haltige Produkte legal in einer Apotheke oder Online-Apotheke wie Nordleaf kaufen. Seit dem Cannabisgesetz (CanG) 2024 wurde der Zugang weiter vereinfacht.</p>
+          <p>Ja, medizinisches Cannabis ist in Deutschland seit 2017 legal, wenn es von einem Arzt verschrieben wird. Mit einem gültigen Cannabis-Rezept kannst du THC-haltige Produkte legal in einer Apotheke oder Online-Apotheke wie Grunapotheke kaufen. Seit dem Cannabisgesetz (CanG) 2024 wurde der Zugang weiter vereinfacht.</p>
         </details>
         <details class="faq-item">
-          <summary>Welche Cannabis-Produkte kann ich bei Nordleaf kaufen?</summary>
-          <p>Bei Nordleaf findest du über {categoryStats.total} medizinische Cannabis-Produkte: Cannabisblüten (THC Blüten) in vielen Sorten, Cannabisextrakte (Vollspektrum-Öle), THC Vapes, THC Shots und Kapseln & Edibles. Alle Produkte sind pharmazeutisch geprüft und ab 1€/g erhältlich.</p>
+          <summary>Welche Cannabis-Produkte kann ich bei Grunapotheke kaufen?</summary>
+          <p>Bei Grunapotheke findest du über {categoryStats.total} medizinische Cannabis-Produkte: Cannabisblüten (THC Blüten) in vielen Sorten, Cannabisextrakte (Vollspektrum-Öle), THC Vapes, THC Shots und Kapseln & Edibles. Alle Produkte sind pharmazeutisch geprüft und ab 1€/g erhältlich.</p>
         </details>
         <details class="faq-item">
           <summary>Was ist der Unterschied zwischen THC und CBD?</summary>
-          <p>THC (Tetrahydrocannabinol) ist der psychoaktive Wirkstoff in Cannabis, der schmerzlindernd und beruhigend wirkt. CBD (Cannabidiol) hat keine psychoaktive Wirkung, wirkt aber entzündungshemmend und angstlösend. Bei Nordleaf findest du Produkte mit verschiedenen THC- und CBD-Gehalten, passend für deine Therapie.</p>
+          <p>THC (Tetrahydrocannabinol) ist der psychoaktive Wirkstoff in Cannabis, der schmerzlindernd und beruhigend wirkt. CBD (Cannabidiol) hat keine psychoaktive Wirkung, wirkt aber entzündungshemmend und angstlösend. Bei Grunapotheke findest du Produkte mit verschiedenen THC- und CBD-Gehalten, passend für deine Therapie.</p>
         </details>
       </div>
 
@@ -1481,8 +1481,8 @@ const webpageStructuredData = {
     color: #1a472a;
   }
 
-  /* Why Nordleaf Section */
-  .why-nordleaf {
+  /* Why Grunapotheke Section */
+  .why-grunapotheke {
     padding: 5rem 1.5rem;
   }
 
@@ -1910,7 +1910,7 @@ const webpageStructuredData = {
 
     .seo-content,
     .categories-seo,
-    .why-nordleaf {
+    .why-grunapotheke {
       padding: 3rem 1rem;
     }
   }

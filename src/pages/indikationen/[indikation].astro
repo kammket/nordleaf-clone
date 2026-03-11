@@ -105,7 +105,7 @@ export function getStaticPaths() {
     hero: 'Cannabis bei Migräne',
     heroSub: 'Migräneattacken vorbeugen und lindern — medizinisches Cannabis als Prophylaxe.',
     metaTitle: 'Cannabis bei Migräne | Kopfschmerzen natürlich behandeln',
-    metaDesc: 'Medizinisches Cannabis bei Migräne: Prophylaxe, Akutbehandlung, Studien und geeignete Sorten. Online-Rezept bei Nordleaf.',
+    metaDesc: 'Medizinisches Cannabis bei Migräne: Prophylaxe, Akutbehandlung, Studien und geeignete Sorten. Online-Rezept bei Grunapotheke.',
     keywords: 'Cannabis Migräne, Cannabis Kopfschmerzen, medizinisches Cannabis Migräne, THC Migräne, Cannabis Prophylaxe',
     intro: 'Migräne betrifft rund 14% der Weltbevölkerung und ist eine der häufigsten neurologischen Erkrankungen. Für Patienten, die auf konventionelle Migränemedikamente nicht ansprechen oder deren Nebenwirkungen nicht tolerieren, zeigt medizinisches Cannabis vielversprechende Ergebnisse in der Prophylaxe und Akutbehandlung.',
     whatIs: 'Migräne ist eine neurologische Erkrankung mit wiederkehrenden, oft einseitigen, pulsierenden Kopfschmerzen. Begleitsymptome sind Übelkeit, Licht- und Geräuschempfindlichkeit und teilweise Aura-Phänomene. Chronische Migräne (≥15 Kopfschmerztage/Monat) kann die Arbeitsfähigkeit und Lebensqualität massiv einschränken.',
@@ -131,20 +131,20 @@ const schema = {
   name: condition.hero,
   description: condition.metaDesc,
   about: { '@type': 'MedicalCondition', name: condition.name },
-  author: { '@type': 'Organization', name: 'Nordleaf GmbH', url: 'https://nordleaf.de' },
+  author: { '@type': 'Organization', name: 'Grunapotheke GmbH', url: 'https://grunapotheke.de' },
   lastReviewed: new Date().toISOString().split('T')[0],
   reviewedBy: {
     '@type': 'Person',
     name: 'Dr. med. Thomas Müller',
     jobTitle: 'Facharzt für Allgemeinmedizin',
-    affiliation: { '@type': 'Organization', name: 'Nordleaf GmbH' }
+    affiliation: { '@type': 'Organization', name: 'Grunapotheke GmbH' }
   },
   medicalAudience: { '@type': 'PatientAudience', audienceType: 'Patient' },
 };
 ---
 
 <Layout
-  title={`${condition.metaTitle} | Nordleaf`}
+  title={`${condition.metaTitle} | Grunapotheke`}
   description={condition.metaDesc}
   keywords={condition.keywords}
   structuredData={schema}
@@ -202,7 +202,7 @@ const schema = {
         </section>
 
         <section>
-          <h2>So bekommst du dein Rezept bei Nordleaf</h2>
+          <h2>So bekommst du dein Rezept bei Grunapotheke</h2>
           <div class="steps-compact">
             <div class="step-c"><span>1</span><p><strong>Fragebogen</strong> ausfüllen (3 Min.)</p></div>
             <div class="step-c"><span>2</span><p><strong>Arzt prüft</strong> deine Angaben (24h)</p></div>

@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://nordleaf.de',
+  site: 'https://grunapotheke.de',
   trailingSlash: 'never',
   integrations: [
     sitemap({
@@ -16,7 +16,7 @@ export default defineConfig({
       priority: 0.7,
       lastmod: new Date(),
       serialize: (item) => {
-        if (item.url === 'https://nordleaf.de/') {
+        if (item.url === 'https://grunapotheke.de/') {
           item.priority = 1.0;
           item.changefreq = 'daily';
         } else if (item.url.includes('/products')) {

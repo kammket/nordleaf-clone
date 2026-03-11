@@ -1,9 +1,9 @@
 {
-  "name": "nordleaf-clone",
+  "name": "grunapotheke-clone",
   "version": "1.0.0",
   "description": "A modern, SEO-optimized e-commerce website built with Astro framework for organic and sustainable products",
   "type": "module",
-  "author": "Nordleaf",
+  "author": "Grunapotheke",
   "license": "MIT",
   "main": "./dist/index.html",
   "keywords": [
@@ -30,13 +30,13 @@
   "engines": {
     "node": ">=16.x"
   },
-  "homepage": "https://github.com/yourusername/nordleaf-clone",
+  "homepage": "https://github.com/yourusername/grunapotheke-clone",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/nordleaf-clone.git"
+    "url": "https://github.com/yourusername/grunapotheke-clone.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/nordleaf-clone/issues"
+    "url": "https://github.com/yourusername/grunapotheke-clone/issues"
   },
   "devDependencies": {
     "wrangler": "^4.71.0"
