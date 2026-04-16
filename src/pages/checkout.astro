@@ -519,11 +519,15 @@ const BTC_ADDRESS = 'bc1qp7tu4apamhwu8v5museyurks5ueatnsln605pc';
           total: totalEur,
           items: cart.items.map(i => ({ name: i.name, price: i.price, quantity: i.quantity })),
         };
-        await fetch('/api/order', {
+        const res = await fetch('/api/order', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
         });
+        if (!res.ok) {
+          const data = await res.json().catch(() => ({}));
+          console.error('Order email API error:', res.status, data);
+        }
       } catch (err) {
         console.error('Failed to send order email:', err);
       }

@@ -161,9 +161,11 @@ function buildAdminEmailHtml(order: OrderPayload): string {
 </html>`;
 }
 
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request, locals }) => {
   try {
-    const apiKey = import.meta.env.RESEND_API_KEY;
+    // Try Cloudflare runtime env first, then Astro env
+    const runtime = (locals as any)?.runtime;
+    const apiKey = runtime?.env?.RESEND_API_KEY || import.meta.env.RESEND_API_KEY;
     if (!apiKey) {
       return new Response(
         JSON.stringify({ error: 'Email service not configured' }),
@@ -193,8 +195,8 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     const resend = new Resend(apiKey);
-    const fromAddress = import.meta.env.EMAIL_FROM || 'Grunapotheke <bestellung@grunapotheke.com>';
-    const adminEmail = import.meta.env.ADMIN_EMAIL || 'info@grunapotheke.com';
+    const fromAddress = runtime?.env?.EMAIL_FROM || import.meta.env.EMAIL_FROM || 'Grunapotheke <info@grunapotheke.com>';
+    const adminEmail = runtime?.env?.ADMIN_EMAIL || import.meta.env.ADMIN_EMAIL || 'info@grunapotheke.com';
 
     // Send customer confirmation email
     const { error: customerError } = await resend.emails.send({
