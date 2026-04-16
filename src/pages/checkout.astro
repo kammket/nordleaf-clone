@@ -191,47 +191,37 @@ const BTC_ADDRESS = 'bc1qp7tu4apamhwu8v5museyurks5ueatnsln605pc';
             <div id="confirm-bank" style="display:none;">
               <div class="confirm-header">
                 <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                <h2>Bestellung aufgegeben!</h2>
+                <h2>Vielen Dank für deine Bestellung!</h2>
                 <p class="order-id-display">Bestellnummer: <strong id="order-id-bank"></strong></p>
               </div>
               <div class="bank-details-card">
-                <h3>Überweisungsdaten</h3>
-                <p class="bank-instruction">Bitte überweise den Gesamtbetrag an folgendes Konto. Verwende die Bestellnummer als Verwendungszweck.</p>
-                <div class="bank-info-grid">
-                  <div class="bank-field">
-                    <span class="field-label">Kontoinhaber</span>
-                    <span class="field-value">Grunapotheke GmbH</span>
+                <h3>Nächste Schritte</h3>
+                <div class="bank-email-instructions">
+                  <div class="instruction-step">
+                    <div class="step-number">1</div>
+                    <div class="step-text">
+                      <strong>E-Mail prüfen</strong>
+                      <p>Du erhältst in Kürze eine E-Mail mit den Bankdaten und Zahlungsanweisungen.</p>
+                    </div>
                   </div>
-                  <div class="bank-field">
-                    <span class="field-label">Bank</span>
-                    <span class="field-value">Deutsche Bank</span>
+                  <div class="instruction-step">
+                    <div class="step-number">2</div>
+                    <div class="step-text">
+                      <strong>Überweisung durchführen</strong>
+                      <p>Überweise den Betrag gemäß den Angaben in der E-Mail.</p>
+                    </div>
                   </div>
-                  <div class="bank-field">
-                    <span class="field-label">IBAN</span>
-                    <span class="field-value" id="bank-iban">DE89 3704 0044 0532 0130 00</span>
-                    <button class="copy-btn" data-copy="iban" title="Kopieren">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                    </button>
-                  </div>
-                  <div class="bank-field">
-                    <span class="field-label">BIC</span>
-                    <span class="field-value">DEUTDEDBFRA</span>
-                  </div>
-                  <div class="bank-field highlight">
-                    <span class="field-label">Verwendungszweck</span>
-                    <span class="field-value" id="bank-reference"></span>
-                    <button class="copy-btn" data-copy="reference" title="Kopieren">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                    </button>
-                  </div>
-                  <div class="bank-field highlight">
-                    <span class="field-label">Betrag</span>
-                    <span class="field-value" id="bank-amount"></span>
+                  <div class="instruction-step">
+                    <div class="step-number">3</div>
+                    <div class="step-text">
+                      <strong>Zahlungsbestätigung senden</strong>
+                      <p>Antworte auf die E-Mail mit deinem Zahlungsbeleg oder Überweisungsbestätigung, damit wir deine Bestellung schnellstmöglich bearbeiten und versenden können.</p>
+                    </div>
                   </div>
                 </div>
                 <div class="bank-notice">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e67e22" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                  <span>Deine Bestellung wird nach Zahlungseingang innerhalb von 1-2 Werktagen bearbeitet und versendet.</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+                  <span>Bitte prüfe auch deinen Spam-Ordner, falls du die E-Mail nicht findest.</span>
                 </div>
               </div>
             </div>
@@ -310,11 +300,7 @@ const BTC_ADDRESS = 'bc1qp7tu4apamhwu8v5museyurks5ueatnsln605pc';
             </div>
             <div class="summary-row">
               <span>Versand</span>
-              <span class="shipping-free">Kostenlos</span>
-            </div>
-            <div class="summary-row">
-              <span>MwSt. (19%)</span>
-              <span id="s-tax">€0,00</span>
+              <span id="s-shipping">€20,00</span>
             </div>
           </div>
           <div class="summary-total">
@@ -402,14 +388,14 @@ const BTC_ADDRESS = 'bc1qp7tu4apamhwu8v5museyurks5ueatnsln605pc';
       itemsEl.innerHTML = html;
 
       const subtotal = cart.items.reduce((s, i) => s + i.price * i.quantity, 0);
-      const tax = subtotal * 0.19;
-      totalEur = parseFloat((subtotal + tax).toFixed(2));
+      const shipping = 20;
+      totalEur = parseFloat((subtotal + shipping).toFixed(2));
       document.getElementById('s-subtotal').textContent = fmt(subtotal);
-      document.getElementById('s-tax').textContent = fmt(tax);
+      document.getElementById('s-shipping').textContent = fmt(shipping);
       document.getElementById('s-total').textContent = fmt(totalEur);
 
       // Redirect if under minimum
-      if (totalEur < 100) {
+      if (totalEur < 130) {
         window.location.href = '/cart';
         return;
       }
@@ -498,8 +484,6 @@ const BTC_ADDRESS = 'bc1qp7tu4apamhwu8v5museyurks5ueatnsln605pc';
         document.getElementById('confirm-bank').style.display = '';
         document.getElementById('confirm-btc').style.display = 'none';
         document.getElementById('order-id-bank').textContent = orderId;
-        document.getElementById('bank-reference').textContent = orderId;
-        document.getElementById('bank-amount').textContent = fmt(totalEur);
         // Save order
         saveOrder('bank', 'pending');
       } else {
@@ -630,9 +614,7 @@ const BTC_ADDRESS = 'bc1qp7tu4apamhwu8v5museyurks5ueatnsln605pc';
       btn.addEventListener('click', () => {
         const target = btn.dataset.copy;
         let text = '';
-        if (target === 'iban') text = document.getElementById('bank-iban').textContent.replace(/\s/g, '');
-        else if (target === 'reference') text = document.getElementById('bank-reference').textContent;
-        else if (target === 'btc-addr') text = document.getElementById('btc-addr').textContent;
+        if (target === 'btc-addr') text = document.getElementById('btc-addr').textContent;
         navigator.clipboard.writeText(text).then(() => {
           const orig = btn.innerHTML;
           btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>';
@@ -1047,55 +1029,49 @@ const BTC_ADDRESS = 'bc1qp7tu4apamhwu8v5museyurks5ueatnsln605pc';
     margin-bottom: 0.5rem;
   }
 
-  .bank-instruction {
-    font-size: 0.88rem;
-    color: #666;
-    margin-bottom: 1.25rem;
-    line-height: 1.5;
-  }
-
-  .bank-info-grid {
+  .bank-email-instructions {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 1rem;
+    margin: 1rem 0;
   }
 
-  .bank-field {
+  .instruction-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 10px;
+    border: 1px solid #e8ede9;
+  }
+
+  .step-number {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #4caf50;
+    color: white;
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    padding: 0.6rem 0.75rem;
-    background: white;
-    border-radius: 8px;
-    border: 1px solid #eee;
-  }
-
-  .bank-field.highlight {
-    background: #e8f5e9;
-    border-color: #c8e6c9;
-  }
-
-  .field-label {
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: #999;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    min-width: 120px;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
     flex-shrink: 0;
   }
 
-  .field-value {
-    font-size: 0.92rem;
-    font-weight: 600;
-    color: #333;
-    flex: 1;
-    word-break: break-all;
+  .step-text strong {
+    display: block;
+    font-size: 0.95rem;
+    color: #1a472a;
+    margin-bottom: 0.25rem;
   }
 
-  .bank-field.highlight .field-value {
-    color: #1a472a;
-    font-weight: 700;
+  .step-text p {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.5;
+    margin: 0;
   }
 
   .copy-btn {
@@ -1515,21 +1491,6 @@ const BTC_ADDRESS = 'bc1qp7tu4apamhwu8v5museyurks5ueatnsln605pc';
 
     .btc-converted {
       text-align: left;
-    }
-
-    .bank-field {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.25rem;
-    }
-
-    .field-label {
-      min-width: unset;
-    }
-
-    .bank-field .copy-btn {
-      align-self: flex-end;
-      margin-top: -1.5rem;
     }
 
     .order-summary {

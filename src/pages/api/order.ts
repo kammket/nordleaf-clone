@@ -47,18 +47,14 @@ function buildOrderEmailHtml(order: OrderPayload): string {
     order.method === 'bank'
       ? `
       <div style="background:#f8faf9;border:1px solid #e8ede9;border-radius:8px;padding:20px;margin-top:20px;">
-        <h3 style="margin:0 0 12px;color:#1a472a;font-size:16px;">Überweisungsdaten</h3>
-        <p style="margin:0 0 16px;font-size:13px;color:#666;">Bitte überweise den Gesamtbetrag an folgendes Konto. Verwende die Bestellnummer als Verwendungszweck.</p>
+        <h3 style="margin:0 0 12px;color:#1a472a;font-size:16px;">Zahlungsanweisungen</h3>
+        <p style="margin:0 0 16px;font-size:13px;color:#666;">Wir werden dir in Kürze eine separate E-Mail mit den Bankdaten und genauen Zahlungsanweisungen zusenden.</p>
         <table style="width:100%;border-collapse:collapse;">
-          <tr><td style="padding:6px 0;font-size:13px;color:#999;width:140px;">Kontoinhaber</td><td style="padding:6px 0;font-size:14px;font-weight:600;color:#333;">Grunapotheke GmbH</td></tr>
-          <tr><td style="padding:6px 0;font-size:13px;color:#999;">Bank</td><td style="padding:6px 0;font-size:14px;font-weight:600;color:#333;">Deutsche Bank</td></tr>
-          <tr><td style="padding:6px 0;font-size:13px;color:#999;">IBAN</td><td style="padding:6px 0;font-size:14px;font-weight:600;color:#333;">DE89 3704 0044 0532 0130 00</td></tr>
-          <tr><td style="padding:6px 0;font-size:13px;color:#999;">BIC</td><td style="padding:6px 0;font-size:14px;font-weight:600;color:#333;">DEUTDEDBFRA</td></tr>
-          <tr style="background:#e8f5e9;"><td style="padding:8px 6px;font-size:13px;color:#1a472a;font-weight:600;border-radius:4px 0 0 4px;">Verwendungszweck</td><td style="padding:8px 6px;font-size:14px;font-weight:700;color:#1a472a;border-radius:0 4px 4px 0;">${order.orderId}</td></tr>
+          <tr style="background:#e8f5e9;"><td style="padding:8px 6px;font-size:13px;color:#1a472a;font-weight:600;border-radius:4px 0 0 4px;">Bestellnummer</td><td style="padding:8px 6px;font-size:14px;font-weight:700;color:#1a472a;border-radius:0 4px 4px 0;">${order.orderId}</td></tr>
           <tr style="background:#e8f5e9;"><td style="padding:8px 6px;font-size:13px;color:#1a472a;font-weight:600;border-radius:4px 0 0 4px;">Betrag</td><td style="padding:8px 6px;font-size:14px;font-weight:700;color:#1a472a;border-radius:0 4px 4px 0;">${fmt(order.total)}</td></tr>
         </table>
-        <p style="margin:16px 0 0;font-size:12px;color:#a0723c;background:#fff8f0;border:1px solid #fde0b0;border-radius:6px;padding:10px;">
-          ⚠️ Deine Bestellung wird nach Zahlungseingang innerhalb von 1-2 Werktagen bearbeitet und versendet.
+        <p style="margin:16px 0 0;font-size:13px;color:#1a472a;background:#e8f5e9;border:1px solid #c8e6c9;border-radius:6px;padding:12px;">
+          ✅ Sobald du die Zahlung durchgeführt hast, antworte bitte auf diese E-Mail mit deinem Zahlungsbeleg oder deiner Überweisungsbestätigung. Wir bearbeiten und versenden deine Bestellung dann schnellstmöglich.
         </p>
       </div>`
       : `
@@ -115,7 +111,7 @@ function buildOrderEmailHtml(order: OrderPayload): string {
         <div style="border-top:1px solid #e8ede9;padding-top:12px;">
           <table style="width:100%;border-collapse:collapse;">
             <tr><td style="padding:4px 0;font-size:14px;color:#666;">Zwischensumme</td><td style="padding:4px 0;font-size:14px;color:#333;text-align:right;font-weight:600;">${fmt(subtotal)}</td></tr>
-            <tr><td style="padding:4px 0;font-size:14px;color:#666;">Versand</td><td style="padding:4px 0;font-size:14px;color:#4caf50;text-align:right;font-weight:600;">Kostenlos</td></tr>
+            <tr><td style="padding:4px 0;font-size:14px;color:#666;">Versand</td><td style="padding:4px 0;font-size:14px;color:#333;text-align:right;font-weight:600;">€20,00</td></tr>
             <tr><td style="padding:4px 0;font-size:14px;color:#666;">MwSt. (19%)</td><td style="padding:4px 0;font-size:14px;color:#333;text-align:right;font-weight:600;">${fmt(tax)}</td></tr>
             <tr style="border-top:2px solid #1a472a;"><td style="padding:10px 0 0;font-size:16px;color:#1a472a;font-weight:700;">Gesamt</td><td style="padding:10px 0 0;font-size:18px;color:#1a472a;text-align:right;font-weight:800;">${fmt(order.total)}</td></tr>
           </table>

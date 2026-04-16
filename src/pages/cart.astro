@@ -61,7 +61,7 @@ const siteUrl = 'https://grunapotheke.com';
             </div>
             <div class="summary-row">
               <span>Versand</span>
-              <span id="shipping" class="shipping-free">Kostenlos</span>
+              <span id="shipping">€20,00</span>
             </div>
             <div class="summary-row">
               <span>MwSt. (19%)</span>
@@ -80,7 +80,7 @@ const siteUrl = 'https://grunapotheke.com';
 
           <div id="min-order-notice" class="notice notice--warn" style="display:none;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-            <span>Mindestbestellwert: <strong>€100,00</strong>. Bitte füge weitere Produkte hinzu.</span>
+            <span>Mindestbestellwert: <strong>€130,00</strong>. Bitte füge weitere Produkte hinzu, um für die Lieferung berechtigt zu sein.</span>
           </div>
 
           <div class="trust-badges">
@@ -115,7 +115,6 @@ const siteUrl = 'https://grunapotheke.com';
     const clearBtn = document.getElementById('clear-cart-btn')!;
     const checkoutBtn = document.getElementById('checkout-btn') as HTMLAnchorElement;
     const minOrderNotice = document.getElementById('min-order-notice')!;
-    const btcOnlyNotice = document.getElementById('btc-only-notice')!;
     const itemCountBadge = document.getElementById('item-count-badge')!;
 
     function fmt(n: number) {
@@ -209,22 +208,23 @@ const siteUrl = 'https://grunapotheke.com';
       // Update summary
       const subtotal = calculateTotal(cart.items);
       const tax = parseFloat((subtotal * 0.19).toFixed(2));
-      const total = parseFloat((subtotal + tax).toFixed(2));
+      const shipping = 20;
+      const total = parseFloat((subtotal + tax + shipping).toFixed(2));
       subtotalEl.textContent = fmt(subtotal);
       taxEl.textContent = fmt(tax);
+      document.getElementById('shipping')!.textContent = fmt(shipping);
+      document.getElementById('shipping')!.classList.remove('shipping-free');
       totalEl.textContent = fmt(total);
 
       // Minimum order enforcement
-      if (total < 100) {
+      if (total < 130) {
         checkoutBtn.classList.add('disabled');
         checkoutBtn.addEventListener('click', blockCheckout);
         minOrderNotice.style.display = 'flex';
-        btcOnlyNotice.style.display = 'none';
       } else {
         checkoutBtn.classList.remove('disabled');
         checkoutBtn.removeEventListener('click', blockCheckout);
         minOrderNotice.style.display = 'none';
-        btcOnlyNotice.style.display = total < 200 ? 'flex' : 'none';
       }
 
       // Attach event listeners
