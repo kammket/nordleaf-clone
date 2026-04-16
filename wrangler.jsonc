@@ -3,6 +3,11 @@
   "name": "nordleaf-clone",
   "compatibility_date": "2025-09-27",
   "compatibility_flags": ["nodejs_compat"],
+  "vars": {
+    "RESEND_API_KEY": "re_QYMyWm3y_BNj1xo9rDtsZ29oyJweg8Xdu",
+    "EMAIL_FROM": "Grunapotheke <info@grunapotheke.com>",
+    "ADMIN_EMAIL": "info@grunapotheke.com"
+  },
   "assets": {
     "directory": "dist"
   }
