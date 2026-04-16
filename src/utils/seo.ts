@@ -21,7 +21,7 @@ export function organizationSchema(siteUrl: string) {
     description: 'Premium organic products',
     contactPoint: {
       '@type': 'ContactPoint',
-      email: 'info@grunapotheke.de',
+      email: 'info@grunapotheke.com',
       telephone: '+49-123-456789',
     },
   };

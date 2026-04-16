@@ -1,11 +1,13 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://grunapotheke.de',
+  site: 'https://grunapotheke.com',
   trailingSlash: 'never',
+  adapter: cloudflare(),
   integrations: [
     sitemap({
       filter: (page) =>
@@ -16,7 +18,7 @@ export default defineConfig({
       priority: 0.7,
       lastmod: new Date(),
       serialize: (item) => {
-        if (item.url === 'https://grunapotheke.de/') {
+        if (item.url === 'https://grunapotheke.com/') {
           item.priority = 1.0;
           item.changefreq = 'daily';
         } else if (item.url.includes('/products')) {

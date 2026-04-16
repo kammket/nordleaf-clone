@@ -1,12 +1,44 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
+
+const offerSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Preise - Cannabis-Rezept ab €9,90',
+  description: 'Transparente Preise bei Grunapotheke. All-in-One Paket ab €9,90 + Medikament oder Nur Rezept für €19,90.',
+  url: 'https://grunapotheke.com/preise',
+  mainEntity: {
+    '@type': 'ItemList',
+    itemListElement: [
+      {
+        '@type': 'Offer',
+        position: 1,
+        name: 'Nur Rezept',
+        description: 'Cannabis-Rezept ohne Medikament. Einlösbar in jeder Apotheke.',
+        price: '19.90',
+        priceCurrency: 'EUR',
+        url: 'https://grunapotheke.com/preise',
+      },
+      {
+        '@type': 'Offer',
+        position: 2,
+        name: 'All-in-One Paket',
+        description: 'Cannabis-Rezept mit Medikament und Lieferung. Alles aus einer Hand.',
+        price: '9.90',
+        priceCurrency: 'EUR',
+        url: 'https://grunapotheke.com/preise',
+      },
+    ],
+  },
+};
 ---
 
 <Layout
   title="Preise - Cannabis-Rezept ab €9,90 | Grunapotheke"
   description="Transparente Preise bei Grunapotheke. All-in-One Paket ab €9,90 + Medikament oder Nur Rezept für €19,90. Keine versteckten Kosten."
   keywords="Cannabis Rezept Preis, medizinisches Cannabis Kosten, Cannabis Apotheke Preise"
+  structuredData={[offerSchema]}
 >
   <Breadcrumb items={[{name: "Preise"}]} />
   <section class="page-hero">

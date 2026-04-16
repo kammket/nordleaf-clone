@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-const siteUrl = 'https://grunapotheke.de';
+const siteUrl = 'https://grunapotheke.com';
 const BTC_ADDRESS = 'bc1qp7tu4apamhwu8v5museyurks5ueatnsln605pc';
 ---
 <Layout
@@ -81,6 +81,35 @@ const BTC_ADDRESS = 'bc1qp7tu4apamhwu8v5museyurks5ueatnsln605pc';
                   <option value="DE" selected>Deutschland</option>
                   <option value="AT">Österreich</option>
                   <option value="CH">Schweiz</option>
+                  <option value="BE">Belgien</option>
+                  <option value="BG">Bulgarien</option>
+                  <option value="DK">Dänemark</option>
+                  <option value="EE">Estland</option>
+                  <option value="FI">Finnland</option>
+                  <option value="FR">Frankreich</option>
+                  <option value="GR">Griechenland</option>
+                  <option value="IE">Irland</option>
+                  <option value="IS">Island</option>
+                  <option value="IT">Italien</option>
+                  <option value="HR">Kroatien</option>
+                  <option value="LV">Lettland</option>
+                  <option value="LI">Liechtenstein</option>
+                  <option value="LT">Litauen</option>
+                  <option value="LU">Luxemburg</option>
+                  <option value="MT">Malta</option>
+                  <option value="NL">Niederlande</option>
+                  <option value="NO">Norwegen</option>
+                  <option value="PL">Polen</option>
+                  <option value="PT">Portugal</option>
+                  <option value="RO">Rumänien</option>
+                  <option value="SE">Schweden</option>
+                  <option value="SK">Slowakei</option>
+                  <option value="SI">Slowenien</option>
+                  <option value="ES">Spanien</option>
+                  <option value="CZ">Tschechien</option>
+                  <option value="HU">Ungarn</option>
+                  <option value="GB">Vereinigtes Königreich</option>
+                  <option value="CY">Zypern</option>
                 </select>
               </div>
               <div class="form-group checkbox-group">
@@ -394,30 +423,14 @@ const BTC_ADDRESS = 'bc1qp7tu4apamhwu8v5museyurks5ueatnsln605pc';
       const banner = document.getElementById('payment-info-banner');
       const bannerMsg = document.getElementById('pib-message');
 
-      if (totalEur < 200) {
-        // Bitcoin only
-        bankAllowed = false;
-        methodBank.classList.add('method-disabled');
-        methodBank.querySelector('input').disabled = true;
-        // Force BTC selection
-        payMethod = 'btc';
-        document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('selected'));
-        document.getElementById('method-btc').classList.add('selected');
-        document.getElementById('method-btc').querySelector('input').checked = true;
+      // Both methods always available
+      bankAllowed = true;
+      methodBank.classList.remove('method-disabled');
+      methodBank.querySelector('input').disabled = false;
 
-        banner.className = 'payment-info-banner pib-btc-only';
-        banner.style.display = 'flex';
-        bannerMsg.innerHTML = '<strong>Dein Bestellwert liegt unter €200.</strong><br>Bei Bestellungen unter €200 ist die Zahlung ausschließlich per <strong>Bitcoin</strong> möglich. Wenn du nicht mit Bitcoin vertraut bist und per Banküberweisung zahlen möchtest, füge bitte Produkte für mindestens <strong>€200</strong> hinzu. <a href="/cart" style="color:#1a472a;text-decoration:underline;">Zurück zum Warenkorb →</a>';
-      } else {
-        // Both methods available
-        bankAllowed = true;
-        methodBank.classList.remove('method-disabled');
-        methodBank.querySelector('input').disabled = false;
-
-        banner.className = 'payment-info-banner pib-both';
-        banner.style.display = 'flex';
-        bannerMsg.innerHTML = '<strong>Beide Zahlungsarten verfügbar!</strong><br>Bei Bestellungen ab €200 kannst du per <strong>Banküberweisung (SEPA)</strong> oder <strong>Bitcoin</strong> zahlen. Wähle deine bevorzugte Zahlungsart.';
-      }
+      banner.className = 'payment-info-banner pib-both';
+      banner.style.display = 'flex';
+      bannerMsg.innerHTML = '<strong>Beide Zahlungsarten verfügbar!</strong><br>Du kannst per <strong>Banküberweisung (SEPA)</strong> oder <strong>Bitcoin</strong> zahlen. Wähle deine bevorzugte Zahlungsart.';
     }
 
     // ---- Step Navigation ----
@@ -498,9 +511,38 @@ const BTC_ADDRESS = 'bc1qp7tu4apamhwu8v5museyurks5ueatnsln605pc';
         initBtcPayment();
         saveOrder('btc', 'awaiting_payment');
       }
+      // Send order confirmation email
+      sendOrderEmail();
       // Clear cart
       localStorage.removeItem('grunapotheke_cart');
       window.dispatchEvent(new Event('cart-updated'));
+    }
+
+    async function sendOrderEmail() {
+      try {
+        const cart = getCart();
+        const payload = {
+          orderId,
+          firstName: orderData.firstName,
+          lastName: orderData.lastName,
+          email: orderData.email,
+          phone: orderData.phone,
+          street: orderData.street,
+          zip: orderData.zip,
+          city: orderData.city,
+          country: orderData.country,
+          method: payMethod,
+          total: totalEur,
+          items: cart.items.map(i => ({ name: i.name, price: i.price, quantity: i.quantity })),
+        };
+        await fetch('/api/order', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+      } catch (err) {
+        console.error('Failed to send order email:', err);
+      }
     }
 
     function saveOrder(method, status) {

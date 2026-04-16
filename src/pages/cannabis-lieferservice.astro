@@ -1,0 +1,204 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const siteUrl = 'https://grunapotheke.com';
+const pageUrl = `${siteUrl}/cannabis-lieferservice`;
+
+const webpageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Cannabis Lieferservice Deutschland – diskret nach Hause liefern lassen',
+  description: 'Cannabis Lieferservice bei Grunapotheke: medizinisches Cannabis direkt nach Hause in 1-3 Werktagen. Kostenloser Versand, diskrete Verpackung.',
+  url: pageUrl,
+  inLanguage: 'de-DE',
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Gibt es einen Cannabis Lieferservice in Deutschland?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Ja, bei Grunapotheke kannst du medizinisches Cannabis online bestellen und dir diskret nach Hause liefern lassen. Die Lieferung erfolgt in 1-3 Werktagen über eine zugelassene Apotheke.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Wie schnell liefert der Cannabis Lieferservice?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Nach Rezeptfreigabe wird dein Cannabis am nächsten Werktag versendet. Die Lieferung erfolgt innerhalb von 1-3 Werktagen deutschlandweit.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Ist die Cannabis-Lieferung diskret?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Ja, alle Bestellungen werden in neutraler Verpackung ohne Hinweis auf den Inhalt versendet. Die Absenderangabe ist eine zugelassene Apotheke.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Kostet der Cannabis-Versand extra?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Nein, der Versand ist bei Grunapotheke immer kostenlos – egal wie groß deine Bestellung ist.',
+      },
+    },
+  ],
+};
+---
+
+<Layout
+  title="Cannabis Lieferservice 2026 | Diskret nach Hause liefern lassen – Grunapotheke"
+  description="Cannabis Lieferservice: medizinisches Cannabis diskret in 1-3 Werktagen nach Hause geliefert. Kostenloser Versand, neutrale Verpackung. Jetzt bei Grunapotheke bestellen."
+  keywords="cannabis lieferservice, cannabis liefern lassen, cannabis lieferung, cannabis versand, cannabis nach hause liefern, cannabis lieferservice deutschland, cannabis bestellen lieferung"
+  canonical={pageUrl}
+  structuredData={[webpageSchema, faqSchema]}
+>
+  <Breadcrumb items={[{ name: 'Cannabis Lieferservice' }]} />
+
+  <section class="hero">
+    <div class="container">
+      <p class="kicker">Medizinisches Cannabis direkt nach Hause</p>
+      <h1>Cannabis Lieferservice: diskret und schnell geliefert</h1>
+      <p class="lead">
+        Mit dem <strong>Cannabis Lieferservice</strong> von Grunapotheke bestellst du medizinisches Cannabis
+        bequem online und bekommst es innerhalb von 1-3 Werktagen diskret nach Hause geliefert —
+        kostenloser Versand inklusive.
+      </p>
+      <div class="hero-actions">
+        <a href="/products" class="btn btn-primary">Jetzt bestellen</a>
+        <a href="/wie-funktionierts" class="btn btn-outline">So funktioniert's</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="container content-grid">
+      <article>
+        <h2>Cannabis Lieferservice — wie funktioniert es?</h2>
+        <p>
+          Grunapotheke bietet einen vollständig digitalen Cannabis Lieferservice: vom Rezeptantrag
+          bis zur Lieferung an deine Haustür.
+        </p>
+        <ol>
+          <li><strong>Produkte wählen:</strong> Über 180 Cannabis-Produkte im <a href="/products">Live-Bestand</a> — von <a href="/kategorie/cannabisblueten">Cannabisblüten</a> bis <a href="/kategorie/thc-vapes">THC Vapes</a>.</li>
+          <li><strong>Rezept online beantragen:</strong> <a href="/wie-funktionierts">Fragebogen in 3 Minuten</a> ausfüllen, Arzt prüft in 24h.</li>
+          <li><strong>Versand am nächsten Werktag:</strong> Dein Cannabis wird über eine zugelassene Apotheke versendet.</li>
+          <li><strong>Diskret empfangen:</strong> Lieferung in 1-3 Werktagen, neutrale Verpackung, keine Absenderhinweise auf Cannabis.</li>
+        </ol>
+
+        <h2>Warum Grunapotheke als Cannabis Lieferservice?</h2>
+        <ul>
+          <li><strong>Kostenloser Versand:</strong> Keine Versandkosten — nie</li>
+          <li><strong>1-3 Werktage Lieferzeit:</strong> Schnelle Bearbeitung und Versand am nächsten Werktag</li>
+          <li><strong>100% diskret:</strong> Neutrale Verpackung ohne Hinweis auf den Inhalt</li>
+          <li><strong>Deutschlandweit:</strong> Lieferung an jede Adresse in Deutschland</li>
+          <li><strong>Apothekenqualität:</strong> Versand ausschließlich über eine zugelassene Apotheke</li>
+          <li><strong>Sendungsverfolgung:</strong> Tracke deine Lieferung bis zur Zustellung</li>
+        </ul>
+
+        <h2>Cannabis Lieferservice: Produkte und Preise</h2>
+        <p>Bei Grunapotheke kannst du folgende Produkte liefern lassen:</p>
+        <ul>
+          <li><a href="/kategorie/cannabisblueten">Cannabisblüten</a> — ab 1€/g, über 40 Sorten</li>
+          <li><a href="/kategorie/cannabisextrakte">Cannabisextrakte</a> — Vollspektrum-Öle für präzise Dosierung</li>
+          <li><a href="/kategorie/thc-vapes">THC Vapes</a> — vorgefüllte Kartuschen</li>
+          <li><a href="/kategorie/thc-shots">THC Shots</a> — Trinkampullen in verschiedenen Geschmacksrichtungen</li>
+          <li><a href="/kategorie/kapseln-edibles">THC Kapseln & Edibles</a> — diskrete Einnahme</li>
+        </ul>
+        <p>Alle <a href="/preise">Preise im Überblick</a>. Versand ist bei jeder Bestellung kostenlos.</p>
+
+        <h2>Cannabis Lieferservice in deiner Stadt</h2>
+        <p>
+          Grunapotheke liefert deutschlandweit — egal ob du in Berlin, München, Hamburg, Köln, Frankfurt
+          oder einer anderen Stadt wohnst. Über unsere <a href="/cannabis-apotheke">Cannabis Apotheke</a> Seite
+          findest du Informationen nach Stadt. Einen <a href="/cannabis-arzt">Cannabis Arzt</a> in deiner
+          Nähe brauchst du nicht — alles läuft online.
+        </p>
+
+        <h2>Häufige Fragen zum Cannabis Lieferservice</h2>
+        <details>
+          <summary>Kann ich Cannabis an eine Packstation liefern lassen?</summary>
+          <p>Da medizinisches Cannabis über eine zugelassene Apotheke versendet wird, ist die Lieferung an eine reguläre Adresse vorgesehen. Kontaktiere uns für individuelle Lösungen.</p>
+        </details>
+        <details>
+          <summary>Was passiert, wenn ich nicht zu Hause bin?</summary>
+          <p>Der Paketdienst hinterlässt eine Benachrichtigung. Du kannst dein Paket in der nächsten Filiale abholen oder eine erneute Zustellung veranlassen.</p>
+        </details>
+        <details>
+          <summary>Liefert Grunapotheke auch nach Österreich oder in die Schweiz?</summary>
+          <p>Aktuell liefern wir ausschließlich innerhalb Deutschlands. Für Informationen zu Lieferoptionen in andere Länder kontaktiere bitte unseren <a href="/contact">Support</a>.</p>
+        </details>
+        <details>
+          <summary>Wie wird mein Cannabis verpackt?</summary>
+          <p>Alle Bestellungen werden in neutraler, blickdichter Verpackung versendet. Es gibt keinen Hinweis auf Cannabis oder den Inhalt. Als Absender erscheint eine Apotheke.</p>
+        </details>
+      </article>
+
+      <aside class="sidebar">
+        <div class="card">
+          <h3>Produkte bestellen</h3>
+          <ul>
+            <li><a href="/products">Alle 180+ Produkte</a></li>
+            <li><a href="/cannabis-bestellen">Cannabis bestellen</a></li>
+            <li><a href="/cannabis-kaufen">Cannabis kaufen</a></li>
+            <li><a href="/thc-kaufen">THC kaufen</a></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Rezept & Kosten</h3>
+          <ul>
+            <li><a href="/cannabis-rezept-online">Cannabis Rezept online</a></li>
+            <li><a href="/preise">Preise</a></li>
+            <li><a href="/kostenuebernahme">Kostenübernahme</a></li>
+            <li><a href="/faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="card cta">
+          <h3>Jetzt liefern lassen</h3>
+          <p>Cannabis diskret nach Hause — in nur 1-3 Werktagen.</p>
+          <a href="/products" class="btn btn-primary">Zum Live-Bestand</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero { background: linear-gradient(135deg, #f4fbf6, #e7f5eb); padding: 3.5rem 1.5rem 2.5rem; border-bottom: 1px solid #dbeadf; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .kicker { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; color: #2d6a47; font-weight: 700; margin-bottom: 0.75rem; }
+  h1 { font-size: clamp(1.9rem, 4vw, 2.8rem); line-height: 1.15; color: #123524; margin: 0 0 1rem; }
+  .lead { max-width: 70ch; color: #345445; font-size: 1.05rem; line-height: 1.7; }
+  .hero-actions { display: flex; gap: 0.85rem; flex-wrap: wrap; margin-top: 1.5rem; }
+  .btn { display: inline-block; padding: 0.75rem 1.15rem; border-radius: 999px; font-weight: 600; text-decoration: none; }
+  .btn-primary { background: #2d6a47; color: #fff; }
+  .btn-primary:hover { background: #24573a; color: #fff; }
+  .btn-outline { border: 1px solid #2d6a47; color: #2d6a47; background: #fff; }
+  .btn-outline:hover { background: #f1f8f3; color: #1f4a33; }
+  .content { padding: 2.25rem 1.5rem 3.5rem; }
+  .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; align-items: start; }
+  article { background: #fff; border: 1px solid #e4ece7; border-radius: 16px; padding: 1.5rem; }
+  article h2 { margin-top: 1.5rem; color: #153a28; font-size: 1.4rem; }
+  article h2:first-child { margin-top: 0; }
+  article p, article li { color: #334b3f; line-height: 1.75; }
+  article ol, article ul { padding-left: 1.2rem; }
+  article a { color: #1f6b42; text-underline-offset: 2px; }
+  details { border: 1px solid #e6eee8; border-radius: 10px; padding: 0.75rem 0.9rem; margin-top: 0.75rem; background: #fbfdfb; }
+  summary { cursor: pointer; font-weight: 600; color: #183c2a; }
+  .sidebar { display: grid; gap: 1rem; }
+  .card { border: 1px solid #e2ebe5; border-radius: 14px; background: #fff; padding: 1rem; }
+  .card h3 { margin: 0 0 0.75rem; color: #173c2a; }
+  .card ul { margin: 0; padding-left: 1rem; }
+  .card li { margin-bottom: 0.4rem; }
+  .card a { color: #1f6b42; }
+  .cta p { color: #355347; }
+  @media (max-width: 900px) { .content-grid { grid-template-columns: 1fr; } }
+</style>

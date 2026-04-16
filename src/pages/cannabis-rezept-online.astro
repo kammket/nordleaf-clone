@@ -1,0 +1,259 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const siteUrl = 'https://grunapotheke.com';
+const pageUrl = `${siteUrl}/cannabis-rezept-online`;
+
+const webpageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Cannabis Rezept online bekommen – in 3 Minuten bei Grunapotheke',
+  description: 'Cannabis Rezept online erhalten: Fragebogen ausfüllen, Arzt prüft, Rezept in 24h. Bei Grunapotheke ab 9,90€.',
+  url: pageUrl,
+  inLanguage: 'de-DE',
+};
+
+const howToSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'Cannabis Rezept online bekommen',
+  description: 'So erhältst du dein Cannabis-Rezept online bei Grunapotheke — in nur 3 Minuten vom Fragebogen bis zur Rezeptausstellung.',
+  totalTime: 'PT3M',
+  estimatedCost: {
+    '@type': 'MonetaryAmount',
+    currency: 'EUR',
+    value: '9.90',
+  },
+  step: [
+    {
+      '@type': 'HowToStep',
+      position: 1,
+      name: 'Produkte auswählen',
+      text: 'Wähle deine gewünschten Cannabis-Produkte im Live-Bestand aus. Über 180 Sorten stehen zur Verfügung.',
+      url: `${siteUrl}/products`,
+    },
+    {
+      '@type': 'HowToStep',
+      position: 2,
+      name: 'Medizinischen Fragebogen ausfüllen',
+      text: 'Fülle den medizinischen Fragebogen aus. Das dauert nur 3 Minuten. Gib deine Beschwerden, bisherige Behandlungen und gewünschte Therapie an.',
+      url: `${siteUrl}/wie-funktionierts`,
+    },
+    {
+      '@type': 'HowToStep',
+      position: 3,
+      name: 'Ärztliche Prüfung abwarten',
+      text: 'Ein zugelassener Arzt aus unserem Netzwerk von 9 Fachärzten prüft deine Angaben und stellt bei Eignung das Rezept innerhalb von 24 Stunden aus.',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 4,
+      name: 'Rezept erhalten und Medikament empfangen',
+      text: 'Nach Rezeptfreigabe wird dein medizinisches Cannabis über eine zugelassene Apotheke diskret versendet. Lieferung in 1-3 Werktagen.',
+    },
+  ],
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Kann ich ein Cannabis Rezept online bekommen?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Ja, bei Grunapotheke kannst du dein Cannabis Rezept vollständig online beantragen. Du füllst einen Fragebogen aus, ein Arzt prüft deine Angaben und stellt das Rezept innerhalb von 24 Stunden aus.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Was kostet ein Cannabis Rezept online?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Das All-in-One Paket mit Rezept und Medikament kostet ab 9,90€. Das reine Rezept kostet 19,90€ und kann in jeder Apotheke eingelöst werden.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Wie schnell bekomme ich mein Cannabis Rezept online?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Der Fragebogen dauert nur 3 Minuten. Die ärztliche Prüfung erfolgt innerhalb von 24 Stunden. Bei positiver Bewertung erhältst du dein Rezept sofort digital.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Welche Voraussetzungen brauche ich für ein Cannabis Rezept?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Du musst volljährig sein und eine medizinische Indikation haben, bei der Cannabis helfen kann — z.B. chronische Schmerzen, Schlafstörungen, ADHS, Angststörungen oder Migräne. Ein Arzt prüft die Eignung.',
+      },
+    },
+  ],
+};
+---
+
+<Layout
+  title="Cannabis Rezept online 2026 | In 3 Minuten zum Rezept – Grunapotheke"
+  description="Cannabis Rezept online bekommen: Fragebogen in 3 Min. ausfüllen, Arzt prüft in 24h, Rezept sofort digital. Ab 9,90€ bei Grunapotheke. Jetzt starten."
+  keywords="cannabis rezept online, cannabis rezept bekommen, online rezept cannabis, cannabis verschreibung online, cannabis rezept kosten, cannabis arzt online, telemedizin cannabis"
+  canonical={pageUrl}
+  structuredData={[webpageSchema, howToSchema, faqSchema]}
+>
+  <Breadcrumb items={[{ name: 'Cannabis Rezept online' }]} />
+
+  <section class="hero">
+    <div class="container">
+      <p class="kicker">Online-Rezeptservice für medizinisches Cannabis</p>
+      <h1>Cannabis Rezept online: in 3 Minuten zum Rezept</h1>
+      <p class="lead">
+        Bei Grunapotheke bekommst du dein <strong>Cannabis Rezept vollständig online</strong> — von
+        der Antragstellung bis zur Rezeptausstellung. Kein Arztbesuch nötig, kein Warten.
+      </p>
+      <div class="hero-actions">
+        <a href="/wie-funktionierts" class="btn btn-primary">Jetzt Rezept beantragen</a>
+        <a href="/preise" class="btn btn-outline">Preise ansehen</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="container content-grid">
+      <article>
+        <h2>Cannabis Rezept online bekommen — der Ablauf</h2>
+        <p>Der Weg zu deinem Cannabis Rezept ist bei Grunapotheke rein digital und dauert nur wenige Minuten:</p>
+        <ol>
+          <li><strong>Produkte wählen:</strong> Stöbere im <a href="/products">Live-Bestand</a> mit über 180 Cannabis-Produkten.</li>
+          <li><strong>Fragebogen ausfüllen (3 Min.):</strong> Beschreibe deine Beschwerden und bisherigen Behandlungen im <a href="/wie-funktionierts">Online-Fragebogen</a>.</li>
+          <li><strong>Ärztliche Prüfung (24h):</strong> Einer unserer 9 zugelassenen Ärzte prüft deine Angaben und stellt bei Eignung das Rezept aus.</li>
+          <li><strong>Medikament erhalten:</strong> Dein Cannabis wird über eine zugelassene Apotheke diskret versendet — in 1-3 Werktagen bei dir.</li>
+        </ol>
+
+        <h2>Was kostet ein Cannabis Rezept online?</h2>
+        <p>Grunapotheke bietet zwei transparente Pakete:</p>
+        <div class="price-cards">
+          <div class="price-card">
+            <h3>All-in-One Paket</h3>
+            <div class="price">ab 9,90€</div>
+            <p>Rezept + Medikament + kostenloser Versand. Dein Cannabis wird direkt zu dir geliefert.</p>
+          </div>
+          <div class="price-card">
+            <h3>Nur Rezept</h3>
+            <div class="price">19,90€</div>
+            <p>Du erhältst ein Rezept, das du in jeder Apotheke deiner Wahl einlösen kannst.</p>
+          </div>
+        </div>
+        <p>Mehr Details auf der <a href="/preise">Preisseite</a>. Die <a href="/kostenuebernahme">Kostenübernahme durch die Krankenkasse</a> ist in bestimmten Fällen möglich.</p>
+
+        <h2>Für welche Erkrankungen bekomme ich ein Cannabis Rezept?</h2>
+        <p>Medizinisches Cannabis kann bei verschiedenen <a href="/indikationen">Indikationen</a> verschrieben werden:</p>
+        <ul>
+          <li><strong>Chronische Schmerzen</strong> — die häufigste Indikation für medizinisches Cannabis</li>
+          <li><strong>Schlafstörungen</strong> — Cannabis kann das Ein- und Durchschlafen unterstützen</li>
+          <li><strong>ADHS</strong> — als Ergänzung zur bestehenden Therapie</li>
+          <li><strong>Angststörungen</strong> — CBD- und THC-haltige Sorten können beruhigend wirken</li>
+          <li><strong>PTBS</strong> — Posttraumatische Belastungsstörung</li>
+          <li><strong>Migräne</strong> — bei chronischen Kopfschmerzen</li>
+        </ul>
+        <p>
+          Der Arzt prüft im Fragebogen, ob eine Indikation bei dir vorliegt. Alle Details findest du auf
+          unserer Seite <a href="/ratgeber/cannabis-rezept-bekommen">Cannabis Rezept bekommen</a>.
+        </p>
+
+        <h2>Cannabis Rezept online vs. Praxisbesuch</h2>
+        <p>
+          Der Online-Weg spart dir den Gang zum Arzt. Bei Grunapotheke läuft alles digital — vom
+          Fragebogen über die ärztliche Prüfung bis zum Rezept. Du brauchst keinen Termin und wartest
+          nicht im Wartezimmer. Das Rezept wird innerhalb von 24 Stunden ausgestellt.
+        </p>
+        <p>
+          Sollte der Arzt feststellen, dass Cannabis für dich nicht in Frage kommt, entstehen dir <strong>keine
+          Kosten</strong>. Du zahlst nur bei erfolgreicher Rezeptausstellung.
+        </p>
+
+        <h2>Häufige Fragen zum Cannabis Rezept online</h2>
+        <details>
+          <summary>Brauche ich eine Vorerkrankung für ein Cannabis Rezept?</summary>
+          <p>Ja, eine medizinische Indikation muss vorliegen. Der Arzt prüft dies anhand deines Fragebogens. Alle <a href="/indikationen">Indikationen im Überblick</a>.</p>
+        </details>
+        <details>
+          <summary>Wie lange ist das Online-Rezept gültig?</summary>
+          <p>Ein Privatrezept für Cannabis ist in der Regel 3 Monate gültig. Folgerezepte kannst du unkompliziert über Grunapotheke anfordern.</p>
+        </details>
+        <details>
+          <summary>Was passiert bei Ablehnung?</summary>
+          <p>Wenn der Arzt feststellt, dass Cannabis für dich nicht geeignet ist, entstehen dir keine Kosten. Du zahlst nur bei erfolgreicher Rezeptausstellung.</p>
+        </details>
+        <details>
+          <summary>Kann ich das Rezept auch woanders einlösen?</summary>
+          <p>Ja, mit dem "Nur Rezept"-Paket (19,90€) kannst du das Rezept in jeder Apotheke einlösen. Das All-in-One Paket (9,90€) beinhaltet die Lieferung direkt zu dir.</p>
+        </details>
+      </article>
+
+      <aside class="sidebar">
+        <div class="card">
+          <h3>Zum Rezept</h3>
+          <ul>
+            <li><a href="/wie-funktionierts">Ablauf ansehen</a></li>
+            <li><a href="/preise">Preise & Kosten</a></li>
+            <li><a href="/kostenuebernahme">Krankenkasse</a></li>
+            <li><a href="/indikationen">Indikationen</a></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Cannabis kaufen</h3>
+          <ul>
+            <li><a href="/products">Alle Produkte</a></li>
+            <li><a href="/cannabis-kaufen">Cannabis kaufen</a></li>
+            <li><a href="/cannabis-bestellen">Cannabis bestellen</a></li>
+            <li><a href="/cannabis-arzt">Cannabis Arzt finden</a></li>
+          </ul>
+        </div>
+        <div class="card cta">
+          <h3>Jetzt starten</h3>
+          <p>In 3 Minuten zum Cannabis Rezept — ganz ohne Arztbesuch.</p>
+          <a href="/wie-funktionierts" class="btn btn-primary">Fragebogen starten</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero { background: linear-gradient(135deg, #f4fbf6, #e7f5eb); padding: 3.5rem 1.5rem 2.5rem; border-bottom: 1px solid #dbeadf; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .kicker { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; color: #2d6a47; font-weight: 700; margin-bottom: 0.75rem; }
+  h1 { font-size: clamp(1.9rem, 4vw, 2.8rem); line-height: 1.15; color: #123524; margin: 0 0 1rem; }
+  .lead { max-width: 70ch; color: #345445; font-size: 1.05rem; line-height: 1.7; }
+  .hero-actions { display: flex; gap: 0.85rem; flex-wrap: wrap; margin-top: 1.5rem; }
+  .btn { display: inline-block; padding: 0.75rem 1.15rem; border-radius: 999px; font-weight: 600; text-decoration: none; }
+  .btn-primary { background: #2d6a47; color: #fff; }
+  .btn-primary:hover { background: #24573a; color: #fff; }
+  .btn-outline { border: 1px solid #2d6a47; color: #2d6a47; background: #fff; }
+  .btn-outline:hover { background: #f1f8f3; color: #1f4a33; }
+  .content { padding: 2.25rem 1.5rem 3.5rem; }
+  .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; align-items: start; }
+  article { background: #fff; border: 1px solid #e4ece7; border-radius: 16px; padding: 1.5rem; }
+  article h2 { margin-top: 1.5rem; color: #153a28; font-size: 1.4rem; }
+  article h2:first-child { margin-top: 0; }
+  article h3 { color: #153a28; font-size: 1.1rem; margin: 0 0 0.25rem; }
+  article p, article li { color: #334b3f; line-height: 1.75; }
+  article ol, article ul { padding-left: 1.2rem; }
+  article a { color: #1f6b42; text-underline-offset: 2px; }
+  details { border: 1px solid #e6eee8; border-radius: 10px; padding: 0.75rem 0.9rem; margin-top: 0.75rem; background: #fbfdfb; }
+  summary { cursor: pointer; font-weight: 600; color: #183c2a; }
+  .price-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+  .price-card { border: 1px solid #e2ebe5; border-radius: 12px; padding: 1rem; background: #f8faf9; }
+  .price-card .price { font-size: 1.5rem; font-weight: 800; color: #1a472a; margin: 0.25rem 0 0.5rem; }
+  .price-card p { font-size: 0.9rem; color: #555; margin: 0; }
+  .sidebar { display: grid; gap: 1rem; }
+  .card { border: 1px solid #e2ebe5; border-radius: 14px; background: #fff; padding: 1rem; }
+  .card h3 { margin: 0 0 0.75rem; color: #173c2a; }
+  .card ul { margin: 0; padding-left: 1rem; }
+  .card li { margin-bottom: 0.4rem; }
+  .card a { color: #1f6b42; }
+  .cta p { color: #355347; }
+  @media (max-width: 900px) { .content-grid { grid-template-columns: 1fr; } .price-cards { grid-template-columns: 1fr; } }
+</style>

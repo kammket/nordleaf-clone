@@ -1,0 +1,208 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const siteUrl = 'https://grunapotheke.com';
+const pageUrl = `${siteUrl}/thc-kaufen`;
+
+const webpageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'THC kaufen in Deutschland – medizinisches Cannabis auf Rezept',
+  description: 'THC kaufen bei Grunapotheke: Cannabisblüten, THC Vapes, THC Shots und Extrakte auf Rezept bestellen. Über 180 Produkte, diskrete Lieferung.',
+  url: pageUrl,
+  inLanguage: 'de-DE',
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Kann man THC legal in Deutschland kaufen?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Ja, THC-haltige Produkte können als medizinisches Cannabis mit einem gültigen ärztlichen Rezept legal gekauft werden. Der Bezug erfolgt über eine zugelassene Apotheke.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Welche THC-Produkte gibt es bei Grunapotheke?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Bei Grunapotheke findest du THC-haltige Cannabisblüten (bis 33% THC), THC Vapes, THC Shots, Cannabisextrakte und THC Kapseln – insgesamt über 180 Produkte von namhaften Herstellern.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Wie viel THC darf medizinisches Cannabis enthalten?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Medizinisches Cannabis kann bis zu 33% THC enthalten. Der genaue THC-Gehalt variiert je nach Sorte und ist auf jeder Produktseite angegeben. Dein Arzt empfiehlt dir die geeignete Dosierung.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Was kostet THC auf Rezept?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'THC-haltige Cannabisblüten gibt es ab 1€/g bei Grunapotheke. THC Vapes und Shots sind ab ca. 5€ erhältlich. Der Rezeptservice kostet ab 9,90€, der Versand ist kostenlos.',
+      },
+    },
+  ],
+};
+---
+
+<Layout
+  title="THC kaufen 2026 | THC Blüten, Vapes & Shots auf Rezept – Grunapotheke"
+  description="THC kaufen bei Grunapotheke: Cannabisblüten bis 33% THC, THC Vapes, THC Shots und Extrakte. Über 180 Produkte auf Rezept, diskrete Lieferung in 1-3 Werktagen."
+  keywords="thc kaufen, thc kaufen deutschland, thc bestellen, thc online kaufen, thc blüten kaufen, thc vapes kaufen, thc shots kaufen, thc auf rezept"
+  canonical={pageUrl}
+  structuredData={[webpageSchema, faqSchema]}
+>
+  <Breadcrumb items={[{ name: 'THC kaufen' }]} />
+
+  <section class="hero">
+    <div class="container">
+      <p class="kicker">THC-haltige Produkte auf Rezept</p>
+      <h1>THC kaufen: Blüten, Vapes und Shots auf Rezept</h1>
+      <p class="lead">
+        Bei Grunapotheke kannst du <strong>THC-haltige Produkte legal kaufen</strong> — von Cannabisblüten
+        mit bis zu 33% THC über THC Vapes bis zu THC Shots. Alles auf Rezept, alles über eine zugelassene Apotheke.
+      </p>
+      <div class="hero-actions">
+        <a href="/products" class="btn btn-primary">THC-Produkte ansehen</a>
+        <a href="/wie-funktionierts" class="btn btn-outline">Rezept in 3 Min.</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="container content-grid">
+      <article>
+        <h2>THC kaufen — welche Produkte gibt es?</h2>
+        <p>
+          THC (Tetrahydrocannabinol) ist der Hauptwirkstoff in medizinischem Cannabis. Bei Grunapotheke
+          findest du eine große Auswahl an THC-haltigen Produkten:
+        </p>
+        <ul>
+          <li><a href="/kategorie/cannabisblueten">THC-Blüten kaufen</a> — über 40 Sorten mit 16-33% THC von Herstellern wie avaay, DEMECAN und Cannamedical. Indica, Sativa und Hybrid-Sorten verfügbar.</li>
+          <li><a href="/kategorie/thc-vapes">THC Vapes kaufen</a> — vorgefüllte Kartuschen für schnelle Wirkung und diskrete Nutzung unterwegs.</li>
+          <li><a href="/kategorie/thc-shots">THC Shots kaufen</a> — trinkbare Einzeldosen in Geschmacksrichtungen wie Zitrone, Minze und Orange.</li>
+          <li><a href="/kategorie/cannabisextrakte">THC-Extrakte kaufen</a> — Vollspektrum-Öle mit präziser Dosierung, ideal für Einsteiger.</li>
+          <li><a href="/kategorie/kapseln-edibles">THC Kapseln kaufen</a> — diskrete Einnahme mit exakt definiertem THC-Gehalt pro Kapsel.</li>
+        </ul>
+
+        <h2>Wie kann ich THC legal kaufen?</h2>
+        <p>
+          In Deutschland brauchst du ein ärztliches Rezept, um THC-haltige Produkte zu kaufen. Bei
+          Grunapotheke ist der Ablauf denkbar einfach:
+        </p>
+        <ol>
+          <li><strong>Produkt wählen:</strong> Stöbere im <a href="/products">Live-Bestand</a> — filtere nach THC-Gehalt, Sorte oder Darreichungsform.</li>
+          <li><strong>Fragebogen ausfüllen:</strong> Der <a href="/wie-funktionierts">medizinische Fragebogen</a> dauert nur 3 Minuten. Ein zugelassener Arzt prüft deine Angaben.</li>
+          <li><strong>THC erhalten:</strong> Nach Rezeptfreigabe wird deine Bestellung diskret in 1-3 Werktagen geliefert.</li>
+        </ol>
+
+        <h2>THC-Gehalt: von mild bis stark</h2>
+        <p>
+          Medizinische Cannabisblüten gibt es in verschiedenen THC-Stärken. Die richtige Wahl hängt
+          von deiner <a href="/indikationen">Indikation</a> und bisherigen Erfahrung ab:
+        </p>
+        <ul>
+          <li><strong>16-20% THC:</strong> Einstiegsfreundlich, geeignet für Cannabis-Neulinge</li>
+          <li><strong>20-25% THC:</strong> Mittlere Stärke, beliebt bei chronischen Schmerzen und Schlafstörungen</li>
+          <li><strong>25-33% THC:</strong> Hohe Potenz, für erfahrene Patienten mit entsprechender Indikation</li>
+        </ul>
+        <p>
+          Mehr über die Unterschiede erfährst du in unserem <a href="/ratgeber/cannabis-sorten-guide">Cannabis Sorten Guide</a>
+          und im Artikel <a href="/ratgeber/thc-vs-cbd">THC vs. CBD</a>.
+        </p>
+
+        <h2>THC kaufen: Preise bei Grunapotheke</h2>
+        <p>
+          THC-haltige Cannabisblüten beginnen bei <strong>1€/g</strong>. THC Vapes, Shots und Extrakte
+          sind ebenfalls zu transparenten Preisen erhältlich. Alle Details auf der <a href="/preise">Preisseite</a>.
+        </p>
+
+        <h2>Häufige Fragen zum THC kaufen</h2>
+        <details>
+          <summary>Ist THC kaufen ohne Rezept möglich?</summary>
+          <p>Nein, THC-haltige Produkte sind in Deutschland verschreibungspflichtig. Du kannst das Rezept bei Grunapotheke <a href="/ratgeber/cannabis-rezept-bekommen">online in 3 Minuten beantragen</a>.</p>
+        </details>
+        <details>
+          <summary>Welche Indikationen berechtigen zum THC-Bezug?</summary>
+          <p>Chronische Schmerzen, Schlafstörungen, ADHS, Angststörungen, PTBS, Migräne und weitere. Alle <a href="/indikationen">Indikationen im Überblick</a>.</p>
+        </details>
+        <details>
+          <summary>Wie unterscheiden sich THC-Blüten von THC-Vapes?</summary>
+          <p>Blüten werden vaporisiert oder in der Küche verwendet, Vapes enthalten konzentriertes THC-Öl in Kartuschen. Vapes wirken schneller und sind diskreter, Blüten bieten das vollständige Terpenprofil.</p>
+        </details>
+        <details>
+          <summary>Übernimmt die Krankenkasse die Kosten für THC?</summary>
+          <p>In bestimmten Fällen ja. Mehr dazu auf unserer Seite zur <a href="/kostenuebernahme">Kostenübernahme</a>.</p>
+        </details>
+      </article>
+
+      <aside class="sidebar">
+        <div class="card">
+          <h3>THC-Produkte</h3>
+          <ul>
+            <li><a href="/kategorie/cannabisblueten">THC-Blüten</a></li>
+            <li><a href="/kategorie/thc-vapes">THC Vapes</a></li>
+            <li><a href="/kategorie/thc-shots">THC Shots</a></li>
+            <li><a href="/kategorie/cannabisextrakte">THC-Extrakte</a></li>
+            <li><a href="/kategorie/kapseln-edibles">THC Kapseln</a></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Ratgeber</h3>
+          <ul>
+            <li><a href="/ratgeber/thc-vs-cbd">THC vs. CBD</a></li>
+            <li><a href="/ratgeber/cannabis-sorten-guide">Sorten Guide</a></li>
+            <li><a href="/ratgeber/cannabis-als-medizin">Cannabis als Medizin</a></li>
+            <li><a href="/glossar">Cannabis-Glossar</a></li>
+          </ul>
+        </div>
+        <div class="card cta">
+          <h3>Jetzt THC kaufen</h3>
+          <p>Über 180 THC-haltige Produkte ab 1€/g. Rezept in 3 Minuten.</p>
+          <a href="/products" class="btn btn-primary">Zum Live-Bestand</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero { background: linear-gradient(135deg, #f4fbf6, #e7f5eb); padding: 3.5rem 1.5rem 2.5rem; border-bottom: 1px solid #dbeadf; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .kicker { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; color: #2d6a47; font-weight: 700; margin-bottom: 0.75rem; }
+  h1 { font-size: clamp(1.9rem, 4vw, 2.8rem); line-height: 1.15; color: #123524; margin: 0 0 1rem; }
+  .lead { max-width: 70ch; color: #345445; font-size: 1.05rem; line-height: 1.7; }
+  .hero-actions { display: flex; gap: 0.85rem; flex-wrap: wrap; margin-top: 1.5rem; }
+  .btn { display: inline-block; padding: 0.75rem 1.15rem; border-radius: 999px; font-weight: 600; text-decoration: none; }
+  .btn-primary { background: #2d6a47; color: #fff; }
+  .btn-primary:hover { background: #24573a; color: #fff; }
+  .btn-outline { border: 1px solid #2d6a47; color: #2d6a47; background: #fff; }
+  .btn-outline:hover { background: #f1f8f3; color: #1f4a33; }
+  .content { padding: 2.25rem 1.5rem 3.5rem; }
+  .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; align-items: start; }
+  article { background: #fff; border: 1px solid #e4ece7; border-radius: 16px; padding: 1.5rem; }
+  article h2 { margin-top: 1.5rem; color: #153a28; font-size: 1.4rem; }
+  article h2:first-child { margin-top: 0; }
+  article p, article li { color: #334b3f; line-height: 1.75; }
+  article ol, article ul { padding-left: 1.2rem; }
+  article a { color: #1f6b42; text-underline-offset: 2px; }
+  details { border: 1px solid #e6eee8; border-radius: 10px; padding: 0.75rem 0.9rem; margin-top: 0.75rem; background: #fbfdfb; }
+  summary { cursor: pointer; font-weight: 600; color: #183c2a; }
+  .sidebar { display: grid; gap: 1rem; }
+  .card { border: 1px solid #e2ebe5; border-radius: 14px; background: #fff; padding: 1rem; }
+  .card h3 { margin: 0 0 0.75rem; color: #173c2a; }
+  .card ul { margin: 0; padding-left: 1rem; }
+  .card li { margin-bottom: 0.4rem; }
+  .card a { color: #1f6b42; }
+  .cta p { color: #355347; }
+  @media (max-width: 900px) { .content-grid { grid-template-columns: 1fr; } }
+</style>

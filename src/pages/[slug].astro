@@ -98,7 +98,7 @@ const structuredData = {
     "priceCurrency": "EUR",
     "availability": product.available ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
     "seller": { "@type": "Organization", "name": "Grunapotheke" },
-    "url": `https://grunapotheke.de/${product.slug}`
+    "url": `https://grunapotheke.com/${product.slug}`
   },
   "aggregateRating": {
     "@type": "AggregateRating",
@@ -128,9 +128,9 @@ const breadcrumbData = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://grunapotheke.de/" },
-    { "@type": "ListItem", "position": 2, "name": "Live-Bestand", "item": "https://grunapotheke.de/products" },
-    { "@type": "ListItem", "position": 3, "name": product.strain || product.name, "item": `https://grunapotheke.de/${product.slug}` }
+    { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://grunapotheke.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Live-Bestand", "item": "https://grunapotheke.com/products" },
+    { "@type": "ListItem", "position": 3, "name": product.strain || product.name, "item": `https://grunapotheke.com/${product.slug}` }
   ]
 };
 
@@ -149,7 +149,7 @@ const faqData = {
   title={`${product.strain || product.name} von ${product.brand} | ${product.thc} THC | Grunapotheke`}
   description={seoDescription}
   keywords={seoKeywords}
-  canonical={`https://grunapotheke.de/${product.slug}`}
+  canonical={`https://grunapotheke.com/${product.slug}`}
   ogType="product"
   structuredData={structuredData}
 >
@@ -314,7 +314,6 @@ const faqData = {
                           <svg class={`star ${i <= review.rating ? 'star-filled' : 'star-empty'}`} width="16" height="16" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                         ))}
                       </div>
-                      <span class="review-date">{fmtDate(review.date)}</span>
                     </div>
                     <h4 class="review-title">{review.title}</h4>
                     <p class="review-body">{review.body}</p>
@@ -1221,11 +1220,6 @@ const faqData = {
   .review-stars {
     display: flex;
     gap: 1px;
-  }
-
-  .review-date {
-    font-size: 0.8rem;
-    color: #999;
   }
 
   .review-title {

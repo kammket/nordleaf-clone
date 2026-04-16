@@ -3,7 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import { products } from '../../utils/products';
 
-const siteUrl = 'https://grunapotheke.de';
+const siteUrl = 'https://grunapotheke.com';
 const categoryProducts = products.filter(p => p.category === 'Cannabisblüten');
 const availableCount = categoryProducts.filter(p => p.available).length;
 const brands = [...new Set(categoryProducts.map(p => p.brand))];

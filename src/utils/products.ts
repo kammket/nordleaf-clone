@@ -1,5 +1,5 @@
 // Grunapotheke Product Data - Medizinisches Cannabis
-// Comprehensive catalog matching the original grunapotheke.de
+// Comprehensive catalog matching the original grunapotheke.com
 
 export interface Product {
   id: string;
@@ -1202,7 +1202,7 @@ export const products: Product[] = [
     category: 'THC Vapes',
     brand: 'Curaleaf',
     available: true,
-    image: 'https://grunapotheke.de/cdn/shop/files/4-curaleaf-kartuschen-nachfuellpack.png?width=600',
+    image: 'https://grunapotheke.com/cdn/shop/files/4-curaleaf-kartuschen-nachfuellpack.png?width=600',
   },
   {
     id: '63',
@@ -1220,7 +1220,7 @@ export const products: Product[] = [
     category: 'THC Vapes',
     brand: 'Curaleaf',
     available: true,
-    image: 'https://grunapotheke.de/cdn/shop/files/curaleaf-vape-pen-kartusche.png?width=600',
+    image: 'https://grunapotheke.com/cdn/shop/files/curaleaf-vape-pen-kartusche.png?width=600',
   },
   {
     id: '64',
@@ -1238,7 +1238,7 @@ export const products: Product[] = [
     category: 'THC Vapes',
     brand: 'Curaleaf',
     available: true,
-    image: 'https://grunapotheke.de/cdn/shop/files/curaleaf-vape-pen-akkutraeger.png?width=600',
+    image: 'https://grunapotheke.com/cdn/shop/files/curaleaf-vape-pen-akkutraeger.png?width=600',
   },
   // ============================================
   // THC VAPES - LANDCO / Cali Haze
@@ -1259,7 +1259,7 @@ export const products: Product[] = [
     category: 'THC Vapes',
     brand: 'LANDCO',
     available: true,
-    image: 'https://grunapotheke.de/cdn/shop/files/00_Collectionpage_medical_packaging_pine.webp?width=600',
+    image: 'https://grunapotheke.com/cdn/shop/files/00_Collectionpage_medical_packaging_pine.webp?width=600',
   },
   {
     id: '66',
@@ -1277,7 +1277,7 @@ export const products: Product[] = [
     category: 'THC Vapes',
     brand: 'LANDCO',
     available: true,
-    image: 'https://grunapotheke.de/cdn/shop/files/00_Collectionpage_medical_packaging_pine.webp?width=600',
+    image: 'https://grunapotheke.com/cdn/shop/files/00_Collectionpage_medical_packaging_pine.webp?width=600',
   },
   {
     id: '67',
@@ -1295,7 +1295,7 @@ export const products: Product[] = [
     category: 'THC Vapes',
     brand: 'LANDCO',
     available: true,
-    image: 'https://grunapotheke.de/cdn/shop/files/00_Collectionpage_medical_packaging_pine.webp?width=600',
+    image: 'https://grunapotheke.com/cdn/shop/files/00_Collectionpage_medical_packaging_pine.webp?width=600',
   },
   {
     id: '68',
@@ -1313,7 +1313,7 @@ export const products: Product[] = [
     category: 'THC Vapes',
     brand: 'LANDCO',
     available: true,
-    image: 'https://grunapotheke.de/cdn/shop/files/00_Collectionpage_medical_packaging_pine.webp?width=600',
+    image: 'https://grunapotheke.com/cdn/shop/files/00_Collectionpage_medical_packaging_pine.webp?width=600',
   },
   {
     id: '69',
@@ -1331,7 +1331,7 @@ export const products: Product[] = [
     category: 'THC Vapes',
     brand: 'LANDCO',
     available: true,
-    image: 'https://grunapotheke.de/cdn/shop/files/01_PDP_medical_packaging_haze.webp?width=600',
+    image: 'https://grunapotheke.com/cdn/shop/files/01_PDP_medical_packaging_haze.webp?width=600',
   },
   {
     id: '70',
@@ -1349,7 +1349,7 @@ export const products: Product[] = [
     category: 'THC Vapes',
     brand: 'LANDCO',
     available: true,
-    image: 'https://grunapotheke.de/cdn/shop/files/00_Collectionpage_medical_packaging_lemon.webp?width=600',
+    image: 'https://grunapotheke.com/cdn/shop/files/00_Collectionpage_medical_packaging_lemon.webp?width=600',
   },
   // ============================================
   // CANNABIS EXTRAKTE - 420 / Four 20 Pharma

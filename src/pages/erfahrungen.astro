@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
 
-const siteUrl = 'https://grunapotheke.de';
+const siteUrl = 'https://grunapotheke.com';
 
 const reviews = [
   { name: "Thomas M.", location: "Berlin", rating: 5, date: "2026-02-18", title: "Endlich schmerzfrei schlafen", text: "Nach Jahren chronischer Rückenschmerzen hat mir mein Hausarzt Cannabis empfohlen. Über Grunapotheke hatte ich mein Rezept in unter 24 Stunden. Die Blüten kamen diskret verpackt in 2 Tagen. Qualität ist hervorragend — ich schlafe endlich wieder durch.", condition: "Chronische Schmerzen", product: "Cannabisblüten" },
@@ -160,7 +160,7 @@ const faqSchema = {
             <div class="review-avatar">{review.name.charAt(0)}</div>
             <div class="review-meta">
               <strong>{review.name}</strong>
-              <span>{review.location} · {new Date(review.date).toLocaleDateString('de-DE', { month: 'long', year: 'numeric' })}</span>
+              <span>{review.location}</span>
             </div>
             <div class="review-stars">{'★'.repeat(review.rating)}{'☆'.repeat(5 - review.rating)}</div>
           </div>

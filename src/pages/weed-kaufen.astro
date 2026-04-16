@@ -1,0 +1,202 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const siteUrl = 'https://grunapotheke.com';
+const pageUrl = `${siteUrl}/weed-kaufen`;
+
+const webpageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Weed kaufen in Deutschland – legal mit Rezept bei Grunapotheke',
+  description: 'Weed kaufen legal: medizinisches Cannabis auf Rezept bei Grunapotheke bestellen. Über 180 Sorten, diskrete Lieferung in 1-3 Werktagen.',
+  url: pageUrl,
+  inLanguage: 'de-DE',
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Kann ich in Deutschland legal Weed kaufen?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Medizinisches Cannabis (Weed) kann in Deutschland mit einem gültigen ärztlichen Rezept legal bezogen werden. Der Kauf erfolgt über eine zugelassene Apotheke.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Wie kann ich online Weed kaufen?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Bei Grunapotheke wählst du dein Produkt, füllst einen medizinischen Fragebogen aus und erhältst dein Rezept online. Die Lieferung erfolgt diskret in 1-3 Werktagen.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Was ist der Unterschied zwischen Weed und medizinischem Cannabis?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Medizinisches Cannabis unterliegt strengen Qualitätskontrollen und wird von zugelassenen Herstellern produziert. Der umgangssprachliche Begriff Weed meint dasselbe Produkt – Cannabisblüten mit definiertem THC- und CBD-Gehalt.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Was kostet Weed auf Rezept?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Medizinische Cannabisblüten gibt es ab 1€/g bei Grunapotheke. Der Rezeptservice kostet ab 9,90€ im All-in-One Paket. Versand ist kostenlos.',
+      },
+    },
+  ],
+};
+---
+
+<Layout
+  title="Weed kaufen 2026 | Legal auf Rezept bestellen – Grunapotheke"
+  description="Weed kaufen in Deutschland: medizinisches Cannabis legal auf Rezept bestellen. Über 180 Sorten ab 1€/g bei Grunapotheke. Diskrete Lieferung in 1-3 Werktagen."
+  keywords="weed kaufen, weed kaufen deutschland, weed bestellen, weed online kaufen, weed auf rezept, weed legal kaufen, marijuana kaufen"
+  canonical={pageUrl}
+  structuredData={[webpageSchema, faqSchema]}
+>
+  <Breadcrumb items={[{ name: 'Weed kaufen' }]} />
+
+  <section class="hero">
+    <div class="container">
+      <p class="kicker">Medizinisches Cannabis in Deutschland</p>
+      <h1>Weed kaufen: legal und sicher mit Rezept</h1>
+      <p class="lead">
+        Du möchtest <strong>Weed kaufen</strong>? Der legale Weg führt über medizinisches Cannabis
+        auf Rezept. Bei Grunapotheke bestellst du aus über 180 Sorten — von Cannabisblüten bis
+        THC Vapes — und bekommst alles diskret nach Hause geliefert.
+      </p>
+      <div class="hero-actions">
+        <a href="/products" class="btn btn-primary">Jetzt Weed kaufen</a>
+        <a href="/wie-funktionierts" class="btn btn-outline">So funktioniert's</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="container content-grid">
+      <article>
+        <h2>Weed kaufen — was du wissen musst</h2>
+        <p>
+          Der Begriff <strong>Weed</strong> wird umgangssprachlich für Cannabis verwendet. In Deutschland
+          kannst du medizinisches Weed mit einem gültigen Rezept bei einer zugelassenen Apotheke
+          <a href="/cannabis-kaufen">legal kaufen</a>.
+        </p>
+        <p>
+          Medizinische Cannabisblüten werden nach strengen pharmazeutischen Standards angebaut und
+          kontrolliert. Jede Sorte hat einen definierten THC- und CBD-Gehalt, damit du exakt dosieren kannst.
+        </p>
+
+        <h2>So kannst du bei Grunapotheke Weed kaufen</h2>
+        <ol>
+          <li><strong>Sorte auswählen:</strong> Im <a href="/products">Live-Bestand</a> findest du über 180 Produkte mit detaillierten Angaben zu THC, CBD und Wirkungsprofilen.</li>
+          <li><strong>Rezept erhalten:</strong> Fülle den <a href="/wie-funktionierts">medizinischen Fragebogen</a> aus. Ein Arzt prüft deine Angaben innerhalb von 24 Stunden.</li>
+          <li><strong>Diskret empfangen:</strong> Dein Weed wird über eine zugelassene Apotheke in neutraler Verpackung versendet — in 1-3 Werktagen bei dir.</li>
+        </ol>
+
+        <h2>Welches Weed gibt es bei Grunapotheke?</h2>
+        <p>Unser Sortiment umfasst verschiedene Darreichungsformen:</p>
+        <ul>
+          <li><a href="/kategorie/cannabisblueten">Cannabisblüten</a> – klassisches Weed in über 40 Sorten, Indica, Sativa und Hybrid</li>
+          <li><a href="/kategorie/cannabisextrakte">Cannabisextrakte</a> – Öle und Tropfen für präzise Dosierung</li>
+          <li><a href="/kategorie/thc-vapes">THC Vapes</a> – vorgefüllte Kartuschen für unterwegs</li>
+          <li><a href="/kategorie/thc-shots">THC Shots</a> – trinkbare Einzeldosen</li>
+          <li><a href="/kategorie/kapseln-edibles">Kapseln & Edibles</a> – diskrete Einnahme ohne Rauchen</li>
+        </ul>
+
+        <h2>Weed kaufen: Preise und Kosten</h2>
+        <p>
+          Bei Grunapotheke beginnen die Preise für Cannabisblüten ab <strong>1€ pro Gramm</strong>.
+          Der Rezeptservice im All-in-One Paket kostet 9,90€. Der Versand ist immer kostenlos.
+          Weitere Details findest du auf unserer <a href="/preise">Preisseite</a>.
+        </p>
+
+        <h2>Weed kaufen vs. Cannabis kaufen</h2>
+        <p>
+          Ob du nach <a href="/cannabis-kaufen">Cannabis kaufen</a>, <a href="/gras-kaufen">Gras kaufen</a>
+          oder Weed kaufen suchst — gemeint ist in der Regel medizinisches Cannabis auf Rezept.
+          Bei allen Begriffen gilt: Der legale Bezug erfolgt über einen Arzt und eine zugelassene Apotheke.
+        </p>
+
+        <h2>Häufige Fragen zum Weed kaufen</h2>
+        <details>
+          <summary>Ist Weed kaufen in Deutschland legal?</summary>
+          <p>Medizinisches Cannabis kann mit gültigem Rezept legal gekauft werden. Der Bezug erfolgt über eine zugelassene Apotheke wie Grunapotheke.</p>
+        </details>
+        <details>
+          <summary>Brauche ich ein Rezept, um Weed zu kaufen?</summary>
+          <p>Ja, medizinisches Cannabis ist verschreibungspflichtig. Bei Grunapotheke kannst du das <a href="/ratgeber/cannabis-rezept-bekommen">Rezept online in 3 Minuten beantragen</a>.</p>
+        </details>
+        <details>
+          <summary>Welche Sorten Weed gibt es?</summary>
+          <p>Wir führen über 40 Sorten Cannabisblüten von Herstellern wie avaay, DEMECAN, Cannamedical und weiteren. Dazu kommen Extrakte, Vapes, Shots und Kapseln.</p>
+        </details>
+      </article>
+
+      <aside class="sidebar">
+        <div class="card">
+          <h3>Beliebte Sorten</h3>
+          <ul>
+            <li><a href="/kategorie/cannabisblueten">Cannabisblüten</a></li>
+            <li><a href="/kategorie/thc-vapes">THC Vapes</a></li>
+            <li><a href="/kategorie/thc-shots">THC Shots</a></li>
+            <li><a href="/products">Alle 180+ Produkte</a></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Mehr erfahren</h3>
+          <ul>
+            <li><a href="/cannabis-bestellen">Cannabis bestellen</a></li>
+            <li><a href="/cannabis-apotheke">Cannabis Apotheke</a></li>
+            <li><a href="/ratgeber/cannabis-sorten-guide">Cannabis Sorten Guide</a></li>
+            <li><a href="/ratgeber/thc-vs-cbd">THC vs. CBD</a></li>
+            <li><a href="/erfahrungen">Erfahrungen lesen</a></li>
+          </ul>
+        </div>
+        <div class="card cta">
+          <h3>Jetzt starten</h3>
+          <p>Rezept in 3 Minuten beantragen und Weed diskret liefern lassen.</p>
+          <a href="/wie-funktionierts" class="btn btn-primary">Rezept beantragen</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero { background: linear-gradient(135deg, #f4fbf6, #e7f5eb); padding: 3.5rem 1.5rem 2.5rem; border-bottom: 1px solid #dbeadf; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .kicker { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; color: #2d6a47; font-weight: 700; margin-bottom: 0.75rem; }
+  h1 { font-size: clamp(1.9rem, 4vw, 2.8rem); line-height: 1.15; color: #123524; margin: 0 0 1rem; }
+  .lead { max-width: 70ch; color: #345445; font-size: 1.05rem; line-height: 1.7; }
+  .hero-actions { display: flex; gap: 0.85rem; flex-wrap: wrap; margin-top: 1.5rem; }
+  .btn { display: inline-block; padding: 0.75rem 1.15rem; border-radius: 999px; font-weight: 600; text-decoration: none; }
+  .btn-primary { background: #2d6a47; color: #fff; }
+  .btn-primary:hover { background: #24573a; color: #fff; }
+  .btn-outline { border: 1px solid #2d6a47; color: #2d6a47; background: #fff; }
+  .btn-outline:hover { background: #f1f8f3; color: #1f4a33; }
+  .content { padding: 2.25rem 1.5rem 3.5rem; }
+  .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; align-items: start; }
+  article { background: #fff; border: 1px solid #e4ece7; border-radius: 16px; padding: 1.5rem; }
+  article h2 { margin-top: 1.5rem; color: #153a28; font-size: 1.4rem; }
+  article h2:first-child { margin-top: 0; }
+  article p, article li { color: #334b3f; line-height: 1.75; }
+  article ol, article ul { padding-left: 1.2rem; }
+  article a { color: #1f6b42; text-underline-offset: 2px; }
+  details { border: 1px solid #e6eee8; border-radius: 10px; padding: 0.75rem 0.9rem; margin-top: 0.75rem; background: #fbfdfb; }
+  summary { cursor: pointer; font-weight: 600; color: #183c2a; }
+  .sidebar { display: grid; gap: 1rem; }
+  .card { border: 1px solid #e2ebe5; border-radius: 14px; background: #fff; padding: 1rem; }
+  .card h3 { margin: 0 0 0.75rem; color: #173c2a; }
+  .card ul { margin: 0; padding-left: 1rem; }
+  .card li { margin-bottom: 0.4rem; }
+  .card a { color: #1f6b42; }
+  .cta p { color: #355347; }
+  @media (max-width: 900px) { .content-grid { grid-template-columns: 1fr; } }
+</style>

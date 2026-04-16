@@ -1,12 +1,96 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
+
+const siteUrl = 'https://grunapotheke.com';
+
+const howToSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'Cannabis-Rezept in 3 Minuten bekommen',
+  description: 'So bekommst du dein Cannabis-Rezept bei Grunapotheke: Blüten auswählen, Fragebogen ausfüllen, Rezept erhalten und Cannabis nach Hause geliefert bekommen.',
+  totalTime: 'PT3M',
+  estimatedCost: {
+    '@type': 'MonetaryAmount',
+    currency: 'EUR',
+    value: '9.90',
+  },
+  supply: [
+    { '@type': 'HowToSupply', name: 'Gültiger Personalausweis' },
+    { '@type': 'HowToSupply', name: 'Angaben zu Beschwerden und Vorerkrankungen' },
+  ],
+  tool: [
+    { '@type': 'HowToTool', name: 'Smartphone, Tablet oder Computer mit Internetzugang' },
+  ],
+  step: [
+    {
+      '@type': 'HowToStep',
+      position: 1,
+      name: 'Blüten auswählen',
+      text: 'Schaue dir den Live-Bestand an und wähle die Cannabisblüten, die zu deinen Bedürfnissen passen. Über 25 Sorten von Premium-Herstellern mit detaillierten Infos zu THC, CBD und Wirkungen.',
+      url: `${siteUrl}/products`,
+    },
+    {
+      '@type': 'HowToStep',
+      position: 2,
+      name: 'Fragebogen ausfüllen',
+      text: 'Fülle den medizinischen Fragebogen in nur 3 Minuten aus. Ein erfahrener Arzt aus unserem Netzwerk von 9 Ärzten prüft deine Angaben und stellt bei Eignung dein Rezept innerhalb von 24 Stunden aus.',
+      url: `${siteUrl}/wie-funktionierts`,
+    },
+    {
+      '@type': 'HowToStep',
+      position: 3,
+      name: 'Bezahlung und Lieferung',
+      text: 'Nach der Genehmigung bezahlst du bequem online. Dein Medikament wird am nächsten Werktag versendet und kommt diskret verpackt innerhalb von 1-3 Werktagen bei dir an.',
+    },
+  ],
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Brauche ich eine Vorerkrankung für ein Cannabis-Rezept?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Medizinisches Cannabis kann bei verschiedenen Beschwerden verschrieben werden, darunter chronische Schmerzen, Schlafstörungen, ADHS, Depressionen, Angststörungen und weitere. Der Arzt prüft im Rahmen des Fragebogens, ob eine Indikation bei dir vorliegt.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Was passiert, wenn mein Antrag abgelehnt wird?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Sollte der Arzt feststellen, dass medizinisches Cannabis für dich nicht geeignet ist, entstehen dir keine Kosten. Du zahlst nur bei einer erfolgreichen Rezeptausstellung.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Wie oft muss ich ein neues Rezept anfordern?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Ein Folgerezept kannst du ganz einfach über unsere Plattform anfordern. Die Häufigkeit hängt von deiner verschriebenen Menge und Dosierung ab.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Kann ich die Blüten auch in einer anderen Apotheke einlösen?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Ja, mit unserem Nur Rezept-Paket für 19,90€ erhältst du ein Rezept, das du in jeder Apotheke deiner Wahl einlösen kannst.',
+      },
+    },
+  ],
+};
 ---
 
 <Layout
   title="Wie funktioniert's - Cannabis-Rezept in 3 Minuten | Grunapotheke"
   description="So einfach funktioniert dein Cannabis-Rezept bei Grunapotheke: Blüten auswählen, Fragebogen ausfüllen, Rezept erhalten. In nur 3 Minuten zum Cannabis-Patient."
   keywords="Cannabis Rezept, Cannabis Patient werden, medizinisches Cannabis beantragen, Fragebogen Cannabis"
+  structuredData={[howToSchema, faqSchema]}
 >
   <Breadcrumb items={[{name: "Wie funktioniert's"}]} />
   <section class="page-hero">

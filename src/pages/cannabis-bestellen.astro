@@ -1,0 +1,204 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const siteUrl = 'https://grunapotheke.com';
+const pageUrl = `${siteUrl}/cannabis-bestellen`;
+
+const webpageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Cannabis bestellen in Deutschland – medizinisch, legal, diskret',
+  description: 'Bei Grunapotheke Cannabis bestellen: über 180 Produkte mit Rezept, Lieferung in 1-3 Werktagen, diskrete Verpackung.',
+  url: pageUrl,
+  inLanguage: 'de-DE',
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Wie kann ich Cannabis online bestellen?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Du wählst dein Produkt im Live-Bestand, füllst den medizinischen Fragebogen aus und erhältst dein Rezept. Danach wird die Bestellung über eine zugelassene Apotheke versendet – diskret in 1-3 Werktagen.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Ist Cannabis bestellen in Deutschland legal?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Ja, medizinisches Cannabis ist in Deutschland mit einem gültigen ärztlichen Rezept vollständig legal. Der Versand erfolgt über eine zugelassene Apotheke.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Wie lange dauert die Lieferung nach der Bestellung?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Nach Rezeptfreigabe wird deine Bestellung am nächsten Werktag versendet. Die Lieferung erfolgt innerhalb von 1-3 Werktagen in neutraler Verpackung.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Was kostet es, Cannabis zu bestellen?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Cannabisblüten gibt es ab 1€/g, der Rezeptservice kostet ab 9,90€ im All-in-One Paket. Der Versand ist kostenlos.',
+      },
+    },
+  ],
+};
+---
+
+<Layout
+  title="Cannabis bestellen 2026 | Online auf Rezept liefern lassen – Grunapotheke"
+  description="Cannabis bestellen bei Grunapotheke: über 180 Sorten medizinisches Cannabis auf Rezept, ab 1€/g. Diskrete Lieferung in 1-3 Werktagen. Jetzt online bestellen."
+  keywords="cannabis bestellen, cannabis online bestellen, cannabis bestellen deutschland, medizinisches cannabis bestellen, cannabis liefern lassen, cannabis auf rezept bestellen"
+  canonical={pageUrl}
+  structuredData={[webpageSchema, faqSchema]}
+>
+  <Breadcrumb items={[{ name: 'Cannabis bestellen' }]} />
+
+  <section class="hero">
+    <div class="container">
+      <p class="kicker">Medizinisches Cannabis direkt nach Hause</p>
+      <h1>Cannabis bestellen: diskret, legal und schnell geliefert</h1>
+      <p class="lead">
+        Bei Grunapotheke kannst du <strong>medizinisches Cannabis online bestellen</strong> und dir deine
+        Medikamente bequem nach Hause liefern lassen. Über 180 Produkte ab 1€/g, Rezeptservice inklusive.
+      </p>
+      <div class="hero-actions">
+        <a href="/products" class="btn btn-primary">Jetzt Cannabis bestellen</a>
+        <a href="/wie-funktionierts" class="btn btn-outline">Ablauf ansehen</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="container content-grid">
+      <article>
+        <h2>Cannabis bestellen – so funktioniert es</h2>
+        <p>
+          Medizinisches Cannabis zu bestellen ist bei Grunapotheke einfach und sicher. Der gesamte
+          Prozess dauert nur wenige Minuten:
+        </p>
+        <ol>
+          <li><strong>Produkt auswählen:</strong> Stöbere im <a href="/products">Live-Bestand</a> und wähle aus über 180 Cannabisblüten, Extrakten, Vapes und weiteren Produkten.</li>
+          <li><strong>Rezept beantragen:</strong> Fülle den <a href="/wie-funktionierts">medizinischen Fragebogen</a> in 3 Minuten aus. Ein zugelassener Arzt prüft deine Angaben.</li>
+          <li><strong>Bestellung erhalten:</strong> Nach Freigabe wird dein Cannabis über eine zugelassene Apotheke versendet – diskret verpackt, innerhalb von 1-3 Werktagen.</li>
+        </ol>
+
+        <h2>Warum bei Grunapotheke Cannabis bestellen?</h2>
+        <ul>
+          <li><strong>Über 180 Produkte:</strong> <a href="/kategorie/cannabisblueten">Cannabisblüten</a>, <a href="/kategorie/cannabisextrakte">Extrakte</a>, <a href="/kategorie/thc-vapes">Vapes</a>, <a href="/kategorie/thc-shots">Shots</a> und <a href="/kategorie/kapseln-edibles">Kapseln</a></li>
+          <li><strong>Ab 1€ pro Gramm:</strong> Transparente <a href="/preise">Preise</a> ohne versteckte Kosten</li>
+          <li><strong>Diskrete Lieferung:</strong> Neutrale Verpackung, Versand am nächsten Werktag</li>
+          <li><strong>Kostenloser Versand:</strong> Keine Versandkosten bei jeder Bestellung</li>
+          <li><strong>Apothekenqualität:</strong> Versand ausschließlich über zugelassene Apotheken</li>
+          <li><strong>9 Ärzte im Netzwerk:</strong> Schnelle Rezeptprüfung und -ausstellung</li>
+        </ul>
+
+        <h2>Welche Produkte kann ich bestellen?</h2>
+        <p>Bei Grunapotheke findest du ein breites Sortiment an medizinischem Cannabis:</p>
+        <ul>
+          <li><a href="/kategorie/cannabisblueten">Cannabisblüten bestellen</a> – über 40 Sorten von Premium-Herstellern wie avaay, DEMECAN und Cannamedical</li>
+          <li><a href="/kategorie/cannabisextrakte">Cannabisextrakte bestellen</a> – Vollspektrum-Öle und Tropfen für präzise Dosierung</li>
+          <li><a href="/kategorie/thc-vapes">THC Vapes bestellen</a> – vorgefüllte Kartuschen für schnelle Wirkung</li>
+          <li><a href="/kategorie/thc-shots">THC Shots bestellen</a> – Trinkampullen in verschiedenen Geschmacksrichtungen</li>
+          <li><a href="/kategorie/kapseln-edibles">THC Kapseln bestellen</a> – diskrete Einnahme ohne Inhalation</li>
+        </ul>
+
+        <h2>Cannabis bestellen: Voraussetzungen</h2>
+        <p>
+          Um medizinisches Cannabis zu bestellen, benötigst du ein gültiges Rezept. Bei Grunapotheke
+          kannst du das <a href="/ratgeber/cannabis-rezept-bekommen">Rezept online beantragen</a>. Typische
+          <a href="/indikationen">Indikationen</a> sind chronische Schmerzen, Schlafstörungen, ADHS, Angststörungen und Migräne.
+        </p>
+
+        <h2>Häufige Fragen zum Cannabis bestellen</h2>
+        <details>
+          <summary>Kann ich Cannabis ohne Rezept bestellen?</summary>
+          <p>Nein, medizinisches Cannabis ist verschreibungspflichtig. Bei Grunapotheke kannst du das Rezept aber direkt online beantragen – in nur 3 Minuten.</p>
+        </details>
+        <details>
+          <summary>Wie schnell wird meine Bestellung geliefert?</summary>
+          <p>Nach Rezeptfreigabe erfolgt der Versand am nächsten Werktag. Du erhältst dein Cannabis innerhalb von 1-3 Werktagen in diskreter Verpackung.</p>
+        </details>
+        <details>
+          <summary>Was kostet Cannabis bestellen bei Grunapotheke?</summary>
+          <p>
+            Cannabisblüten ab 1€/g, Rezeptservice ab 9,90€. Der Versand ist immer kostenlos.
+            Alle Details findest du auf unserer <a href="/preise">Preisseite</a>.
+          </p>
+        </details>
+        <details>
+          <summary>Wird meine Bestellung diskret geliefert?</summary>
+          <p>Ja, alle Bestellungen werden in neutraler Verpackung ohne Hinweis auf den Inhalt versendet.</p>
+        </details>
+      </article>
+
+      <aside class="sidebar">
+        <div class="card">
+          <h3>Beliebt bestellt</h3>
+          <ul>
+            <li><a href="/products">Alle Produkte ansehen</a></li>
+            <li><a href="/kategorie/cannabisblueten">Cannabisblüten</a></li>
+            <li><a href="/kategorie/thc-vapes">THC Vapes</a></li>
+            <li><a href="/kategorie/thc-shots">THC Shots</a></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Informationen</h3>
+          <ul>
+            <li><a href="/cannabis-kaufen">Cannabis kaufen</a></li>
+            <li><a href="/cannabis-apotheke">Cannabis Apotheke</a></li>
+            <li><a href="/cannabis-arzt">Cannabis Arzt finden</a></li>
+            <li><a href="/kostenuebernahme">Kostenübernahme Krankenkasse</a></li>
+            <li><a href="/erfahrungen">Erfahrungen lesen</a></li>
+          </ul>
+        </div>
+        <div class="card cta">
+          <h3>Jetzt bestellen</h3>
+          <p>Wähle deine Produkte und erhalte dein Rezept in nur 3 Minuten.</p>
+          <a href="/products" class="btn btn-primary">Zum Live-Bestand</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero { background: linear-gradient(135deg, #f4fbf6, #e7f5eb); padding: 3.5rem 1.5rem 2.5rem; border-bottom: 1px solid #dbeadf; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .kicker { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; color: #2d6a47; font-weight: 700; margin-bottom: 0.75rem; }
+  h1 { font-size: clamp(1.9rem, 4vw, 2.8rem); line-height: 1.15; color: #123524; margin: 0 0 1rem; }
+  .lead { max-width: 70ch; color: #345445; font-size: 1.05rem; line-height: 1.7; }
+  .hero-actions { display: flex; gap: 0.85rem; flex-wrap: wrap; margin-top: 1.5rem; }
+  .btn { display: inline-block; padding: 0.75rem 1.15rem; border-radius: 999px; font-weight: 600; text-decoration: none; }
+  .btn-primary { background: #2d6a47; color: #fff; }
+  .btn-primary:hover { background: #24573a; color: #fff; }
+  .btn-outline { border: 1px solid #2d6a47; color: #2d6a47; background: #fff; }
+  .btn-outline:hover { background: #f1f8f3; color: #1f4a33; }
+  .content { padding: 2.25rem 1.5rem 3.5rem; }
+  .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; align-items: start; }
+  article { background: #fff; border: 1px solid #e4ece7; border-radius: 16px; padding: 1.5rem; }
+  article h2 { margin-top: 1.5rem; color: #153a28; font-size: 1.4rem; }
+  article h2:first-child { margin-top: 0; }
+  article p, article li { color: #334b3f; line-height: 1.75; }
+  article ol, article ul { padding-left: 1.2rem; }
+  article a { color: #1f6b42; text-underline-offset: 2px; }
+  details { border: 1px solid #e6eee8; border-radius: 10px; padding: 0.75rem 0.9rem; margin-top: 0.75rem; background: #fbfdfb; }
+  summary { cursor: pointer; font-weight: 600; color: #183c2a; }
+  .sidebar { display: grid; gap: 1rem; }
+  .card { border: 1px solid #e2ebe5; border-radius: 14px; background: #fff; padding: 1rem; }
+  .card h3 { margin: 0 0 0.75rem; color: #173c2a; }
+  .card ul { margin: 0; padding-left: 1rem; }
+  .card li { margin-bottom: 0.4rem; }
+  .card a { color: #1f6b42; }
+  .cta p { color: #355347; }
+  @media (max-width: 900px) { .content-grid { grid-template-columns: 1fr; } }
+</style>
