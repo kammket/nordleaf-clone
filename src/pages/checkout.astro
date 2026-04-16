@@ -479,7 +479,7 @@ const BTC_ADDRESS = 'bc1qp7tu4apamhwu8v5museyurks5ueatnsln605pc';
     });
 
     // ---- Step 3: Confirmation ----
-    function showConfirmation() {
+    async function showConfirmation() {
       if (payMethod === 'bank') {
         document.getElementById('confirm-bank').style.display = '';
         document.getElementById('confirm-btc').style.display = 'none';
@@ -496,7 +496,7 @@ const BTC_ADDRESS = 'bc1qp7tu4apamhwu8v5museyurks5ueatnsln605pc';
         saveOrder('btc', 'awaiting_payment');
       }
       // Send order confirmation email
-      sendOrderEmail();
+      await sendOrderEmail();
       // Clear cart
       localStorage.removeItem('grunapotheke_cart');
       window.dispatchEvent(new Event('cart-updated'));
@@ -505,6 +505,10 @@ const BTC_ADDRESS = 'bc1qp7tu4apamhwu8v5museyurks5ueatnsln605pc';
     async function sendOrderEmail() {
       try {
         const cart = getCart();
+        if (!cart.items || cart.items.length === 0) {
+          console.warn('Cart is empty, skipping email');
+          return;
+        }
         const payload = {
           orderId,
           firstName: orderData.firstName,
@@ -519,14 +523,17 @@ const BTC_ADDRESS = 'bc1qp7tu4apamhwu8v5museyurks5ueatnsln605pc';
           total: totalEur,
           items: cart.items.map(i => ({ name: i.name, price: i.price, quantity: i.quantity })),
         };
+        console.log('Sending order email for', orderId);
         const res = await fetch('/api/order', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
         });
+        const data = await res.json().catch(() => ({}));
         if (!res.ok) {
-          const data = await res.json().catch(() => ({}));
           console.error('Order email API error:', res.status, data);
+        } else {
+          console.log('Order email sent successfully:', data);
         }
       } catch (err) {
         console.error('Failed to send order email:', err);

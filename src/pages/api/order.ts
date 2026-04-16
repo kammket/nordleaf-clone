@@ -1,7 +1,6 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
-import { Resend } from 'resend';
 
 interface OrderItem {
   name: string;
@@ -26,6 +25,26 @@ interface OrderPayload {
 
 function fmt(n: number): string {
   return `€${n.toFixed(2).replace('.', ',')}`;
+}
+
+async function sendEmail(apiKey: string, from: string, to: string[], subject: string, html: string): Promise<{ success: boolean; error?: string }> {
+  try {
+    const res = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ from, to, subject, html }),
+    });
+    if (!res.ok) {
+      const body = await res.text();
+      return { success: false, error: `Resend API ${res.status}: ${body}` };
+    }
+    return { success: true };
+  } catch (err: any) {
+    return { success: false, error: `Fetch error: ${err?.message || String(err)}` };
+  }
 }
 
 function buildOrderEmailHtml(order: OrderPayload): string {
@@ -163,12 +182,18 @@ function buildAdminEmailHtml(order: OrderPayload): string {
 
 export const POST: APIRoute = async ({ request, locals }) => {
   try {
-    // Try Cloudflare runtime env first, then Astro env
+    // Try Cloudflare runtime env first, then Astro env, then process.env
     const runtime = (locals as any)?.runtime;
-    const apiKey = runtime?.env?.RESEND_API_KEY || import.meta.env.RESEND_API_KEY;
+    const apiKey = runtime?.env?.RESEND_API_KEY || import.meta.env.RESEND_API_KEY || (typeof process !== 'undefined' && process.env?.RESEND_API_KEY);
+    
+    console.log('ENV check - runtime exists:', !!runtime);
+    console.log('ENV check - runtime.env exists:', !!runtime?.env);
+    console.log('ENV check - API key found:', !!apiKey);
+    console.log('ENV check - API key source:', runtime?.env?.RESEND_API_KEY ? 'runtime' : import.meta.env.RESEND_API_KEY ? 'import.meta' : 'fallback/none');
+    
     if (!apiKey) {
       return new Response(
-        JSON.stringify({ error: 'Email service not configured' }),
+        JSON.stringify({ error: 'Email service not configured', debug: { hasRuntime: !!runtime, hasRuntimeEnv: !!runtime?.env } }),
         { status: 500, headers: { 'Content-Type': 'application/json' } }
       );
     }
@@ -194,47 +219,49 @@ export const POST: APIRoute = async ({ request, locals }) => {
       );
     }
 
-    const resend = new Resend(apiKey);
     const fromAddress = runtime?.env?.EMAIL_FROM || import.meta.env.EMAIL_FROM || 'Grunapotheke <info@grunapotheke.com>';
     const adminEmail = runtime?.env?.ADMIN_EMAIL || import.meta.env.ADMIN_EMAIL || 'info@grunapotheke.com';
 
-    // Send customer confirmation email
-    const { error: customerError } = await resend.emails.send({
-      from: fromAddress,
-      to: [order.email],
-      subject: `Bestellbestätigung – ${order.orderId}`,
-      html: buildOrderEmailHtml(order),
-    });
+    console.log('Sending email to:', order.email, 'from:', fromAddress);
 
-    if (customerError) {
-      console.error('Customer email error:', customerError);
+    // Send customer confirmation email
+    const customerResult = await sendEmail(
+      apiKey,
+      fromAddress,
+      [order.email],
+      `Bestellbestätigung – ${order.orderId}`,
+      buildOrderEmailHtml(order),
+    );
+
+    if (!customerResult.success) {
+      console.error('Customer email error:', customerResult.error);
       return new Response(
-        JSON.stringify({ error: 'Failed to send confirmation email' }),
+        JSON.stringify({ error: 'Failed to send confirmation email', detail: customerResult.error }),
         { status: 500, headers: { 'Content-Type': 'application/json' } }
       );
     }
 
     // Send admin notification email
-    const { error: adminError } = await resend.emails.send({
-      from: fromAddress,
-      to: [adminEmail],
-      subject: `Neue Bestellung: ${order.orderId} – ${fmt(order.total)}`,
-      html: buildAdminEmailHtml(order),
-    });
+    const adminResult = await sendEmail(
+      apiKey,
+      fromAddress,
+      [adminEmail],
+      `Neue Bestellung: ${order.orderId} – ${fmt(order.total)}`,
+      buildAdminEmailHtml(order),
+    );
 
-    if (adminError) {
-      console.error('Admin email error:', adminError);
-      // Don't fail the order if admin email fails
+    if (!adminResult.success) {
+      console.error('Admin email error:', adminResult.error);
     }
 
     return new Response(
       JSON.stringify({ success: true, orderId: order.orderId }),
       { status: 200, headers: { 'Content-Type': 'application/json' } }
     );
-  } catch (err) {
+  } catch (err: any) {
     console.error('Order API error:', err);
     return new Response(
-      JSON.stringify({ error: 'Internal server error' }),
+      JSON.stringify({ error: 'Internal server error', detail: err?.message || String(err) }),
       { status: 500, headers: { 'Content-Type': 'application/json' } }
     );
   }
